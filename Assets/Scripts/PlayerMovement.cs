@@ -1,18 +1,31 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public float speed = 1.0f;
+
+    private Vector2 latestMovement;
+
+    private void Update()
     {
-        
+        ApplyMovement();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnMove(InputValue v)
     {
-        
+        latestMovement = v.Get<Vector2>();
+    }
+
+    private void ApplyMovement()
+    {
+        Move(latestMovement * speed);
+    }
+
+    private void Move(Vector2 movement)
+    {
+        transform.Translate(movement);
     }
 }
