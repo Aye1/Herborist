@@ -56,8 +56,8 @@ public class MapGenerator : MonoBehaviour
 
     private void GenerateRiver()
     {
-        Vector2Int begin = MapGeneratorHelper.GeneratePointOnLimit(MapLimit.Left, 0, mapSize.y, mapSize);
-        Vector2Int end = MapGeneratorHelper.GeneratePointOnLimit(MapLimit.Down, 0, mapSize.y, mapSize);
+        Vector2Int begin = MapGeneratorHelper.GeneratePointOnLimit(MapLimit.Left, 5, 18, mapSize);
+        Vector2Int end = MapGeneratorHelper.GeneratePointOnLimit(MapLimit.Down, 2, 14, mapSize);
         List<Vector2Int> fullLine = new List<Vector2Int>() { begin, end };
         MapGeneratorHelper.SubdivideLine(fullLine, begin, end, 3);
         MapGeneratorHelper.FillLine(fullLine);
