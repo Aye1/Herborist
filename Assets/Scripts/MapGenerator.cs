@@ -16,6 +16,8 @@ public class MapGenerator : MonoBehaviour
     [SerializeField] private TileBase _grassTileBase;
     [SerializeField] private TileBase _waterTileBase;
 
+    private River _generatedRiver;
+
     void Awake()
     {
         if (Instance == null)
@@ -33,6 +35,31 @@ public class MapGenerator : MonoBehaviour
     {
         CleanMap();
         GenerateMap();
+    }
+
+    private void Update()
+    {
+        DebugDrawElements();
+    }
+
+    private void DebugDrawElements()
+    {
+        DebugDrawRiver();
+    }
+
+    private void DebugDrawRiver()
+    {
+        if (_generatedRiver != null && _generatedRiver.mainPointsGenerated)
+        {
+            Vector2Int[] points = _generatedRiver.mainPoints.ToArray();
+            Vector3 offset = new Vector3(-mapSize.x * 0.5f + 0.5f, 0.0f, 0.0f);
+            for (int i = 0; i < _generatedRiver.mainPoints.Count - 1; i++)
+            {
+                Vector3 begin = new Vector3(points[i].x, points[i].y, 0) + offset;
+                Vector3 end = new Vector3(points[i + 1].x, points[i + 1].y, 0) + offset;
+                Debug.DrawLine(begin, end, Color.cyan);
+            }
+        }
     }
 
     public void CleanMap()
@@ -56,12 +83,16 @@ public class MapGenerator : MonoBehaviour
 
     private void GenerateRiver()
     {
-        Vector2Int begin = MapGeneratorHelper.GeneratePointOnLimit(MapLimit.Left, 5, 18, mapSize);
-        Vector2Int end = MapGeneratorHelper.GeneratePointOnLimit(MapLimit.Down, 2, 14, mapSize);
-        List<Vector2Int> fullLine = new List<Vector2Int>() { begin, end };
-        MapGeneratorHelper.SubdivideLine(fullLine, begin, end, 3);
-        MapGeneratorHelper.FillLine(fullLine);
-        PutTiles(fullLine, TileType.Water);
+        MapLimit beginLimit = MapLimit.Left;
+        MapLimit endLimit = MapLimit.Right;
+        _generatedRiver = new River();
+        _generatedRiver.beginLimit = beginLimit;
+        _generatedRiver.endLimit = endLimit;
+        _generatedRiver.GenerateMainPoints();
+        _generatedRiver.MoveMainPointsRandomly(0, 3);
+        _generatedRiver.GenerateInterpolationPoints();
+
+        PutTiles(_generatedRiver.allPoints, TileType.Water);
     }
 
     private void PutTiles(List<Vector2Int> positions, TileType type)

@@ -4,13 +4,14 @@ using UnityEngine;
 using System;
 
 public enum MapLimit { Left, Up, Right, Down };
+public enum Direction { DownUp, LeftRight };
 
 public static class MapGeneratorHelper
 {
 
     public static void SubdivideLine(List<Vector2Int> completeLine, Vector2Int begin, Vector2Int end, int subdivideCount)
     {
-        Vector2Int middlePoint = GeneratePointInMiddle(begin, end, new Vector2Int(0, 1));
+        Vector2Int middlePoint = GeneratePointInMiddle(begin, end);
         int index = completeLine.IndexOf(begin) + 1;
         completeLine.Insert(index, middlePoint);
         if(subdivideCount >  0)
@@ -20,10 +21,9 @@ public static class MapGeneratorHelper
         }
     }
 
-    public static Vector2Int GeneratePointInMiddle(Vector2Int begin, Vector2Int end, Vector2Int maxAlea)
+    public static Vector2Int GeneratePointInMiddle(Vector2Int begin, Vector2Int end)
     {
-        Vector2Int alea = new Vector2Int(Alea.GetInt(0, maxAlea.x), Alea.GetInt(0, maxAlea.y));
-        Vector2Int newPoint = (begin + end) / 2 + alea;
+        Vector2Int newPoint = (begin + end) / 2;
         return newPoint;
     }
 
@@ -48,13 +48,14 @@ public static class MapGeneratorHelper
         List<Vector2Int> newPoints = new List<Vector2Int>();
         Vector2Int diff = end - begin;
 
-        if (diff.x >= diff.y)
+        if (GetSegmentDirection(begin, end) == Direction.LeftRight)
         {
             // Iterate on x
             float slope = (end.y - begin.y) / (float)(end.x - begin.x);
-            for (int j = 1; j < diff.x; j++)
+            int sign = diff.x / Mathf.Abs(diff.x);
+            for (int j = 1; j < Mathf.Abs(diff.x); j++)
             {
-                Vector2Int newPos = new Vector2Int(begin.x + j, Mathf.RoundToInt(slope * j) + begin.y);
+                Vector2Int newPos = new Vector2Int(begin.x + j * sign, Mathf.RoundToInt(slope * j * sign) + begin.y);
                 newPoints.Add(newPos);
             }
         }
@@ -62,19 +63,68 @@ public static class MapGeneratorHelper
         {
             // Iterate on y
             float slope = (end.x - begin.x) / (float)(end.y - begin.y);
-            for (int j = 1; j < diff.y; j++)
+            int sign = diff.y / Mathf.Abs(diff.y);
+            for (int j = 1; j < Mathf.Abs(diff.y); j++)
             {
-                Vector2Int newPos = new Vector2Int(begin.x + Mathf.RoundToInt(slope * j), begin.y + j);
+                Vector2Int newPos = new Vector2Int(begin.x + Mathf.RoundToInt(slope * j * sign), begin.y + j * sign);
                 newPoints.Add(newPos);
             }
         }
         return newPoints;
     }
 
-    public static Vector2Int GeneratePointOnLimit(MapLimit limit, int min, int max, Vector2Int mapSize)
+    public static void MovePointsOfSegmentRandomly(Vector2Int begin, Vector2Int end, int min, int max)
+    {
+        Direction dir = GetSegmentNormalDirection(begin, end);
+        MovePointRandomly(ref begin, dir, min, max);
+        MovePointRandomly(ref end, dir, min, max);
+    }
+
+    public static void MovePointRandomly(ref Vector2Int point, Direction dir, int min, int max)
+    {
+        int rand = Alea.GetInt(min, max);
+        Vector2Int addedAlea = Vector2Int.zero;
+        if(dir == Direction.DownUp)
+        {
+            addedAlea.y = rand;
+        } else
+        {
+            addedAlea.x = rand;
+        }
+        point.x = Mathf.Clamp(point.x + addedAlea.x, 0, MapGenerator.Instance.mapSize.x-1);
+        point.y = Mathf.Clamp(point.y + addedAlea.y, 0, MapGenerator.Instance.mapSize.y-1);
+    }
+
+    public static Direction GetSegmentDirection(Vector2Int begin, Vector2Int end)
+    {
+        Vector2Int diff = end - begin;
+        if(Mathf.Abs(diff.x) >= Mathf.Abs(diff.y))
+        {
+            return Direction.LeftRight;
+        } else
+        {
+            return Direction.DownUp;
+        }
+    }
+
+    public static Direction GetSegmentNormalDirection(Vector2Int begin, Vector2Int end)
+    {
+        Vector2Int diff = end - begin;
+        if (diff.x >= diff.y)
+        {
+            return Direction.DownUp;
+        }
+        else
+        {
+            return Direction.LeftRight;
+        }
+    }
+
+    public static Vector2Int GeneratePointOnLimit(MapLimit limit, int min, int max)
     {
         int position = Alea.GetInt(min, max);
         Vector2Int res = new Vector2Int();
+        Vector2Int mapSize = MapGenerator.Instance.mapSize;
         switch(limit)
         {
             case MapLimit.Left:
@@ -96,6 +146,16 @@ public static class MapGeneratorHelper
 
         }
         return res;
+    }
+
+    public static void DumpPoints(List<Vector2Int> points)
+    {
+        string dump = "Points: ";
+        foreach(Vector2Int point in points)
+        {
+            dump += point + " ";
+        }
+        Debug.Log(dump);
     }
 
 }
