@@ -35,16 +35,33 @@ public class MapGenerator : MonoBehaviour
     {
         CleanMap();
         GenerateMap();
+        TestFillPolygon();
     }
 
     private void Update()
     {
-        DebugDrawElements();
+        //DebugDrawElements();
     }
 
     private void DebugDrawElements()
     {
         DebugDrawRiver();
+    }
+
+    private void TestFillPolygon()
+    {
+        List<Vector2Int> vertices = new List<Vector2Int>()
+        {
+            new Vector2Int(12,12),
+            new Vector2Int(12, 18),
+            new Vector2Int(18, 22),
+            new Vector2Int(30, 12),
+            new Vector2Int(30, 18),
+            new Vector2Int(24, 12)
+        };
+        Polygon poly = new Polygon(vertices);
+        poly.GenerateFillingPoints();
+        PutTiles(poly.Points, TileType.Water);
     }
 
     private void DebugDrawRiver()
@@ -78,7 +95,7 @@ public class MapGenerator : MonoBehaviour
         }
         _grid.transform.position = new Vector3(-mapSize.x * 0.5f, -0.5f, _grid.transform.position.z);
 
-        GenerateRiver();
+        //GenerateRiver();
     }
 
     private void GenerateRiver()
