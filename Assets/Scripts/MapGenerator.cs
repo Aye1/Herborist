@@ -59,8 +59,9 @@ public class MapGenerator : MonoBehaviour
             new Vector2Int(30, 18),
             new Vector2Int(24, 12)
         };
-        List<Vector2Int> fillingPoints = Polygon.GenerateFillingPoints(vertices);
-        PutTiles(fillingPoints, TileType.Water);
+        Polygon poly = new Polygon(vertices);
+        poly.GenerateFillingPoints();
+        PutTiles(poly.Points, TileType.Water);
     }
 
     private void DebugDrawRiver()
