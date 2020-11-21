@@ -17,12 +17,14 @@ public class MapGenerator : MonoBehaviour
     [SerializeField] private TileBase _waterTileBase;
 
     private River _generatedRiver;
+    private Vector3 _offset;
 
     void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
+            _offset = new Vector3(-mapSize.x * 0.5f + 0.5f, 0.0f, 0.0f);
         }
         else
         {
@@ -35,12 +37,12 @@ public class MapGenerator : MonoBehaviour
     {
         CleanMap();
         GenerateMap();
-        TestFillPolygon();
+        //TestFillPolygon();
     }
 
     private void Update()
     {
-        //DebugDrawElements();
+        DebugDrawElements();
     }
 
     private void DebugDrawElements()
@@ -52,12 +54,24 @@ public class MapGenerator : MonoBehaviour
     {
         List<Vector2Int> vertices = new List<Vector2Int>()
         {
-            new Vector2Int(12,12),
-            new Vector2Int(12, 18),
-            new Vector2Int(18, 22),
-            new Vector2Int(30, 12),
-            new Vector2Int(30, 18),
-            new Vector2Int(24, 12)
+            new Vector2Int(0, 9),
+            new Vector2Int(2, 10),
+            new Vector2Int(4, 11),
+            new Vector2Int(6, 11),
+            new Vector2Int(9, 13),
+            new Vector2Int(11, 14),
+            new Vector2Int(14, 14),
+            new Vector2Int(16, 15),
+            new Vector2Int(19, 16),
+            new Vector2Int(19, 12),
+            new Vector2Int(16, 11),
+            new Vector2Int(14, 10),
+            new Vector2Int(11, 10),
+            new Vector2Int(9, 9),
+            new Vector2Int(6, 7),
+            new Vector2Int(4, 7),
+            new Vector2Int(2, 6),
+            new Vector2Int(0, 5)
         };
         Polygon poly = new Polygon(vertices);
         poly.GenerateFillingPoints();
@@ -68,14 +82,19 @@ public class MapGenerator : MonoBehaviour
     {
         if (_generatedRiver != null && _generatedRiver.mainPointsGenerated)
         {
-            Vector2Int[] points = _generatedRiver.mainPoints.ToArray();
-            Vector3 offset = new Vector3(-mapSize.x * 0.5f + 0.5f, 0.0f, 0.0f);
-            for (int i = 0; i < _generatedRiver.mainPoints.Count - 1; i++)
-            {
-                Vector3 begin = new Vector3(points[i].x, points[i].y, 0) + offset;
-                Vector3 end = new Vector3(points[i + 1].x, points[i + 1].y, 0) + offset;
-                Debug.DrawLine(begin, end, Color.cyan);
-            }
+            DebugDraw(_generatedRiver.mainPoints, Color.cyan);
+            DebugDraw(_generatedRiver.secondaryLine, Color.blue);
+            //DebugDraw(_generatedRiver.PolygonPoints, Color.red);
+        }
+    }
+
+    private void DebugDraw(List<Vector2Int> points, Color color)
+    {
+        for (int i = 0; i < points.Count - 1; i++)
+        {
+            Vector3 begin = new Vector3(points[i].x, points[i].y, 0) + _offset;
+            Vector3 end = new Vector3(points[i + 1].x, points[i + 1].y, 0) + _offset;
+            Debug.DrawLine(begin, end, color);
         }
     }
 
@@ -95,7 +114,7 @@ public class MapGenerator : MonoBehaviour
         }
         _grid.transform.position = new Vector3(-mapSize.x * 0.5f, -0.5f, _grid.transform.position.z);
 
-        //GenerateRiver();
+        GenerateRiver();
     }
 
     private void GenerateRiver()
@@ -106,10 +125,12 @@ public class MapGenerator : MonoBehaviour
         _generatedRiver.beginLimit = beginLimit;
         _generatedRiver.endLimit = endLimit;
         _generatedRiver.GenerateMainPoints();
-        _generatedRiver.MoveMainPointsRandomly(0, 3);
-        _generatedRiver.GenerateInterpolationPoints();
+        _generatedRiver.MoveMainPointsRandomly(2, 4);
+       // _generatedRiver.GenerateInterpolationPoints();
+        _generatedRiver.GenerateSecondaryLine();
+        _generatedRiver.GeneratePolygonPoints();
 
-        PutTiles(_generatedRiver.allPoints, TileType.Water);
+        PutTiles(_generatedRiver.AllPoints, TileType.Water);
     }
 
     private void PutTiles(List<Vector2Int> positions, TileType type)
