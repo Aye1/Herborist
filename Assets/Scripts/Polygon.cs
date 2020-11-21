@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
+/**
+ *  Automatic filling polygon
+ *  More information about the algorithm: https://core.ac.uk/download/pdf/234644791.pdf
+ */
+
 
 public struct Edge
 {
@@ -185,7 +190,7 @@ public class Polygon
     {
         _drawingLines = new List<ScanInteriorLine>();
         int ymin = _edgesInfos.Min(e => e.yMin);
-        int ymax = _activeTable.Last().yMax;
+        int ymax = _globalTable.Last().yMax;
 
         for (int y = ymin; y < ymax; y++)
         {

@@ -73,26 +73,28 @@ public static class MapGeneratorHelper
         return newPoints;
     }
 
-    public static void MovePointsOfSegmentRandomly(Vector2Int begin, Vector2Int end, int min, int max)
+    public static void MoveFirstPointOfSegmentRandomly(ref Vector2Int begin, Vector2Int end, int min, int max)
     {
         Direction dir = GetSegmentNormalDirection(begin, end);
         MovePointRandomly(ref begin, dir, min, max);
-        MovePointRandomly(ref end, dir, min, max);
+        //MovePointRandomly(ref end, dir, min, max);
     }
 
     public static void MovePointRandomly(ref Vector2Int point, Direction dir, int min, int max)
     {
         int rand = Alea.GetInt(min, max);
-        Vector2Int addedAlea = Vector2Int.zero;
+        MovePoint(ref point, dir, rand);
+    }
+
+    public static void MovePoint(ref Vector2Int point, Direction dir, int move)
+    {
         if(dir == Direction.DownUp)
         {
-            addedAlea.y = rand;
+            point.Set(point.x, Mathf.Clamp(point.y + move, 0, MapGenerator.Instance.mapSize.y - 1));
         } else
         {
-            addedAlea.x = rand;
+            point.Set(Mathf.Clamp(point.x + move, 0, MapGenerator.Instance.mapSize.x - 1), point.y);
         }
-        point.x = Mathf.Clamp(point.x + addedAlea.x, 0, MapGenerator.Instance.mapSize.x-1);
-        point.y = Mathf.Clamp(point.y + addedAlea.y, 0, MapGenerator.Instance.mapSize.y-1);
     }
 
     public static Direction GetSegmentDirection(Vector2Int begin, Vector2Int end)
