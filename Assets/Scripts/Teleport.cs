@@ -2,44 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Teleport : MonoBehaviour
+public class Teleport : MonoBehaviour , IInteractable
 {
     public GameObject myTeleportEnd;
     public bool myNeedInteraction = false;
-    private GameObject myPlayer = null;
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
-    private void Update()
-    {
-        if(myNeedInteraction && myPlayer != null && Input.GetKeyDown(KeyCode.A))
-        {
-            TeleportPlayer();
-        }
-    }
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        myPlayer = col.gameObject;
-        if (myNeedInteraction)
-        {
-
-        }
-        else
-        {
-            TeleportPlayer();
+        if (myNeedInteraction == false)
+        { 
+            TeleportPlayer(col.gameObject);
         }
     }
 
-    void OnTriggerExit2D(Collider2D collision)
+    private void TeleportPlayer(GameObject aPlayer)
     {
-        myPlayer = null;
+        aPlayer.transform.position = myTeleportEnd.transform.position;
     }
 
-    private void TeleportPlayer()
+    public void Interact(GameObject aPlayer)
     {
-        myPlayer.transform.position = myTeleportEnd.transform.position;
+        TeleportPlayer(aPlayer);
     }
 }
