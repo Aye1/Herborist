@@ -73,13 +73,6 @@ public static class MapGeneratorHelper
         return newPoints;
     }
 
-    public static void MoveFirstPointOfSegmentRandomly(ref Vector2Int begin, Vector2Int end, int min, int max)
-    {
-        Direction dir = GetSegmentNormalDirection(begin, end);
-        MovePointRandomly(ref begin, dir, min, max);
-        //MovePointRandomly(ref end, dir, min, max);
-    }
-
     public static void MovePointRandomly(ref Vector2Int point, Direction dir, int min, int max)
     {
         int rand = Alea.GetInt(min, max);
@@ -112,7 +105,7 @@ public static class MapGeneratorHelper
     public static Direction GetSegmentNormalDirection(Vector2Int begin, Vector2Int end)
     {
         Vector2Int diff = end - begin;
-        if (diff.x >= diff.y)
+        if (Mathf.Abs(diff.x) >= Mathf.Abs(diff.y))
         {
             return Direction.DownUp;
         }
@@ -122,27 +115,27 @@ public static class MapGeneratorHelper
         }
     }
 
-    public static Vector2Int GeneratePointOnLimit(MapLimit limit, int min, int max)
+    public static Vector2Int GeneratePointOnLimit(MapLimit limit, float minPercent, float maxPercent)
     {
-        int position = Alea.GetInt(min, max);
         Vector2Int res = new Vector2Int();
         Vector2Int mapSize = MapGenerator.Instance.mapSize;
         switch(limit)
         {
             case MapLimit.Left:
                 res.x = 0;
-                res.y = position;
+                res.y = Alea.GetInt(Mathf.RoundToInt(minPercent * mapSize.y), Mathf.RoundToInt(maxPercent * mapSize.y));
                 break;
             case MapLimit.Right:
                 res.x = mapSize.x - 1;
-                res.y = position;
+                res.y = Alea.GetInt(Mathf.RoundToInt(minPercent * mapSize.y), Mathf.RoundToInt(maxPercent * mapSize.y));
                 break;
             case MapLimit.Up:
-                res.x = position;
-                res.y = mapSize.y - 1;
+                res.x = Alea.GetInt(Mathf.RoundToInt(minPercent * mapSize.x), Mathf.RoundToInt(maxPercent * mapSize.x));
+                // Rasterization algo doesn't fill first line, so we move the polygon one cell up
+                res.y = mapSize.y;
                 break;
             case MapLimit.Down:
-                res.x = position;
+                res.x = Alea.GetInt(Mathf.RoundToInt(minPercent * mapSize.x), Mathf.RoundToInt(maxPercent * mapSize.x));
                 res.y = 0;
                 break;
 
