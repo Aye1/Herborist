@@ -2,17 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Teleport : MonoBehaviour
+public class Teleport : MonoBehaviour , IInteractable
 {
     public GameObject myTeleportEnd;
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
+    public bool myNeedInteraction = false;
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        Debug.Log("enter collision");
-        col.gameObject.transform.position = myTeleportEnd.transform.position;
+        if (myNeedInteraction == false)
+        { 
+            TeleportPlayer(col.gameObject);
+        }
+    }
+
+    private void TeleportPlayer(GameObject aPlayer)
+    {
+        aPlayer.transform.position = myTeleportEnd.transform.position;
+    }
+
+    public void Interact(GameObject aPlayer)
+    {
+        TeleportPlayer(aPlayer);
     }
 }
