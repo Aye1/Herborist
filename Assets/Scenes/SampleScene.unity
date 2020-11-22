@@ -651,7 +651,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 418b0992afc6c483c89e9a40d601c8e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapSize: {x: 20, y: 20}
+  mapSize: {x: 100, y: 100}
   _grid: {fileID: 82294576}
   _tilemap: {fileID: 976519650}
   _grassTileBase: {fileID: 11400000, guid: be5d6825e8a3e4e2294582fe44f5a2f4, type: 2}
@@ -744,7 +744,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 1.9446644e-19, z: 1e-45, w: 8e-44}
+  m_BoundingSphereOverride: {x: 0, y: 9.0203186e-18, z: 4.587e-41, w: 9.403955e-38}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0

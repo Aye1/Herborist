@@ -80,10 +80,9 @@ public class MapGenerator : MonoBehaviour
 
     private void DebugDrawRiver()
     {
-        if (_generatedRiver != null && _generatedRiver.mainPointsGenerated)
+        if (_generatedRiver != null && _generatedRiver.polygonPointsGenerated)
         {
-            DebugDraw(_generatedRiver.mainPoints, Color.cyan);
-            DebugDraw(_generatedRiver.secondaryLine, Color.blue);
+            DebugDraw(_generatedRiver.PolygonPoints, Color.cyan);
             //DebugDraw(_generatedRiver.PolygonPoints, Color.red);
         }
     }
@@ -121,15 +120,8 @@ public class MapGenerator : MonoBehaviour
     {
         MapLimit beginLimit = MapLimit.Left;
         MapLimit endLimit = MapLimit.Right;
-        _generatedRiver = new River();
-        _generatedRiver.beginLimit = beginLimit;
-        _generatedRiver.endLimit = endLimit;
-        _generatedRiver.GenerateMainPoints();
-        _generatedRiver.MoveMainPointsRandomly(2, 4);
-       // _generatedRiver.GenerateInterpolationPoints();
-        _generatedRiver.GenerateSecondaryLine();
-        _generatedRiver.GeneratePolygonPoints();
-
+        _generatedRiver = new River(beginLimit, endLimit, 4);
+        _generatedRiver.GeneratePoints();
         PutTiles(_generatedRiver.AllPoints, TileType.Water);
     }
 

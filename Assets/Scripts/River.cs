@@ -7,15 +7,23 @@ public class River
     public MapLimit beginLimit;
     public MapLimit endLimit;
     public int width = 3;
-    public List<Vector2Int> mainPoints;
-    public bool mainPointsGenerated = false;
-    public bool allPointsGenerated = false;
+    public bool polygonPointsGenerated = false;
 
-    public List<Vector2Int> secondaryLine;
+    private List<Vector2Int> _mainPoints;
+    private List<Vector2Int> _secondaryLine;
     private Direction _beginNormal;
     private Direction _endNormal;
     private List<Vector2Int> _polygonPoints;
     private List<Vector2Int> _allPoints;
+    private int _beginMoveSign;
+    private int _endMoveSign;
+
+    public River(MapLimit begin, MapLimit end, int width)
+    {
+        beginLimit = begin;
+        endLimit = end;
+        this.width = width;
+    }
 
     public List<Vector2Int> AllPoints
     {
@@ -27,18 +35,27 @@ public class River
         get { return _polygonPoints; }
     }
 
-    public void GenerateMainPoints()
+    public void GeneratePoints()
     {
-        //CleanPoints();
-        GenerateLimitsNormals();
-        Vector2Int begin = MapGeneratorHelper.GeneratePointOnLimit(beginLimit, 5, 15);
-        Vector2Int end = MapGeneratorHelper.GeneratePointOnLimit(endLimit, 5, 15);
+        GenerateMainPoints();
+        MoveMainPointsRandomly(1, 5);
+        GenerateSecondaryLine();
+        GeneratePolygonPoints();
+    }
 
-        mainPoints = new List<Vector2Int>();
-        mainPoints.Add(begin);
-        mainPoints.Add(end);
-        MapGeneratorHelper.SubdivideLine(mainPoints, begin, end, 2);
-        mainPointsGenerated = true;    }
+    private void GenerateMainPoints()
+    {
+        polygonPointsGenerated = false;
+        GenerateLimitsNormals();
+        GenerateMovingSigns();
+        Vector2Int begin = MapGeneratorHelper.GeneratePointOnLimit(beginLimit, 0.25f, 0.75f);
+        Vector2Int end = MapGeneratorHelper.GeneratePointOnLimit(endLimit, 0.25f, 0.75f);
+
+        _mainPoints = new List<Vector2Int>();
+        _mainPoints.Add(begin);
+        _mainPoints.Add(end);
+        MapGeneratorHelper.SubdivideLine(_mainPoints, begin, end, 3);
+    }
 
     private void GenerateLimitsNormals()
     {
@@ -46,71 +63,73 @@ public class River
         _endNormal = (endLimit == MapLimit.Down || endLimit == MapLimit.Up) ? Direction.LeftRight : Direction.DownUp;
     }
 
+    private void GenerateMovingSigns()
+    {
+        switch(beginLimit)
+        {
+            case MapLimit.Left:
+                _beginMoveSign = endLimit == MapLimit.Down ? 1 : -1;
+                _endMoveSign = endLimit == MapLimit.Right ? -1 : 1;
+                break;
+            case MapLimit.Up:
+                _beginMoveSign = endLimit == MapLimit.Right ? -1 : 1;
+                _endMoveSign = endLimit == MapLimit.Down ? 1 : -1;
+                break;
+            case MapLimit.Right:
+                _beginMoveSign = endLimit == MapLimit.Down ? 1 : -1;
+                _endMoveSign = -1;
+                break;
+            case MapLimit.Down:
+                _beginMoveSign = endLimit == MapLimit.Right ? -1 : 1;
+                _endMoveSign = 1;
+                break;
+        }
+    }
+
     public void MoveMainPointsRandomly(int min, int max)
     {
-        MapGeneratorHelper.DumpPoints(mainPoints);
+        MapGeneratorHelper.DumpPoints(_mainPoints);
 
-        Vector2Int[] mainArray = mainPoints.ToArray();
+        Vector2Int[] mainArray = _mainPoints.ToArray();
 
-        // Move first point, only depends on side of the map
-        Vector2Int begin = mainArray[0];
-        MapGeneratorHelper.MovePointRandomly(ref begin, _beginNormal, min, max);
-        mainPoints.RemoveAt(0);
-        mainPoints.Insert(0, begin);
-
-
-        // Move last point, only depends on side of the map
-        Vector2Int end = mainArray[mainPoints.Count - 1];
-        MapGeneratorHelper.MovePointRandomly(ref end, _endNormal, min, max);
-        mainPoints.RemoveAt(mainPoints.Count - 1);
-        mainPoints.Add(end);
-
-        for(int i=1; i<mainArray.Length-1; i++)
+        for(int i=0; i<mainArray.Length; i++)
         {
-            MapGeneratorHelper.MoveFirstPointOfSegmentRandomly(ref mainArray[i], mainArray[i + 1], min, max);
-            mainPoints.RemoveAt(i);
-            mainPoints.Insert(i, mainArray[i]);
+            Direction dir = i < mainArray.Length / 2 ? _beginNormal : _endNormal;
+            MapGeneratorHelper.MovePointRandomly(ref mainArray[i], dir, min, max);
+            _mainPoints.RemoveAt(i);
+            _mainPoints.Insert(i, mainArray[i]);
         }
 
-        MapGeneratorHelper.DumpPoints(mainPoints);
+        MapGeneratorHelper.DumpPoints(_mainPoints);
     }
 
     public void GenerateSecondaryLine()
     {
-        secondaryLine = new List<Vector2Int>();
-        secondaryLine.AddRange(mainPoints);
+        _secondaryLine = new List<Vector2Int>();
+        _secondaryLine.AddRange(_mainPoints);
 
-        Vector2Int[] secondArray = secondaryLine.ToArray();
+        Vector2Int[] secondArray = _secondaryLine.ToArray();
 
-        MapGeneratorHelper.MovePoint(ref secondArray[0], _beginNormal, -width);
-        secondaryLine.RemoveAt(0);
-        secondaryLine.Insert(0, secondArray[0]);
-
-        for(int i=1; i<secondArray.Length-1; i++)
+        for(int i=0; i<secondArray.Length; i++)
         {
-            //MapGeneratorHelper.MovePoint(ref secondArray[i], MapGeneratorHelper.GetSegmentDirection(secondArray[i], secondArray[i+1]), -2);
-            MapGeneratorHelper.MovePoint(ref secondArray[i], Direction.DownUp, -width);
-            secondaryLine.RemoveAt(i);
-            secondaryLine.Insert(i, secondArray[i]);
+            Direction movingDirection = i < secondArray.Length / 2 ? _beginNormal : _endNormal;
+            int sign = i < secondArray.Length / 2 ? _beginMoveSign : _endMoveSign;
+            MapGeneratorHelper.MovePoint(ref secondArray[i], movingDirection, width * sign);
+            _secondaryLine.RemoveAt(i);
+            _secondaryLine.Insert(i, secondArray[i]);
         }
-
-
-        MapGeneratorHelper.MovePoint(ref secondArray[secondArray.Length - 1], _endNormal, -width);
-        secondaryLine.RemoveAt(secondArray.Length - 1);
-        secondaryLine.Add(secondArray[secondArray.Length - 1]);
-        Debug.Log("second line");
-        MapGeneratorHelper.DumpPoints(secondaryLine);
     }
 
     public void GeneratePolygonPoints()
     {
         _polygonPoints = new List<Vector2Int>();
-        _polygonPoints.AddRange(mainPoints);
-        secondaryLine.Reverse();
-        _polygonPoints.AddRange(secondaryLine);
+        _polygonPoints.AddRange(_mainPoints);
+        _secondaryLine.Reverse();
+        _polygonPoints.AddRange(_secondaryLine);
         Polygon polygon = new Polygon(_polygonPoints);
         polygon.GenerateFillingPoints();
         MapGeneratorHelper.DumpPoints(_polygonPoints);
         _allPoints = polygon.Points;
+        polygonPointsGenerated = true;
     }
 }
