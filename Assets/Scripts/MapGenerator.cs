@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using System.Linq;
 
-public enum TileType { Grass, Water };
+public enum TileType { Grass, Water, Dirt, Bridge };
 
 public class MapGenerator : MonoBehaviour
 {
@@ -15,9 +16,13 @@ public class MapGenerator : MonoBehaviour
     [SerializeField] private Tilemap _tilemap;
     [SerializeField] private TileBase _grassTileBase;
     [SerializeField] private TileBase _waterTileBase;
+    [SerializeField] private TileBase _dirtTileBase;
+    [SerializeField] private TileBase _bridgeTileBase;
 
-    private River _generatedRiver;
+    private CurvedLinePath _generatedRiver;
+    private CurvedLinePath _generatedPath;
     private Vector3 _offset;
+    private Node _mapGraphFirstNode;
 
     void Awake()
     {
@@ -114,15 +119,24 @@ public class MapGenerator : MonoBehaviour
         _grid.transform.position = new Vector3(-mapSize.x * 0.5f, -0.5f, _grid.transform.position.z);
 
         GenerateRiver();
+        GeneratePath();
     }
 
     private void GenerateRiver()
     {
-        MapLimit beginLimit = MapLimit.Left;
-        MapLimit endLimit = MapLimit.Right;
-        _generatedRiver = new River(beginLimit, endLimit, 4);
+        _generatedRiver = new CurvedLinePath(MapLimit.Left, MapLimit.Right, 4);
         _generatedRiver.GeneratePoints();
         PutTiles(_generatedRiver.AllPoints, TileType.Water);
+    }
+
+    private void GeneratePath()
+    {
+        _generatedPath = new CurvedLinePath(MapLimit.Down, MapLimit.Up, 3);
+        _generatedPath.GeneratePoints();
+        List<Vector2Int> pathPositions = _generatedPath.AllPoints.Where(p => !_generatedRiver.AllPoints.Contains(p)).ToList();
+        List<Vector2Int> bridgePositions = _generatedPath.AllPoints.Where(p => _generatedRiver.AllPoints.Contains(p)).ToList();
+        PutTiles(pathPositions, TileType.Dirt);
+        PutTiles(bridgePositions, TileType.Bridge);
     }
 
     private void PutTiles(List<Vector2Int> positions, TileType type)
@@ -143,6 +157,12 @@ public class MapGenerator : MonoBehaviour
                 break;
             case TileType.Water:
                 templateTile = _waterTileBase;
+                break;
+            case TileType.Dirt:
+                templateTile = _dirtTileBase;
+                break;
+            case TileType.Bridge:
+                templateTile = _bridgeTileBase;
                 break;
         }
         TileBase newTile = Instantiate(templateTile);

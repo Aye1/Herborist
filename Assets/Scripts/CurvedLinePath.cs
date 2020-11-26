@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class River
+public class CurvedLinePath
 {
     public MapLimit beginLimit;
     public MapLimit endLimit;
@@ -18,7 +18,7 @@ public class River
     private int _beginMoveSign;
     private int _endMoveSign;
 
-    public River(MapLimit begin, MapLimit end, int width)
+    public CurvedLinePath(MapLimit begin, MapLimit end, int width)
     {
         beginLimit = begin;
         endLimit = end;
