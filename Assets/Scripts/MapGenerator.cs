@@ -3,8 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using System.Linq;
+using System;
 
 public enum TileType { Grass, Water, Dirt, Bridge };
+
+[Serializable]
+public struct TerrainTileMapping
+{
+    public TileType type;
+    public TileBase tileBase;
+}
 
 public class MapGenerator : MonoBehaviour
 {
@@ -14,10 +22,7 @@ public class MapGenerator : MonoBehaviour
 
     [SerializeField] private Grid _grid;
     [SerializeField] private Tilemap _tilemap;
-    [SerializeField] private TileBase _grassTileBase;
-    [SerializeField] private TileBase _waterTileBase;
-    [SerializeField] private TileBase _dirtTileBase;
-    [SerializeField] private TileBase _bridgeTileBase;
+    [SerializeField] private List<TerrainTileMapping> _tileMappings;
 
     private CurvedLinePath _generatedRiver;
     private CurvedLinePath _generatedPath;
@@ -149,24 +154,12 @@ public class MapGenerator : MonoBehaviour
 
     private void PutTile(Vector2Int position, TileType type)
     {
-        TileBase templateTile = null;
-        switch(type)
+        TileBase templateTile = _tileMappings.Find(t => t.type == type).tileBase;
+        if(templateTile != null)
         {
-            case TileType.Grass:
-                templateTile = _grassTileBase;
-                break;
-            case TileType.Water:
-                templateTile = _waterTileBase;
-                break;
-            case TileType.Dirt:
-                templateTile = _dirtTileBase;
-                break;
-            case TileType.Bridge:
-                templateTile = _bridgeTileBase;
-                break;
+            TileBase newTile = Instantiate(templateTile);
+            Vector3Int pos3D = new Vector3Int(position.x, position.y, 0);
+            _tilemap.SetTile(pos3D, newTile);
         }
-        TileBase newTile = Instantiate(templateTile);
-        Vector3Int pos3D = new Vector3Int(position.x, position.y, 0);
-        _tilemap.SetTile(pos3D, newTile);
     }
 }
