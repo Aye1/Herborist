@@ -117,28 +117,41 @@ public static class MapGeneratorHelper
 
     public static Vector2Int GeneratePointOnLimit(MapLimit limit, float minPercent, float maxPercent)
     {
+        Vector2Int mapSize = MapGenerator.Instance.mapSize;
+        int generatedValue = 0;
+        if(limit == MapLimit.Left || limit == MapLimit.Right)
+        {
+            generatedValue = Alea.GetInt(Mathf.RoundToInt(minPercent * mapSize.y), Mathf.RoundToInt(maxPercent * mapSize.y));
+        } else
+        {
+            generatedValue = Alea.GetInt(Mathf.RoundToInt(minPercent * mapSize.x), Mathf.RoundToInt(maxPercent * mapSize.x));
+        }
+        return GeneratePointOnLimit(limit, generatedValue);
+    }
+
+    public static Vector2Int GeneratePointOnLimit(MapLimit limit, int position)
+    {
         Vector2Int res = new Vector2Int();
         Vector2Int mapSize = MapGenerator.Instance.mapSize;
-        switch(limit)
+        switch (limit)
         {
             case MapLimit.Left:
                 res.x = 0;
-                res.y = Alea.GetInt(Mathf.RoundToInt(minPercent * mapSize.y), Mathf.RoundToInt(maxPercent * mapSize.y));
+                res.y = position;
                 break;
             case MapLimit.Right:
                 res.x = mapSize.x - 1;
-                res.y = Alea.GetInt(Mathf.RoundToInt(minPercent * mapSize.y), Mathf.RoundToInt(maxPercent * mapSize.y));
+                res.y = position;
                 break;
             case MapLimit.Up:
-                res.x = Alea.GetInt(Mathf.RoundToInt(minPercent * mapSize.x), Mathf.RoundToInt(maxPercent * mapSize.x));
+                res.x = position;
                 // Rasterization algo doesn't fill first line, so we move the polygon one cell up
                 res.y = mapSize.y;
                 break;
             case MapLimit.Down:
-                res.x = Alea.GetInt(Mathf.RoundToInt(minPercent * mapSize.x), Mathf.RoundToInt(maxPercent * mapSize.x));
+                res.x = position;
                 res.y = 0;
                 break;
-
         }
         return res;
     }

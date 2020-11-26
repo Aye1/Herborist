@@ -654,10 +654,6 @@ MonoBehaviour:
   mapSize: {x: 100, y: 100}
   _grid: {fileID: 82294576}
   _tilemap: {fileID: 976519650}
-  _grassTileBase: {fileID: 11400000, guid: be5d6825e8a3e4e2294582fe44f5a2f4, type: 2}
-  _waterTileBase: {fileID: 11400000, guid: 34a081fe24c7441408652896096d8b65, type: 2}
-  _dirtTileBase: {fileID: 11400000, guid: bc93e3da06f544da5aaed8f91927cc13, type: 2}
-  _bridgeTileBase: {fileID: 11400000, guid: 6c2d9fd15a3b8414a8b631a9b12355f1, type: 2}
   _tileMappings:
   - type: 0
     tileBase: {fileID: 11400000, guid: be5d6825e8a3e4e2294582fe44f5a2f4, type: 2}

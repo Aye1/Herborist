@@ -8,6 +8,8 @@ public class CurvedLinePath
     public MapLimit endLimit;
     public int width = 3;
     public bool polygonPointsGenerated = false;
+    public float minAlea = 0.25f;
+    public float maxAlea = 0.75f;
 
     private List<Vector2Int> _mainPoints;
     private List<Vector2Int> _secondaryLine;
@@ -17,12 +19,44 @@ public class CurvedLinePath
     private List<Vector2Int> _allPoints;
     private int _beginMoveSign;
     private int _endMoveSign;
+    private Vector2Int _firstPoint;
+    private Vector2Int _lastPoint;
+
 
     public CurvedLinePath(MapLimit begin, MapLimit end, int width)
     {
         beginLimit = begin;
         endLimit = end;
         this.width = width;
+        _firstPoint = MapGeneratorHelper.GeneratePointOnLimit(beginLimit, minAlea, maxAlea);
+        _lastPoint = MapGeneratorHelper.GeneratePointOnLimit(endLimit, minAlea, maxAlea);
+    }
+
+    public CurvedLinePath(MapLimit begin, int beginPos, MapLimit end, int width)
+    {
+        beginLimit = begin;
+        endLimit = end;
+        this.width = width;
+        _firstPoint = MapGeneratorHelper.GeneratePointOnLimit(beginLimit, beginPos);
+        _lastPoint = MapGeneratorHelper.GeneratePointOnLimit(endLimit, minAlea, maxAlea);
+    }
+
+    public CurvedLinePath(MapLimit begin, MapLimit end, int endPos, int width)
+    {
+        beginLimit = begin;
+        endLimit = end;
+        this.width = width;
+        _firstPoint = MapGeneratorHelper.GeneratePointOnLimit(beginLimit, minAlea, maxAlea);
+        _lastPoint = MapGeneratorHelper.GeneratePointOnLimit(endLimit, endPos);
+    }
+
+    public CurvedLinePath(MapLimit begin, int beginPos, MapLimit end, int endPos, int width)
+    {
+        beginLimit = begin;
+        endLimit = end;
+        this.width = width;
+        _firstPoint = MapGeneratorHelper.GeneratePointOnLimit(beginLimit, beginPos);
+        _lastPoint = MapGeneratorHelper.GeneratePointOnLimit(endLimit, endPos);
     }
 
     public List<Vector2Int> AllPoints
@@ -48,13 +82,11 @@ public class CurvedLinePath
         polygonPointsGenerated = false;
         GenerateLimitsNormals();
         GenerateMovingSigns();
-        Vector2Int begin = MapGeneratorHelper.GeneratePointOnLimit(beginLimit, 0.25f, 0.75f);
-        Vector2Int end = MapGeneratorHelper.GeneratePointOnLimit(endLimit, 0.25f, 0.75f);
 
         _mainPoints = new List<Vector2Int>();
-        _mainPoints.Add(begin);
-        _mainPoints.Add(end);
-        MapGeneratorHelper.SubdivideLine(_mainPoints, begin, end, 3);
+        _mainPoints.Add(_firstPoint);
+        _mainPoints.Add(_lastPoint);
+        MapGeneratorHelper.SubdivideLine(_mainPoints, _firstPoint, _lastPoint, 3);
     }
 
     private void GenerateLimitsNormals()
@@ -92,7 +124,8 @@ public class CurvedLinePath
 
         Vector2Int[] mainArray = _mainPoints.ToArray();
 
-        for(int i=0; i<mainArray.Length; i++)
+        // Ignore limit points - keep control
+        for(int i=1; i<mainArray.Length-1; i++)
         {
             Direction dir = i < mainArray.Length / 2 ? _beginNormal : _endNormal;
             MapGeneratorHelper.MovePointRandomly(ref mainArray[i], dir, min, max);

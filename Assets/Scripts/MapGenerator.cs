@@ -136,7 +136,8 @@ public class MapGenerator : MonoBehaviour
 
     private void GeneratePath()
     {
-        _generatedPath = new CurvedLinePath(MapLimit.Down, MapLimit.Up, 3);
+        _generatedPath = new CurvedLinePath(MapLimit.Down, mapSize.x / 2 - 3, MapLimit.Up, 5);
+        _generatedPath.minAlea = 0;
         _generatedPath.GeneratePoints();
         List<Vector2Int> pathPositions = _generatedPath.AllPoints.Where(p => !_generatedRiver.AllPoints.Contains(p)).ToList();
         List<Vector2Int> bridgePositions = _generatedPath.AllPoints.Where(p => _generatedRiver.AllPoints.Contains(p)).ToList();
