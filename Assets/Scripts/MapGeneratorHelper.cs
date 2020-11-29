@@ -9,15 +9,27 @@ public enum Direction { DownUp, LeftRight };
 public static class MapGeneratorHelper
 {
 
-    public static void SubdivideLine(List<Vector2Int> completeLine, Vector2Int begin, Vector2Int end, int subdivideCount)
+    public static void SubdivideSegment(List<Vector2Int> completeLine, Vector2Int begin, Vector2Int end, int subdivideCount)
     {
         Vector2Int middlePoint = GeneratePointInMiddle(begin, end);
         int index = completeLine.IndexOf(begin) + 1;
         completeLine.Insert(index, middlePoint);
-        if(subdivideCount >  0)
+        if(subdivideCount >  1)
         {
-            SubdivideLine(completeLine, begin, middlePoint, subdivideCount - 1);
-            SubdivideLine(completeLine, middlePoint, end, subdivideCount - 1);
+            SubdivideSegment(completeLine, begin, middlePoint, subdivideCount - 1);
+            SubdivideSegment(completeLine, middlePoint, end, subdivideCount - 1);
+        }
+    }
+
+    public static void SubdivideLine(List<Vector2Int> completeLine, int subdivideDepth)
+    {
+        if(subdivideDepth > 0)
+        {
+            Vector2Int[] lineArray = completeLine.ToArray();
+            for(int i = 0; i < lineArray.Length - 1; i++)
+            {
+                SubdivideSegment(completeLine, lineArray[i], lineArray[i + 1], subdivideDepth);
+            }
         }
     }
 
@@ -115,7 +127,7 @@ public static class MapGeneratorHelper
         }
     }
 
-    public static Vector2Int GeneratePointOnLimit(MapLimit limit, float minPercent, float maxPercent)
+    public static Vector2Int GenerateRandomPointOnLimit(MapLimit limit, float minPercent, float maxPercent)
     {
         Vector2Int mapSize = MapGenerator.Instance.mapSize;
         int generatedValue = 0;
@@ -162,6 +174,16 @@ public static class MapGeneratorHelper
         foreach(Vector2Int point in points)
         {
             dump += point + " ";
+        }
+        Debug.Log(dump);
+    }
+
+    public static void DumpDirections(List<Direction> directions)
+    {
+        string dump = "Directions: ";
+        foreach(Direction d in directions)
+        {
+            dump += d.ToString() + " ";
         }
         Debug.Log(dump);
     }

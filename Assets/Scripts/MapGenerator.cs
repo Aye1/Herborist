@@ -24,8 +24,8 @@ public class MapGenerator : MonoBehaviour
     [SerializeField] private Tilemap _tilemap;
     [SerializeField] private List<TerrainTileMapping> _tileMappings;
 
-    private CurvedLinePath _generatedRiver;
-    private CurvedLinePath _generatedPath;
+    private List<CurvedLinePath> _rivers;
+    private List<CurvedLinePath> _pathes;
     private Vector3 _offset;
 
     void Awake()
@@ -89,10 +89,9 @@ public class MapGenerator : MonoBehaviour
 
     private void DebugDrawRiver()
     {
-        if (_generatedRiver != null && _generatedRiver.polygonPointsGenerated)
+        if (_rivers != null)
         {
-            DebugDraw(_generatedRiver.PolygonPoints, Color.cyan);
-            //DebugDraw(_generatedRiver.PolygonPoints, Color.red);
+            _rivers.Where(r => r.polygonPointsGenerated).ToList().ForEach(r => DebugDraw(r.PolygonPoints, Color.cyan));
         }
     }
 
@@ -122,26 +121,64 @@ public class MapGenerator : MonoBehaviour
         }
         _grid.transform.position = new Vector3(-mapSize.x * 0.5f, -0.5f, _grid.transform.position.z);
 
-        GenerateRiver();
-        GeneratePath();
+        List<Vector2Int> riverControlPoints = new List<Vector2Int>()
+        {
+            new Vector2Int(0, 49),
+            new Vector2Int(49, 54),
+            new Vector2Int(74, 69),
+            new Vector2Int(99, 74),
+        };
+        GenerateRiver(riverControlPoints);
+
+        List<Vector2Int> riverControlPoints2 = new List<Vector2Int>()
+        {
+            new Vector2Int(0, 85),
+            new Vector2Int(49, 75),
+            new Vector2Int(74, 69)
+        };
+        GenerateRiver(riverControlPoints2);
+
+        List<Vector2Int> pathControlPoints = new List<Vector2Int>()
+        {
+            new Vector2Int(49, 0),
+            new Vector2Int(49, 49),
+            new Vector2Int(20, 100)
+        };
+        GeneratePath(pathControlPoints);
+
+        List<Vector2Int> pathControlPoints2 = new List<Vector2Int>()
+        {
+            new Vector2Int(49, 49),
+            new Vector2Int(80, 100)
+        };
+        GeneratePath(pathControlPoints2);
     }
 
-    private void GenerateRiver()
+    private void GenerateRiver(List<Vector2Int> riverControlPoints)
     {
-        _generatedRiver = new CurvedLinePath(MapLimit.Left, MapLimit.Right, 4);
-        _generatedRiver.GeneratePoints();
-        PutTiles(_generatedRiver.AllPoints, TileType.Water);
+        if(_rivers == null)
+        {
+            _rivers = new List<CurvedLinePath>();
+        }
+        CurvedLinePath river = new CurvedLinePath(riverControlPoints, 4);
+        river.GeneratePoints(0, 5);
+        PutTiles(river.AllPoints, TileType.Water);
+        _rivers.Add(river);
     }
 
-    private void GeneratePath()
+    private void GeneratePath(List<Vector2Int> pathControlPoints)
     {
-        _generatedPath = new CurvedLinePath(MapLimit.Down, mapSize.x / 2 - 3, MapLimit.Up, 5);
-        _generatedPath.minAlea = 0;
-        _generatedPath.GeneratePoints();
-        List<Vector2Int> pathPositions = _generatedPath.AllPoints.Where(p => !_generatedRiver.AllPoints.Contains(p)).ToList();
-        List<Vector2Int> bridgePositions = _generatedPath.AllPoints.Where(p => _generatedRiver.AllPoints.Contains(p)).ToList();
+        if(_pathes == null)
+        {
+            _pathes = new List<CurvedLinePath>();
+        }
+        CurvedLinePath path = new CurvedLinePath(pathControlPoints, 5);
+        path.GeneratePoints(0, 8);
+        List<Vector2Int> riverPathCrossingPositions = path.AllPoints.Where(p => _rivers.Any(r => r.AllPoints.Contains(p))).ToList();
+        List<Vector2Int> pathPositions = path.AllPoints.Where(p => !riverPathCrossingPositions.Contains(p)).ToList();
         PutTiles(pathPositions, TileType.Dirt);
-        PutTiles(bridgePositions, TileType.Bridge);
+        PutTiles(riverPathCrossingPositions, TileType.Bridge);
+        _pathes.Add(path);
     }
 
     private void PutTiles(List<Vector2Int> positions, TileType type)
