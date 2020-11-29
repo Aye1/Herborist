@@ -5,7 +5,7 @@ using UnityEngine.Tilemaps;
 using System.Linq;
 using System;
 
-public enum TileType { Grass, Water, Dirt, Bridge };
+public enum TileType { Grass, Water, Dirt, Bridge, BasicTree };
 
 [Serializable]
 public struct TerrainTileMapping
@@ -57,6 +57,7 @@ public class MapGenerator : MonoBehaviour
     private void DebugDrawElements()
     {
         DebugDrawRiver();
+        DebugDrawPath();
     }
 
     private void TestFillPolygon()
@@ -95,6 +96,14 @@ public class MapGenerator : MonoBehaviour
         }
     }
 
+    private void DebugDrawPath()
+    {
+        if(_pathes != null)
+        {
+            _pathes.Where(p => p.polygonPointsGenerated).ToList().ForEach(p => DebugDraw(p.PolygonPoints, Color.black));
+        }
+    }
+
     private void DebugDraw(List<Vector2Int> points, Color color)
     {
         for (int i = 0; i < points.Count - 1; i++)
@@ -123,33 +132,31 @@ public class MapGenerator : MonoBehaviour
 
         List<Vector2Int> riverControlPoints = new List<Vector2Int>()
         {
-            new Vector2Int(0, 49),
-            new Vector2Int(49, 54),
-            new Vector2Int(74, 69),
-            new Vector2Int(99, 74),
+            MapGeneratorHelper.GenerateRandomPointOnLimit(MapLimit.Left, 0.20f, 0.60f),
+            new Vector2Int(69, 49),
+            MapGeneratorHelper.GenerateRandomPointOnLimit(MapLimit.Right, 0.50f, 0.80f)
         };
         GenerateRiver(riverControlPoints);
 
         List<Vector2Int> riverControlPoints2 = new List<Vector2Int>()
         {
-            new Vector2Int(0, 85),
-            new Vector2Int(49, 75),
-            new Vector2Int(74, 69)
+            MapGeneratorHelper.GenerateRandomPointOnLimit(MapLimit.Left, 0.65f, 0.90f),
+            new Vector2Int(69, 49)
         };
         GenerateRiver(riverControlPoints2);
 
         List<Vector2Int> pathControlPoints = new List<Vector2Int>()
         {
             new Vector2Int(49, 0),
-            new Vector2Int(49, 49),
-            new Vector2Int(20, 100)
+            new Vector2Int(49, 29),
+            MapGeneratorHelper.GenerateRandomPointOnLimit(MapLimit.Up, 0.10f, 0.50f)
         };
         GeneratePath(pathControlPoints);
 
         List<Vector2Int> pathControlPoints2 = new List<Vector2Int>()
         {
-            new Vector2Int(49, 49),
-            new Vector2Int(80, 100)
+            new Vector2Int(49, 29),
+            MapGeneratorHelper.GenerateRandomPointOnLimit(MapLimit.Up, 0.60f, 0.90f)
         };
         GeneratePath(pathControlPoints2);
     }
