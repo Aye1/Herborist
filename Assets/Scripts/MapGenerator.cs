@@ -27,7 +27,6 @@ public class MapGenerator : MonoBehaviour
     private CurvedLinePath _generatedRiver;
     private CurvedLinePath _generatedPath;
     private Vector3 _offset;
-    private Node _mapGraphFirstNode;
 
     void Awake()
     {
