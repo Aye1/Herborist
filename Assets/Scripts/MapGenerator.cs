@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using System.Linq;
 using System;
+using Sirenix.OdinInspector;
 
 public enum TileType { Grass, Water, Dirt, Bridge, BasicTree };
 
@@ -20,8 +21,13 @@ public class MapGenerator : MonoBehaviour
 
     public Vector2Int mapSize;
 
+    [SceneObjectsOnly]
     [SerializeField] private Grid _grid;
+
+    [SceneObjectsOnly]
     [SerializeField] private Tilemap _tilemap;
+
+    [AssetsOnly][Required]
     [SerializeField] private List<TerrainTileMapping> _tileMappings;
 
     private List<CurvedLinePath> _rivers;
