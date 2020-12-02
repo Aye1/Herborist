@@ -5,14 +5,16 @@ using UnityEngine.Tilemaps;
 using System.Linq;
 using System;
 using Sirenix.OdinInspector;
+using CreativeSpore.SuperTilemapEditor;
 
-public enum TileType { Grass, Water, Dirt, Bridge, BasicTree };
+public enum TileType { Grass, Water, Dirt, Bridge };
 
 [Serializable]
 public struct TerrainTileMapping
 {
     public TileType type;
-    public TileBase tileBase;
+    public int tileId;
+    public int brushId;
 }
 
 public class MapGenerator : MonoBehaviour
@@ -21,14 +23,10 @@ public class MapGenerator : MonoBehaviour
 
     public Vector2Int mapSize;
 
-    [SceneObjectsOnly]
-    [SerializeField] private Grid _grid;
-
-    [SceneObjectsOnly]
-    [SerializeField] private Tilemap _tilemap;
-
-    [AssetsOnly][Required]
-    [SerializeField] private List<TerrainTileMapping> _tileMappings;
+    [Required]
+    public STETilemap steTilemap;
+    [Required]
+    public List<TerrainTileMapping> tileMappings;
 
     private List<CurvedLinePath> _rivers;
     private List<CurvedLinePath> _pathes;
@@ -50,7 +48,6 @@ public class MapGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        CleanMap();
         GenerateMap();
         //TestFillPolygon();
     }
@@ -120,11 +117,6 @@ public class MapGenerator : MonoBehaviour
         }
     }
 
-    public void CleanMap()
-    {
-        _tilemap.ClearAllTiles();
-    }
-
     public void GenerateMap()
     {
         for(int i=0; i<mapSize.x; i++)
@@ -134,7 +126,7 @@ public class MapGenerator : MonoBehaviour
                 PutTile(new Vector2Int(i, j), TileType.Grass);
             }
         }
-        _grid.transform.position = new Vector3(-mapSize.x * 0.5f, -0.5f, _grid.transform.position.z);
+        OffsetMapPosition();
 
         List<Vector2Int> riverControlPoints = new List<Vector2Int>()
         {
@@ -165,6 +157,11 @@ public class MapGenerator : MonoBehaviour
             MapGeneratorHelper.GenerateRandomPointOnLimit(MapLimit.Up, 0.60f, 0.90f)
         };
         GeneratePath(pathControlPoints2);
+    }
+
+    private void OffsetMapPosition()
+    {
+        steTilemap.transform.position = new Vector3(-mapSize.x * 0.5f, -0.5f, steTilemap.transform.position.z);
     }
 
     private void GenerateRiver(List<Vector2Int> riverControlPoints)
@@ -204,12 +201,7 @@ public class MapGenerator : MonoBehaviour
 
     private void PutTile(Vector2Int position, TileType type)
     {
-        TileBase templateTile = _tileMappings.Find(t => t.type == type).tileBase;
-        if(templateTile != null)
-        {
-            TileBase newTile = Instantiate(templateTile);
-            Vector3Int pos3D = new Vector3Int(position.x, position.y, 0);
-            _tilemap.SetTile(pos3D, newTile);
-        }
+        TerrainTileMapping mapping = tileMappings.Find(x => x.type == type);
+        steTilemap.SetTile(position.x, position.y, mapping.tileId, mapping.brushId);
     }
 }
