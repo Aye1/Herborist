@@ -15,7 +15,7 @@ MonoBehaviour:
   Tileset: {fileID: 11400000, guid: bc8d8897576f4429aa6098401e5c669b, type: 2}
   Params:
     m_paramList: []
-  m_group: 0
+  m_group: 1
   m_autotilingMode: 1
   m_showInPalette: 1
   RandomTiles: 

@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 84c1de61e39cb5d488fe0684e723aceb, type: 3}
-  m_Name: Water CarpetBrush
+  m_Name: Bridge CarpetBrush
   m_EditorClassIdentifier: 
   Tileset: {fileID: 11400000, guid: bc8d8897576f4429aa6098401e5c669b, type: 2}
   Params:
     m_paramList: []
-  m_group: 1
-  m_autotilingMode: 21
+  m_group: 2
+  m_autotilingMode: 5
   m_showInPalette: 1
-  TileIds: 3c0001003c0001003c000100740000003c0001003c000100020000003b0000003c000100760000003c00010075000000040000003d000000030000003c000100
-  InteriorCornerTileIds: 7200000073000000390000003a000000
+  TileIds: 2b0200002b0200002b0200005f0200002b0200002b020000f20100002a0200002b020000610200002b02000060020000f40100002c020000f30100002b020000
+  InteriorCornerTileIds: 2802000029020000f0010000f1010000

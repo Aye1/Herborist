@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 84c1de61e39cb5d488fe0684e723aceb, type: 3}
-  m_Name: Water CarpetBrush
+  m_Name: Path CarpetBrush
   m_EditorClassIdentifier: 
   Tileset: {fileID: 11400000, guid: bc8d8897576f4429aa6098401e5c669b, type: 2}
   Params:
     m_paramList: []
-  m_group: 1
-  m_autotilingMode: 21
+  m_group: 3
+  m_autotilingMode: 5
   m_showInPalette: 1
-  TileIds: 3c0001003c0001003c000100740000003c0001003c000100020000003b0000003c000100760000003c00010075000000040000003d000000030000003c000100
-  InteriorCornerTileIds: 7200000073000000390000003a000000
+  TileIds: c3040000c3040000c3040000f3040000c3040000c304000089040000c2040000c3040000f5040000c3040000f40400008b040000c40400008a040000c3040000
+  InteriorCornerTileIds: c0040000c10400008704000088040000
