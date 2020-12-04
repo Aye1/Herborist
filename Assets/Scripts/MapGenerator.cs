@@ -6,7 +6,7 @@ using System;
 using Sirenix.OdinInspector;
 using CreativeSpore.SuperTilemapEditor;
 
-public enum TileType { Grass, Water, Dirt, Bridge };
+public enum TileType { Grass, Water, Dirt, Bridge, MapBorder };
 
 [Serializable]
 public struct TerrainTileMapping
@@ -14,6 +14,7 @@ public struct TerrainTileMapping
     public TileType type;
     public int tileId;
     public int brushId;
+    public STETilemap tilemap;
 }
 
 public class MapGenerator : MonoBehaviour
@@ -22,8 +23,6 @@ public class MapGenerator : MonoBehaviour
 
     public Vector2Int mapSize;
 
-    [Required]
-    public STETilemap steTilemap;
     [Required]
     public List<TerrainTileMapping> tileMappings;
 
@@ -118,6 +117,7 @@ public class MapGenerator : MonoBehaviour
 
     public void GenerateMap()
     {
+        OffsetMapPosition();
         for(int i=0; i<mapSize.x; i++)
         {
             for(int j=0; j<mapSize.y; j++)
@@ -125,7 +125,8 @@ public class MapGenerator : MonoBehaviour
                 PutTile(new Vector2Int(i, j), TileType.Grass);
             }
         }
-        OffsetMapPosition();
+
+        GenerateMapBorders(4);
 
         List<Vector2Int> riverControlPoints = new List<Vector2Int>()
         {
@@ -160,7 +161,10 @@ public class MapGenerator : MonoBehaviour
 
     private void OffsetMapPosition()
     {
-        steTilemap.transform.position = new Vector3(-mapSize.x * 0.5f, -0.5f, steTilemap.transform.position.z);
+        List<STETilemap> allTilemaps = tileMappings.Select(x => x.tilemap).ToList();
+        allTilemaps.ForEach(t => t.transform.position = new Vector3(-mapSize.x * 0.5f, -0.5f, t.transform.position.z));
+        //terrainTilemap.transform.position = new Vector3(-mapSize.x * 0.5f, -0.5f, terrainTilemap.transform.position.z);
+        //pathTilemap.transform.position = new Vector3(-mapSize.x * 0.5f, -0.5f, pathTilemap.transform.position.z);
     }
 
     private void GenerateRiver(List<Vector2Int> riverControlPoints)
@@ -190,6 +194,47 @@ public class MapGenerator : MonoBehaviour
         _pathes.Add(path);
     }
 
+    private void GenerateMapBorders(int width)
+    {
+
+        /**
+         * Polygon points creation, starting bottom left
+         *    +--->
+         *    +------------------+ +
+         *    | +--------------+ | |
+         *    | |      <---+   | | |
+         *    | | +            | | v
+         *    | | |            | |
+         *    | | |          ^ | |
+         *    | | v          | | |
+         *    | |            | | |
+         * ^  | |            + | |
+         * |  | |    +--->     | |
+         * |  | | +------------+ |
+         * +  +-+ +--------------+
+         *                   <---+
+         * */
+
+        List< Vector2Int> polygonBoundaries = new List<Vector2Int>()
+        {
+            new Vector2Int(-1, -1),
+            new Vector2Int(-1, mapSize.y),
+            new Vector2Int(mapSize.x, mapSize.y),
+            new Vector2Int(mapSize.x, -1),
+            new Vector2Int(width, -1),
+            new Vector2Int(width, width),
+            new Vector2Int(mapSize.x - width, width),
+            new Vector2Int(mapSize.x - width, mapSize.y - width),
+            new Vector2Int(width, mapSize.y - width),
+            new Vector2Int(width, -1),
+            new Vector2Int(-1, -1)
+        };
+        Polygon borderPolygon = new Polygon(polygonBoundaries);
+        borderPolygon.GenerateFillingPoints();
+        MapGeneratorHelper.DumpPoints(borderPolygon.Points);
+        PutTiles(borderPolygon.Points, TileType.MapBorder);
+    }
+
     private void PutTiles(List<Vector2Int> positions, TileType type)
     {
         foreach(Vector2Int pos in positions)
@@ -201,6 +246,6 @@ public class MapGenerator : MonoBehaviour
     private void PutTile(Vector2Int position, TileType type)
     {
         TerrainTileMapping mapping = tileMappings.Find(x => x.type == type);
-        steTilemap.SetTile(position.x, position.y, mapping.tileId, mapping.brushId);
+        mapping.tilemap.SetTile(position.x, position.y, mapping.tileId, mapping.brushId);
     }
 }

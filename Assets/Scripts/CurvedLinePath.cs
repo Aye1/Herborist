@@ -69,7 +69,6 @@ public class CurvedLinePath
             _fullSecondLine.RemoveAt(i);
             _fullSecondLine.Insert(i, point);
         }
-        MapGeneratorHelper.DumpPoints(_fullSecondLine);
     }
 
     private void GeneratePolygonPoints()
@@ -80,7 +79,6 @@ public class CurvedLinePath
         _polygonPoints.AddRange(_fullSecondLine);
         Polygon polygon = new Polygon(_polygonPoints);
         polygon.GenerateFillingPoints();
-        MapGeneratorHelper.DumpPoints(_polygonPoints);
         _allPoints = polygon.Points;
         polygonPointsGenerated = true;
     }

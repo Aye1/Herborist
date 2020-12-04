@@ -16,7 +16,7 @@ MonoBehaviour:
   Params:
     m_paramList: []
   m_group: 3
-  m_autotilingMode: 5
+  m_autotilingMode: 21
   m_showInPalette: 1
   TileIds: c3040000c3040000c3040000f3040000c3040000c304000089040000c2040000c3040000f5040000c3040000f40400008b040000c40400008a040000c3040000
   InteriorCornerTileIds: c0040000c10400008704000088040000

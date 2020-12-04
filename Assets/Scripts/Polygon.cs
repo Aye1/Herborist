@@ -190,7 +190,7 @@ public class Polygon
     {
         _drawingLines = new List<ScanInteriorLine>();
         int ymin = _edgesInfos.Min(e => e.yMin);
-        int ymax = _globalTable.Last().yMax;
+        int ymax = _edgesInfos.Max(e => e.yMax);
 
         for (int y = ymin; y < ymax; y++)
         {
@@ -231,7 +231,6 @@ public class Polygon
                 }
             }
         }
-        DumpList(_fillingPoints);
     }
 
     public static void DumpList(IEnumerable elements)
