@@ -32587,7 +32587,7 @@ MonoBehaviour:
       showTileWithPrefab: 0
       showPrefabPreviewInTilePalette: 0
     autilingGroup: 0
-  m_pixelsPerUnit: 15
+  m_pixelsPerUnit: 16
   m_brushGroupNames:
   - Default
   - Water
