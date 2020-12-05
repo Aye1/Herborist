@@ -30,6 +30,8 @@ public class MapGenerator : MonoBehaviour
     private List<CurvedLinePath> _pathes;
     private Vector3 _offset;
 
+    private int _firstPathWidth = 5;
+
     void Awake()
     {
         if (Instance == null)
@@ -126,7 +128,7 @@ public class MapGenerator : MonoBehaviour
             }
         }
 
-        GenerateMapBorders(4);
+        GenerateMapBorders(10);
 
         List<Vector2Int> riverControlPoints = new List<Vector2Int>()
         {
@@ -146,6 +148,7 @@ public class MapGenerator : MonoBehaviour
         List<Vector2Int> pathControlPoints = new List<Vector2Int>()
         {
             new Vector2Int(49, 0),
+            new Vector2Int(49, 10),
             new Vector2Int(49, 29),
             MapGeneratorHelper.GenerateRandomPointOnLimit(MapLimit.Up, 0.10f, 0.50f)
         };
@@ -185,8 +188,8 @@ public class MapGenerator : MonoBehaviour
         {
             _pathes = new List<CurvedLinePath>();
         }
-        CurvedLinePath path = new CurvedLinePath(pathControlPoints, 5);
-        path.GeneratePoints(0, 8);
+        CurvedLinePath path = new CurvedLinePath(pathControlPoints, _firstPathWidth);
+        path.GeneratePoints(0, 4);
         List<Vector2Int> riverPathCrossingPositions = path.AllPoints.Where(p => _rivers.Any(r => r.AllPoints.Contains(p))).ToList();
         List<Vector2Int> pathPositions = path.AllPoints.Where(p => !riverPathCrossingPositions.Contains(p)).ToList();
         PutTiles(pathPositions, TileType.Dirt);
@@ -209,25 +212,27 @@ public class MapGenerator : MonoBehaviour
          *    | | v          | | |
          *    | |            | | |
          * ^  | |            + | |
-         * |  | |    +--->     | |
-         * |  | | +------------+ |
-         * +  +-+ +--------------+
-         *                   <---+
+         * |  | |        +---> | |
+         * |  | +----+  +------+ |
+         * +  +------+  +--------+
+         *           S       <---+
          * */
-
+        int halfSizeX = mapSize.x / 2;
         List< Vector2Int> polygonBoundaries = new List<Vector2Int>()
         {
+            new Vector2Int(halfSizeX- _firstPathWidth/2, -1),
             new Vector2Int(-1, -1),
             new Vector2Int(-1, mapSize.y),
             new Vector2Int(mapSize.x, mapSize.y),
             new Vector2Int(mapSize.x, -1),
-            new Vector2Int(width, -1),
-            new Vector2Int(width, width),
+            new Vector2Int(halfSizeX + _firstPathWidth, -1),
+            new Vector2Int(halfSizeX + _firstPathWidth + width, width),
             new Vector2Int(mapSize.x - width, width),
             new Vector2Int(mapSize.x - width, mapSize.y - width),
             new Vector2Int(width, mapSize.y - width),
-            new Vector2Int(width, -1),
-            new Vector2Int(-1, -1)
+            new Vector2Int(width, width),
+            new Vector2Int(halfSizeX - _firstPathWidth/2 - width, width),
+            new Vector2Int(halfSizeX - _firstPathWidth/2, -1)
         };
         Polygon borderPolygon = new Polygon(polygonBoundaries);
         borderPolygon.GenerateFillingPoints();
