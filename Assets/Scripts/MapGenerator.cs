@@ -26,8 +26,14 @@ public class MapGenerator : MonoBehaviour
     [Required]
     public List<TerrainTileMapping> tileMappings;
 
+    [Required]
+    [SceneObjectsOnly]
+    [SerializeField]
+    private STETilemap _terrainTilemap;
+
     private List<CurvedLinePath> _rivers;
     private List<CurvedLinePath> _pathes;
+    private List<Vector2Int> _bridgePositions;
     private Vector3 _offset;
 
     private int _firstPathWidth = 5;
@@ -160,6 +166,8 @@ public class MapGenerator : MonoBehaviour
             MapGeneratorHelper.GenerateRandomPointOnLimit(MapLimit.Up, 0.60f, 0.90f)
         };
         GeneratePath(pathControlPoints2);
+        _terrainTilemap.UpdateMeshImmediate();
+        DisableColliders(_terrainTilemap, _bridgePositions);
     }
 
     private void OffsetMapPosition()
@@ -188,6 +196,10 @@ public class MapGenerator : MonoBehaviour
         {
             _pathes = new List<CurvedLinePath>();
         }
+        if(_bridgePositions == null)
+        {
+            _bridgePositions = new List<Vector2Int>();
+        }
         CurvedLinePath path = new CurvedLinePath(pathControlPoints, _firstPathWidth);
         path.GeneratePoints(0, 4);
         List<Vector2Int> riverPathCrossingPositions = path.AllPoints.Where(p => _rivers.Any(r => r.AllPoints.Contains(p))).ToList();
@@ -195,6 +207,7 @@ public class MapGenerator : MonoBehaviour
         PutTiles(pathPositions, TileType.Dirt);
         PutTiles(riverPathCrossingPositions, TileType.Bridge);
         _pathes.Add(path);
+        _bridgePositions.AddRange(riverPathCrossingPositions);
     }
 
     private void GenerateMapBorders(int width)
@@ -252,5 +265,25 @@ public class MapGenerator : MonoBehaviour
     {
         TerrainTileMapping mapping = tileMappings.Find(x => x.type == type);
         mapping.tilemap.SetTile(position.x, position.y, mapping.tileId, mapping.brushId);
+    }
+
+    private void DisableColliders(STETilemap tilemap, List<Vector2Int> positions)
+    {
+        positions.ForEach(p => DisableCollider(tilemap, p));
+    }
+
+    private void DisableCollider(STETilemap tilemap, Vector2Int position)
+    {
+        GameObject tile = tilemap.GetTileObject(position.x, position.y);
+        Tile t = tilemap.GetTile(position.x, position.y);
+        if (tile == null)
+        {
+            Debug.Log("Can't find tile at pos (" + position.x + "," + position.y + ")");
+        }
+        else
+        {
+            Debug.Log("Tile found");
+            tile.GetComponent<Collider2D>().enabled = false;
+        }
     }
 }
