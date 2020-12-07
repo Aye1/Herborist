@@ -22,7 +22,7 @@ public class Collectible : MonoBehaviour, IInteractable
 
     private void Awake()
     {
-        _collectibleCount = Alea.GetIntInc(collectible.quantity.x, collectible.quantity.y);
+        _collectibleCount = Alea.GetIntInc(collectible.spawnQuantity.x, collectible.spawnQuantity.y);
     }
 
     public void Interact(GameObject aPLayer)

@@ -7,21 +7,22 @@ using System;
 public class Inventory : SerializedMonoBehaviour
 {
     [ReadOnly]
-    public Dictionary<CollectibleScriptableObject, int> _inventory;
+    [DictionaryDrawerSettings(KeyLabel = "Collectible", ValueLabel = "Count")]
+    public Dictionary<CollectibleScriptableObject, int> inventory;
 
     private void Awake()
     {
-        _inventory = new Dictionary<CollectibleScriptableObject, int>();
+        inventory = new Dictionary<CollectibleScriptableObject, int>();
     }
 
     public void Add(CollectibleScriptableObject itemType)
     {
-        if(_inventory.ContainsKey(itemType))
+        if(inventory.ContainsKey(itemType))
         {
-            _inventory[itemType]++;
+            inventory[itemType]++;
         } else
         {
-            _inventory.Add(itemType, 1);
+            inventory.Add(itemType, 1);
         }
     }
 
@@ -35,12 +36,12 @@ public class Inventory : SerializedMonoBehaviour
 
     public void Add(CollectiblePackage collectible)
     {
-        if(_inventory.ContainsKey(collectible.type))
+        if(inventory.ContainsKey(collectible.type))
         {
-            _inventory[collectible.type] += collectible.count;
+            inventory[collectible.type] += collectible.count;
         } else
         {
-            _inventory.Add(collectible.type, collectible.count);
+            inventory.Add(collectible.type, collectible.count);
         }
     }
 
@@ -54,29 +55,29 @@ public class Inventory : SerializedMonoBehaviour
 
     public void Remove(CollectibleScriptableObject itemType, int number)
     {
-        if(_inventory.ContainsKey(itemType))
+        if(inventory.ContainsKey(itemType))
         {
-            _inventory[itemType] -= number;
-            if(_inventory[itemType] <= 0)
+            inventory[itemType] -= number;
+            if(inventory[itemType] <= 0)
             {
-                _inventory.Remove(itemType);
+                inventory.Remove(itemType);
             }
         }
     }
 
     public void RemoveAll(CollectibleScriptableObject itemType)
     {
-        if(_inventory.ContainsKey(itemType))
+        if(inventory.ContainsKey(itemType))
         {
-            _inventory.Remove(itemType);
+            inventory.Remove(itemType);
         }
     }
 
     public int GetItemCount(CollectibleScriptableObject itemType)
     {
-        if(_inventory.ContainsKey(itemType))
+        if(inventory.ContainsKey(itemType))
         {
-            return _inventory[itemType];
+            return inventory[itemType];
         }
         return 0;
     }

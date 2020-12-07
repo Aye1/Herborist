@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c57b32f021fd441cfa62fe6b1c6a5a70, type: 3}
   m_Name: DemoCollectible
   m_EditorClassIdentifier: 
+  developmentName: Demoshroom
   nameLocKey: collDemo
   sprite: {fileID: -838134162997060221, guid: edbdeb45d995b4a6c9f160660cf4ac59, type: 3}
-  quantity: {x: 4, y: 35}
-  handGatherQuantity: {x: 5, y: 10}
+  spawnQuantity: {x: 12, y: 39}
+  handGatherQuantity: {x: 4, y: 8}

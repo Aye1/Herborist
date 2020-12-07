@@ -279,7 +279,7 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
-    - Name: _inventory
+    - Name: inventory
       Entry: 6
       Data: 
 --- !u!50 &650929232
