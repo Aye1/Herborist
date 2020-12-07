@@ -24,4 +24,14 @@ public class Teleport : MonoBehaviour , IInteractable
     {
         TeleportPlayer(aPlayer);
     }
+
+    public bool CanInteract()
+    {
+        return true;
+    }
+
+    public GameObject GetGameObject()
+    {
+        return gameObject;
+    }
 }

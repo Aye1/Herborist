@@ -249,7 +249,6 @@ public class MapGenerator : MonoBehaviour
         };
         Polygon borderPolygon = new Polygon(polygonBoundaries);
         borderPolygon.GenerateFillingPoints();
-        MapGeneratorHelper.DumpPoints(borderPolygon.Points);
         PutTiles(borderPolygon.Points, TileType.MapBorder);
     }
 
@@ -278,11 +277,10 @@ public class MapGenerator : MonoBehaviour
         Tile t = tilemap.GetTile(position.x, position.y);
         if (tile == null)
         {
-            Debug.Log("Can't find tile at pos (" + position.x + "," + position.y + ")");
+            Debug.LogWarning("Can't find tile at pos (" + position.x + "," + position.y + ")");
         }
         else
         {
-            Debug.Log("Tile found");
             tile.GetComponent<Collider2D>().enabled = false;
         }
     }

@@ -1,5 +1,19 @@
 {
   "dependencies": {
+    "com.unisloth.shaders": {
+      "version": "https://github.com/Aye1/Unisloth-Shaders.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "69b6a234520985b6025db12fd22994cc4c08fbee"
+    },
+    "com.unisloth.tools": {
+      "version": "https://github.com/Aye1/Unisloth-Tools.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "9fb9883dec4690febad9d116312f1a2b706eeb36"
+    },
     "com.unity.2d.pixel-perfect": {
       "version": "3.0.2",
       "depth": 0,

@@ -2,15 +2,43 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Linq;
+using Sirenix.OdinInspector;
 
 public class PlayerInteractionManager : MonoBehaviour
 {
     private List<IInteractable> myInteractables;
+    private GameObject _currentInteractable;
+
+    public GameObject CurrentInteractable
+    {
+        get { return _currentInteractable; }
+        set
+        {
+            if(value != _currentInteractable)
+            {
+                if (_currentInteractable != null)
+                {
+                    SpriteChanger.Instance.Outline(_currentInteractable, false);
+                }
+                _currentInteractable = value;
+                if (_currentInteractable != null)
+                {
+                    SpriteChanger.Instance.Outline(_currentInteractable, true);
+                }
+            }
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         myInteractables = new List<IInteractable>();
+    }
+
+    private void Update()
+    {
+        RefreshCurrentInteractable();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -33,11 +61,32 @@ public class PlayerInteractionManager : MonoBehaviour
         }
     }
 
-    private void OnInteract()
+    public void OnInteract()
     {
-        if(myInteractables.Count > 0)
+        IInteractable currentInteractable = GetCurrentInteractable();
+        if(currentInteractable != null)
         {
-            myInteractables[0].Interact(this.gameObject);
+            currentInteractable.Interact(this.gameObject);
         }
+    }
+
+    private void RefreshCurrentInteractable()
+    {
+        if(myInteractables == null || myInteractables.Count == 0)
+        {
+            CurrentInteractable = null;
+        }  else
+        {
+            IEnumerable<IInteractable> possibleInteractables = myInteractables.Where(i => i.CanInteract());
+            CurrentInteractable = possibleInteractables.Count() > 0  ? possibleInteractables.OrderBy(x => Vector3.Distance(x.GetGameObject().transform.position, transform.position)).First().GetGameObject() : null;
+            //CurrentInteractable = possibleInteractables.Count() > 0 ? possibleInteractables.First().GetGameObject() : null;
+
+        }
+    }
+
+    public IInteractable GetCurrentInteractable()
+    {
+
+        return CurrentInteractable == null ? null : CurrentInteractable.GetComponent<IInteractable>();
     }
 }

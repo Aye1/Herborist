@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 
-interface IInteractable
+public interface IInteractable
 {
     void Interact(GameObject aPLayer);
+    bool CanInteract();
+    GameObject GetGameObject();
 }
