@@ -7,14 +7,14 @@ using System;
 public class Inventory : SerializedMonoBehaviour
 {
     [ReadOnly]
-    public Dictionary<Type, int> _inventory;
+    public Dictionary<CollectibleScriptableObject, int> _inventory;
 
     private void Awake()
     {
-        _inventory = new Dictionary<Type, int>();
+        _inventory = new Dictionary<CollectibleScriptableObject, int>();
     }
 
-    public void Add(Type itemType)
+    public void Add(CollectibleScriptableObject itemType)
     {
         if(_inventory.ContainsKey(itemType))
         {
@@ -25,9 +25,9 @@ public class Inventory : SerializedMonoBehaviour
         }
     }
 
-    public void Add(IEnumerable<Type> itemsTypes)
+    public void Add(IEnumerable<CollectibleScriptableObject> itemsTypes)
     {
-        foreach(Type item in itemsTypes)
+        foreach(CollectibleScriptableObject item in itemsTypes)
         {
             Add(item);
         }
@@ -52,7 +52,7 @@ public class Inventory : SerializedMonoBehaviour
         }
     }
 
-    public void Remove(Type itemType, int number)
+    public void Remove(CollectibleScriptableObject itemType, int number)
     {
         if(_inventory.ContainsKey(itemType))
         {
@@ -64,7 +64,7 @@ public class Inventory : SerializedMonoBehaviour
         }
     }
 
-    public void RemoveAll(Type itemType)
+    public void RemoveAll(CollectibleScriptableObject itemType)
     {
         if(_inventory.ContainsKey(itemType))
         {
@@ -72,7 +72,7 @@ public class Inventory : SerializedMonoBehaviour
         }
     }
 
-    public int GetItemCount(Type itemType)
+    public int GetItemCount(CollectibleScriptableObject itemType)
     {
         if(_inventory.ContainsKey(itemType))
         {

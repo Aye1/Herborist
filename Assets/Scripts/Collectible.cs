@@ -3,17 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using MoreMountains.Feedbacks;
+using Sirenix.OdinInspector;
 
 public struct CollectiblePackage
 {
-    public Type type;
+    public CollectibleScriptableObject type;
     public int count;
 }
 
 public class Collectible : MonoBehaviour, IInteractable
 {
-    public int collectibleCount = 25;
+    [ReadOnly, ShowInInspector]
+    private int _collectibleCount;
+    [Required]
+    public CollectibleScriptableObject collectible;
+    [Required]
     public MMFeedbacks feedback;
+
+    private void Awake()
+    {
+        _collectibleCount = Alea.GetIntInc(collectible.quantity.x, collectible.quantity.y);
+    }
 
     public void Interact(GameObject aPLayer)
     {
@@ -23,7 +33,7 @@ public class Collectible : MonoBehaviour, IInteractable
 
     public bool CanInteract()
     {
-        return collectibleCount > 0;
+        return _collectibleCount > 0;
     }
 
     public GameObject GetGameObject()
@@ -34,9 +44,10 @@ public class Collectible : MonoBehaviour, IInteractable
     public List<CollectiblePackage> GetCollectibles()
     {
         CollectiblePackage pck;
-        pck.type = typeof(Collectible);
-        pck.count = Mathf.Min(4, collectibleCount);
-        collectibleCount -= pck.count;
+        pck.type = collectible;
+        int randomPickQuantity = Alea.GetIntInc(collectible.handGatherQuantity.x, collectible.handGatherQuantity.y);
+        pck.count = Mathf.Min(randomPickQuantity, _collectibleCount);
+        _collectibleCount -= pck.count;
 
         List<CollectiblePackage> res = new List<CollectiblePackage>() {
                 pck
