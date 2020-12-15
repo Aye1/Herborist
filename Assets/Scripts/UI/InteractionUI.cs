@@ -1,10 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
+using TMPro;
+using Unisloth.Localization;
 
 public class InteractionUI : MonoBehaviour
 {
     PlayerInteractionManager _player;
+
+    [SerializeField, Required]
+    private Translator _interactText;
 
     // Start is called before the first frame update
     void Start()
@@ -18,7 +24,8 @@ public class InteractionUI : MonoBehaviour
         if(_player != null)
         {
             Display(_player.CanInteract);
-        }   
+        }
+        UpdateInteractionText();
     }
 
     private void Display(bool visible)
@@ -26,6 +33,15 @@ public class InteractionUI : MonoBehaviour
         foreach(Transform child in transform)
         {
             child.gameObject.SetActive(visible);
+        }
+    }
+
+    private void UpdateInteractionText()
+    {
+        if(_interactText != null && _player != null && _player.CanInteract)
+        {
+            // TODO: update key instead of text, when fetching the latest localization package version
+            _interactText.SetText(LocalizationManager.Instance.GetTranslation(_player.GetCurrentInteractable().GetInteractionTextLocKey()));
         }
     }
 }

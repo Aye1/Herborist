@@ -15,9 +15,14 @@ MonoBehaviour:
   newKey: 
   _translationKeys:
   - pick_interaction
+  - teleport_interaction
   _availableLanguages: 0a000000
   _translations:
   - key: pick_interaction
     language: 10
     value: Pick
+    parent: {fileID: 11400000}
+  - key: teleport_interaction
+    language: 10
+    value: Teleport
     parent: {fileID: 11400000}

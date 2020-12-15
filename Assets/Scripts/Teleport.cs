@@ -34,4 +34,9 @@ public class Teleport : MonoBehaviour , IInteractable
     {
         return gameObject;
     }
+
+    public string GetInteractionTextLocKey()
+    {
+        return "teleport_interaction";
+    }
 }

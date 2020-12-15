@@ -19,6 +19,8 @@ public class Collectible : MonoBehaviour, IInteractable
     public CollectibleScriptableObject collectible;
     [Required]
     public MMFeedbacks feedback;
+    [SerializeField, Required]
+    private string _translationKey;
 
     private void Awake()
     {
@@ -53,5 +55,10 @@ public class Collectible : MonoBehaviour, IInteractable
                 pck
             };
         return res;
+    }
+
+    public string GetInteractionTextLocKey()
+    {
+        return _translationKey;
     }
 }
