@@ -30,6 +30,11 @@ public class PlayerInteractionManager : MonoBehaviour
         }
     }
 
+    public bool CanInteract
+    {
+        get { return CurrentInteractable != null; }
+    }
+
     // Start is called before the first frame update
     void Start()
     {

@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7300a5511bebc45f6b68486f3f418741, type: 3}
+  m_Name: UIKeyBindings
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  bindings:
+  - key: 8
+    sprite: {fileID: 4941791518809726416, guid: 9b6040bc27f3a4bac9565b71ae0f6271, type: 3}
+  - key: 9
+    sprite: {fileID: 4491638394355525381, guid: 9b6040bc27f3a4bac9565b71ae0f6271, type: 3}
+  - key: 13
+    sprite: {fileID: -5503109345546670162, guid: 9b6040bc27f3a4bac9565b71ae0f6271, type: 3}
+  - key: 19
+    sprite: {fileID: -4472923216901981300, guid: 9b6040bc27f3a4bac9565b71ae0f6271, type: 3}
+  - key: 32
+    sprite: {fileID: -165788852948036380, guid: 9b6040bc27f3a4bac9565b71ae0f6271, type: 3}
+  - key: 273
+    sprite: {fileID: -8078451711849441883, guid: 9b6040bc27f3a4bac9565b71ae0f6271, type: 3}
+  - key: 274
+    sprite: {fileID: 8153115914119287522, guid: 9b6040bc27f3a4bac9565b71ae0f6271, type: 3}
+  - key: 276
+    sprite: {fileID: 4729359715057755727, guid: 9b6040bc27f3a4bac9565b71ae0f6271, type: 3}
+  - key: 275
+    sprite: {fileID: 4910501659473619878, guid: 9b6040bc27f3a4bac9565b71ae0f6271, type: 3}
+  - key: 97
+    sprite: {fileID: -7078619814942182118, guid: 9b6040bc27f3a4bac9565b71ae0f6271, type: 3}
+  - key: 98
+    sprite: {fileID: -7862181159273770956, guid: 9b6040bc27f3a4bac9565b71ae0f6271, type: 3}
+  - key: 113
+    sprite: {fileID: -3150252699778580645, guid: 9b6040bc27f3a4bac9565b71ae0f6271, type: 3}

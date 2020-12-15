@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
-using UnityEditor.Sprites;
+﻿using UnityEditor;
 using UnityEngine;
 using Sirenix.OdinInspector.Editor;
 
