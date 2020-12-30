@@ -8,11 +8,11 @@
       "hash": "69b6a234520985b6025db12fd22994cc4c08fbee"
     },
     "com.unisloth.tools": {
-      "version": "ssh://git@github.com/Aye1/Unisloth-Tools.git",
+      "version": "https://github.com/Aye1/Unisloth-Tools.git",
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "91d472583743e81b1d3e1329509b1a4880b601f8"
+      "hash": "ee1b5507f144c65a2c93a2ba49ff1e1d0e82c489"
     },
     "com.unity.2d.pixel-perfect": {
       "version": "3.0.2",

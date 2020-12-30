@@ -47,6 +47,9 @@ TagManager:
   - name: Pathes
     uniqueID: 1461227599
     locked: 0
+  - name: Wall
+    uniqueID: 900703451
+    locked: 0
   - name: Characters
     uniqueID: 1643183575
     locked: 0
