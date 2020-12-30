@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1b0bc9a66960e14b82805b45d9c4863, type: 3}
+  m_Name: EmptySpace
+  m_EditorClassIdentifier: 
+  Tileset: {fileID: 11400000, guid: a5ce3224d2834459a9bdd97c5de1ded6, type: 2}
+  Params:
+    m_paramList: []
+  m_group: 1
+  m_autotilingMode: 17
+  m_showInPalette: 1
+  TileIds: 000000008500000086000000ffffffffffffffffffffffffffffffff8b0000008c0000008d000000ffffffffffffffffffffffff970000009c0000009d0000009e000000ffffffffffffffffffffffffffffffff92000000ffffffff93000000ffffffff98000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff8e000000ffffffff8f000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff

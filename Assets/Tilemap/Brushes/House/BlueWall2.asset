@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84c1de61e39cb5d488fe0684e723aceb, type: 3}
+  m_Name: BlueWall2
+  m_EditorClassIdentifier: 
+  Tileset: {fileID: 11400000, guid: a5ce3224d2834459a9bdd97c5de1ded6, type: 2}
+  Params:
+    m_paramList: []
+  m_group: 1
+  m_autotilingMode: 5
+  m_showInPalette: 1
+  TileIds: 730000007300000073000000af00000073000000730000009c000000a800000073000000b000000073000000ad0000009e000000a90000009d00000073000000
+  InteriorCornerTileIds: ffffffffffffffffffffffffffffffff
