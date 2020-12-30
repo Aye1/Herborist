@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e275e20ab801b48819800159a7fefb98, type: 3}
   m_Name: Translations
   m_EditorClassIdentifier: 
-  newKey: 
+  proofKey: init
+  proofKeyList: []
   _translationKeys:
   - interact_teleport
   - interact_pick
