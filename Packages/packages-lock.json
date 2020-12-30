@@ -12,7 +12,7 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "91d472583743e81b1d3e1329509b1a4880b601f8"
+      "hash": "a55ec0a833dfd88698ad5c859dffae445bd711f3"
     },
     "com.unity.2d.pixel-perfect": {
       "version": "3.0.2",

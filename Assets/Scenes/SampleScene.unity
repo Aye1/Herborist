@@ -759,7 +759,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b35db30d838bb4a698762e55fc4d1939, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: pick_interaction
+  key: 
 --- !u!114 &1093403434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1688,7 +1688,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 8365eae38f203473da2d8d35da764fad, type: 2}
     - target: {fileID: 1346373806988974324, guid: 6e38b7acef08242cdb0986c470ed5826, type: 3}
       propertyPath: _translationKey
-      value: pick_interaction
+      value: interact_pick
       objectReference: {fileID: 0}
     - target: {fileID: 1346373806988974326, guid: 6e38b7acef08242cdb0986c470ed5826, type: 3}
       propertyPath: m_RootOrder

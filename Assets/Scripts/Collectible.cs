@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using MoreMountains.Feedbacks;
 using Sirenix.OdinInspector;
+using Unisloth.Localization;
 
 public struct CollectiblePackage
 {
@@ -19,7 +20,7 @@ public class Collectible : MonoBehaviour, IInteractable
     public CollectibleScriptableObject collectible;
     [Required]
     public MMFeedbacks feedback;
-    [SerializeField, Required]
+    [SerializeField, Required, TranslationKey]
     private string _translationKey;
 
     private void Awake()

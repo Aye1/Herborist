@@ -84,14 +84,11 @@ public class PlayerInteractionManager : MonoBehaviour
         {
             IEnumerable<IInteractable> possibleInteractables = myInteractables.Where(i => i.CanInteract());
             CurrentInteractable = possibleInteractables.Count() > 0  ? possibleInteractables.OrderBy(x => Vector3.Distance(x.GetGameObject().transform.position, transform.position)).First().GetGameObject() : null;
-            //CurrentInteractable = possibleInteractables.Count() > 0 ? possibleInteractables.First().GetGameObject() : null;
-
         }
     }
 
     public IInteractable GetCurrentInteractable()
-    {
-
+    { 
         return CurrentInteractable == null ? null : CurrentInteractable.GetComponent<IInteractable>();
     }
 }
