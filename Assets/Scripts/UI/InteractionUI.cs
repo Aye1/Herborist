@@ -7,23 +7,25 @@ using Unisloth.Localization;
 
 public class InteractionUI : MonoBehaviour
 {
-    PlayerInteractionManager _player;
+    [SerializeField, Required]
+    private PlayerInteractionManager player;
 
     [SerializeField, Required]
     private Translator _interactText;
 
+
     // Start is called before the first frame update
     void Start()
     {
-        _player = FindObjectOfType<PlayerInteractionManager>();  
+        player = FindObjectOfType<PlayerInteractionManager>();  
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(_player != null)
+        if(player != null)
         {
-            Display(_player.CanInteract);
+            Display(player.CanInteract);
         }
         UpdateInteractionText();
     }
@@ -38,10 +40,9 @@ public class InteractionUI : MonoBehaviour
 
     private void UpdateInteractionText()
     {
-        if(_interactText != null && _player != null && _player.CanInteract)
+        if(_interactText != null && player != null && player.CanInteract)
         {
-            // TODO: update key instead of text, when fetching the latest localization package version
-            _interactText.SetText(LocalizationManager.Instance.GetTranslation(_player.GetCurrentInteractable().GetInteractionTextLocKey()));
+            _interactText.Key = player.GetCurrentInteractable().GetInteractionTextLocKey();
         }
     }
 }
