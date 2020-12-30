@@ -16,6 +16,8 @@ public class Collectible : MonoBehaviour, IInteractable
 {
     [ReadOnly, ShowInInspector]
     private int _collectibleCount;
+    private int _maxCollectibleCount;
+
     [Required]
     public CollectibleScriptableObject collectible;
     [Required]
@@ -23,15 +25,21 @@ public class Collectible : MonoBehaviour, IInteractable
     [SerializeField, Required, TranslationKey]
     private string _translationKey;
 
+    private SpriteDependsOnQuantity _spriteChanger;
+
     private void Awake()
     {
-        _collectibleCount = Alea.GetIntInc(collectible.spawnQuantity.x, collectible.spawnQuantity.y);
+        _maxCollectibleCount = Alea.GetIntInc(collectible.spawnQuantity.x, collectible.spawnQuantity.y);
+        _collectibleCount = _maxCollectibleCount;
+        _spriteChanger = GetComponent<SpriteDependsOnQuantity>();
+        UpdateSpriteIfNecessary();
     }
 
     public void Interact(GameObject aPLayer)
     {
         feedback.PlayFeedbacks();
         aPLayer.GetComponent<Inventory>().Add(GetCollectibles());
+        UpdateSpriteIfNecessary();
     }
 
     public bool CanInteract()
@@ -61,5 +69,10 @@ public class Collectible : MonoBehaviour, IInteractable
     public string GetInteractionTextLocKey()
     {
         return _translationKey;
+    }
+
+    private void UpdateSpriteIfNecessary()
+    {
+        _spriteChanger.CurrentPercentage = Mathf.CeilToInt(_collectibleCount / (float)_maxCollectibleCount * 100.0f);
     }
 }
