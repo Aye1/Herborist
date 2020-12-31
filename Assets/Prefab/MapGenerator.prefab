@@ -1,0 +1,89 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5446311394173830160
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5446311394173830166}
+  - component: {fileID: 5446311394173830167}
+  - component: {fileID: 5446311394173830165}
+  m_Layer: 0
+  m_Name: MapGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5446311394173830166
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5446311394173830160}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5446311394173830167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5446311394173830160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 418b0992afc6c483c89e9a40d601c8e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mapSize: {x: 100, y: 100}
+  tileMappings:
+  - type: 0
+    tileId: 5
+    brushId: 0
+    tilemap: {fileID: 0}
+  - type: 1
+    tileId: 0
+    brushId: 2
+    tilemap: {fileID: 0}
+  - type: 2
+    tileId: 0
+    brushId: 4
+    tilemap: {fileID: 0}
+  - type: 3
+    tileId: 0
+    brushId: 3
+    tilemap: {fileID: 0}
+  - type: 4
+    tileId: 0
+    brushId: 1
+    tilemap: {fileID: 0}
+  _terrainTilemap: {fileID: 0}
+--- !u!114 &5446311394173830165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5446311394173830160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 212558523e5164cd0aa40ce59628ccdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: 50
+  density: 0.4
+  noise: 0.5
+  stepSize: 1
+  numberBalances: 3
+  treesTemplates:
+  - {fileID: 1346373806988974331, guid: 6e38b7acef08242cdb0986c470ed5826, type: 3}
+  posToAvoid: []

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1346373806988974322}
   - component: {fileID: 1346373806988974321}
   - component: {fileID: 1346373806988974320}
+  - component: {fileID: 1116420054}
   m_Layer: 0
   m_Name: Tree
   m_TagString: Untagged
@@ -74,9 +75,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 729164399
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: -33985131506390148, guid: edbdeb45d995b4a6c9f160660cf4ac59, type: 3}
+  m_Sprite: {fileID: -6481223431791117910, guid: 7f047cd0782ef4f67a25d70c963687ad, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -99,8 +100,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 958e7f25ae11d476797b9c056a22a9a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collectibleCount: 25
+  collectible: {fileID: 11400000, guid: 8365eae38f203473da2d8d35da764fad, type: 2}
   feedback: {fileID: 1346373806988974321}
+  _translationKey: interact_pick
 --- !u!61 &1346373806988974327
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -117,8 +119,8 @@ BoxCollider2D:
   m_Offset: {x: 0.000000029802322, y: -0.17397642}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 0.9375}
+    pivot: {x: 0.5, y: 0.16}
+    oldSize: {x: 1.0666667, y: 2.0666666}
     newSize: {x: 1, y: 0.9375}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -406,3 +408,25 @@ MonoBehaviour:
   WiggleRotationDuration: 0
   WiggleScale: 1
   WiggleScaleDuration: 0.5
+--- !u!114 &1116420054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1346373806988974331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 125c76404cf4444f7b06118f6af5e1ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _quantities:
+  - sprite: {fileID: -144053824394748027, guid: 7f047cd0782ef4f67a25d70c963687ad, type: 3}
+    minMaxPercentage: {x: 0, y: 0}
+    parent: {fileID: 1116420054}
+  - sprite: {fileID: 3693495360633020485, guid: 7f047cd0782ef4f67a25d70c963687ad, type: 3}
+    minMaxPercentage: {x: 1, y: 50}
+    parent: {fileID: 1116420054}
+  - sprite: {fileID: -6481223431791117910, guid: 7f047cd0782ef4f67a25d70c963687ad, type: 3}
+    minMaxPercentage: {x: 51, y: 100}
+    parent: {fileID: 1116420054}
