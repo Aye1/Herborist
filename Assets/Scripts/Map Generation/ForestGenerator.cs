@@ -58,6 +58,11 @@ public class ForestGenerator : MonoBehaviour
         CreateTrees(_generatedPositions);
     }
 
+    public bool HasTreeAtPos(Vector2Int position)
+    {
+        return _generatedPositions.Contains(position);
+    }
+
     private void GenerateRandomTrees()
     {
         _createdTrees = new Dictionary<Vector2Int, GameObject>();

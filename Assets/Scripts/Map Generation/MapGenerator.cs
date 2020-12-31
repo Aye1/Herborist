@@ -6,7 +6,7 @@ using System;
 using Sirenix.OdinInspector;
 using CreativeSpore.SuperTilemapEditor;
 
-public enum TileType { Grass, Water, Dirt, Bridge, MapBorder };
+public enum TileType { Grass, Water, Dirt, Bridge, MapBorder, Tree };
 
 [Serializable]
 public struct TerrainTileMapping
@@ -15,6 +15,7 @@ public struct TerrainTileMapping
     public int tileId;
     public int brushId;
     public STETilemap tilemap;
+    public Color minimapColor;
 }
 
 public class MapGenerator : MonoBehaviour
@@ -22,6 +23,7 @@ public class MapGenerator : MonoBehaviour
     public static MapGenerator Instance { get; private set; }
 
     public Vector2Int mapSize;
+    public bool DontGenerateMap;
 
     [Required]
     public List<TerrainTileMapping> tileMappings;
@@ -57,10 +59,13 @@ public class MapGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GenerateMap();
-        SetPositionsToAvoid();
-        _forestGenerator.LaunchTreesGeneration();
-        //TestFillPolygon();
+        if (!DontGenerateMap)
+        {
+            GenerateMap();
+            SetPositionsToAvoid();
+            _forestGenerator.LaunchTreesGeneration();
+            //TestFillPolygon();
+        }
     }
 
     private void Update()
@@ -125,10 +130,8 @@ public class MapGenerator : MonoBehaviour
 
     private void OffsetMapPosition()
     {
-        List<STETilemap> allTilemaps = tileMappings.Select(x => x.tilemap).ToList();
+        List<STETilemap> allTilemaps = tileMappings.Select(x => x.tilemap).Where(t => t != null).ToList();
         allTilemaps.ForEach(t => t.transform.position = new Vector3(-mapSize.x * 0.5f, -0.5f, t.transform.position.z));
-        //terrainTilemap.transform.position = new Vector3(-mapSize.x * 0.5f, -0.5f, terrainTilemap.transform.position.z);
-        //pathTilemap.transform.position = new Vector3(-mapSize.x * 0.5f, -0.5f, pathTilemap.transform.position.z);
     }
 
     private void GenerateRiver(List<Vector2Int> riverControlPoints)
@@ -236,6 +239,47 @@ public class MapGenerator : MonoBehaviour
         {
             tile.GetComponent<Collider2D>().enabled = false;
         }
+    }
+
+    public TileType GetTypeAtPos(Vector2Int position)
+    {
+        if(_borderPolygon.Points.Contains(position))
+        {
+            return TileType.MapBorder;
+        }
+
+        if(_bridgePositions.Contains(position))
+        {
+            return TileType.Bridge;
+        }
+
+        if(_forestGenerator.HasTreeAtPos(position))
+        {
+            return TileType.Tree;
+        }
+
+        if(_pathes.Any(p => p.AllPoints.Contains(position)))
+        {
+            return TileType.Dirt;
+        }
+
+        if(_rivers.Any(r => r.AllPoints.Contains(position)))
+        {
+            return TileType.Water;
+        }
+
+        return TileType.Grass;
+    }
+
+    public TileType GetTypeAtPos(int x, int y)
+    {
+        return GetTypeAtPos(new Vector2Int(x, y));
+    }
+
+    public Vector2Int GetPosOnTilemap(Vector3 position)
+    {
+        Vector3 worldPosition = position - _offset;
+        return new Vector2Int(Mathf.FloorToInt(worldPosition.x), Mathf.FloorToInt(worldPosition.y));
     }
 
     #region Debug & Test
