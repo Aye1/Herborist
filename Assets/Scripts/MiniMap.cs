@@ -20,10 +20,15 @@ public class MiniMap : MonoBehaviour
     {
         _discoveredPixels = new List<Vector2Int>();
         _size = MapGenerator.Instance.mapSize;
-        _texture = new Texture2D(_size.x, _size.y);
         _image = GetComponent<RawImage>();
+        _texture = new Texture2D(_size.x, _size.y);
+
+        // If the original picture has the right size, we use it as our base canvas
+        if(_image.texture.width == _size.x && _image.texture.height == _size.y)
+        {
+            Graphics.CopyTexture(_image.texture, _texture);
+        }
         _image.texture = _texture;
-        //TestSetPixel();
     }
 
     private void Update()
