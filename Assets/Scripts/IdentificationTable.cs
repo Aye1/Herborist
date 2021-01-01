@@ -1,25 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
+using Unisloth.Localization;
 
 public class IdentificationTable : MonoBehaviour, IInteractable
 {
-    public IdentificationKeyNode identificationTreeRoot;
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+    [TranslationKey]
+    public string locKey;
+    [Required]
+    public IdentificationTableUI identificationUI;
+    [Required]
+    public IdentificationKeyLeaf leafToIdentify;
 
     public string GetInteractionTextLocKey()
     {
-        return "interact_Identification_table";
+        return locKey;
     }
 
     public bool CanInteract()
@@ -34,6 +30,7 @@ public class IdentificationTable : MonoBehaviour, IInteractable
 
     public void Interact(GameObject aPLayer)
     {
-        throw new System.NotImplementedException();
+        identificationUI.gameObject.SetActive(true);
+        identificationUI.SetLeafToIdentify(leafToIdentify);
     }
 }

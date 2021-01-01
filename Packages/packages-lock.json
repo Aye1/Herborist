@@ -8,7 +8,7 @@
       "hash": "e69f0be52037b85fedee4e8b73d55408620d2859"
     },
     "com.unisloth.tools": {
-      "version": "ssh://git@github.com/Aye1/Unisloth-Tools.git",
+      "version": "https://github.com/Aye1/Unisloth-Tools.git",
       "depth": 0,
       "source": "git",
       "dependencies": {},

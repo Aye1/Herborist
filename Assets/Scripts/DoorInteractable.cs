@@ -1,9 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unisloth.Localization;
 
 public class DoorInteractable : Teleport, IInteractable
 {
+    [TranslationKey]
+    public string locKey;
+
     protected override void OnTriggerEnter2D(Collider2D col)
     {
         //Do nothing, handled by IIInteractable
@@ -26,7 +30,7 @@ public class DoorInteractable : Teleport, IInteractable
 
     public string GetInteractionTextLocKey()
     {
-        return "teleport_interaction";
+        return locKey;
     }
 }
 
