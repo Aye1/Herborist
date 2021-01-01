@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c84f990506f9f4b2d91cfd943bf30974, type: 3}
-  m_Name: "Lance\u0301ole\u0301"
+  m_Name: "Lanc\xE9ol\xE9"
   m_EditorClassIdentifier: 
   identificationTitle: "Lanc\xE9ol\xE9"
   identificationDescription: 

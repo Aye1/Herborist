@@ -63,6 +63,7 @@ public class MapGenerator : MonoBehaviour
         {
             GenerateMap();
             SetPositionsToAvoid();
+            _forestGenerator.size = mapSize.x;
             _forestGenerator.LaunchTreesGeneration();
             //TestFillPolygon();
         }

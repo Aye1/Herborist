@@ -1,17 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-using System.Diagnostics;
 
 public class ForestGenerator : MonoBehaviour
 {
+    // TODO: manage different width/height (if necessary)
     public float size = 10.0f;
     [Range(0.0f, 1.0f)] public float density = 1.0f;
     [Range(0.0f, 1.0f)] public float noise = 0.5f;
 
     public float stepSize = 1.0f;
-    public int numberBalances = 0;
+    public int numberBalances = 2;
     public List<GameObject> treesTemplates;
     [HideInInspector]
     public List<Vector2Int> posToAvoid;
@@ -19,13 +18,8 @@ public class ForestGenerator : MonoBehaviour
     private Dictionary<Vector2Int, GameObject> _createdTrees;
     private int _numberSteps;
     private Vector3 _offset;
-
     private bool[,] _treePositions;
 
-    public IEnumerable<GameObject> Trees
-    {
-        get { return _createdTrees.Values.ToList(); }
-    }
 
     public static ForestGenerator Instance { get; private set; }
 
@@ -50,16 +44,12 @@ public class ForestGenerator : MonoBehaviour
 
     public void LaunchTreesGeneration()
     {
-        Stopwatch sw = new Stopwatch();
-        sw.Start();
         GenerateRandomTrees();
         for(int i = 0; i < numberBalances; i++)
         {
             BalanceTrees();
         }
         CreateTrees();
-        sw.Stop();
-        UnityEngine.Debug.Log("Time elapsed: " + sw.Elapsed);
     }
 
     public bool HasTreeAtPos(Vector2Int position)
@@ -167,15 +157,7 @@ public class ForestGenerator : MonoBehaviour
         return MustBeAvoided(new Vector2Int(x, y));
     }
 
-    private void DestroyTrees(IEnumerable<Vector2Int> treeList)
-    {
-        foreach(Vector2Int pos in treeList)
-        {
-            DestroyTree(pos);
-        }
-    }
-
-    private void DestroyTree(Vector2Int position)
+    private void RemoveTreePosition(Vector2Int position)
     {
         _treePositions[position.x, position.y] = false;
     }
@@ -200,11 +182,11 @@ public class ForestGenerator : MonoBehaviour
         float noiseY = Alea.GetFloat(0.0f, noise);
         Vector2 realPos = InternalToRealContinuousPosition(position);
         Vector3 pos = new Vector3(realPos.x + noiseX, realPos.y + noiseY, 0.0f) + _offset;
-        GameObject tree = GenerateTree(pos);
+        GameObject tree = GenerateTreeObject(pos);
         _createdTrees.Add(new Vector2Int(position.x, position.y), tree);
     }
 
-    private GameObject GenerateTree(Vector3 position)
+    private GameObject GenerateTreeObject(Vector3 position)
     {
         int id = Alea.GetInt(0, treesTemplates.Count);
         GameObject tree = Instantiate(treesTemplates[id], Vector3.zero, Quaternion.identity, transform);
