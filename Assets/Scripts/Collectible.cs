@@ -6,7 +6,7 @@ using MoreMountains.Feedbacks;
 using Sirenix.OdinInspector;
 using Unisloth.Localization;
 
-public struct CollectiblePackage
+public class CollectiblePackage
 {
     public CollectibleScriptableObject type;
     public int count;
@@ -38,8 +38,10 @@ public class Collectible : MonoBehaviour, IInteractable
     public void Interact(GameObject aPLayer)
     {
         feedback.PlayFeedbacks();
-        aPLayer.GetComponent<Inventory>().Add(GetCollectibles());
+        List<CollectiblePackage> packages = GetCollectibles();
+        aPLayer.GetComponent<Inventory>().Add(packages);
         UpdateSpriteIfNecessary();
+        DynamicUIManager.Instance.SpawnCollectiblePicked(packages);
     }
 
     public bool CanInteract()
@@ -54,7 +56,7 @@ public class Collectible : MonoBehaviour, IInteractable
 
     public List<CollectiblePackage> GetCollectibles()
     {
-        CollectiblePackage pck;
+        CollectiblePackage pck = new CollectiblePackage();
         pck.type = collectible;
         int randomPickQuantity = Alea.GetIntInc(collectible.handGatherQuantity.x, collectible.handGatherQuantity.y);
         pck.count = Mathf.Min(randomPickQuantity, _collectibleCount);

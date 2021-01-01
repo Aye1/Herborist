@@ -10,7 +10,7 @@ public class SpriteQuantityBinder
     [HideLabel, PreviewField, HorizontalGroup("Group", Width = 50), PropertyOrder(2)]
     public Sprite sprite;
 
-    [MinMaxSlider(0,100, true)]
+    [MinMaxSlider(0,100, true), HideLabel]
     [GUIColor("GetFieldColor")]
     [PropertySpace(SpaceBefore = 20), HorizontalGroup("Group"), PropertyOrder(1)]
     public Vector2Int minMaxPercentage;
@@ -77,7 +77,7 @@ public class SpriteDependsOnQuantity : MonoBehaviour
     {
         SpriteQuantityBinder binder = _quantities.Where(b => b.minMaxPercentage.x <= _currentPercentage
             && b.minMaxPercentage.y >= _currentPercentage).FirstOrDefault();
-        if(binder != default(SpriteQuantityBinder))
+        if(binder != default(SpriteQuantityBinder) && _renderer != null)
         {
             _renderer.sprite = binder.sprite;
         }

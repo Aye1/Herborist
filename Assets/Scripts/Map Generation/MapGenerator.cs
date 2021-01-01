@@ -6,7 +6,7 @@ using System;
 using Sirenix.OdinInspector;
 using CreativeSpore.SuperTilemapEditor;
 
-public enum TileType { Grass, Water, Dirt, Bridge, MapBorder };
+public enum TileType { Grass, Water, Dirt, Bridge, MapBorder, Tree };
 
 [Serializable]
 public struct TerrainTileMapping
@@ -15,6 +15,7 @@ public struct TerrainTileMapping
     public int tileId;
     public int brushId;
     public STETilemap tilemap;
+    public Color minimapColor;
 }
 
 public class MapGenerator : MonoBehaviour
@@ -22,6 +23,7 @@ public class MapGenerator : MonoBehaviour
     public static MapGenerator Instance { get; private set; }
 
     public Vector2Int mapSize;
+    public bool DontGenerateMap;
 
     [Required]
     public List<TerrainTileMapping> tileMappings;
@@ -34,9 +36,11 @@ public class MapGenerator : MonoBehaviour
     private List<CurvedLinePath> _rivers;
     private List<CurvedLinePath> _pathes;
     private List<Vector2Int> _bridgePositions;
+    private Polygon _borderPolygon;
     private Vector3 _offset;
+    private ForestGenerator _forestGenerator;
 
-    private int _firstPathWidth = 5;
+    private int _firstPathWidth = 3;
 
     void Awake()
     {
@@ -44,6 +48,7 @@ public class MapGenerator : MonoBehaviour
         {
             Instance = this;
             _offset = new Vector3(-mapSize.x * 0.5f + 0.5f, 0.0f, 0.0f);
+            _forestGenerator = GetComponent<ForestGenerator>();
         }
         else
         {
@@ -54,8 +59,13 @@ public class MapGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GenerateMap();
-        //TestFillPolygon();
+        if (!DontGenerateMap)
+        {
+            GenerateMap();
+            SetPositionsToAvoid();
+            _forestGenerator.LaunchTreesGeneration();
+            //TestFillPolygon();
+        }
     }
 
     private void Update()
@@ -63,64 +73,12 @@ public class MapGenerator : MonoBehaviour
         DebugDrawElements();
     }
 
-    private void DebugDrawElements()
+    private void SetPositionsToAvoid()
     {
-        DebugDrawRiver();
-        DebugDrawPath();
-    }
-
-    private void TestFillPolygon()
-    {
-        List<Vector2Int> vertices = new List<Vector2Int>()
-        {
-            new Vector2Int(0, 9),
-            new Vector2Int(2, 10),
-            new Vector2Int(4, 11),
-            new Vector2Int(6, 11),
-            new Vector2Int(9, 13),
-            new Vector2Int(11, 14),
-            new Vector2Int(14, 14),
-            new Vector2Int(16, 15),
-            new Vector2Int(19, 16),
-            new Vector2Int(19, 12),
-            new Vector2Int(16, 11),
-            new Vector2Int(14, 10),
-            new Vector2Int(11, 10),
-            new Vector2Int(9, 9),
-            new Vector2Int(6, 7),
-            new Vector2Int(4, 7),
-            new Vector2Int(2, 6),
-            new Vector2Int(0, 5)
-        };
-        Polygon poly = new Polygon(vertices);
-        poly.GenerateFillingPoints();
-        PutTiles(poly.Points, TileType.Water);
-    }
-
-    private void DebugDrawRiver()
-    {
-        if (_rivers != null)
-        {
-            _rivers.Where(r => r.polygonPointsGenerated).ToList().ForEach(r => DebugDraw(r.PolygonPoints, Color.cyan));
-        }
-    }
-
-    private void DebugDrawPath()
-    {
-        if(_pathes != null)
-        {
-            _pathes.Where(p => p.polygonPointsGenerated).ToList().ForEach(p => DebugDraw(p.PolygonPoints, Color.black));
-        }
-    }
-
-    private void DebugDraw(List<Vector2Int> points, Color color)
-    {
-        for (int i = 0; i < points.Count - 1; i++)
-        {
-            Vector3 begin = new Vector3(points[i].x, points[i].y, 0) + _offset;
-            Vector3 end = new Vector3(points[i + 1].x, points[i + 1].y, 0) + _offset;
-            Debug.DrawLine(begin, end, color);
-        }
+        _rivers.ForEach(r => _forestGenerator.posToAvoid.AddRange(r.AllPoints));
+        _pathes.ForEach(p => _forestGenerator.posToAvoid.AddRange(p.AllPoints));
+        _forestGenerator.posToAvoid.AddRange(_bridgePositions);
+        _forestGenerator.posToAvoid.AddRange(_borderPolygon.Points);
     }
 
     public void GenerateMap()
@@ -172,10 +130,8 @@ public class MapGenerator : MonoBehaviour
 
     private void OffsetMapPosition()
     {
-        List<STETilemap> allTilemaps = tileMappings.Select(x => x.tilemap).ToList();
+        List<STETilemap> allTilemaps = tileMappings.Select(x => x.tilemap).Where(t => t != null).ToList();
         allTilemaps.ForEach(t => t.transform.position = new Vector3(-mapSize.x * 0.5f, -0.5f, t.transform.position.z));
-        //terrainTilemap.transform.position = new Vector3(-mapSize.x * 0.5f, -0.5f, terrainTilemap.transform.position.z);
-        //pathTilemap.transform.position = new Vector3(-mapSize.x * 0.5f, -0.5f, pathTilemap.transform.position.z);
     }
 
     private void GenerateRiver(List<Vector2Int> riverControlPoints)
@@ -247,9 +203,9 @@ public class MapGenerator : MonoBehaviour
             new Vector2Int(halfSizeX - _firstPathWidth/2 - width, width),
             new Vector2Int(halfSizeX - _firstPathWidth/2, -1)
         };
-        Polygon borderPolygon = new Polygon(polygonBoundaries);
-        borderPolygon.GenerateFillingPoints();
-        PutTiles(borderPolygon.Points, TileType.MapBorder);
+        _borderPolygon = new Polygon(polygonBoundaries);
+        _borderPolygon.GenerateFillingPoints();
+        PutTiles(_borderPolygon.Points, TileType.MapBorder);
     }
 
     private void PutTiles(List<Vector2Int> positions, TileType type)
@@ -284,4 +240,107 @@ public class MapGenerator : MonoBehaviour
             tile.GetComponent<Collider2D>().enabled = false;
         }
     }
+
+    public TileType GetTypeAtPos(Vector2Int position)
+    {
+        if(_borderPolygon.Points.Contains(position))
+        {
+            return TileType.MapBorder;
+        }
+
+        if(_bridgePositions.Contains(position))
+        {
+            return TileType.Bridge;
+        }
+
+        if(_forestGenerator.HasTreeAtPos(position))
+        {
+            return TileType.Tree;
+        }
+
+        if(_pathes.Any(p => p.AllPoints.Contains(position)))
+        {
+            return TileType.Dirt;
+        }
+
+        if(_rivers.Any(r => r.AllPoints.Contains(position)))
+        {
+            return TileType.Water;
+        }
+
+        return TileType.Grass;
+    }
+
+    public TileType GetTypeAtPos(int x, int y)
+    {
+        return GetTypeAtPos(new Vector2Int(x, y));
+    }
+
+    public Vector2Int GetPosOnTilemap(Vector3 position)
+    {
+        Vector3 worldPosition = position - _offset;
+        return new Vector2Int(Mathf.FloorToInt(worldPosition.x), Mathf.FloorToInt(worldPosition.y));
+    }
+
+    #region Debug & Test
+    private void DebugDrawElements()
+    {
+        DebugDrawRiver();
+        DebugDrawPath();
+    }
+
+    private void TestFillPolygon()
+    {
+        List<Vector2Int> vertices = new List<Vector2Int>()
+        {
+            new Vector2Int(0, 9),
+            new Vector2Int(2, 10),
+            new Vector2Int(4, 11),
+            new Vector2Int(6, 11),
+            new Vector2Int(9, 13),
+            new Vector2Int(11, 14),
+            new Vector2Int(14, 14),
+            new Vector2Int(16, 15),
+            new Vector2Int(19, 16),
+            new Vector2Int(19, 12),
+            new Vector2Int(16, 11),
+            new Vector2Int(14, 10),
+            new Vector2Int(11, 10),
+            new Vector2Int(9, 9),
+            new Vector2Int(6, 7),
+            new Vector2Int(4, 7),
+            new Vector2Int(2, 6),
+            new Vector2Int(0, 5)
+        };
+        Polygon poly = new Polygon(vertices);
+        poly.GenerateFillingPoints();
+        PutTiles(poly.Points, TileType.Water);
+    }
+
+    private void DebugDrawRiver()
+    {
+        if (_rivers != null)
+        {
+            _rivers.Where(r => r.polygonPointsGenerated).ToList().ForEach(r => DebugDraw(r.PolygonPoints, Color.cyan));
+        }
+    }
+
+    private void DebugDrawPath()
+    {
+        if (_pathes != null)
+        {
+            _pathes.Where(p => p.polygonPointsGenerated).ToList().ForEach(p => DebugDraw(p.PolygonPoints, Color.black));
+        }
+    }
+
+    private void DebugDraw(List<Vector2Int> points, Color color)
+    {
+        for (int i = 0; i < points.Count - 1; i++)
+        {
+            Vector3 begin = new Vector3(points[i].x, points[i].y, 0) + _offset;
+            Vector3 end = new Vector3(points[i + 1].x, points[i + 1].y, 0) + _offset;
+            Debug.DrawLine(begin, end, color);
+        }
+    }
+    #endregion
 }
