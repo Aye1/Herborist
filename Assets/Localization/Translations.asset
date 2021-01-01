@@ -17,6 +17,7 @@ MonoBehaviour:
   _translationKeys:
   - interact_teleport
   - interact_pick
+  - interact_Identification_table
   _availableLanguages: 0a000000
   _translations:
   - key: interact_teleport
@@ -26,4 +27,8 @@ MonoBehaviour:
   - key: interact_pick
     language: 10
     value: Pick
+    parent: {fileID: 11400000}
+  - key: interact_Identification_table
+    language: 10
+    value: Open Identification Table
     parent: {fileID: 11400000}
