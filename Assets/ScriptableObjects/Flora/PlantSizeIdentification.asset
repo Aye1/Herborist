@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: PlantSizeIdentification
   m_EditorClassIdentifier: 
   identificationTitle: Plant Size Identification
-  identificationDescription: 
+  identificationDescription: 'What is the size of the plant you want to identify
+    ? '
   plantPart: 0
   plate: {fileID: 0}

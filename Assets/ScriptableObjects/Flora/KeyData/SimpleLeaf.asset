@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: SimpleLeaf
   m_EditorClassIdentifier: 
   identificationTitle: Simple Leaf
-  identificationDescription: 
+  identificationDescription: How are the leaves positionned on the plant ?
   plantPart: 1
   plate: {fileID: 0}

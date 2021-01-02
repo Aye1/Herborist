@@ -7,29 +7,65 @@ using TMPro;
 
 public class IdentificationTableUI : MonoBehaviour
 {
-    [Required]
+    [Required, AssetsOnly]
     public IdentificationKeyNode identificationTreeRoot;
-    private IdentificationKeyLeaf leafToIdentify;
-    [SerializeField, Required]
+    private IdentificationKeyData leafToIdentify;
+    [SerializeField, Required, ChildGameObjectsOnly]
     private Image plantToIdentify;
-    [SerializeField, Required]
+    [SerializeField, Required, ChildGameObjectsOnly]
+    private TextMeshProUGUI descriptionText;
+    [SerializeField, Required, ChildGameObjectsOnly]
     private TextMeshProUGUI choicesText;
-    [SerializeField, Required]
+    [SerializeField, Required, ChildGameObjectsOnly]
     private GameObject choicesButtonsContainer;
     [SerializeField, Required, AssetsOnly]
     private IdentificationKeyButton choiceButtonTemplate;
 
-    public void SetLeafToIdentify(IdentificationKeyLeaf aLeaf)
+    [SerializeField, Required, ChildGameObjectsOnly]
+    private Button returnButton;
+
+    [SerializeField, Required, ChildGameObjectsOnly]
+    private Button leaveButton;
+
+    private List<IdentificationKeyNode> path;
+
+    private void Start()
+    {
+        gameObject.SetActive(false);
+        path = new List<IdentificationKeyNode>();
+        returnButton.GetComponent<Button>().onClick.AddListener(OnReturnButtonClicked);
+        returnButton.interactable = false;
+        leaveButton.GetComponent<Button>().onClick.AddListener(OnLeaveButtonClicked);
+
+    }
+
+    public void SetPlantToIdentify(IdentificationKeyData aLeaf)
     {
         leafToIdentify = aLeaf;
         plantToIdentify.sprite = leafToIdentify.plate;
+        path.Clear();
         DisplayNode(identificationTreeRoot);
     }
+    private void LeaveIdentificationTable()
+    {
+        gameObject.SetActive(false);
+    }
+
     void DisplayNode(IdentificationKeyNode aNode)
     {
+        path.Add(aNode);
+        if (path.Count >= 2)
+        {
+            returnButton.interactable = true;
+        }
+        foreach (Transform child in choicesButtonsContainer.transform)
+        {
+            Destroy(child.gameObject);
+        }
         if (aNode.identificationData != null)
         {
             choicesText.text = aNode.identificationData.identificationTitle;
+            descriptionText.text = aNode.identificationData.identificationDescription;
         }
         foreach (IdentificationKeyNode subNode in aNode.treeNodes)
         {
@@ -37,27 +73,34 @@ public class IdentificationTableUI : MonoBehaviour
             newButton.SetKeyNode(subNode);
             newButton.GetComponent<Button>().onClick.AddListener(() => OnIdentificationNodeButtonClicked(newButton.GetKeyNode()));
         }
-        foreach (IdentificationKeyLeaf subLeaf in aNode.treeLeaves)
-        {
-            IdentificationKeyButton newButton = Instantiate(choiceButtonTemplate, choicesButtonsContainer.transform);
-            newButton.SetKeyLeaf(subLeaf);
-            newButton.GetComponent<Button>().onClick.AddListener(() => OnIdentificationLeafButtonClicked(newButton.GetKeyLeaf()));
-        }
     }
 
     private void OnIdentificationNodeButtonClicked(IdentificationKeyNode node)
     {
-        foreach (Transform child in choicesButtonsContainer.transform)
+        if (node.IsLeaf())
         {
-            Destroy(child.gameObject);
+            if (leafToIdentify == node.identificationData)
+            {
+                LeaveIdentificationTable();
+            }
         }
-        DisplayNode(node);
+        else
+        {
+            DisplayNode(node);
+        }
     }
-    private void OnIdentificationLeafButtonClicked(IdentificationKeyLeaf aLeaf)
+    private void OnReturnButtonClicked()
     {
-        if (leafToIdentify == aLeaf)
+        int nodeNumber = path.Count;
+        if (nodeNumber >= 2)
         {
-            gameObject.SetActive(false);
+            IdentificationKeyNode nodeToGo = path[nodeNumber - 2];
+            path.RemoveRange(nodeNumber - 2, 2);
+            DisplayNode(nodeToGo);
         }
+    }
+    private void OnLeaveButtonClicked()
+    {
+        LeaveIdentificationTable();
     }
 }

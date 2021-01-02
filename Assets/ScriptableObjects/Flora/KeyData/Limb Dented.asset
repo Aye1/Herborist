@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Limb Dented
   m_EditorClassIdentifier: 
   identificationTitle: Limb Dented
-  identificationDescription: 
+  identificationDescription: How is the leaf form ?
   plantPart: 1
   plate: {fileID: 0}

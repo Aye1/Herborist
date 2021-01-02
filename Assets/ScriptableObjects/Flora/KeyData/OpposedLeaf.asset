@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: OpposedLeaf
   m_EditorClassIdentifier: 
   identificationTitle: Opposed Leaf
-  identificationDescription: 
+  identificationDescription: What if the forme of the leaf ?
   plantPart: 1
   plate: {fileID: 0}

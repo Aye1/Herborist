@@ -9,9 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cfc5ee2d8e4a4ee3b172c42c505d0d5, type: 3}
-  m_Name: Oak
+  m_Script: {fileID: 11500000, guid: c84f990506f9f4b2d91cfd943bf30974, type: 3}
+  m_Name: Tilleul
   m_EditorClassIdentifier: 
-  identificationData: {fileID: 11400000, guid: fe86ca73349814c1db1172107b7e7c1c, type: 2}
-  treeNodes: []
-  treeLeaves: []
+  identificationTitle: Tilleul
+  identificationDescription: 
+  plantPart: 0
+  plate: {fileID: 21300000, guid: 45e13c21c9fdb498ca0adf3d797a5289, type: 3}

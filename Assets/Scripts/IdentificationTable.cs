@@ -11,7 +11,7 @@ public class IdentificationTable : MonoBehaviour, IInteractable
     [Required]
     public IdentificationTableUI identificationUI;
     [Required]
-    public IdentificationKeyLeaf leafToIdentify;
+    public IdentificationKeyData leafToIdentify;
 
     public string GetInteractionTextLocKey()
     {
@@ -31,6 +31,6 @@ public class IdentificationTable : MonoBehaviour, IInteractable
     public void Interact(GameObject aPLayer)
     {
         identificationUI.gameObject.SetActive(true);
-        identificationUI.SetLeafToIdentify(leafToIdentify);
+        identificationUI.SetPlantToIdentify(leafToIdentify);
     }
 }

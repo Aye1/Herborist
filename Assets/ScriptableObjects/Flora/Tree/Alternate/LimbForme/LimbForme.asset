@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cfc5ee2d8e4a4ee3b172c42c505d0d5, type: 3}
   m_Name: LimbForme
   m_EditorClassIdentifier: 
-  identificationData: {fileID: 0}
+  identificationData: {fileID: 11400000, guid: 9cae2d48e0d95450eb5359c200fec8bb, type: 2}
   treeNodes:
   - {fileID: 11400000, guid: 6f1e7b0d45b60436cbc3610235e4d7aa, type: 2}
   - {fileID: 11400000, guid: 824d05c98fe4546b5b0f2f474da5a376, type: 2}

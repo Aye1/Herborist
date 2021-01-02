@@ -11,7 +11,9 @@ public class IdentificationKeyNode : ScriptableObject
     [Title("Tree Node Access data", HorizontalLine = false)]
     public List<IdentificationKeyNode> treeNodes;
 
-    [Title("Tree Node Leaves data", HorizontalLine = false)]
-    public List<IdentificationKeyLeaf> treeLeaves;
+    public bool IsLeaf()
+    {
+        return treeNodes.Count == 0;
+    }
 
 }

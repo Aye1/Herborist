@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c84f990506f9f4b2d91cfd943bf30974, type: 3}
   m_Name: Leaf COmposition
   m_EditorClassIdentifier: 
-  identificationTitle: Leaf COmposition
-  identificationDescription: 
+  identificationTitle: Leaf Placement on Plant
+  identificationDescription: How the Leaf is Position on the Plant ?
   plantPart: 1
   plate: {fileID: 0}

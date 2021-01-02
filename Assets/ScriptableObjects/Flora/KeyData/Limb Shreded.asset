@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Limb Shreded
   m_EditorClassIdentifier: 
   identificationTitle: Limb Shreded
-  identificationDescription: 
+  identificationDescription: How if the leaf shreded
   plantPart: 1
   plate: {fileID: 0}

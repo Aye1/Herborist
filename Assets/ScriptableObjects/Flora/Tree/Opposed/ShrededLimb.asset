@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: ShrededLimb
   m_EditorClassIdentifier: 
   identificationData: {fileID: 11400000, guid: 9cae2d48e0d95450eb5359c200fec8bb, type: 2}
-  treeNodes: []
-  treeLeaves:
+  treeNodes:
   - {fileID: 11400000, guid: e5518cf0a2ca540348817ea46f5d1959, type: 2}
+  treeLeaves: []
