@@ -24,7 +24,7 @@ public class MiniMap : MonoBehaviour
         _size = MapGenerator.Instance.mapSize;
         _image = GetComponent<RawImage>();
         _texture = new Texture2D(_size.x, _size.y);
-        _cursorOffset = new Vector3(-_size.x * 0.5f, -_size.y * 0.5f + 1, 0.0f);
+        _cursorOffset = new Vector3(-_size.x * 0.5f, -_size.y * 0.5f + 1, 0.0f); // Not sure about the +1, but it seems more accurate
 
         // If the original picture has the right size, we use it as our base canvas
         if(_image.texture.width == _size.x && _image.texture.height == _size.y)
