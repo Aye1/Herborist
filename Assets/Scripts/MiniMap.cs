@@ -11,7 +11,9 @@ public class MiniMap : MonoBehaviour
     private RawImage _image;
     private Vector2Int _size;
     private List<Vector2Int> _discoveredPixels;
+    private Vector3 _cursorOffset;
     [SerializeField, Required] PlayerMovement _player;
+    [SerializeField, Required, ChildGameObjectsOnly] Image _cursor;
 
     public int visionRadius;
 
@@ -22,6 +24,7 @@ public class MiniMap : MonoBehaviour
         _size = MapGenerator.Instance.mapSize;
         _image = GetComponent<RawImage>();
         _texture = new Texture2D(_size.x, _size.y);
+        _cursorOffset = new Vector3(-_size.x * 0.5f, -_size.y * 0.5f + 1, 0.0f);
 
         // If the original picture has the right size, we use it as our base canvas
         if(_image.texture.width == _size.x && _image.texture.height == _size.y)
@@ -86,6 +89,8 @@ public class MiniMap : MonoBehaviour
     private void UpdateMap()
     {
         Vector2Int currentPos = MapGenerator.Instance.GetPosOnTilemap(_player.transform.position);
+        Vector2 currentContPos = MapGenerator.Instance.GetContinuousPositionOnTilemap(_player.transform.position);
+        _cursor.transform.localPosition = new Vector3(currentContPos.x, currentContPos.y, 0.0f)  + _cursorOffset;
 
         foreach(Vector2Int pixel in GetPixelsInRadius(currentPos))
         {

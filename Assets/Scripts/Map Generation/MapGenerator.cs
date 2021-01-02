@@ -63,6 +63,7 @@ public class MapGenerator : MonoBehaviour
         {
             GenerateMap();
             SetPositionsToAvoid();
+            _forestGenerator.size = mapSize.x;
             _forestGenerator.LaunchTreesGeneration();
             //TestFillPolygon();
         }
@@ -280,6 +281,11 @@ public class MapGenerator : MonoBehaviour
     {
         Vector3 worldPosition = position - _offset;
         return new Vector2Int(Mathf.FloorToInt(worldPosition.x), Mathf.FloorToInt(worldPosition.y));
+    }
+
+    public Vector2 GetContinuousPositionOnTilemap(Vector3 position)
+    {
+        return position - _offset;
     }
 
     #region Debug & Test
