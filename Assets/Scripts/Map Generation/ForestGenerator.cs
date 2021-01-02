@@ -11,11 +11,11 @@ public class ForestGenerator : MonoBehaviour
 
     public float stepSize = 1.0f;
     public int numberBalances = 2;
-    [Required, SerializeField]
-    private ProbabilityMap treesTemplates;
     [HideInInspector]
     public List<Vector2Int> posToAvoid;
 
+    [Required, SerializeField]
+    private ProbabilityMap treesTemplates;
     private Dictionary<Vector2Int, GameObject> _createdTrees;
     private int _numberSteps;
     private Vector3 _offset;

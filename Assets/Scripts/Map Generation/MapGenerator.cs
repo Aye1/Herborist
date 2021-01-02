@@ -283,6 +283,11 @@ public class MapGenerator : MonoBehaviour
         return new Vector2Int(Mathf.FloorToInt(worldPosition.x), Mathf.FloorToInt(worldPosition.y));
     }
 
+    public Vector2 GetContinuousPositionOnTilemap(Vector3 position)
+    {
+        return position - _offset;
+    }
+
     #region Debug & Test
     private void DebugDrawElements()
     {
