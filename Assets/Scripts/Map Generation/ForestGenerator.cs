@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
+using Sirenix.OdinInspector;
 
 public class ForestGenerator : MonoBehaviour
 {
@@ -11,7 +11,8 @@ public class ForestGenerator : MonoBehaviour
 
     public float stepSize = 1.0f;
     public int numberBalances = 2;
-    public List<GameObject> treesTemplates;
+    [Required, SerializeField]
+    private ProbabilityMap treesTemplates;
     [HideInInspector]
     public List<Vector2Int> posToAvoid;
 
@@ -28,6 +29,8 @@ public class ForestGenerator : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            if(treesTemplates == null)
+                treesTemplates = new ProbabilityMap();
         }
         else
         {
@@ -188,8 +191,7 @@ public class ForestGenerator : MonoBehaviour
 
     private GameObject GenerateTreeObject(Vector3 position)
     {
-        int id = Alea.GetInt(0, treesTemplates.Count);
-        GameObject tree = Instantiate(treesTemplates[id], Vector3.zero, Quaternion.identity, transform);
+        GameObject tree = Instantiate(treesTemplates.GetRandomObject(), Vector3.zero, Quaternion.identity, transform);
         tree.transform.localPosition = position;
         tree.transform.localScale = Vector3.one;
         return tree;
