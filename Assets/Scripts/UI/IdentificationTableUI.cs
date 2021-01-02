@@ -65,10 +65,8 @@ public class IdentificationTableUI : MonoBehaviour
         }
 
         path.Add(aNode);
-        if (path.Count >= 2)
-        {
-            returnButton.interactable = true;
-        }
+        returnButton.interactable = path.Count >= 2;
+
         foreach (IdentificationKeyNode subNode in path)
         {
             Button newButton = Instantiate(hierarchyNodeButtonTemplate, hierarchyContainer.transform);
