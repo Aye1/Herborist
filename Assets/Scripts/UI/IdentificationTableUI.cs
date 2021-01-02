@@ -15,11 +15,13 @@ public class IdentificationTableUI : MonoBehaviour
     [SerializeField, Required, ChildGameObjectsOnly]
     private TextMeshProUGUI descriptionText;
     [SerializeField, Required, ChildGameObjectsOnly]
-    private TextMeshProUGUI choicesText;
+    private GameObject hierarchyContainer;
     [SerializeField, Required, ChildGameObjectsOnly]
     private GameObject choicesButtonsContainer;
     [SerializeField, Required, AssetsOnly]
     private IdentificationKeyButton choiceButtonTemplate;
+    [SerializeField, Required, AssetsOnly]
+    private Button hierarchyNodeButtonTemplate;
 
     [SerializeField, Required, ChildGameObjectsOnly]
     private Button returnButton;
@@ -53,18 +55,29 @@ public class IdentificationTableUI : MonoBehaviour
 
     void DisplayNode(IdentificationKeyNode aNode)
     {
+        foreach (Transform child in choicesButtonsContainer.transform)
+        {
+            Destroy(child.gameObject);
+        }
+        foreach (Transform child in hierarchyContainer.transform)
+        {
+            Destroy(child.gameObject);
+        }
+
         path.Add(aNode);
         if (path.Count >= 2)
         {
             returnButton.interactable = true;
         }
-        foreach (Transform child in choicesButtonsContainer.transform)
+        foreach (IdentificationKeyNode subNode in path)
         {
-            Destroy(child.gameObject);
+            Button newButton = Instantiate(hierarchyNodeButtonTemplate, hierarchyContainer.transform);
+            newButton.GetComponentInChildren<TextMeshProUGUI>().text = subNode.identificationData.identificationTitle;
+            newButton.GetComponent<Button>().onClick.AddListener(() => OnHierarchyNodeButtonClicked(subNode));
         }
+
         if (aNode.identificationData != null)
         {
-            choicesText.text = aNode.identificationData.identificationTitle;
             descriptionText.text = aNode.identificationData.identificationDescription;
         }
         foreach (IdentificationKeyNode subNode in aNode.treeNodes)
@@ -89,14 +102,32 @@ public class IdentificationTableUI : MonoBehaviour
             DisplayNode(node);
         }
     }
+    private void OnHierarchyNodeButtonClicked(IdentificationKeyNode node)
+    {
+        for (int i = 0; i < path.Count; i++)
+        {
+            if (path[i] == node)
+            {
+                ReturnToNodeAtIndex(i);
+                break;
+            }
+        }
+    }
+
+    private void ReturnToNodeAtIndex(int index)
+    {
+        int numberOfNodesToRemove = path.Count - index;
+        IdentificationKeyNode nodeToGo = path[index];
+        path.RemoveRange(index, numberOfNodesToRemove);
+        DisplayNode(nodeToGo);
+    }
+
     private void OnReturnButtonClicked()
     {
-        int nodeNumber = path.Count;
-        if (nodeNumber >= 2)
+        int nodeNumber = path.Count - 2; //before last element;
+        if (nodeNumber >= 0)
         {
-            IdentificationKeyNode nodeToGo = path[nodeNumber - 2];
-            path.RemoveRange(nodeNumber - 2, 2);
-            DisplayNode(nodeToGo);
+            ReturnToNodeAtIndex(nodeNumber);
         }
     }
     private void OnLeaveButtonClicked()
