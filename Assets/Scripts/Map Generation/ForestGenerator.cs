@@ -29,20 +29,14 @@ public class ForestGenerator : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            if(treesTemplates == null)
-                treesTemplates = new ProbabilityMap();
+            _offset = new Vector3(-size * 0.5f, 0.0f, 0.0f);
+            _numberSteps = (int)(size / stepSize);
+            posToAvoid = new List<Vector2Int>();
         }
         else
         {
             Destroy(gameObject);
         }
-    }
-
-    void Start()
-    {
-        _offset = new Vector3(-size * 0.5f, 0.0f, 0.0f);
-        _numberSteps = (int)(size / stepSize);
-        posToAvoid = new List<Vector2Int>();
     }
 
     public void LaunchTreesGeneration()

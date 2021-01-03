@@ -135,6 +135,8 @@ public class SpriteDependsOnQuantity : MonoBehaviour
 
     public Color GetValidationColor(SpriteQuantityBinder binder)
     {
+        if (_conflictingQuantities == null)
+            return Color.white;
         return _conflictingQuantities.Contains(binder) ? Color.yellow : Color.white;
     }
 
