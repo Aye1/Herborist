@@ -1,6 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 using Sirenix.OdinInspector.Editor;
+using Sirenix.Utilities.Editor;
 
 public class CollectibleDrawer : OdinValueDrawer<CollectibleScriptableObject>
 {
@@ -8,22 +9,30 @@ public class CollectibleDrawer : OdinValueDrawer<CollectibleScriptableObject>
     {
         Rect rect = EditorGUILayout.GetControlRect();
         CollectibleScriptableObject obj = ValueEntry.SmartValue;
-        Rect leftRect = new Rect()
+
+        if (ValueEntry.IsEditable)
         {
-            xMin = rect.xMin,
-            xMax = rect.xMax * 0.8f,
-            yMin = rect.yMin,
-            yMax = rect.yMax
-        };
-        EditorGUI.LabelField(leftRect, obj.developmentName);
-        Rect rightRect = new Rect()
+            CallNextDrawer(label);
+        }
+        else
         {
-            xMin = rect.xMax * 0.8f,
-            xMax = rect.xMax,
-            yMin = rect.yMin,
-            yMax = rect.yMax
-        };
-        DrawTexturePreview(rightRect, obj.sprite);
+            Rect leftRect = new Rect()
+            {
+                xMin = rect.xMin,
+                xMax = rect.xMax * 0.8f,
+                yMin = rect.yMin,
+                yMax = rect.yMax
+            };
+            EditorGUI.LabelField(leftRect, obj.developmentName);
+            Rect rightRect = new Rect()
+            {
+                xMin = rect.xMax * 0.8f,
+                xMax = rect.xMax,
+                yMin = rect.yMin,
+                yMax = rect.yMax
+            };
+            DrawTexturePreview(rightRect, obj.sprite);
+        }
     }
 
 
