@@ -10,10 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7cfc5ee2d8e4a4ee3b172c42c505d0d5, type: 3}
-  m_Name: "Dent\xE9"
+  m_Name: Dente
   m_EditorClassIdentifier: 
   identificationData: {fileID: 11400000, guid: fdadf66d6ae6647bcb3e712f6b243d26, type: 2}
   treeNodes:
   - {fileID: 11400000, guid: f5f36e06d437f47bda65517162ea2668, type: 2}
   - {fileID: 11400000, guid: e18251139440c4fb68546bb8457b0593, type: 2}
-  treeLeaves: []

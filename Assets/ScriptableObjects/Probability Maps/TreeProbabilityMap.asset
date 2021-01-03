@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   probabilities:
   - obj: {fileID: 6785125857616866965, guid: f9567025303f8487699517973e7545cf, type: 3}
-    probabilityRange: {x: 0, y: 0.8333333}
+    probabilityRange: {x: 0, y: 0.6923077}
   - obj: {fileID: 1346373806988974331, guid: 6e38b7acef08242cdb0986c470ed5826, type: 3}
-    probabilityRange: {x: 0.8333333, y: 1}
+    probabilityRange: {x: 0.6923077, y: 0.9230769}
+  - obj: {fileID: 9121713431005995009, guid: 22a6d943af613498f8dbb0b87c6e105f, type: 3}
+    probabilityRange: {x: 0.9230769, y: 1}
