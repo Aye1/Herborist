@@ -5,18 +5,25 @@ using Sirenix.Utilities.Editor;
 
 public class CollectibleDrawer : OdinValueDrawer<CollectibleScriptableObject>
 {
+    GUIStyle iconStyle = new GUIStyle(EditorStyles.miniButton);
+
     protected override void DrawPropertyLayout(GUIContent label)
     {
-        Rect rect = EditorGUILayout.GetControlRect();
-        CollectibleScriptableObject obj = ValueEntry.SmartValue;
+        iconStyle.alignment = TextAnchor.MiddleCenter;
+        iconStyle.fixedWidth = 20;
 
-        if (ValueEntry.IsEditable)
+        CollectibleScriptableObject obj = ValueEntry.SmartValue;
+        bool fullDisplay = ValueEntry.IsEditable;
+        if (fullDisplay)
         {
-            CallNextDrawer(label);
+            string boxTitle = label == null ? "Collectible" : label.text;
+            SirenixEditorGUI.BeginBox(boxTitle);
+            CallNextDrawer(new GUIContent());
         }
-        else
+        if(obj != null)
         {
-            Rect leftRect = new Rect()
+            //Rect rect = EditorGUILayout.GetControlRect();
+            /*Rect leftRect = new Rect()
             {
                 xMin = rect.xMin,
                 xMax = rect.xMax * 0.8f,
@@ -30,8 +37,19 @@ public class CollectibleDrawer : OdinValueDrawer<CollectibleScriptableObject>
                 xMax = rect.xMax,
                 yMin = rect.yMin,
                 yMax = rect.yMax
-            };
-            DrawTexturePreview(rightRect, obj.sprite);
+            };*/
+            /*rect = EditorGUI.PrefixLabel(rect, new GUIContent(obj.developmentName));
+            DrawTexturePreview(rect, obj.sprite);*/
+            EditorGUILayout.BeginHorizontal();
+            Texture2D texture = AssetPreview.GetAssetPreview(obj.sprite);
+            GUILayout.Label(texture, iconStyle);
+            EditorGUILayout.LabelField(obj.developmentName);
+            //GUILayout.Label("test",  defaultStyle);
+            EditorGUILayout.EndHorizontal();
+        }
+        if (fullDisplay)
+        {
+            SirenixEditorGUI.EndBox();
         }
     }
 
