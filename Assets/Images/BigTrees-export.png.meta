@@ -23,6 +23,9 @@ TextureImporter:
   - first:
       213: -6481223431791117910
     second: BigTrees-export_6
+  - first:
+      213: -2806318483976291029
+    second: BigTrees-export_7
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -275,7 +278,7 @@ TextureImporter:
       name: BigTrees-export_6
       rect:
         serializedVersion: 2
-        x: 104
+        x: 103
         y: 1
         width: 16
         height: 31
@@ -288,6 +291,27 @@ TextureImporter:
       bones: []
       spriteID: aa9f626b0a11e06a0800000000000000
       internalID: -6481223431791117910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BigTrees-export_7
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 1
+        width: 16
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2dfaf31534fd09d0800000000000000
+      internalID: -2806318483976291029
       vertices: []
       indices: 
       edges: []

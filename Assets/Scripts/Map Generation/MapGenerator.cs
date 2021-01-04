@@ -137,12 +137,6 @@ public class MapGenerator : MonoBehaviour
         DisableColliders(_terrainTilemap, _bridgePositions);
     }
 
-    /*private void OffsetMapPosition()
-    {
-        List<STETilemap> allTilemaps = tileMappings.Select(x => x.tilemap).Where(t => t != null).ToList();
-        allTilemaps.ForEach(t => t.transform.position = new Vector3(-mapSize.x * 0.5f, -0.5f, t.transform.position.z));
-    }*/
-
     private void GenerateRiver(List<Vector2Int> riverControlPoints)
     {
         if(_rivers == null)
@@ -195,22 +189,24 @@ public class MapGenerator : MonoBehaviour
          * +  +------+  +--------+
          *           S       <---+
          * */
+
+        int sizeRatio = 2;
         int halfSizeX = mapSize.x / 2 - 3; // TODO: change this arbitrary constant value (if needed)
         List< Vector2Int> polygonBoundaries = new List<Vector2Int>()
         {
-            new Vector2Int(halfSizeX- _firstPathWidth/2, -1),
-            new Vector2Int(-1, -1),
+            new Vector2Int(halfSizeX-_firstPathWidth / 2, -2),
+            new Vector2Int(-1, -2),
             new Vector2Int(-1, mapSize.y),
             new Vector2Int(mapSize.x, mapSize.y),
-            new Vector2Int(mapSize.x, -1),
-            new Vector2Int(halfSizeX + _firstPathWidth, -1),
+            new Vector2Int(mapSize.x, -2),
+            new Vector2Int(halfSizeX + _firstPathWidth, -2),
             new Vector2Int(halfSizeX + _firstPathWidth + width, width),
             new Vector2Int(mapSize.x - width, width),
             new Vector2Int(mapSize.x - width, mapSize.y - width),
             new Vector2Int(width, mapSize.y - width),
             new Vector2Int(width, width),
             new Vector2Int(halfSizeX - _firstPathWidth/2 - width, width),
-            new Vector2Int(halfSizeX - _firstPathWidth/2, -1)
+            new Vector2Int(halfSizeX - _firstPathWidth/2, -2)
         };
         _borderPolygon = new Polygon(polygonBoundaries);
         _borderPolygon.GenerateFillingPoints();
@@ -220,8 +216,7 @@ public class MapGenerator : MonoBehaviour
     private void GenerateEntrancePOI()
     {
         PointOfInterest entrancePOI = Instantiate(_entrancePOI, transform);
-        entrancePOI.SetPositionOnTilemap(new Vector2(-entrancePOI.Size.x / 2 + mapSize.x * 0.5f, -0.5f));
-        //entrancePOI.transform.position = new Vector3(-entrancePOI.Size.x / 2, -0.5f, 0.0f);
+        entrancePOI.SetPositionOnTilemap(new Vector2(mapSize.x * 0.5f - entrancePOI.Size.x / 2, -0.5f));
         _spawnedPOIs.Add(entrancePOI);
     }
 

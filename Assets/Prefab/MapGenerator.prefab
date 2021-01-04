@@ -45,28 +45,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapSize: {x: 100, y: 100}
+  DontGenerateMap: 0
   tileMappings:
   - type: 0
     tileId: 5
     brushId: 0
     tilemap: {fileID: 0}
+    minimapColor: {r: 0.34531865, g: 0.754717, b: 0.38894305, a: 1}
   - type: 1
     tileId: 0
     brushId: 2
     tilemap: {fileID: 0}
+    minimapColor: {r: 0.063412234, g: 0.54822266, b: 0.8962264, a: 1}
   - type: 2
     tileId: 0
     brushId: 4
     tilemap: {fileID: 0}
+    minimapColor: {r: 0.9150943, g: 0.89875716, b: 0.58272517, a: 1}
   - type: 3
     tileId: 0
     brushId: 3
     tilemap: {fileID: 0}
+    minimapColor: {r: 0.4811321, g: 0.26685256, b: 0.15659487, a: 1}
   - type: 4
     tileId: 0
     brushId: 1
     tilemap: {fileID: 0}
+    minimapColor: {r: 0.4339623, g: 0.42372733, b: 0.42372733, a: 1}
+  - type: 5
+    tileId: -1
+    brushId: -1
+    tilemap: {fileID: 0}
+    minimapColor: {r: 0.14652994, g: 0.3490566, b: 0.07738519, a: 1}
   _terrainTilemap: {fileID: 0}
+  _entrancePOI: {fileID: 8135920737725326693, guid: f85fd6bc6757345e681d261152720124, type: 3}
 --- !u!114 &5446311394173830165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79,11 +91,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 212558523e5164cd0aa40ce59628ccdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 50
+  size: 100
   density: 0.4
   noise: 0.5
   stepSize: 1
   numberBalances: 3
-  treesTemplates:
-  - {fileID: 1346373806988974331, guid: 6e38b7acef08242cdb0986c470ed5826, type: 3}
   posToAvoid: []
+  treesTemplates: {fileID: 11400000, guid: 5cf2916918010403da439b37d40cc00a, type: 2}
