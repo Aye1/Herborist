@@ -33,21 +33,25 @@ public class MapGenerator : MonoBehaviour
     [SerializeField]
     private STETilemap _terrainTilemap;
 
+    [SerializeField, Required, AssetsOnly] private PointOfInterest _entrancePOI;
+
     private List<CurvedLinePath> _rivers;
     private List<CurvedLinePath> _pathes;
     private List<Vector2Int> _bridgePositions;
     private Polygon _borderPolygon;
-    private Vector3 _offset;
+    //private Vector3 _offset;
     private ForestGenerator _forestGenerator;
+    private List<PointOfInterest> _spawnedPOIs;
 
-    private int _firstPathWidth = 3;
+    private int _firstPathWidth = 5;
+    private int _borderWidth = 10;
 
     void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
-            _offset = new Vector3(-mapSize.x * 0.5f + 0.5f, 0.0f, 0.0f);
+            //_offset = new Vector3(-mapSize.x * 0.5f + 0.5f, 0.0f, 0.0f);
             _forestGenerator = GetComponent<ForestGenerator>();
         }
         else
@@ -76,15 +80,18 @@ public class MapGenerator : MonoBehaviour
 
     private void SetPositionsToAvoid()
     {
-        _rivers.ForEach(r => _forestGenerator.posToAvoid.AddRange(r.AllPoints));
-        _pathes.ForEach(p => _forestGenerator.posToAvoid.AddRange(p.AllPoints));
-        _forestGenerator.posToAvoid.AddRange(_bridgePositions);
-        _forestGenerator.posToAvoid.AddRange(_borderPolygon.Points);
+        _spawnedPOIs?.ForEach(poi => _forestGenerator?.posToAvoid.AddRange(poi.TilesPositions));
+        _rivers?.ForEach(r => _forestGenerator?.posToAvoid.AddRange(r.AllPoints));
+        _pathes?.ForEach(p => _forestGenerator?.posToAvoid.AddRange(p.AllPoints));
+        if(_bridgePositions != null)
+            _forestGenerator?.posToAvoid.AddRange(_bridgePositions);
+        if(_borderPolygon != null)
+            _forestGenerator?.posToAvoid.AddRange(_borderPolygon.Points);
     }
 
     public void GenerateMap()
     {
-        OffsetMapPosition();
+        //OffsetMapPosition();
         for(int i=0; i<mapSize.x; i++)
         {
             for(int j=0; j<mapSize.y; j++)
@@ -92,8 +99,10 @@ public class MapGenerator : MonoBehaviour
                 PutTile(new Vector2Int(i, j), TileType.Grass);
             }
         }
+        _spawnedPOIs = new List<PointOfInterest>();
+        GenerateEntrancePOI();
 
-        GenerateMapBorders(10);
+        GenerateMapBorders(_borderWidth);
 
         List<Vector2Int> riverControlPoints = new List<Vector2Int>()
         {
@@ -112,8 +121,7 @@ public class MapGenerator : MonoBehaviour
 
         List<Vector2Int> pathControlPoints = new List<Vector2Int>()
         {
-            new Vector2Int(49, 0),
-            new Vector2Int(49, 10),
+            new Vector2Int(49, 6),
             new Vector2Int(49, 29),
             MapGeneratorHelper.GenerateRandomPointOnLimit(MapLimit.Up, 0.10f, 0.50f)
         };
@@ -125,15 +133,15 @@ public class MapGenerator : MonoBehaviour
             MapGeneratorHelper.GenerateRandomPointOnLimit(MapLimit.Up, 0.60f, 0.90f)
         };
         GeneratePath(pathControlPoints2);
-        _terrainTilemap.UpdateMeshImmediate();
+        _terrainTilemap.UpdateMeshImmediate(); // Only way I found to disable water collider under bridges, there may be another way to do that
         DisableColliders(_terrainTilemap, _bridgePositions);
     }
 
-    private void OffsetMapPosition()
+    /*private void OffsetMapPosition()
     {
         List<STETilemap> allTilemaps = tileMappings.Select(x => x.tilemap).Where(t => t != null).ToList();
         allTilemaps.ForEach(t => t.transform.position = new Vector3(-mapSize.x * 0.5f, -0.5f, t.transform.position.z));
-    }
+    }*/
 
     private void GenerateRiver(List<Vector2Int> riverControlPoints)
     {
@@ -187,7 +195,7 @@ public class MapGenerator : MonoBehaviour
          * +  +------+  +--------+
          *           S       <---+
          * */
-        int halfSizeX = mapSize.x / 2;
+        int halfSizeX = mapSize.x / 2 - 3; // TODO: change this arbitrary constant value (if needed)
         List< Vector2Int> polygonBoundaries = new List<Vector2Int>()
         {
             new Vector2Int(halfSizeX- _firstPathWidth/2, -1),
@@ -207,6 +215,14 @@ public class MapGenerator : MonoBehaviour
         _borderPolygon = new Polygon(polygonBoundaries);
         _borderPolygon.GenerateFillingPoints();
         PutTiles(_borderPolygon.Points, TileType.MapBorder);
+    }
+
+    private void GenerateEntrancePOI()
+    {
+        PointOfInterest entrancePOI = Instantiate(_entrancePOI, transform);
+        entrancePOI.SetPositionOnTilemap(new Vector2(-entrancePOI.Size.x / 2 + mapSize.x * 0.5f, -0.5f));
+        //entrancePOI.transform.position = new Vector3(-entrancePOI.Size.x / 2, -0.5f, 0.0f);
+        _spawnedPOIs.Add(entrancePOI);
     }
 
     private void PutTiles(List<Vector2Int> positions, TileType type)
@@ -244,27 +260,27 @@ public class MapGenerator : MonoBehaviour
 
     public TileType GetTypeAtPos(Vector2Int position)
     {
-        if(_borderPolygon.Points.Contains(position))
+        if(_borderPolygon != null && _borderPolygon.Points.Contains(position))
         {
             return TileType.MapBorder;
         }
 
-        if(_bridgePositions.Contains(position))
+        if(_bridgePositions != null && _bridgePositions.Contains(position))
         {
             return TileType.Bridge;
         }
 
-        if(_forestGenerator.HasTreeAtPos(position))
+        if(_forestGenerator != null && _forestGenerator.HasTreeAtPos(position))
         {
             return TileType.Tree;
         }
 
-        if(_pathes.Any(p => p.AllPoints.Contains(position)))
+        if(_pathes != null && _pathes.Any(p => p.AllPoints.Contains(position)))
         {
             return TileType.Dirt;
         }
 
-        if(_rivers.Any(r => r.AllPoints.Contains(position)))
+        if(_rivers != null && _rivers.Any(r => r.AllPoints.Contains(position)))
         {
             return TileType.Water;
         }
@@ -279,14 +295,14 @@ public class MapGenerator : MonoBehaviour
 
     public Vector2Int GetPosOnTilemap(Vector3 position)
     {
-        Vector3 worldPosition = position - _offset;
+        Vector3 worldPosition = position;
         return new Vector2Int(Mathf.FloorToInt(worldPosition.x), Mathf.FloorToInt(worldPosition.y));
     }
 
-    public Vector2 GetContinuousPositionOnTilemap(Vector3 position)
+    /*public Vector2 GetContinuousPositionOnTilemap(Vector3 position)
     {
         return position - _offset;
-    }
+    }*/
 
     #region Debug & Test
     private void DebugDrawElements()
@@ -343,8 +359,9 @@ public class MapGenerator : MonoBehaviour
     {
         for (int i = 0; i < points.Count - 1; i++)
         {
-            Vector3 begin = new Vector3(points[i].x, points[i].y, 0) + _offset;
-            Vector3 end = new Vector3(points[i + 1].x, points[i + 1].y, 0) + _offset;
+            // The +1 are due to the floor done when snapping to grid
+            Vector3 begin = new Vector3(points[i].x + 1, points[i].y + 1, 0);
+            Vector3 end = new Vector3(points[i + 1].x + 1, points[i + 1].y + 1, 0);
             Debug.DrawLine(begin, end, color);
         }
     }

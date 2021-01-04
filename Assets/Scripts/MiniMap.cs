@@ -89,7 +89,7 @@ public class MiniMap : MonoBehaviour
     private void UpdateMap()
     {
         Vector2Int currentPos = MapGenerator.Instance.GetPosOnTilemap(_player.transform.position);
-        Vector2 currentContPos = MapGenerator.Instance.GetContinuousPositionOnTilemap(_player.transform.position);
+        Vector2 currentContPos = _player.transform.position;
         _cursor.transform.localPosition = new Vector3(currentContPos.x, currentContPos.y, 0.0f)  + _cursorOffset;
 
         foreach(Vector2Int pixel in GetPixelsInRadius(currentPos))

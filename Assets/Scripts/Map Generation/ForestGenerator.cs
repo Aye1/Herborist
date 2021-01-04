@@ -18,9 +18,8 @@ public class ForestGenerator : MonoBehaviour
     private ProbabilityMap treesTemplates;
     private Dictionary<Vector2Int, GameObject> _createdTrees;
     private int _numberSteps;
-    private Vector3 _offset;
+    //private Vector3 _offset;
     private bool[,] _treePositions;
-
 
     public static ForestGenerator Instance { get; private set; }
 
@@ -29,7 +28,7 @@ public class ForestGenerator : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            _offset = new Vector3(-size * 0.5f, 0.0f, 0.0f);
+            //_offset = new Vector3(-size * 0.5f, 0.0f, 0.0f);
             _numberSteps = (int)(size / stepSize);
             posToAvoid = new List<Vector2Int>();
         }
@@ -178,7 +177,7 @@ public class ForestGenerator : MonoBehaviour
         float noiseX = Alea.GetFloat(0.0f, noise);
         float noiseY = Alea.GetFloat(0.0f, noise);
         Vector2 realPos = InternalToRealContinuousPosition(position);
-        Vector3 pos = new Vector3(realPos.x + noiseX, realPos.y + noiseY, 0.0f) + _offset;
+        Vector3 pos = new Vector3(realPos.x + noiseX, realPos.y + noiseY, 0.0f);
         GameObject tree = GenerateTreeObject(pos);
         _createdTrees.Add(new Vector2Int(position.x, position.y), tree);
     }
