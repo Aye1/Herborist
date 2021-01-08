@@ -45,7 +45,7 @@ public class MapGenerator : MonoBehaviour
     private List<PointOfInterest> _spawnedPOIs;
 
     private int _firstPathWidth = 5;
-    private int _borderWidth = 10;
+    private int _borderWidth = 2;
     private Vector3 _playerStartPosition;
     private PlayerMovement _player;
 
@@ -54,7 +54,6 @@ public class MapGenerator : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            _player = PlayerMovement.Instance;
             _playerStartPosition = new Vector3(mapSize.x * 0.5f, 5, 0.0f);
             _forestGenerator = GetComponent<ForestGenerator>();
         }
@@ -85,6 +84,7 @@ public class MapGenerator : MonoBehaviour
 
     private void SetPlayerPosition()
     {
+        _player = PlayerMovement.Instance;
         _player.transform.position = _playerStartPosition;
     }
 
@@ -111,7 +111,6 @@ public class MapGenerator : MonoBehaviour
         _spawnedPOIs = new List<PointOfInterest>();
         GenerateEntrancePOI();
 
-        GenerateMapBorders(_borderWidth);
 
         List<Vector2Int> riverControlPoints = new List<Vector2Int>()
         {
@@ -142,8 +141,11 @@ public class MapGenerator : MonoBehaviour
             MapGeneratorHelper.GenerateRandomPointOnLimit(MapLimit.Up, 0.60f, 0.90f)
         };
         GeneratePath(pathControlPoints2);
-        _terrainTilemap.UpdateMeshImmediate(); // Only way I found to disable water collider under bridges, there may be another way to do that
+        GenerateMapBorders(_borderWidth);
+
+        tileMappings.Select(m => m.tilemap).Distinct().ToList().ForEach(t => t?.UpdateMeshImmediate()); // Force updating tilemaps before ending the loading + only way to disable colliders
         DisableColliders(_terrainTilemap, _bridgePositions);
+
     }
 
     private void GenerateRiver(List<Vector2Int> riverControlPoints)
@@ -234,6 +236,19 @@ public class MapGenerator : MonoBehaviour
         {
             PutTile(pos, type);
         } 
+    }
+
+    private IEnumerator PutTilesAsync(List<Vector2Int> positions, TileType type)
+    {
+        int i = 0;
+        Debug.Log(positions.Count);
+        while (i < positions.Count)
+        {
+            PutTile(positions[i], type);
+            Debug.Log(i);
+            yield return null;
+            i++;
+        }
     }
 
     private void PutTile(Vector2Int position, TileType type)

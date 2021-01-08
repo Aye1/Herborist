@@ -229,7 +229,7 @@ MonoBehaviour:
   - {fileID: 1454865950}
   - {fileID: 1677492218}
   - {fileID: 1739589290}
-  m_selectedIndex: 2
+  m_selectedIndex: 0
   m_unselectedColorMultiplier: 1
   m_defaultTilemapWindowVisible: 0
   m_displayTilemapRList: 1
@@ -988,7 +988,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1677492218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1019,7 +1019,7 @@ MonoBehaviour:
   m_tintColor: {r: 1, g: 1, b: 1, a: 1}
   m_pixelSnap: 0
   m_maskInteraction: 0
-  m_isVisible: 1
+  m_isVisible: 0
   m_allowPaintingOutOfBounds: 1
   m_autoShrink: 1
   m_enableUndoWhilePainting: 1
@@ -1236,7 +1236,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dec3ca0fe88506448df84e8bf55b2dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShowGrid: 1
+  ShowGrid: 0
   InnerPadding: 0
   ColliderDepth: 0.1
   ColliderType: 1
@@ -1249,10 +1249,10 @@ MonoBehaviour:
   ColliderGenerationMethod: 0
   m_sortingLayer: 729164399
   m_sortingLayerName: Default
-  m_orderInLayer: 0
+  m_orderInLayer: 2
   m_material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_tintColor: {r: 1, g: 1, b: 1, a: 1}
-  m_pixelSnap: 0
+  m_pixelSnap: 1
   m_maskInteraction: 0
   m_isVisible: 1
   m_allowPaintingOutOfBounds: 1
