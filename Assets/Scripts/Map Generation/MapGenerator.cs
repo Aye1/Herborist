@@ -25,6 +25,7 @@ public class MapGenerator : MonoBehaviour
     public Vector2Int mapSize;
     public bool DontGenerateMap;
 
+
     [Required]
     public List<TerrainTileMapping> tileMappings;
 
@@ -45,13 +46,16 @@ public class MapGenerator : MonoBehaviour
 
     private int _firstPathWidth = 5;
     private int _borderWidth = 10;
+    private Vector3 _playerStartPosition;
+    private PlayerMovement _player;
 
     void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
-            //_offset = new Vector3(-mapSize.x * 0.5f + 0.5f, 0.0f, 0.0f);
+            _player = PlayerMovement.Instance;
+            _playerStartPosition = new Vector3(mapSize.x * 0.5f, 5, 0.0f);
             _forestGenerator = GetComponent<ForestGenerator>();
         }
         else
@@ -63,6 +67,7 @@ public class MapGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SetPlayerPosition();
         if (!DontGenerateMap)
         {
             GenerateMap();
@@ -78,6 +83,11 @@ public class MapGenerator : MonoBehaviour
         DebugDrawElements();
     }
 
+    private void SetPlayerPosition()
+    {
+        _player.transform.position = _playerStartPosition;
+    }
+
     private void SetPositionsToAvoid()
     {
         _spawnedPOIs?.ForEach(poi => _forestGenerator?.posToAvoid.AddRange(poi.TilesPositions));
@@ -91,7 +101,6 @@ public class MapGenerator : MonoBehaviour
 
     public void GenerateMap()
     {
-        //OffsetMapPosition();
         for(int i=0; i<mapSize.x; i++)
         {
             for(int j=0; j<mapSize.y; j++)
@@ -190,7 +199,6 @@ public class MapGenerator : MonoBehaviour
          *           S       <---+
          * */
 
-        int sizeRatio = 2;
         int halfSizeX = mapSize.x / 2 - 3; // TODO: change this arbitrary constant value (if needed)
         List< Vector2Int> polygonBoundaries = new List<Vector2Int>()
         {
@@ -293,11 +301,6 @@ public class MapGenerator : MonoBehaviour
         Vector3 worldPosition = position;
         return new Vector2Int(Mathf.FloorToInt(worldPosition.x), Mathf.FloorToInt(worldPosition.y));
     }
-
-    /*public Vector2 GetContinuousPositionOnTilemap(Vector3 position)
-    {
-        return position - _offset;
-    }*/
 
     #region Debug & Test
     private void DebugDrawElements()

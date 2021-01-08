@@ -7,7 +7,7 @@ public class DynamicUIManager : MonoBehaviour
 {
     public static DynamicUIManager Instance { get; private set; }
 
-    [SerializeField, Required, SceneObjectsOnly] private PlayerMovement _player;
+    private PlayerMovement _player;
     [SerializeField, Required, AssetsOnly] private CollectiblePicked _collectiblePickedUI;
 
     void Awake()
@@ -20,6 +20,11 @@ public class DynamicUIManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private void OnEnable()
+    {
+        _player = PlayerMovement.Instance;
     }
 
     public void SpawnCollectiblePicked(CollectiblePackage package)

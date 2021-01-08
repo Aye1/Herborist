@@ -654,7 +654,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14138b27fc4a14da58dc1bba0a0f70b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 1758791489}
   _collectiblePickedUI: {fileID: 553892796884292809, guid: 46fe2e6a35b1149cd9b8edb21e334348, type: 3}
 --- !u!1 &1144541806
 GameObject:
@@ -1254,6 +1253,7 @@ GameObject:
   - component: {fileID: 1865926701}
   - component: {fileID: 1865926700}
   - component: {fileID: 1865926702}
+  - component: {fileID: 1865926703}
   m_Layer: 0
   m_Name: Virtual Camera
   m_TagString: Untagged
@@ -1328,6 +1328,18 @@ MonoBehaviour:
   m_BoundingShape2D: {fileID: 890632542}
   m_ConfineScreenEdges: 1
   m_Damping: 0
+--- !u!114 &1865926703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1865926699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43913ddabfd9f405ba56321eebba5a04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &2046511102 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7078879873015793664, guid: bfc2f7d91792d4f838ee80e8f7cf7b4f, type: 3}

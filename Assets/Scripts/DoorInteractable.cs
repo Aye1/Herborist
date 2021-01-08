@@ -2,20 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Unisloth.Localization;
+using Sirenix.OdinInspector;
 
-public class DoorInteractable : Teleport, IInteractable
+public class DoorInteractable : MonoBehaviour, IInteractable
 {
     [TranslationKey]
     public string locKey;
 
-    protected override void OnTriggerEnter2D(Collider2D col)
-    {
-        //Do nothing, handled by IIInteractable
-    }
+    [SerializeField, Required]
+    private Transform teleportPosition;
 
     public void Interact(GameObject aPlayer)
     {
-        TeleportPlayer(aPlayer);
+        aPlayer.transform.position = teleportPosition.position;
     }
 
     public bool CanInteract()

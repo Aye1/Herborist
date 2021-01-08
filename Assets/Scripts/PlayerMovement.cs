@@ -9,9 +9,20 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector2 latestMovement;
 
-    private void Awake()
+    public static PlayerMovement Instance { get; private set; }
+
+    void Awake()
     {
-        _body = GetComponent<Rigidbody2D>();
+        if (Instance == null)
+        {
+            Instance = this;
+            _body = GetComponent<Rigidbody2D>();
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void Update()

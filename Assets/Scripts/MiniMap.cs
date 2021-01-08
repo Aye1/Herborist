@@ -12,7 +12,7 @@ public class MiniMap : MonoBehaviour
     private Vector2Int _size;
     private List<Vector2Int> _discoveredPixels;
     private Vector3 _cursorOffset;
-    [SerializeField, Required] PlayerMovement _player;
+    PlayerMovement _player;
     [SerializeField, Required, ChildGameObjectsOnly] Image _cursor;
 
     public int visionRadius;
@@ -20,6 +20,7 @@ public class MiniMap : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _player = PlayerMovement.Instance;
         _discoveredPixels = new List<Vector2Int>();
         _size = MapGenerator.Instance.mapSize;
         _image = GetComponent<RawImage>();
