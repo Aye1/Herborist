@@ -6,21 +6,37 @@ using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using System.Linq;
 
-public enum Scene { Unknown, MainMenu, Garden, House, Forest}
+public enum SceneType { Unknown, MainMenu, Garden, House, Forest}
+
+[Serializable]
+public class SceneBinding
+{
+    public SceneType sceneType;
+    public int sceneId;
+    public bool shouldDisplayLoadingScreen;
+}
 
 public class SceneSwitcher : SerializedMonoBehaviour
 {
     public static SceneSwitcher Instance { get; private set; }
 
-    [SerializeField, DictionaryDrawerSettings(DisplayMode = DictionaryDisplayOptions.ExpandedFoldout, KeyLabel = "Scene", ValueLabel = "Scene Id")]
-    private Dictionary<Scene, int> _sceneBindings;
+    [SerializeField]
+    private List<SceneBinding> _bindings;
+
+    [SerializeField, Required, ChildGameObjectsOnly]
+    private GameObject _loadingScreen;
+
+    public bool IsSceneLoading
+    {
+        get; private set;
+    }
 
     public int PreviousSceneId
     {
         get; private set;
     }
 
-    public Scene PreviousScene
+    public SceneType PreviousScene
     {
         get { return GetSceneWithId(PreviousSceneId); }
     }
@@ -30,7 +46,7 @@ public class SceneSwitcher : SerializedMonoBehaviour
         get; private set;
     }
 
-    public Scene CurrentScene
+    public SceneType CurrentScene
     {
         get { return GetSceneWithId(CurrentSceneId); }
     }
@@ -50,28 +66,59 @@ public class SceneSwitcher : SerializedMonoBehaviour
         }
     }
 
-    public void GoToScene(Scene scene)
+    public void GoToScene(SceneType scene)
     {
         int sceneId = GetSceneId(scene);
         if (sceneId != -1)
         {
-            SceneManager.LoadScene(sceneId);
+            StartCoroutine(LoadSceneAsync(sceneId));
             PreviousSceneId = CurrentSceneId;
             CurrentSceneId = sceneId;
         }
     }
 
-    public int GetSceneId(Scene scene)
+    private IEnumerator LoadSceneAsync(int sceneId)
     {
-        return _sceneBindings.ContainsKey(scene) ? _sceneBindings[scene] : -1;
+        IsSceneLoading = true;
+        bool displayLoadingScreen = ShouldDisplayLoadingScreen(sceneId);
+        DisplayLoadingScreen(displayLoadingScreen);
+
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneId);
+        while(!operation.isDone)
+        {
+            yield return null;
+        }
+        IsSceneLoading = false;
+
+        DisplayLoadingScreen(false);
     }
 
-    public Scene GetSceneWithId(int id)
+    public int GetSceneId(SceneType scene)
     {
-        if(_sceneBindings.ContainsValue(id))
-        {
-            return _sceneBindings.Where(b => b.Value == id).First().Key;
-        }
-        return Scene.Unknown;
+        SceneBinding binding = _bindings.Where(b => b.sceneType == scene).FirstOrDefault();
+        return binding == default(SceneBinding) ? -1 : binding.sceneId;
+    }
+
+    public SceneType GetSceneWithId(int id)
+    {
+        SceneBinding binding = _bindings.Where(b => b.sceneId == id).FirstOrDefault();
+        return binding == default(SceneBinding) ? SceneType.Unknown : binding.sceneType;
+    }
+
+    public bool ShouldDisplayLoadingScreen(SceneType scene)
+    {
+        SceneBinding binding = _bindings.Where(b => b.sceneType == scene).FirstOrDefault();
+        return binding == default(SceneBinding) ? false : binding.shouldDisplayLoadingScreen;
+    }
+
+    public bool ShouldDisplayLoadingScreen(int sceneId)
+    {
+        SceneBinding binding = _bindings.Where(b => b.sceneId == sceneId).FirstOrDefault();
+        return binding == default(SceneBinding) ? false : binding.shouldDisplayLoadingScreen;
+    }
+
+    private void DisplayLoadingScreen(bool visibility)
+    {
+        _loadingScreen.gameObject.SetActive(visibility);
     }
 }

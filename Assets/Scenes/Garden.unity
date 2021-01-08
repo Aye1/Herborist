@@ -263,7 +263,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1975586f82ad44a6f84fdaaebdd92910, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myTeleportEnd: {fileID: 0}
   destinationScene: 3
 --- !u!61 &145108211
 BoxCollider2D:
@@ -345,7 +344,7 @@ MonoBehaviour:
   m_Follow: {fileID: 1956963376}
   m_Lens:
     FieldOfView: 40
-    OrthographicSize: 10
+    OrthographicSize: 6
     NearClipPlane: 0.1
     FarClipPlane: 5000
     Dutch: 0
@@ -1617,7 +1616,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1975586f82ad44a6f84fdaaebdd92910, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myTeleportEnd: {fileID: 0}
   destinationScene: 4
 --- !u!212 &1766985448
 SpriteRenderer:
@@ -2149,8 +2147,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TrackedObjectOffset: {x: 0, y: 0, z: 0}
-  m_LookaheadTime: 0.097
-  m_LookaheadSmoothing: 3.9
+  m_LookaheadTime: 1
+  m_LookaheadSmoothing: 11.9
   m_LookaheadIgnoreY: 0
   m_XDamping: 1
   m_YDamping: 1
@@ -2250,76 +2248,5 @@ PrefabInstance:
       propertyPath: serializationData.Prefab
       value: 
       objectReference: {fileID: 3494358616480641229, guid: 5e865b4b534974ba3af7bdfc4d691883, type: 3}
-    - target: {fileID: 3494358616480641229, guid: 5e865b4b534974ba3af7bdfc4d691883, type: 3}
-      propertyPath: serializationData.SerializationNodes.Array.size
-      value: 28
-      objectReference: {fileID: 0}
-    - target: {fileID: 3494358616480641229, guid: 5e865b4b534974ba3af7bdfc4d691883, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.size
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 3494358616480641229, guid: 5e865b4b534974ba3af7bdfc4d691883, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[0]
-      value: '"path":"_sceneBindings","value":{"$id":0,"$type":"System.Collections.Generic.Dictionary`2[[Scene,
-        Assembly-CSharp],[System.Int32, mscorlib]], mscorlib","comparer":{"$id":1,"$type":"System.Collections.Generic.EnumEqualityComparer`1[[Scene,
-        Assembly-CSharp]], mscorlib","$rlength":0,"$rcontent":[]},"$rlength":5,"$rcontent":[{"$k":0,"$v":-1},{"$k":2,"$v":1},{"$k":3,"$v":2},{"$k":4,"$v":0},{"$k":1,"$v":-2}]}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 3494358616480641229, guid: 5e865b4b534974ba3af7bdfc4d691883, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[1]
-      value: '"path":"_sceneBindings.{0es}","value":{"$id":0,"$type":"System.Int32,
-        mscorlib",-1}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 3494358616480641229, guid: 5e865b4b534974ba3af7bdfc4d691883, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[2]
-      value: '"path":"_sceneBindings.{1es}","value":{"$id":0,"$type":"System.Int32,
-        mscorlib",-2}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 3494358616480641229, guid: 5e865b4b534974ba3af7bdfc4d691883, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[3]
-      value: '"path":"_sceneBindings.{2es}","value":{"$id":0,"$type":"System.Int32,
-        mscorlib",1}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 3494358616480641229, guid: 5e865b4b534974ba3af7bdfc4d691883, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[4]
-      value: '"path":"_sceneBindings.{3es}","value":{"$id":0,"$type":"System.Int32,
-        mscorlib",2}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 3494358616480641229, guid: 5e865b4b534974ba3af7bdfc4d691883, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[5]
-      value: '"path":"_sceneBindings.{4es}","value":{"$id":0,"$type":"System.Int32,
-        mscorlib",0}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 3494358616480641229, guid: 5e865b4b534974ba3af7bdfc4d691883, type: 3}
-      propertyPath: serializationData.SerializationNodes.Array.data[5].Data
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3494358616480641229, guid: 5e865b4b534974ba3af7bdfc4d691883, type: 3}
-      propertyPath: serializationData.SerializationNodes.Array.data[11].Data
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3494358616480641229, guid: 5e865b4b534974ba3af7bdfc4d691883, type: 3}
-      propertyPath: serializationData.SerializationNodes.Array.data[15].Data
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3494358616480641229, guid: 5e865b4b534974ba3af7bdfc4d691883, type: 3}
-      propertyPath: serializationData.SerializationNodes.Array.data[19].Data
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3494358616480641229, guid: 5e865b4b534974ba3af7bdfc4d691883, type: 3}
-      propertyPath: serializationData.SerializationNodes.Array.data[23].Data
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3494358616480641229, guid: 5e865b4b534974ba3af7bdfc4d691883, type: 3}
-      propertyPath: serializationData.SerializationNodes.Array.data[23].Name
-      value: $k
-      objectReference: {fileID: 0}
-    - target: {fileID: 3494358616480641229, guid: 5e865b4b534974ba3af7bdfc4d691883, type: 3}
-      propertyPath: serializationData.SerializationNodes.Array.data[22].Entry
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 3494358616480641229, guid: 5e865b4b534974ba3af7bdfc4d691883, type: 3}
-      propertyPath: serializationData.SerializationNodes.Array.data[23].Entry
-      value: 3
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e865b4b534974ba3af7bdfc4d691883, type: 3}

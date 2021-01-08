@@ -2,7 +2,7 @@
 
 public class TeleportBetweenScenes : Teleport
 {
-    public Scene destinationScene;
+    public SceneType destinationScene;
 
     protected override void TeleportPlayer(Transform aPlayer)
     {
