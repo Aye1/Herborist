@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.Serialization;
 using System.IO;
-using System;
 using Sirenix.OdinInspector;
 
 public class SaveManager : SerializedMonoBehaviour
@@ -34,7 +32,6 @@ public class SaveManager : SerializedMonoBehaviour
             byte[] bytes = SerializationUtility.SerializeValue(state, DataFormat.Binary);
             File.WriteAllBytes(GetSavePath(toSave.GetSaveName()), bytes);
         }
-        Debug.Log("Save finished");
     }
 
     public void LoadGame()
@@ -49,7 +46,6 @@ public class SaveManager : SerializedMonoBehaviour
                 toLoad.LoadObject(state);
             }
         }
-        Debug.Log("Load finished");
     }
 
     private string GetSavePath(string fileName)

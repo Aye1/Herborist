@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 using Sirenix.OdinInspector;
-using System;
 using System.Linq;
 
 public class InventoryState: SaveState
@@ -92,7 +89,6 @@ public class Inventory : SerializedMonoBehaviour, ISavable
     #region ISavable implementation
     public SaveState GetObjectToSave()
     {
-        Debug.Log("saving inventory " + inventoryList[0].count);
         InventoryState state = new InventoryState()
         {
             collectibles = new List<CollectiblePackage>()
@@ -106,7 +102,6 @@ public class Inventory : SerializedMonoBehaviour, ISavable
         InventoryState state = saveState as InventoryState;
         inventoryList.Clear();
         inventoryList.AddRange(state.collectibles);
-        Debug.Log("loading inventory " + inventoryList[0].count);
     }
 
     public string GetSaveName()
