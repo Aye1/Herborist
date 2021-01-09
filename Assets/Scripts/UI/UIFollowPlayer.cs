@@ -6,7 +6,6 @@ public class UIFollowPlayer : MonoBehaviour
     private Vector2 _offset;
 
     public bool useOffset;
-    [HideInInspector] public PlayerMovement player;
 
     private void Awake()
     {
@@ -16,7 +15,7 @@ public class UIFollowPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 newPos = Camera.main.WorldToScreenPoint(player.transform.position);
+        Vector3 newPos = Camera.main.WorldToScreenPoint(PlayerMovement.Instance.transform.position);
         if (useOffset)
         {
             newPos = newPos + new Vector3(_offset.x, _offset.y, 0);
