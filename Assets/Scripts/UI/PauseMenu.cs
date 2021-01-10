@@ -51,8 +51,8 @@ public class PauseMenu : MonoBehaviour
         InputAction pauseAction = _inputs.FindAction(PAUSE_ACTION);
         InputAction cancelAction = _inputs.FindAction(CANCEL_ACTION);
 
-        pauseAction.performed += context => OnPauseMenu();
-        cancelAction.performed += context => OnCancel();
+        pauseAction.performed += OnPauseMenu;
+        cancelAction.performed += OnCancel;
 
         pauseAction.Enable();
         cancelAction.Enable();
@@ -64,13 +64,13 @@ public class PauseMenu : MonoBehaviour
         InputAction cancelAction = _inputs.FindAction(CANCEL_ACTION);
 
         //TODO: not sure it's ok, to test
-        pauseAction.performed -= context => OnPauseMenu();
-        cancelAction.performed -= context => OnCancel();
+        pauseAction.performed -= OnPauseMenu;
+        cancelAction.performed -= OnCancel;
     }
 
     void BindButtons()
     {
-        _resumeButton.onClick.AddListener(OnCancel);
+        _resumeButton.onClick.AddListener(ClosePauseMenu);
         _saveButton.onClick.AddListener(LaunchSave);
         _loadButton.onClick.AddListener(LaunchLoad);
     }
@@ -85,15 +85,25 @@ public class PauseMenu : MonoBehaviour
         SaveManager.Instance.LoadGame();
     }
 
-    #region Input Messages
-    void OnPauseMenu()
+    void TogglePause()
     {
         IsMenuOpen = !IsMenuOpen;
     }
 
-    void OnCancel()
+    void ClosePauseMenu()
     {
         IsMenuOpen = false;
+    }
+
+    #region Input Callbacks
+    void OnPauseMenu(InputAction.CallbackContext ctx)
+    {
+        TogglePause();
+    }
+
+    void OnCancel(InputAction.CallbackContext ctx)
+    {
+        ClosePauseMenu();
     }
     #endregion
 
