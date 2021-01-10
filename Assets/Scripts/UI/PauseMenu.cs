@@ -63,7 +63,6 @@ public class PauseMenu : MonoBehaviour
         InputAction pauseAction = _inputs.FindAction(PAUSE_ACTION);
         InputAction cancelAction = _inputs.FindAction(CANCEL_ACTION);
 
-        //TODO: not sure it's ok, to test
         pauseAction.performed -= OnPauseMenu;
         cancelAction.performed -= OnCancel;
     }
