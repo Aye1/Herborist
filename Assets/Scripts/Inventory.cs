@@ -81,6 +81,13 @@ public class Inventory : SerializedMonoBehaviour, ISavable
         inventoryList.RemoveAll(p => p.type == itemType);
     }
 
+    public List<CollectiblePackage> EmptyInventory()
+    {
+        List<CollectiblePackage> res = new List<CollectiblePackage>(inventoryList);
+        inventoryList.Clear();
+        return res;
+    }
+
     public int GetItemCount(CollectibleScriptableObject itemType)
     {
         return inventoryList.Where(p => p.type == itemType).FirstOrDefault().count;
@@ -100,13 +107,20 @@ public class Inventory : SerializedMonoBehaviour, ISavable
     public void LoadObject(SaveState saveState)
     {
         InventoryState state = saveState as InventoryState;
-        inventoryList.Clear();
+        if (inventoryList == null)
+        {
+            inventoryList = new List<CollectiblePackage>();
+        }
+        else
+        {
+            inventoryList.Clear();
+        }
         inventoryList.AddRange(state.collectibles);
     }
 
     public string GetSaveName()
     {
-        return "inventory.save";
+        return gameObject.name + ".inventory.save";
     }
     #endregion
 }

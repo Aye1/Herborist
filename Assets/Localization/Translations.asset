@@ -19,6 +19,7 @@ MonoBehaviour:
   - interact_pick
   - interact_Identification_table
   - open_door
+  - interact_store
   _availableLanguages: 0a000000
   _translations:
   - key: interact_teleport
@@ -36,4 +37,8 @@ MonoBehaviour:
   - key: open_door
     language: 10
     value: Open Door
+    parent: {fileID: 11400000}
+  - key: interact_store
+    language: 10
+    value: Store Plants
     parent: {fileID: 11400000}
