@@ -64,6 +64,19 @@ public class SaveManager : SerializedMonoBehaviour
         IsLoading = false;
     }
 
+    [Button("Clean Saves")]
+    public void CleanAllSaves()
+    {
+        foreach(string path in Directory.GetFiles(Application.persistentDataPath))
+        {
+            Debug.Log(path);
+            if(path.EndsWith(".save"))
+            {
+                File.Delete(path);
+            }
+        }
+    }
+
     private string GetSavePath(string fileName)
     {
         return Application.persistentDataPath + "/" + fileName;

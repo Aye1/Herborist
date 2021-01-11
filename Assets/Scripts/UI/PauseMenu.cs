@@ -1,9 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 using Sirenix.OdinInspector;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -30,6 +29,8 @@ public class PauseMenu : MonoBehaviour
             {
                 _isMenuOpen = value;
                 UpdateMenuVisibility();
+                if (_isMenuOpen)
+                    SetUINavigationFirstElement();
             }
         }
     }
@@ -40,6 +41,7 @@ public class PauseMenu : MonoBehaviour
         BindButtons();
         BindEvents();
         IsMenuOpen = GameManager.Instance.IsInPause;
+        UpdateMenuVisibility();
     }
 
     private void OnDestroy()
@@ -79,6 +81,12 @@ public class PauseMenu : MonoBehaviour
     void UnBindEvents()
     {
         GameManager.Instance.OnPauseStateChanged -= TogglePause;
+    }
+
+    void SetUINavigationFirstElement()
+    {
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(_resumeButton.gameObject);
     }
 
     void LaunchSave()

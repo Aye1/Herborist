@@ -15,13 +15,14 @@ public class CollectiblePackage : ISerializationCallbackReceiver
     public void OnAfterDeserialize()
     {
         // Fetch CollectibleScriptableObject from Resources
-        type = ResourcesManager.Instance.GetCollectibleScriptableObjectWithName(typeDevelopmentName);
+        if(ResourcesManager.Instance != null)
+            type = ResourcesManager.Instance.GetCollectibleScriptableObjectWithName(typeDevelopmentName);
     }
 
     public void OnBeforeSerialize()
     {
         // Serialize the development name as a key to find the object after deserialization
-        typeDevelopmentName = type.developmentName;
+        typeDevelopmentName = type == null ? "" : type.developmentName;
     }
 }
 
