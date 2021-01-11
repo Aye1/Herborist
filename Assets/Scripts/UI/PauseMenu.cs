@@ -14,7 +14,6 @@ public class PauseMenu : MonoBehaviour
     [SerializeField, Required, ChildGameObjectsOnly] Button _saveButton;
     [SerializeField, Required, ChildGameObjectsOnly] Button _loadButton;
 
-    private readonly string PAUSE_ACTION = "Custom UI/Pause Menu";
     private readonly string CANCEL_ACTION = "Custom UI/Cancel";
 
 
@@ -39,31 +38,29 @@ public class PauseMenu : MonoBehaviour
     {
         BindControls();
         BindButtons();
+        BindEvents();
+        IsMenuOpen = GameManager.Instance.IsInPause;
     }
 
     private void OnDestroy()
     {
+        UnBindEvents();
         UnBindControls();
     }
 
     void BindControls()
     {
-        InputAction pauseAction = _inputs.FindAction(PAUSE_ACTION);
         InputAction cancelAction = _inputs.FindAction(CANCEL_ACTION);
 
-        pauseAction.performed += OnPauseMenu;
         cancelAction.performed += OnCancel;
 
-        pauseAction.Enable();
         cancelAction.Enable();
     }
 
     void UnBindControls()
     {
-        InputAction pauseAction = _inputs.FindAction(PAUSE_ACTION);
         InputAction cancelAction = _inputs.FindAction(CANCEL_ACTION);
 
-        pauseAction.performed -= OnPauseMenu;
         cancelAction.performed -= OnCancel;
     }
 
@@ -72,6 +69,16 @@ public class PauseMenu : MonoBehaviour
         _resumeButton.onClick.AddListener(ClosePauseMenu);
         _saveButton.onClick.AddListener(LaunchSave);
         _loadButton.onClick.AddListener(LaunchLoad);
+    }
+
+    void BindEvents()
+    {
+        GameManager.Instance.OnPauseStateChanged += TogglePause;
+    }
+
+    void UnBindEvents()
+    {
+        GameManager.Instance.OnPauseStateChanged -= TogglePause;
     }
 
     void LaunchSave()
@@ -84,21 +91,17 @@ public class PauseMenu : MonoBehaviour
         SaveManager.Instance.LoadGame();
     }
 
-    void TogglePause()
+    void TogglePause(bool pauseState)
     {
-        IsMenuOpen = !IsMenuOpen;
+        IsMenuOpen = pauseState;
     }
 
     void ClosePauseMenu()
     {
-        IsMenuOpen = false;
+        GameManager.Instance.SetPause(false);
     }
 
     #region Input Callbacks
-    void OnPauseMenu(InputAction.CallbackContext ctx)
-    {
-        TogglePause();
-    }
 
     void OnCancel(InputAction.CallbackContext ctx)
     {

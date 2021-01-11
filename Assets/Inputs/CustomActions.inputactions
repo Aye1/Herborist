@@ -185,7 +185,7 @@
             "actions": [
                 {
                     "name": "Pause Menu",
-                    "type": "PassThrough",
+                    "type": "Button",
                     "id": "fb39ebe4-fc85-4d9d-93ef-dc152410a2f2",
                     "expectedControlType": "Button",
                     "processors": "",

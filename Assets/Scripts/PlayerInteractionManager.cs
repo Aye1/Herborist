@@ -68,10 +68,13 @@ public class PlayerInteractionManager : MonoBehaviour
 
     public void OnInteract()
     {
-        IInteractable currentInteractable = GetCurrentInteractable();
-        if(currentInteractable != null)
+        if (!GameManager.Instance.IsInPause)
         {
-            currentInteractable.Interact(this.gameObject);
+            IInteractable currentInteractable = GetCurrentInteractable();
+            if (currentInteractable != null)
+            {
+                currentInteractable.Interact(this.gameObject);
+            }
         }
     }
 
