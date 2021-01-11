@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
 
 public class StorageBoxUI : BasePopup
 {
@@ -29,12 +27,6 @@ public class StorageBoxUI : BasePopup
     private void Awake()
     {
         _closeButton.onClick.AddListener(CloseWindow);
-    }
-
-    private void OnEnable()
-    {
-        EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(_closeButton.gameObject);
     }
 
     private void CloseWindow()

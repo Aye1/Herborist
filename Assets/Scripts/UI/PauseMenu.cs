@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
-using UnityEngine.InputSystem;
 using Sirenix.OdinInspector;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
 
 public class PauseMenu : BasePopup
 {
@@ -24,8 +22,6 @@ public class PauseMenu : BasePopup
             {
                 _isMenuOpen = value;
                 UpdateMenuVisibility();
-                if (_isMenuOpen)
-                    SetUINavigationFirstElement();
             }
         }
     }
@@ -58,12 +54,6 @@ public class PauseMenu : BasePopup
     void UnBindEvents()
     {
         GameManager.Instance.OnPauseStateChanged -= TogglePause;
-    }
-
-    void SetUINavigationFirstElement()
-    {
-        EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(_resumeButton.gameObject);
     }
 
     void LaunchSave()

@@ -1572,6 +1572,7 @@ GameObject:
   - component: {fileID: 441231984}
   - component: {fileID: 441231983}
   - component: {fileID: 441231982}
+  - component: {fileID: 441231985}
   m_Layer: 5
   m_Name: Storage Box UI
   m_TagString: Untagged
@@ -1654,6 +1655,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 441231980}
   m_CullTransparentMesh: 0
+--- !u!114 &441231985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 441231980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 805bf0b11c9c948e489575ee862909c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectToFocus: {fileID: 1697010849}
 --- !u!1001 &456721858
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3028,10 +3042,6 @@ PrefabInstance:
     - target: {fileID: 2869084879465136338, guid: b524aa868429d4210bdd5fc15a3a9a57, type: 3}
       propertyPath: m_Name
       value: PauseMenu
-      objectReference: {fileID: 0}
-    - target: {fileID: 6618106469611908213, guid: b524aa868429d4210bdd5fc15a3a9a57, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7675213671709762801, guid: b524aa868429d4210bdd5fc15a3a9a57, type: 3}
       propertyPath: m_Pivot.x
@@ -5857,9 +5867,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseButton
       objectReference: {fileID: 0}
-    - target: {fileID: 8901500167455750176, guid: 8f99dee1ef1c9404dbf883f754ba0422, type: 3}
-      propertyPath: m_text
-      value: Awesome!
+    - target: {fileID: 8101839677345464817, guid: 8f99dee1ef1c9404dbf883f754ba0422, type: 3}
+      propertyPath: _key
+      value: button_awesome
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f99dee1ef1c9404dbf883f754ba0422, type: 3}
@@ -5873,12 +5883,17 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8511934991575982319, guid: 8f99dee1ef1c9404dbf883f754ba0422, type: 3}
   m_PrefabInstance: {fileID: 1697010846}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1697010849}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1697010849 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2000296071788027692, guid: 8f99dee1ef1c9404dbf883f754ba0422, type: 3}
+  m_PrefabInstance: {fileID: 1697010846}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1734004214
 GameObject:
   m_ObjectHideFlags: 0

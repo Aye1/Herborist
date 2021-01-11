@@ -25,6 +25,8 @@ MonoBehaviour:
   - button_resume
   - button_save
   - button load
+  - button_play
+  - button_quit
   _availableLanguages: 0a000000
   _translations:
   - key: interact_teleport
@@ -66,4 +68,12 @@ MonoBehaviour:
   - key: button load
     language: 10
     value: Load Game
+    parent: {fileID: 11400000}
+  - key: button_play
+    language: 10
+    value: Play
+    parent: {fileID: 11400000}
+  - key: button_quit
+    language: 10
+    value: Quit
     parent: {fileID: 11400000}
