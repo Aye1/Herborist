@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Sirenix.OdinInspector;
-using Sirenix.Serialization;
 using UnityEngine.InputSystem;
 
 public enum GameState { Unknown, MainMenu, Game };
@@ -10,7 +7,6 @@ public enum GameState { Unknown, MainMenu, Game };
 public class GameManager : SerializedMonoBehaviour
 {
     [SerializeField, Required, AssetsOnly] private InputActionAsset _actions;
-
 
     private GameState _currentState;
     [SerializeField, ReadOnly]
@@ -51,6 +47,11 @@ public class GameManager : SerializedMonoBehaviour
                 OnPauseStateChanged?.Invoke(_isInPause);
             }
         }
+    }
+
+    public InputActionAsset Actions
+    {
+        get { return _actions; }
     }
 
     void Awake()

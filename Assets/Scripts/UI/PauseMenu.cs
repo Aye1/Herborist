@@ -4,17 +4,12 @@ using Sirenix.OdinInspector;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class PauseMenu : MonoBehaviour
+public class PauseMenu : BasePopup
 {
-    [SerializeField, Required, AssetsOnly] InputActionAsset _inputs;
-
     [SerializeField, Required, ChildGameObjectsOnly] GameObject _pauseMenu;
     [SerializeField, Required, ChildGameObjectsOnly] Button _resumeButton;
     [SerializeField, Required, ChildGameObjectsOnly] Button _saveButton;
     [SerializeField, Required, ChildGameObjectsOnly] Button _loadButton;
-
-    private readonly string CANCEL_ACTION = "Custom UI/Cancel";
-
 
     private bool _isMenuOpen = false;
     public bool IsMenuOpen
@@ -37,7 +32,6 @@ public class PauseMenu : MonoBehaviour
 
     void Awake()
     {
-        BindControls();
         BindButtons();
         BindEvents();
         IsMenuOpen = GameManager.Instance.IsInPause;
@@ -47,23 +41,6 @@ public class PauseMenu : MonoBehaviour
     private void OnDestroy()
     {
         UnBindEvents();
-        UnBindControls();
-    }
-
-    void BindControls()
-    {
-        InputAction cancelAction = _inputs.FindAction(CANCEL_ACTION);
-
-        cancelAction.performed += OnCancel;
-
-        cancelAction.Enable();
-    }
-
-    void UnBindControls()
-    {
-        InputAction cancelAction = _inputs.FindAction(CANCEL_ACTION);
-
-        cancelAction.performed -= OnCancel;
     }
 
     void BindButtons()
@@ -109,16 +86,20 @@ public class PauseMenu : MonoBehaviour
         GameManager.Instance.SetPause(false);
     }
 
-    #region Input Callbacks
-
-    void OnCancel(InputAction.CallbackContext ctx)
-    {
-        ClosePauseMenu();
-    }
-    #endregion
-
     void UpdateMenuVisibility()
     {
         _pauseMenu.SetActive(_isMenuOpen);
     }
+
+    #region BasePopup implementation
+    protected override GameObject GetObjectToDeactivate()
+    {
+        return _pauseMenu;
+    }
+
+    protected override void OnPopupClosing()
+    {
+        ClosePauseMenu();
+    }
+    #endregion
 }

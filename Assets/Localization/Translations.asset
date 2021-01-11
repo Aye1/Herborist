@@ -20,6 +20,11 @@ MonoBehaviour:
   - interact_Identification_table
   - open_door
   - interact_store
+  - default
+  - button_awesome
+  - button_resume
+  - button_save
+  - button load
   _availableLanguages: 0a000000
   _translations:
   - key: interact_teleport
@@ -41,4 +46,24 @@ MonoBehaviour:
   - key: interact_store
     language: 10
     value: Store Plants
+    parent: {fileID: 11400000}
+  - key: default
+    language: 10
+    value: _default_
+    parent: {fileID: 11400000}
+  - key: button_awesome
+    language: 10
+    value: Awesome!
+    parent: {fileID: 11400000}
+  - key: button_resume
+    language: 10
+    value: Resume Game
+    parent: {fileID: 11400000}
+  - key: button_save
+    language: 10
+    value: Save Game
+    parent: {fileID: 11400000}
+  - key: button load
+    language: 10
+    value: Load Game
     parent: {fileID: 11400000}

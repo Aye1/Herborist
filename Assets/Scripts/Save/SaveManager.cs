@@ -69,7 +69,6 @@ public class SaveManager : SerializedMonoBehaviour
     {
         foreach(string path in Directory.GetFiles(Application.persistentDataPath))
         {
-            Debug.Log(path);
             if(path.EndsWith(".save"))
             {
                 File.Delete(path);

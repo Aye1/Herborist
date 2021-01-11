@@ -362,9 +362,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Save Button
       objectReference: {fileID: 0}
+    - target: {fileID: 8101839677345464817, guid: 8f99dee1ef1c9404dbf883f754ba0422, type: 3}
+      propertyPath: _key
+      value: button_save
+      objectReference: {fileID: 0}
     - target: {fileID: 8901500167455750176, guid: 8f99dee1ef1c9404dbf883f754ba0422, type: 3}
       propertyPath: m_text
-      value: Save
+      value: Save Game
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f99dee1ef1c9404dbf883f754ba0422, type: 3}
@@ -478,6 +482,10 @@ PrefabInstance:
     - target: {fileID: 2000296071788027692, guid: 8f99dee1ef1c9404dbf883f754ba0422, type: 3}
       propertyPath: m_Name
       value: Load Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 8101839677345464817, guid: 8f99dee1ef1c9404dbf883f754ba0422, type: 3}
+      propertyPath: _key
+      value: button load
       objectReference: {fileID: 0}
     - target: {fileID: 8901500167455750176, guid: 8f99dee1ef1c9404dbf883f754ba0422, type: 3}
       propertyPath: m_text
@@ -596,11 +604,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: ResumeButton
       objectReference: {fileID: 0}
+    - target: {fileID: 8101839677345464817, guid: 8f99dee1ef1c9404dbf883f754ba0422, type: 3}
+      propertyPath: _key
+      value: button_resume
+      objectReference: {fileID: 0}
     - target: {fileID: 8901500167455750176, guid: 8f99dee1ef1c9404dbf883f754ba0422, type: 3}
       propertyPath: m_text
-      value: 'Resume
-
-'
+      value: Resume Game
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f99dee1ef1c9404dbf883f754ba0422, type: 3}

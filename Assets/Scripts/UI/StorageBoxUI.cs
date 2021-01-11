@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class StorageBoxUI : MonoBehaviour
+public class StorageBoxUI : BasePopup
 {
     [SerializeField, Required, ChildGameObjectsOnly] private GameObject _verticalLayout;
     [SerializeField, Required, ChildGameObjectsOnly] private Button _closeButton;
@@ -30,6 +31,12 @@ public class StorageBoxUI : MonoBehaviour
         _closeButton.onClick.AddListener(CloseWindow);
     }
 
+    private void OnEnable()
+    {
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(_closeButton.gameObject);
+    }
+
     private void CloseWindow()
     {
         gameObject.SetActive(false);
@@ -42,5 +49,15 @@ public class StorageBoxUI : MonoBehaviour
             StorageBoxElementUI newCell = Instantiate(_collectibleCellTemplate, _verticalLayout.transform);
             newCell.Collectible = collectible;
         }
+    }
+
+    protected override GameObject GetObjectToDeactivate()
+    {
+        return gameObject;
+    }
+
+    protected override void OnPopupClosing()
+    {
+        return;
     }
 }
