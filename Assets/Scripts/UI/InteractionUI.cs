@@ -25,7 +25,7 @@ public class InteractionUI : MonoBehaviour
     {
         if(player != null)
         {
-            Display(player.CanInteract);
+            Display(player.CanInteract && !GameManager.Instance.IsInPause);
         }
         UpdateInteractionText();
     }
