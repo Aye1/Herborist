@@ -51,6 +51,5 @@ public class PointOfInterest : MonoBehaviour
                 _tilesPositions.Add(new Vector2Int(x, y));
             }
         }
-        Debug.Log("Update done - " + _tilesPositions.Count);
     }
 }
