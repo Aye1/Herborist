@@ -46,9 +46,7 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects:
-    - {fileID: 650929229, guid: bfc2f7d91792d4f838ee80e8f7cf7b4f, type: 3}
-    - {fileID: 9109216806725827130, guid: 50dff6e74cea04e45a2b96f5f34350f4, type: 3}
+    ReferencedUnityObjects: []
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -59,13 +57,7 @@ MonoBehaviour:
       Data: 0|System.Collections.Generic.List`1[[ISavable, Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 10
       Data: 0
-    - Name: 
-      Entry: 10
-      Data: 1
     - Name: 
       Entry: 13
       Data: 

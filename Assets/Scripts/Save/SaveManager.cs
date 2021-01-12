@@ -6,10 +6,11 @@ using Sirenix.OdinInspector;
 
 public class SaveManager : SerializedMonoBehaviour
 {
-    public static SaveManager Instance { get; private set; }
+    private readonly string SAVE_EXTENSION = ".save";
 
     public List<ISavable> objectsToSave;
 
+    public static SaveManager Instance { get; private set; }
     public bool IsSaving { get; private set; }
     public bool IsLoading { get; private set; }
 
@@ -39,8 +40,10 @@ public class SaveManager : SerializedMonoBehaviour
         IsSaving = true;
         SaveState state = toSave.GetObjectToSave();
         byte[] bytes = SerializationUtility.SerializeValue(state, DataFormat.Binary);
-        File.WriteAllBytes(GetSavePath(toSave.GetSaveName()), bytes);
+        string path = GetSavePath(toSave.GetSaveName());
+        File.WriteAllBytes(path, bytes);
         IsSaving = false;
+        Debug.Log("Saved " + path);
     }
 
     public void LoadGame()
@@ -62,6 +65,7 @@ public class SaveManager : SerializedMonoBehaviour
             toLoad.LoadObject(state);
         }
         IsLoading = false;
+        Debug.Log("Loaded " + filepath);
     }
 
     [Button("Clean Saves")]
@@ -69,8 +73,9 @@ public class SaveManager : SerializedMonoBehaviour
     {
         foreach(string path in Directory.GetFiles(Application.persistentDataPath))
         {
-            if(path.EndsWith(".save"))
+            if(path.EndsWith(SAVE_EXTENSION))
             {
+                Debug.Log("Deleting " + path);
                 File.Delete(path);
             }
         }
@@ -78,6 +83,6 @@ public class SaveManager : SerializedMonoBehaviour
 
     private string GetSavePath(string fileName)
     {
-        return Application.persistentDataPath + "/" + fileName;
+        return Application.persistentDataPath + "/" + fileName + SAVE_EXTENSION;
     }
 }

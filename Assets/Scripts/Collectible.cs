@@ -10,19 +10,28 @@ public class CollectiblePackage : ISerializationCallbackReceiver
     [NonSerialized, ShowInInspector] public CollectibleScriptableObject type;
     public int count;
 
+    private static string UNKNOWN_TYPE = "unknown";
+
     [SerializeField, HideInInspector] private string typeDevelopmentName;
 
     public void OnAfterDeserialize()
     {
-        // Fetch CollectibleScriptableObject from Resources
-        if(ResourcesManager.Instance != null)
+
+        if (typeDevelopmentName == UNKNOWN_TYPE)
+        {
+            Debug.LogError("Unknown type has been serialized, skip deserialization");
+        }
+        else if (ResourcesManager.Instance != null && typeDevelopmentName != UNKNOWN_TYPE)
+        {
+            // Fetch CollectibleScriptableObject from Resources
             type = ResourcesManager.Instance.GetCollectibleScriptableObjectWithName(typeDevelopmentName);
+        }
     }
 
     public void OnBeforeSerialize()
     {
         // Serialize the development name as a key to find the object after deserialization
-        typeDevelopmentName = type == null ? "" : type.developmentName;
+        typeDevelopmentName = type == null ? UNKNOWN_TYPE : type.developmentName;
     }
 }
 

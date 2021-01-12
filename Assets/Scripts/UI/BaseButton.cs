@@ -16,4 +16,8 @@ public class BaseButton : MonoBehaviour, ISelectHandler, IDeselectHandler
         transform.localScale = Vector3.one;
     }
 
+    private void OnDisable()
+    {
+        OnDeselect(null);
+    }
 }

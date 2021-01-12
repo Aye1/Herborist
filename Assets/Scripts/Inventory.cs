@@ -100,7 +100,10 @@ public class Inventory : SerializedMonoBehaviour, ISavable
         {
             collectibles = new List<CollectiblePackage>()
         };
-        state.collectibles.AddRange(inventoryList);
+        if (inventoryList != null && inventoryList.Count > 0)
+        {
+            state.collectibles.AddRange(inventoryList);
+        }
         return state;
     }
 
@@ -120,7 +123,7 @@ public class Inventory : SerializedMonoBehaviour, ISavable
 
     public string GetSaveName()
     {
-        return gameObject.name + ".inventory.save";
+        return gameObject.name + ".inventory";
     }
     #endregion
 }

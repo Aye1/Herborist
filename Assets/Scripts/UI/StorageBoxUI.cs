@@ -43,6 +43,14 @@ public class StorageBoxUI : BasePopup
         }
     }
 
+    private void CleanCollectiblesList()
+    {
+        foreach(Transform child in _verticalLayout.transform)
+        {
+            Destroy(child.gameObject);
+        }
+    }
+
     #region BasePopup implementation
     protected override GameObject GetObjectToDeactivate()
     {
@@ -61,7 +69,7 @@ public class StorageBoxUI : BasePopup
 
     protected override void CustomOnDisable()
     {
-        return;
+        CleanCollectiblesList();
     }
     #endregion
 }
