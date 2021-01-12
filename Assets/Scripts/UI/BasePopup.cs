@@ -6,16 +6,20 @@ public abstract class BasePopup : MonoBehaviour
     private readonly string CANCEL_ACTION = "Custom UI/Cancel";
 
     // Start is called before the first frame update
-    void Start()
+    protected void OnEnable()
     {
         BindControls();
+        CustomOnEnable();
     }
 
-    private void OnDestroy()
+    protected void OnDisable()
     {
+        CustomOnDisable();
         UnBindControls();
     }
 
+    protected abstract void CustomOnEnable();
+    protected abstract void CustomOnDisable();
     protected abstract GameObject GetObjectToDeactivate();
     protected abstract void OnPopupClosing();
 

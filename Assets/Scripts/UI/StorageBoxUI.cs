@@ -43,6 +43,7 @@ public class StorageBoxUI : BasePopup
         }
     }
 
+    #region BasePopup implementation
     protected override GameObject GetObjectToDeactivate()
     {
         return gameObject;
@@ -52,4 +53,15 @@ public class StorageBoxUI : BasePopup
     {
         return;
     }
+
+    protected override void CustomOnEnable()
+    {
+        return;
+    }
+
+    protected override void CustomOnDisable()
+    {
+        return;
+    }
+    #endregion
 }

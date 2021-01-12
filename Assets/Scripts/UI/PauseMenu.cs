@@ -91,5 +91,15 @@ public class PauseMenu : BasePopup
     {
         ClosePauseMenu();
     }
+
+    protected override void CustomOnEnable()
+    {
+        return;
+    }
+
+    protected override void CustomOnDisable()
+    {
+        return;
+    }
     #endregion
 }

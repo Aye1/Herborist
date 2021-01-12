@@ -27,8 +27,13 @@ MonoBehaviour:
   - button load
   - button_play
   - button_quit
+  - interact_inventory
   _availableLanguages: 0a000000
   _translations:
+  - key: default
+    language: 10
+    value: _default_
+    parent: {fileID: 11400000}
   - key: interact_teleport
     language: 10
     value: Teleport
@@ -48,10 +53,6 @@ MonoBehaviour:
   - key: interact_store
     language: 10
     value: Store Plants
-    parent: {fileID: 11400000}
-  - key: default
-    language: 10
-    value: _default_
     parent: {fileID: 11400000}
   - key: button_awesome
     language: 10
@@ -76,4 +77,8 @@ MonoBehaviour:
   - key: button_quit
     language: 10
     value: Quit
+    parent: {fileID: 11400000}
+  - key: interact_inventory
+    language: 10
+    value: Open Inventory
     parent: {fileID: 11400000}
