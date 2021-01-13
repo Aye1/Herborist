@@ -41,7 +41,8 @@ public class BookPageUI : MonoBehaviour
 
     private void UpdatePageNumber()
     {
-        _pageNumberText.text = _pageNumber.ToString();
+        // People don't start at 0, so we add 1
+        _pageNumberText.text = (_pageNumber+1).ToString();
     }
 
     public void SetSortingOrder(int order)

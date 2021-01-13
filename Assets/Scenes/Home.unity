@@ -1732,7 +1732,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &386725835
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1768,7 +1768,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _database: {fileID: 11400000, guid: 38bd4ef482d1240778192bbeb486876e, type: 2}
   _plateTemplate: {fileID: 8798759797014700312, guid: da1e9d6fb2c7440628fa5aaae4c91b2a, type: 3}
-  _rightPageTemplate: {fileID: 8798759797014700312, guid: da1e9d6fb2c7440628fa5aaae4c91b2a, type: 3}
+  _rightPageTemplate: {fileID: 6290902119631161666, guid: f81c20747bbbf4643bc1fc08af3920bc, type: 3}
   _leftPageHolder: {fileID: 877756375}
   _rightPageHolder: {fileID: 264264046}
   _pageTurnTime: 0.3
