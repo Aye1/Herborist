@@ -1197,8 +1197,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -200, y: 0}
-  m_SizeDelta: {x: 380, y: -20}
+  m_AnchoredPosition: {x: -205, y: 0}
+  m_SizeDelta: {x: 390, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &264264047
 MonoBehaviour:
@@ -1732,7 +1732,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &386725835
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1771,6 +1771,55 @@ MonoBehaviour:
   _rightPageTemplate: {fileID: 8798759797014700312, guid: da1e9d6fb2c7440628fa5aaae4c91b2a, type: 3}
   _leftPageHolder: {fileID: 877756375}
   _rightPageHolder: {fileID: 264264046}
+  _pageTurnTime: 0.3
+  _pageOpeningAnimationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 3.25
+      outSlope: 3.25
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.026845638
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _pageClosingAnimationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 3.3684216
+      outSlope: 3.3684216
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.031879187
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &386725837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2680,8 +2729,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 200, y: 0}
-  m_SizeDelta: {x: 380, y: -20}
+  m_AnchoredPosition: {x: 205, y: 0}
+  m_SizeDelta: {x: 390, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &877756376
 MonoBehaviour:

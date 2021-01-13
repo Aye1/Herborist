@@ -17,6 +17,11 @@ public class BookUI : BasePopup
     [SerializeField, Required, ChildGameObjectsOnly] private Transform _leftPageHolder;
     [SerializeField, Required, ChildGameObjectsOnly] private Transform _rightPageHolder;
 
+    [Title("Parameters")]
+    [SerializeField] private float _pageTurnTime = 0.5f;
+    [SerializeField] private AnimationCurve _pageOpeningAnimationCurve;
+    [SerializeField] private AnimationCurve _pageClosingAnimationCurve;
+
     private int _currentPageNumber = 0;
     public int CurrentPageNumber
     {
@@ -47,8 +52,6 @@ public class BookUI : BasePopup
     private BookPageUI _hiddenRightPage;
 
     private InputActionAsset _actions;
-
-    private float _pageTurnTime = 0.5f;
 
     private readonly string SWITCH_TAB_LEFT = "Custom UI/Switch Tab Left";
     private readonly string SWITCH_TAB_RIGHT = "Custom UI/Switch Tab Right";
@@ -154,7 +157,7 @@ public class BookUI : BasePopup
         }
         else
         {
-            yield return StartCoroutine(AnimateScaleChange(page, originScale, targetScale, _pageTurnTime));
+            yield return StartCoroutine(AnimateScaleChange(page, originScale, targetScale, _pageTurnTime, _pageClosingAnimationCurve));
         }
     }
 
@@ -168,18 +171,19 @@ public class BookUI : BasePopup
         }
         else
         {
-            yield return StartCoroutine(AnimateScaleChange(page, originScale, targetScale, _pageTurnTime));
+            yield return StartCoroutine(AnimateScaleChange(page, originScale, targetScale, _pageTurnTime, _pageOpeningAnimationCurve));
         }
     }
 
-    private IEnumerator AnimateScaleChange(BookPageUI page, Vector3 originScale, Vector3 targetScale, float timeSeconds)
+    private IEnumerator AnimateScaleChange(BookPageUI page, Vector3 originScale, Vector3 targetScale, float timeSeconds, AnimationCurve curve)
     {
         float currentTime = 0.0f;
         while (page.transform.localScale != targetScale)
         {
             currentTime += Time.deltaTime;
             float progress = currentTime / timeSeconds;
-            page.transform.localScale = Vector3.Lerp(originScale, targetScale, progress);
+            float curveValue = curve.Evaluate(progress);
+            page.transform.localScale = Vector3.Lerp(originScale, targetScale, curveValue);
             yield return null;
         }
     }
