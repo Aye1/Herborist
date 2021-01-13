@@ -26,10 +26,12 @@ public class BookUI : BasePopup
             if(_currentPageNumber != value && IsPageNumberCorrect(value))
             {
                 _currentPageNumber = value;
-                GoToPage(_currentPageNumber);
+                GoToPage(_currentPageNumber, true);
             }
         }
     }
+
+    public bool IsAnimating { get; private set; }
 
     private int _maxPageNumber;
 
@@ -41,8 +43,12 @@ public class BookUI : BasePopup
 
     private BookPlateUI _currentLeftPage;
     private BookPageUI _currentRightPage;
+    private BookPlateUI _hiddenLeftPage;
+    private BookPageUI _hiddenRightPage;
 
     private InputActionAsset _actions;
+
+    private float _pageTurnTime = 0.5f;
 
     private readonly string SWITCH_TAB_LEFT = "Custom UI/Switch Tab Left";
     private readonly string SWITCH_TAB_RIGHT = "Custom UI/Switch Tab Right";
@@ -63,24 +69,128 @@ public class BookUI : BasePopup
         _rightPageB = Instantiate(_rightPageTemplate, _rightPageHolder);
         _currentLeftPage = _leftPageA;
         _currentRightPage = _rightPageA;
+        _hiddenLeftPage = _leftPageB;
+        _hiddenRightPage = _rightPageB;
+        SetPivotPoints();
+    }
+
+    private void SetPivotPoints()
+    {
+        Vector2 leftPagePivot = new Vector2(1.0f, 0.5f);
+        Vector2 rightPagePivot = new Vector2(0.0f, 0.5f);
+        _leftPageA.GetComponent<RectTransform>().pivot = leftPagePivot;
+        _leftPageB.GetComponent<RectTransform>().pivot = leftPagePivot;
+        _rightPageA.GetComponent<RectTransform>().pivot = rightPagePivot;
+        _rightPageB.GetComponent<RectTransform>().pivot = rightPagePivot;
     }
 
     private void DisplayOnlyNecessaryPages()
     {
-        Display(_currentLeftPage, true);
-        Display(_currentRightPage, true);
-        Display(GetHiddenLeftPage(), false);
-        Display(GetHiddenRightPage(), false);
+        GoToFront(_currentLeftPage);
+        GoToFront(_currentRightPage);
+        GoToBack(_hiddenLeftPage);
+        GoToBack(_hiddenRightPage);
     }
 
-    private void GoToPage(int pageNumber)
+    private void GoToPage(int pageNumber, bool alternatePages = false)
     {
         IdentificationKeyData data = GetDataAtPage(pageNumber);
-        _currentLeftPage.Plant = data;
-        _currentRightPage.Plant = data;
+        if (alternatePages)
+        {
+            int currentPage = _currentLeftPage.PageNumber / 2;
+            _hiddenLeftPage.Plant = data;
+            _hiddenRightPage.Plant = data;
 
-        _currentLeftPage.PageNumber = pageNumber * 2;
-        _currentRightPage.PageNumber = pageNumber * 2 + 1;
+            _hiddenLeftPage.PageNumber = pageNumber * 2;
+            _hiddenRightPage.PageNumber = pageNumber * 2 + 1;
+
+            StartCoroutine(AnimatePageChange(currentPage < pageNumber));
+        } else
+        {
+            _currentLeftPage.Plant = data;
+            _currentRightPage.Plant = data;
+
+            _currentLeftPage.PageNumber = pageNumber * 2;
+            _currentRightPage.PageNumber = pageNumber * 2 + 1;
+        }
+    }
+
+    private IEnumerator AnimatePageChange(bool readingDirection)
+    {
+        IsAnimating = true;
+        //TODO: propably possible to refactor
+        if (readingDirection)
+        {
+            yield return StartCoroutine(ClosePage(_hiddenLeftPage));
+            yield return StartCoroutine(ClosePage(_currentRightPage, true));
+            GoToBack(_currentLeftPage);
+            GoToBack(_currentRightPage);
+            GoToFront(_hiddenLeftPage);
+            GoToFront(_hiddenRightPage);
+            yield return StartCoroutine(OpenPage(_hiddenLeftPage, true));
+            yield return StartCoroutine(OpenPage(_currentRightPage));
+        } else
+        {
+            yield return StartCoroutine(ClosePage(_hiddenRightPage));
+            yield return StartCoroutine(ClosePage(_currentLeftPage, true));
+            GoToBack(_currentRightPage);
+            GoToBack(_currentLeftPage);
+            GoToFront(_hiddenRightPage);
+            GoToFront(_hiddenLeftPage);
+            yield return StartCoroutine(OpenPage(_hiddenRightPage, true));
+            yield return StartCoroutine(OpenPage(_currentLeftPage));
+        }
+        SwapPages();
+        IsAnimating = false;
+    }
+
+    private IEnumerator ClosePage(BookPageUI page, bool animate = false)
+    {
+        Vector3 originScale = page.transform.localScale;
+        Vector3 targetScale = new Vector3(0.0f, 1.0f, 1.0f);
+        if (!animate)
+        {
+            page.transform.localScale = targetScale;
+        }
+        else
+        {
+            yield return StartCoroutine(AnimateScaleChange(page, originScale, targetScale, _pageTurnTime));
+        }
+    }
+
+    private IEnumerator OpenPage(BookPageUI page, bool animate = false)
+    {
+        Vector3 originScale = page.transform.localScale;
+        Vector3 targetScale = new Vector3(1.0f, 1.0f, 1.0f);
+        if (!animate)
+        {
+            page.transform.localScale = targetScale;
+        }
+        else
+        {
+            yield return StartCoroutine(AnimateScaleChange(page, originScale, targetScale, _pageTurnTime));
+        }
+    }
+
+    private IEnumerator AnimateScaleChange(BookPageUI page, Vector3 originScale, Vector3 targetScale, float timeSeconds)
+    {
+        float currentTime = 0.0f;
+        while (page.transform.localScale != targetScale)
+        {
+            currentTime += Time.deltaTime;
+            float progress = currentTime / timeSeconds;
+            page.transform.localScale = Vector3.Lerp(originScale, targetScale, progress);
+            yield return null;
+        }
+    }
+
+    private void SwapPages()
+    {
+        _currentLeftPage = _currentLeftPage == _leftPageA ? _leftPageB : _leftPageA;
+        _hiddenLeftPage = _hiddenLeftPage == _leftPageA ? _leftPageB : _leftPageA;
+
+        _currentRightPage = _currentRightPage == _rightPageA ? _rightPageB : _rightPageA;
+        _hiddenRightPage = _hiddenRightPage == _rightPageA ? _rightPageB : _rightPageA;
     }
 
     private bool IsPageNumberCorrect(int pageNumber)
@@ -99,20 +209,14 @@ public class BookUI : BasePopup
         return null;
     }
 
-    private void Display(BookPageUI page, bool display)
+    private void GoToFront(BookPageUI page)
     {
-        page.gameObject.SetActive(display);
+        page.SetSortingOrder(2);
     }
 
-    private BookPageUI GetHiddenLeftPage()
+    private void GoToBack(BookPageUI page)
     {
-        return _currentLeftPage == _leftPageA ? _leftPageB : _leftPageA;
-
-    }
-
-    private BookPageUI GetHiddenRightPage()
-    {
-        return _currentRightPage == _rightPageA ? _rightPageB : _rightPageA;
+        page.SetSortingOrder(1);
     }
 
     #region Input management
@@ -141,8 +245,7 @@ public class BookUI : BasePopup
 
     private void OnSwitchLeftButtonPressed(InputAction.CallbackContext ctx)
     {
-        Debug.Log("left switch");
-        if(CurrentPageNumber > 0)
+        if(CurrentPageNumber > 0 && !IsAnimating)
         {
             CurrentPageNumber--;
         }
@@ -150,8 +253,7 @@ public class BookUI : BasePopup
 
     private void OnSwitchRightButtonPressed(InputAction.CallbackContext ctx)
     {
-        Debug.Log("right switch");
-        if(CurrentPageNumber < _maxPageNumber - 1)
+        if(CurrentPageNumber < _maxPageNumber - 1 && !IsAnimating)
         {
             CurrentPageNumber++;
         }

@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using Sirenix.OdinInspector;
 
+[RequireComponent(typeof(Canvas))]
 public class BookPageUI : MonoBehaviour
 {
     [SerializeField, Required, ChildGameObjectsOnly] private TextMeshProUGUI _pageNumberText;
@@ -42,4 +43,9 @@ public class BookPageUI : MonoBehaviour
     {
         _pageNumberText.text = _pageNumber.ToString();
     }
+
+    public void SetSortingOrder(int order)
+    {
+        GetComponent<Canvas>().sortingOrder = order;
+    } 
 }
