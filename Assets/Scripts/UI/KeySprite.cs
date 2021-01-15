@@ -6,10 +6,10 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Image))]
 public class KeySprite : MonoBehaviour
 {
-    public KeyCode associatedKey;
+    public string inputActionPath;
 
     void Start()
     {
-        GetComponent<Image>().sprite = UIKeyMapper.Instance.GetSprite(associatedKey);   
+        GetComponent<Image>().sprite = UIKeyMapper.Instance.GetSpriteForActionWithPath(inputActionPath);
     }
 }

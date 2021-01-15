@@ -32,7 +32,9 @@ public class PlayerInteractionManager : MonoBehaviour
 
     public bool CanInteract
     {
-        get { return CurrentInteractable != null; }
+        get { return CurrentInteractable != null
+                && !BasePopup.ArePopupOpen
+                && !GameManager.Instance.IsInPause; }
     }
 
     // Start is called before the first frame update

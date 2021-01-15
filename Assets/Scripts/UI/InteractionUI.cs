@@ -7,8 +7,7 @@ using Unisloth.Localization;
 
 public class InteractionUI : MonoBehaviour
 {
-    [SerializeField, Required]
-    private PlayerInteractionManager player;
+    private PlayerInteractionManager _player;
 
     [SerializeField, Required]
     private Translator _interactText;
@@ -17,15 +16,15 @@ public class InteractionUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = FindObjectOfType<PlayerInteractionManager>();  
+        _player = PlayerMovement.Instance.GetComponent<PlayerInteractionManager>();  
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(player != null)
+        if(_player != null)
         {
-            Display(player.CanInteract && !GameManager.Instance.IsInPause);
+            Display(_player.CanInteract && !GameManager.Instance.IsInPause);
         }
         UpdateInteractionText();
     }
@@ -40,9 +39,9 @@ public class InteractionUI : MonoBehaviour
 
     private void UpdateInteractionText()
     {
-        if(_interactText != null && player != null && player.CanInteract)
+        if(_interactText != null && _player != null && _player.CanInteract)
         {
-            _interactText.Key = player.GetCurrentInteractable().GetInteractionTextLocKey();
+            _interactText.Key = _player.GetCurrentInteractable().GetInteractionTextLocKey();
         }
     }
 }

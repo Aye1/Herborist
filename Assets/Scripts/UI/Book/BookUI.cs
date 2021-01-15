@@ -5,6 +5,7 @@ using Sirenix.OdinInspector;
 using System.Linq;
 using System;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class BookUI : BasePopup
 {
@@ -16,6 +17,8 @@ public class BookUI : BasePopup
     [Title("Child objects binding")]
     [SerializeField, Required, ChildGameObjectsOnly] private Transform _leftPageHolder;
     [SerializeField, Required, ChildGameObjectsOnly] private Transform _rightPageHolder;
+    [SerializeField, Required, ChildGameObjectsOnly] private Image _leftControlImage;
+    [SerializeField, Required, ChildGameObjectsOnly] private Image _rightControlImage;
 
     [Title("Parameters")]
     [SerializeField] private float _pageTurnTime = 0.5f;
@@ -52,6 +55,8 @@ public class BookUI : BasePopup
     private BookPageUI _hiddenRightPage;
 
     private InputActionAsset _actions;
+    private InputAction _switchLeftAction;
+    private InputAction _switchRightAction;
 
     private readonly string SWITCH_TAB_LEFT = "Custom UI/Switch Tab Left";
     private readonly string SWITCH_TAB_RIGHT = "Custom UI/Switch Tab Right";
@@ -95,6 +100,18 @@ public class BookUI : BasePopup
         GoToBack(_hiddenRightPage);
     }
 
+    private void DisplayNecessaryControls()
+    {
+        _leftControlImage.gameObject.SetActive(CurrentPageNumber > 0);
+        _rightControlImage.gameObject.SetActive(CurrentPageNumber < _maxPageNumber - 1);
+    }
+
+    private void UpdateControlsSprite()
+    {
+        _leftControlImage.sprite = UIKeyMapper.Instance.GetSprite(_switchLeftAction.GetBindingDisplayString());
+        _rightControlImage.sprite = UIKeyMapper.Instance.GetSprite(_switchRightAction.GetBindingDisplayString());
+    }
+
     private void GoToPage(int pageNumber, bool alternatePages = false)
     {
         IdentificationKeyData data = GetDataAtPage(pageNumber);
@@ -116,6 +133,7 @@ public class BookUI : BasePopup
             _currentLeftPage.PageNumber = pageNumber * 2;
             _currentRightPage.PageNumber = pageNumber * 2 + 1;
         }
+        DisplayNecessaryControls();
     }
 
     private IEnumerator AnimatePageChange(bool readingDirection)
@@ -228,23 +246,22 @@ public class BookUI : BasePopup
     {
         _actions = GameManager.Instance.Actions;
 
-        InputAction switchLeftAction = _actions.FindAction(SWITCH_TAB_LEFT);
-        InputAction switchRightAction = _actions.FindAction(SWITCH_TAB_RIGHT);
+        _switchLeftAction = _actions.FindAction(SWITCH_TAB_LEFT);
+        _switchRightAction = _actions.FindAction(SWITCH_TAB_RIGHT);
 
-        switchLeftAction.performed += OnSwitchLeftButtonPressed;
-        switchRightAction.performed += OnSwitchRightButtonPressed;
+        _switchLeftAction.performed += OnSwitchLeftButtonPressed;
+        _switchRightAction.performed += OnSwitchRightButtonPressed;
 
-        switchLeftAction.Enable();
-        switchRightAction.Enable();
+        _switchLeftAction.Enable();
+        _switchRightAction.Enable();
+        Debug.Log(_switchLeftAction.GetBindingDisplayString());
+        Debug.Log(_switchRightAction.GetBindingDisplayString());
     }
 
     private void UnBindInputs()
     {
-        InputAction switchLeftAction = _actions.FindAction(SWITCH_TAB_LEFT);
-        InputAction switchRightAction = _actions.FindAction(SWITCH_TAB_RIGHT);
-
-        switchLeftAction.performed -= OnSwitchLeftButtonPressed;
-        switchRightAction.performed -= OnSwitchRightButtonPressed;
+        _switchLeftAction.performed -= OnSwitchLeftButtonPressed;
+        _switchRightAction.performed -= OnSwitchRightButtonPressed;
     }
 
     private void OnSwitchLeftButtonPressed(InputAction.CallbackContext ctx)
@@ -273,6 +290,7 @@ public class BookUI : BasePopup
     protected override void CustomOnEnable()
     {
         BindInputs();
+        UpdateControlsSprite();
     }
 
     protected override GameObject GetObjectToDeactivate()

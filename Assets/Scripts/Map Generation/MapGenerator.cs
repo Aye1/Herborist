@@ -6,7 +6,7 @@ using System;
 using Sirenix.OdinInspector;
 using CreativeSpore.SuperTilemapEditor;
 
-public enum TileType { Grass, Water, Dirt, Bridge, MapBorder, Tree };
+public enum TileType { Grass, Water, Dirt, Bridge, MapBorder, Tree, Grass256, Dirt256 };
 
 [Serializable]
 public struct TerrainTileMapping
@@ -40,7 +40,6 @@ public class MapGenerator : MonoBehaviour
     private List<CurvedLinePath> _pathes;
     private List<Vector2Int> _bridgePositions;
     private Polygon _borderPolygon;
-    //private Vector3 _offset;
     private ForestGenerator _forestGenerator;
     private List<PointOfInterest> _spawnedPOIs;
 
@@ -174,6 +173,7 @@ public class MapGenerator : MonoBehaviour
         path.GeneratePoints(0, 4);
         List<Vector2Int> riverPathCrossingPositions = path.AllPoints.Where(p => _rivers.Any(r => r.AllPoints.Contains(p))).ToList();
         List<Vector2Int> pathPositions = path.AllPoints.Where(p => !riverPathCrossingPositions.Contains(p)).ToList();
+        //List<Vector2Int> pathPositions = path.AllPoints;
         PutTiles(pathPositions, TileType.Dirt);
         PutTiles(riverPathCrossingPositions, TileType.Bridge);
         _pathes.Add(path);

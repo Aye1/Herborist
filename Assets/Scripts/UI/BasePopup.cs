@@ -1,8 +1,29 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections.Generic;
 
 public abstract class BasePopup : MonoBehaviour
 {
+    public static bool ArePopupOpen
+    {
+        // Pause menu is always enabled, so that it can handle itself
+        get { return OpenPopups.Count > 1; }
+    }
+
+    private static List<BasePopup> _openPopups;
+
+    private static List<BasePopup> OpenPopups
+    {
+        get
+        {
+            if(_openPopups == null)
+            {
+                _openPopups = new List<BasePopup>();
+            }
+            return _openPopups;
+        }
+    }
+
     private readonly string CANCEL_ACTION = "Custom UI/Cancel";
 
     // Start is called before the first frame update
@@ -10,12 +31,14 @@ public abstract class BasePopup : MonoBehaviour
     {
         BindControls();
         CustomOnEnable();
+        OpenPopups.Add(this);
     }
 
     protected void OnDisable()
     {
         CustomOnDisable();
         UnBindControls();
+        OpenPopups.Remove(this);
     }
 
     protected abstract void CustomOnEnable();
