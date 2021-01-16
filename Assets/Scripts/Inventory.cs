@@ -1,28 +1,36 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 using Sirenix.OdinInspector;
-using System;
+using System.Linq;
 
-public class Inventory : SerializedMonoBehaviour
+public class InventoryState: SaveState
+{
+    public List<CollectiblePackage> collectibles;
+}
+
+public class Inventory : SerializedMonoBehaviour, ISavable
 {
     [ReadOnly]
-    [DictionaryDrawerSettings(KeyLabel = "Collectible", ValueLabel = "Count")]
-    public Dictionary<CollectibleScriptableObject, int> inventory;
+    public List<CollectiblePackage> inventoryList;
 
     private void Awake()
     {
-        inventory = new Dictionary<CollectibleScriptableObject, int>();
+        inventoryList = new List<CollectiblePackage>();
     }
 
     public void Add(CollectibleScriptableObject itemType)
     {
-        if(inventory.ContainsKey(itemType))
+        CollectiblePackage pck = inventoryList.Where(p => p.type == itemType).FirstOrDefault();
+        if(pck != default(CollectiblePackage))
         {
-            inventory[itemType]++;
-        } else
+            pck.count++;
+        }
+        else
         {
-            inventory.Add(itemType, 1);
+            inventoryList.Add(new CollectiblePackage()
+            {
+                type = itemType,
+                count = 1
+            });
         }
     }
 
@@ -36,12 +44,14 @@ public class Inventory : SerializedMonoBehaviour
 
     public void Add(CollectiblePackage collectible)
     {
-        if(inventory.ContainsKey(collectible.type))
+        CollectiblePackage pck = inventoryList.Where(p => p.type == collectible.type).FirstOrDefault();
+        if(pck != default(CollectiblePackage))
         {
-            inventory[collectible.type] += collectible.count;
-        } else
+            pck.count += collectible.count;
+        }
+        else
         {
-            inventory.Add(collectible.type, collectible.count);
+            inventoryList.Add(collectible);
         }
     }
 
@@ -55,30 +65,65 @@ public class Inventory : SerializedMonoBehaviour
 
     public void Remove(CollectibleScriptableObject itemType, int number)
     {
-        if(inventory.ContainsKey(itemType))
+        CollectiblePackage pck = inventoryList.Where(p => p.type == itemType).FirstOrDefault();
+        if(pck != default(CollectiblePackage))
         {
-            inventory[itemType] -= number;
-            if(inventory[itemType] <= 0)
+            pck.count -= number;
+            if(pck.count <= 0)
             {
-                inventory.Remove(itemType);
+                inventoryList.Remove(pck);
             }
         }
     }
 
     public void RemoveAll(CollectibleScriptableObject itemType)
     {
-        if(inventory.ContainsKey(itemType))
-        {
-            inventory.Remove(itemType);
-        }
+        inventoryList.RemoveAll(p => p.type == itemType);
+    }
+
+    public List<CollectiblePackage> EmptyInventory()
+    {
+        List<CollectiblePackage> res = new List<CollectiblePackage>(inventoryList);
+        inventoryList.Clear();
+        return res;
     }
 
     public int GetItemCount(CollectibleScriptableObject itemType)
     {
-        if(inventory.ContainsKey(itemType))
-        {
-            return inventory[itemType];
-        }
-        return 0;
+        return inventoryList.Where(p => p.type == itemType).FirstOrDefault().count;
     }
+
+    #region ISavable implementation
+    public SaveState GetObjectToSave()
+    {
+        InventoryState state = new InventoryState()
+        {
+            collectibles = new List<CollectiblePackage>()
+        };
+        if (inventoryList != null && inventoryList.Count > 0)
+        {
+            state.collectibles.AddRange(inventoryList);
+        }
+        return state;
+    }
+
+    public void LoadObject(SaveState saveState)
+    {
+        InventoryState state = saveState as InventoryState;
+        if (inventoryList == null)
+        {
+            inventoryList = new List<CollectiblePackage>();
+        }
+        else
+        {
+            inventoryList.Clear();
+        }
+        inventoryList.AddRange(state.collectibles);
+    }
+
+    public string GetSaveName()
+    {
+        return gameObject.name + ".inventory";
+    }
+    #endregion
 }

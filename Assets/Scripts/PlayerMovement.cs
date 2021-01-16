@@ -37,11 +37,23 @@ public class PlayerMovement : MonoBehaviour
 
     private void ApplyMovement()
     {
-        Move(latestMovement * speed);
+        if (GameManager.Instance.IsInPause || BasePopup.ArePopupOpen)
+        {
+            Stop();
+        }
+        else
+        { 
+            Move(latestMovement * speed);
+        }
     }
 
     private void Move(Vector2 movement)
     {
         _body.velocity = movement;
+    }
+
+    private void Stop()
+    {
+        _body.velocity = Vector2.zero;
     }
 }

@@ -1,15 +1,38 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using System;
 using MoreMountains.Feedbacks;
 using Sirenix.OdinInspector;
 using Unisloth.Localization;
 
-public class CollectiblePackage
+public class CollectiblePackage : ISerializationCallbackReceiver
 {
-    public CollectibleScriptableObject type;
+    [NonSerialized, ShowInInspector] public CollectibleScriptableObject type;
     public int count;
+
+    private static string UNKNOWN_TYPE = "unknown";
+
+    [SerializeField, HideInInspector] private string typeDevelopmentName;
+
+    public void OnAfterDeserialize()
+    {
+
+        if (typeDevelopmentName == UNKNOWN_TYPE)
+        {
+            Debug.LogError("Unknown type has been serialized, skip deserialization");
+        }
+        else if (ResourcesManager.Instance != null && typeDevelopmentName != UNKNOWN_TYPE)
+        {
+            // Fetch CollectibleScriptableObject from Resources
+            type = ResourcesManager.Instance.GetCollectibleScriptableObjectWithName(typeDevelopmentName);
+        }
+    }
+
+    public void OnBeforeSerialize()
+    {
+        // Serialize the development name as a key to find the object after deserialization
+        typeDevelopmentName = type == null ? UNKNOWN_TYPE : type.developmentName;
+    }
 }
 
 public class Collectible : MonoBehaviour, IInteractable

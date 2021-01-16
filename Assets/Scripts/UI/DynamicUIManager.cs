@@ -7,7 +7,6 @@ public class DynamicUIManager : MonoBehaviour
 {
     public static DynamicUIManager Instance { get; private set; }
 
-    private PlayerMovement _player;
     [SerializeField, Required, AssetsOnly] private CollectiblePicked _collectiblePickedUI;
 
     void Awake()
@@ -22,20 +21,14 @@ public class DynamicUIManager : MonoBehaviour
         }
     }
 
-    private void OnEnable()
-    {
-        _player = PlayerMovement.Instance;
-    }
-
     public void SpawnCollectiblePicked(CollectiblePackage package)
     {
         CollectiblePicked newPickedUI = Instantiate(_collectiblePickedUI, transform);
-        newPickedUI.transform.position = Camera.main.WorldToScreenPoint(_player.transform.position);
+        newPickedUI.transform.position = Camera.main.WorldToScreenPoint(PlayerMovement.Instance.transform.position);
         _collectiblePickedUI.Package = package;
         UIFollowPlayer following = newPickedUI.GetComponent<UIFollowPlayer>();
         if (following != null)
         {
-            following.player = _player;
             following.useOffset = true;
         }
     }

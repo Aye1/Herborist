@@ -40,7 +40,7 @@ Material:
     - Vector1_E1E457ED: 1
     - _EnableExternalAlpha: 0
     m_Colors:
-    - Color_B36CA505: {r: 0.9622641, g: 0.5423428, b: 0.16794226, a: 1}
+    - Color_B36CA505: {r: 0.8773585, g: 0.18527949, b: 0.13656996, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}

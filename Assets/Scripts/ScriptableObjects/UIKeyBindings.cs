@@ -7,7 +7,9 @@ using System.Linq;
 [Serializable]
 public class UIKeyBinding
 {
-    [HorizontalGroup("Group"), HideLabel]
+    [VerticalGroup("Group/Left"), HideLabel]
+    public string displayString;
+    [VerticalGroup("Group/Left"), HideLabel, HideInInspector]
     public KeyCode key;
     [PreviewField, HorizontalGroup("Group", MaxWidth = 50), HideLabel]
     public Sprite sprite;
@@ -22,5 +24,10 @@ public class UIKeyBindings : SerializedScriptableObject
     public Sprite GetSprite(KeyCode key)
     {
         return bindings == null ? null : bindings.FirstOrDefault(b => b.key == key).sprite;
+    }
+
+    public Sprite GetSprite(string displayName)
+    {
+        return bindings == null ? null : bindings.FirstOrDefault(b => b.displayString == displayName).sprite;
     }
 }

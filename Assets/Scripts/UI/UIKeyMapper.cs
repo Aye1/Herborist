@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
+using UnityEngine.InputSystem;
 
 public class UIKeyMapper : MonoBehaviour
 {
@@ -24,10 +25,25 @@ public class UIKeyMapper : MonoBehaviour
 
     public Sprite GetSprite(KeyCode key)
     {
-        if(_bindings == null || _bindings.bindings == null)
+        if(_bindings == null)
         {
             return null;
         }
         return _bindings.GetSprite(key);
+    }
+
+    public Sprite GetSprite(string displayName)
+    {
+        if(_bindings == null)
+        {
+            return null;
+        }
+        return _bindings.GetSprite(displayName);
+    }
+
+    public Sprite GetSpriteForActionWithPath(string path)
+    {
+        InputAction action = GameManager.Instance.Actions.FindAction(path);
+        return action == null ? null : GetSprite(action.GetBindingDisplayString());
     }
 }

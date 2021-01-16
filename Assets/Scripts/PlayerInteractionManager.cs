@@ -32,7 +32,9 @@ public class PlayerInteractionManager : MonoBehaviour
 
     public bool CanInteract
     {
-        get { return CurrentInteractable != null; }
+        get { return CurrentInteractable != null
+                && !BasePopup.ArePopupOpen
+                && !GameManager.Instance.IsInPause; }
     }
 
     // Start is called before the first frame update
@@ -68,10 +70,13 @@ public class PlayerInteractionManager : MonoBehaviour
 
     public void OnInteract()
     {
-        IInteractable currentInteractable = GetCurrentInteractable();
-        if(currentInteractable != null)
+        if (!GameManager.Instance.IsInPause)
         {
-            currentInteractable.Interact(this.gameObject);
+            IInteractable currentInteractable = GetCurrentInteractable();
+            if (currentInteractable != null)
+            {
+                currentInteractable.Interact(this.gameObject);
+            }
         }
     }
 
