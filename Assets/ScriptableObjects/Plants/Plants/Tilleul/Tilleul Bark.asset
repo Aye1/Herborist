@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3f06b4333e7a4b77a48817e91295caa, type: 3}
   m_Name: Tilleul Bark
   m_EditorClassIdentifier: 
-  componentType: 0
+  componentType: 4
   icon: {fileID: 0}
   componentPicture: {fileID: 0}
