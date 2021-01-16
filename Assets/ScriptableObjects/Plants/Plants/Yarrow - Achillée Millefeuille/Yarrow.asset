@@ -18,4 +18,6 @@ MonoBehaviour:
   familyName: Asteraceae
   loreLocKey: []
   fullPicture: {fileID: 0}
-  components: []
+  components:
+  - {fileID: 11400000, guid: b119c8daa469f4dfca90f9a2ce858fda, type: 2}
+  - {fileID: 11400000, guid: 410c76412fc0943c38dbafefeac07e7f, type: 2}

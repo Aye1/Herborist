@@ -18,4 +18,7 @@ MonoBehaviour:
   familyName: Fabaceae
   loreLocKey: []
   fullPicture: {fileID: 0}
-  components: []
+  components:
+  - {fileID: 11400000, guid: 7965fc3406beb45ea8ec6cfee10f7a7b, type: 2}
+  - {fileID: 11400000, guid: 61d0d5e7909ea474897f4b0d240ccada, type: 2}
+  - {fileID: 11400000, guid: 3598983c90ff44b5694778f3dcf8b577, type: 2}
