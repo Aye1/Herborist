@@ -23,21 +23,6 @@ MonoBehaviour:
     SerializationNodes: []
   bindings:
   - displayString: 
-    key: 8
-    sprite: {fileID: 4941791518809726416, guid: 9b6040bc27f3a4bac9565b71ae0f6271, type: 3}
-  - displayString: 
-    key: 9
-    sprite: {fileID: 4491638394355525381, guid: 9b6040bc27f3a4bac9565b71ae0f6271, type: 3}
-  - displayString: 
-    key: 13
-    sprite: {fileID: -5503109345546670162, guid: 9b6040bc27f3a4bac9565b71ae0f6271, type: 3}
-  - displayString: 
-    key: 19
-    sprite: {fileID: -4472923216901981300, guid: 9b6040bc27f3a4bac9565b71ae0f6271, type: 3}
-  - displayString: 
-    key: 32
-    sprite: {fileID: -165788852948036380, guid: 9b6040bc27f3a4bac9565b71ae0f6271, type: 3}
-  - displayString: 
     key: 273
     sprite: {fileID: -8078451711849441883, guid: 9b6040bc27f3a4bac9565b71ae0f6271, type: 3}
   - displayString: 
@@ -64,9 +49,6 @@ MonoBehaviour:
   - displayString: e
     key: 101
     sprite: {fileID: 834880467471423072, guid: 9b6040bc27f3a4bac9565b71ae0f6271, type: 3}
-  - displayString: q
-    key: 113
-    sprite: {fileID: -3150252699778580645, guid: 9b6040bc27f3a4bac9565b71ae0f6271, type: 3}
   - displayString: f
     key: 102
     sprite: {fileID: -3825891414801008073, guid: 9b6040bc27f3a4bac9565b71ae0f6271, type: 3}
@@ -130,3 +112,12 @@ MonoBehaviour:
   - displayString: "\xE9"
     key: 0
     sprite: {fileID: 834880467471423072, guid: 9b6040bc27f3a4bac9565b71ae0f6271, type: 3}
+  - displayString: L1
+    key: 0
+    sprite: {fileID: -7168170486250861445, guid: d69ff953666474edeb6f9a1cb4cb1238, type: 3}
+  - displayString: R1
+    key: 0
+    sprite: {fileID: -1001085745276152220, guid: d69ff953666474edeb6f9a1cb4cb1238, type: 3}
+  - displayString: Q
+    key: 0
+    sprite: {fileID: -3150252699778580645, guid: 9b6040bc27f3a4bac9565b71ae0f6271, type: 3}

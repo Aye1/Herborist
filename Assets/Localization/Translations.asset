@@ -28,6 +28,7 @@ MonoBehaviour:
   - button_play
   - button_quit
   - interact_inventory
+  - save_name
   _availableLanguages: 0a000000
   _translations:
   - key: default
@@ -81,4 +82,8 @@ MonoBehaviour:
   - key: interact_inventory
     language: 10
     value: Open Inventory
+    parent: {fileID: 11400000}
+  - key: save_name
+    language: 10
+    value: Save
     parent: {fileID: 11400000}
