@@ -233,16 +233,16 @@ MonoBehaviour:
     sceneId: -1
     shouldDisplayLoadingScreen: 0
   - sceneType: 1
-    sceneId: -2
+    sceneId: 0
     shouldDisplayLoadingScreen: 0
   - sceneType: 4
-    sceneId: 0
+    sceneId: 3
     shouldDisplayLoadingScreen: 1
   - sceneType: 2
-    sceneId: 1
+    sceneId: 2
     shouldDisplayLoadingScreen: 0
   - sceneType: 3
-    sceneId: 2
+    sceneId: 1
     shouldDisplayLoadingScreen: 0
   _loadingScreen: {fileID: 2439559622701996215}
 --- !u!1 &8322341825787405228

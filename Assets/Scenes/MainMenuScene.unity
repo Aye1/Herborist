@@ -369,11 +369,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4482728115114505138, guid: 5ab47ec8769244f3d918b443dee58c3a, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 186.66667
+      value: 173.33333
       objectReference: {fileID: 0}
     - target: {fileID: 4482728115114505138, guid: 5ab47ec8769244f3d918b443dee58c3a, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 200
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 4482728115114505138, guid: 5ab47ec8769244f3d918b443dee58c3a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -427,6 +427,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Save File Button (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6960929123615589344, guid: 5ab47ec8769244f3d918b443dee58c3a, type: 3}
+      propertyPath: saveName
+      value: Game 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6960929123615589344, guid: 5ab47ec8769244f3d918b443dee58c3a, type: 3}
+      propertyPath: saveNumber
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7943893789159265796, guid: 5ab47ec8769244f3d918b443dee58c3a, type: 3}
+      propertyPath: associatedInfo
+      value: 
+      objectReference: {fileID: 11400000, guid: 503834682435b4161a3ab1afdcc71adb, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ab47ec8769244f3d918b443dee58c3a, type: 3}
 --- !u!224 &349237083 stripped
@@ -491,11 +503,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8189cded5d8e34f08bae493986d6a475, type: 3}
---- !u!1 &508076454 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4482728115114505139, guid: 5ab47ec8769244f3d918b443dee58c3a, type: 3}
+--- !u!114 &508076459 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7943893789159265796, guid: 5ab47ec8769244f3d918b443dee58c3a, type: 3}
   m_PrefabInstance: {fileID: 1947790725}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 519ff8426e0634e1f8aae7de2d245f67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &621002022
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -633,16 +651,22 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!1 &961301986 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4482728115114505139, guid: 5ab47ec8769244f3d918b443dee58c3a, type: 3}
-  m_PrefabInstance: {fileID: 4482728115268894289}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &961301987 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4482728115114505138, guid: 5ab47ec8769244f3d918b443dee58c3a, type: 3}
   m_PrefabInstance: {fileID: 4482728115268894289}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &961301992 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7943893789159265796, guid: 5ab47ec8769244f3d918b443dee58c3a, type: 3}
+  m_PrefabInstance: {fileID: 4482728115268894289}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 519ff8426e0634e1f8aae7de2d245f67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1195562144
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1237,9 +1261,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   saveButtons:
-  - {fileID: 961301986}
-  - {fileID: 2137694947}
-  - {fileID: 508076454}
+  - {fileID: 961301992}
+  - {fileID: 2137694952}
+  - {fileID: 508076459}
 --- !u!114 &1637423415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1449,11 +1473,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4482728115114505138, guid: 5ab47ec8769244f3d918b443dee58c3a, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 186.66667
+      value: 173.33333
       objectReference: {fileID: 0}
     - target: {fileID: 4482728115114505138, guid: 5ab47ec8769244f3d918b443dee58c3a, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 200
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 4482728115114505138, guid: 5ab47ec8769244f3d918b443dee58c3a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1485,7 +1509,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4482728115114505138, guid: 5ab47ec8769244f3d918b443dee58c3a, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 496.6667
+      value: 493.3333
       objectReference: {fileID: 0}
     - target: {fileID: 4482728115114505138, guid: 5ab47ec8769244f3d918b443dee58c3a, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1507,6 +1531,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Save File Button (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6960929123615589344, guid: 5ab47ec8769244f3d918b443dee58c3a, type: 3}
+      propertyPath: saveName
+      value: Game 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6960929123615589344, guid: 5ab47ec8769244f3d918b443dee58c3a, type: 3}
+      propertyPath: saveNumber
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7943893789159265796, guid: 5ab47ec8769244f3d918b443dee58c3a, type: 3}
+      propertyPath: associatedInfo
+      value: 
+      objectReference: {fileID: 11400000, guid: a7bab09c2a6194eb7b42f3217ca427ee, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ab47ec8769244f3d918b443dee58c3a, type: 3}
 --- !u!224 &1947790726 stripped
@@ -1702,11 +1738,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 658826761795926803, guid: 8f99dee1ef1c9404dbf883f754ba0422, type: 3}
   m_PrefabInstance: {fileID: 2016204211}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2137694947 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4482728115114505139, guid: 5ab47ec8769244f3d918b443dee58c3a, type: 3}
+--- !u!114 &2137694952 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7943893789159265796, guid: 5ab47ec8769244f3d918b443dee58c3a, type: 3}
   m_PrefabInstance: {fileID: 349237082}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 519ff8426e0634e1f8aae7de2d245f67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4482728115268894289
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1744,11 +1786,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4482728115114505138, guid: 5ab47ec8769244f3d918b443dee58c3a, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 186.66667
+      value: 173.33333
       objectReference: {fileID: 0}
     - target: {fileID: 4482728115114505138, guid: 5ab47ec8769244f3d918b443dee58c3a, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 200
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 4482728115114505138, guid: 5ab47ec8769244f3d918b443dee58c3a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1780,7 +1822,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4482728115114505138, guid: 5ab47ec8769244f3d918b443dee58c3a, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 103.333336
+      value: 106.666664
       objectReference: {fileID: 0}
     - target: {fileID: 4482728115114505138, guid: 5ab47ec8769244f3d918b443dee58c3a, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1802,5 +1844,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Save File Button
       objectReference: {fileID: 0}
+    - target: {fileID: 6960929123615589344, guid: 5ab47ec8769244f3d918b443dee58c3a, type: 3}
+      propertyPath: saveName
+      value: Game 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6960929123615589344, guid: 5ab47ec8769244f3d918b443dee58c3a, type: 3}
+      propertyPath: saveNumber
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7943893789159265796, guid: 5ab47ec8769244f3d918b443dee58c3a, type: 3}
+      propertyPath: associatedInfo
+      value: 
+      objectReference: {fileID: 11400000, guid: b3afef576b5e84842af3de7ec24d1a0a, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ab47ec8769244f3d918b443dee58c3a, type: 3}

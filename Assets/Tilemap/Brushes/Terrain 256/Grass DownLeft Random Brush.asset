@@ -12,17 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5656c5e200a31c945b469abda4211525, type: 3}
   m_Name: "Grass DownLeft Random\_Brush"
   m_EditorClassIdentifier: 
-  Tileset: {fileID: 11400000, guid: 9b72edb3278814d61a907ab4f8607048, type: 2}
+  Tileset: {fileID: 11400000, guid: 0dcffed89656c4134b47d61e59abdc2b, type: 2}
   Params:
     m_paramList: []
   m_group: 0
   m_autotilingMode: 1
-  m_showInPalette: 1
+  m_showInPalette: 0
   RandomTiles: 
   RandomTileList:
-  - tileData: 20
+  - tileData: 12
     probabilityFactor: 1
-  - tileData: 50
+  - tileData: 27
     probabilityFactor: 1
   RandomizeFlagMask: 0
   RemoveBrushIdAfterRefresh: 0

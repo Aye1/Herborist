@@ -22,6 +22,11 @@ public class MainMenuUI : MonoBehaviour
         BindInputs();
     }
 
+    private void OnDestroy()
+    {
+        UnBindInputs();
+    }
+
     void BindButtons()
     {
         _playButton.onClick.AddListener(DisplaySaveSelectionPopup);
@@ -36,6 +41,13 @@ public class MainMenuUI : MonoBehaviour
         cancelAction.performed += OnCancelInput;
 
         cancelAction.Enable();
+    }
+
+    void UnBindInputs()
+    {
+        InputAction cancelAction = GameManager.Instance.Actions.FindAction("Custom UI/Cancel");
+
+        cancelAction.performed -= OnCancelInput;
     }
 
     private void DisplaySaveSelectionPopup()

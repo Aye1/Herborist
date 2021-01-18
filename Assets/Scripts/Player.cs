@@ -2,15 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Inventory))]
-public class HouseStorage : MonoBehaviour
+public class Player : MonoBehaviour
 {
-    public static HouseStorage Instance { get; private set; }
-
-    public Inventory StorageInventory
-    {
-        get; private set;
-    }
+    public static Player Instance { get; private set; }
 
     void Awake()
     {
@@ -18,8 +12,7 @@ public class HouseStorage : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            StorageInventory = GetComponent<Inventory>();
-            SaveManager.Instance.objectsToSave.Add(StorageInventory);
+            SaveManager.Instance.objectsToSave.Add(GetComponent<Inventory>());
             BindEvents();
         }
         else
@@ -38,7 +31,7 @@ public class HouseStorage : MonoBehaviour
         GameManager.Instance.OnGameStateChanged += OnGameStateChanged;
     }
 
-    void UnBindEvents()
+    void UnBindEvents()
     {
         GameManager.Instance.OnGameStateChanged -= OnGameStateChanged;
     }
@@ -47,7 +40,7 @@ public class HouseStorage : MonoBehaviour
     {
         if(newState == GameState.MainMenu)
         {
-            SaveManager.Instance.objectsToSave.Remove(StorageInventory);
+            SaveManager.Instance.objectsToSave.Remove(GetComponent<Inventory>());
             Destroy(gameObject);
         }
     }

@@ -29,6 +29,7 @@ MonoBehaviour:
   - button_quit
   - interact_inventory
   - save_name
+  - button_mainmenu
   _availableLanguages: 0a000000
   _translations:
   - key: default
@@ -86,4 +87,8 @@ MonoBehaviour:
   - key: save_name
     language: 10
     value: Save
+    parent: {fileID: 11400000}
+  - key: button_mainmenu
+    language: 10
+    value: Exit To Main Menu
     parent: {fileID: 11400000}

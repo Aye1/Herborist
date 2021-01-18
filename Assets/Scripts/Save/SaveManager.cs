@@ -23,6 +23,7 @@ public class SaveManager : SerializedMonoBehaviour
         }
         else
         {
+            //Instance.MergeSaveLists(objectsToSave);
             Destroy(gameObject);
         }
     }
@@ -37,13 +38,16 @@ public class SaveManager : SerializedMonoBehaviour
 
     public void Save(ISavable toSave)
     {
-        IsSaving = true;
-        SaveState state = toSave.GetObjectToSave();
-        byte[] bytes = SerializationUtility.SerializeValue(state, DataFormat.Binary);
-        string path = GetSavePath(toSave.GetSaveName());
-        File.WriteAllBytes(path, bytes);
-        IsSaving = false;
-        Debug.Log("Saved " + path);
+        if (toSave != null)
+        {
+            IsSaving = true;
+            SaveState state = toSave.GetObjectToSave();
+            byte[] bytes = SerializationUtility.SerializeValue(state, DataFormat.Binary);
+            string path = GetSavePath(toSave.GetSaveName());
+            File.WriteAllBytes(path, bytes);
+            IsSaving = false;
+            Debug.Log("Saved " + path);
+        }
     }
 
     public void LoadGame()
@@ -56,6 +60,11 @@ public class SaveManager : SerializedMonoBehaviour
 
     public void Load(ISavable toLoad)
     {
+        if(toLoad == null)
+        {
+            Debug.LogWarning("Trying to load null save object");
+            return;
+        }
         IsLoading = true;
         string filepath = GetSavePath(toLoad.GetSaveName());
         if (File.Exists(filepath))
@@ -63,9 +72,9 @@ public class SaveManager : SerializedMonoBehaviour
             byte[] bytes = File.ReadAllBytes(filepath);
             SaveState state = SerializationUtility.DeserializeValue<SaveState>(bytes, DataFormat.Binary);
             toLoad.LoadObject(state);
+            Debug.Log("Loaded " + filepath);
         }
         IsLoading = false;
-        Debug.Log("Loaded " + filepath);
     }
 
     [Button("Clean Saves")]
@@ -83,6 +92,19 @@ public class SaveManager : SerializedMonoBehaviour
 
     private string GetSavePath(string fileName)
     {
-        return Application.persistentDataPath + "/" + fileName + SAVE_EXTENSION;
+        GameInfo info = GameManager.Instance.gameInfo;
+        string middlePart = info == null ? "/" : ("/game" + info.saveNumber + ".");
+        return Application.persistentDataPath + middlePart + fileName + SAVE_EXTENSION;
+    }
+
+    private void MergeSaveLists(List<ISavable> newSavables)
+    {
+        foreach(ISavable sav in newSavables)
+        {
+            if(!objectsToSave.Contains(sav))
+            {
+                objectsToSave.Add(sav);
+            }
+        }
     }
 }
