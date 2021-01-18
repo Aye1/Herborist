@@ -11,9 +11,8 @@ GameObject:
   - component: {fileID: 4482728114678585005}
   - component: {fileID: 4482728114678585007}
   - component: {fileID: 4482728114678585004}
-  - component: {fileID: 4399300933567505164}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Save Name Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -135,19 +134,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &4399300933567505164
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4482728114678585002}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b35db30d838bb4a698762e55fc4d1939, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _key: save_name
 --- !u!1 &4482728115114505139
 GameObject:
   m_ObjectHideFlags: 0
@@ -161,6 +147,7 @@ GameObject:
   - component: {fileID: 4482728115114505143}
   - component: {fileID: 4482728115114505140}
   - component: {fileID: 4482728115114505141}
+  - component: {fileID: 7943893789159265796}
   m_Layer: 5
   m_Name: Save File Button
   m_TagString: Untagged
@@ -281,3 +268,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85e2628f74bf54f0bb8dab5c8de83579, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7943893789159265796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4482728115114505139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 519ff8426e0634e1f8aae7de2d245f67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveNameLocKey: save_name
+  _saveNameText: {fileID: 4482728114678585004}
+  associatedInfo: {fileID: 0}

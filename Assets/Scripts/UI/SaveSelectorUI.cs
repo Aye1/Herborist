@@ -7,11 +7,12 @@ using Sirenix.OdinInspector;
 public class SaveSelectorUI : MonoBehaviour
 {
     [SerializeField, Required, ChildGameObjectsOnly]
-    public List<GameObject> saveButtons;
+    public List<SaveSelectorItemUI> saveButtons;
 
     private void OnEnable()
     {
         SetKeyboardFocus();
+        LoadGameInfos();
     }
 
     private void SetKeyboardFocus()
@@ -19,7 +20,15 @@ public class SaveSelectorUI : MonoBehaviour
         if (saveButtons != null && saveButtons.Count > 0)
         {
             EventSystem.current.SetSelectedGameObject(null);
-            EventSystem.current.SetSelectedGameObject(saveButtons[0]);
+            EventSystem.current.SetSelectedGameObject(saveButtons[0].gameObject);
+        }
+    }
+
+    private void LoadGameInfos()
+    {
+        foreach(SaveSelectorItemUI item in saveButtons)
+        {
+            SaveManager.Instance.Load(item.associatedInfo);
         }
     }
 }

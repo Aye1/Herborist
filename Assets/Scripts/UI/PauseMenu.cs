@@ -8,6 +8,7 @@ public class PauseMenu : BasePopup
     [SerializeField, Required, ChildGameObjectsOnly] Button _resumeButton;
     [SerializeField, Required, ChildGameObjectsOnly] Button _saveButton;
     [SerializeField, Required, ChildGameObjectsOnly] Button _loadButton;
+    [SerializeField, Required, ChildGameObjectsOnly] Button _mainMenuButton;
 
     private bool _isMenuOpen = false;
     public bool IsMenuOpen
@@ -44,6 +45,7 @@ public class PauseMenu : BasePopup
         _resumeButton.onClick.AddListener(ClosePauseMenu);
         _saveButton.onClick.AddListener(LaunchSave);
         _loadButton.onClick.AddListener(LaunchLoad);
+        _mainMenuButton.onClick.AddListener(GoToMainMenu);
     }
 
     void BindEvents()
@@ -79,6 +81,11 @@ public class PauseMenu : BasePopup
     void UpdateMenuVisibility()
     {
         _pauseMenu.SetActive(_isMenuOpen);
+    }
+
+    void GoToMainMenu()
+    {
+        GameManager.Instance.GoToMainMenu();
     }
 
     #region BasePopup implementation

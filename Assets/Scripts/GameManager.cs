@@ -11,9 +11,11 @@ public class GameManager : SerializedMonoBehaviour
     private GameState _currentState;
     [SerializeField, ReadOnly]
     private bool _isInPause;
+    private bool _shouldLoadGameSave;
 
     private readonly string PAUSE_ACTION = "Custom UI/Pause Menu";
 
+    public GameInfo gameInfo;
 
     public delegate void GameStateChange(GameState gameState);
     public GameStateChange OnGameStateChanged;
@@ -60,7 +62,6 @@ public class GameManager : SerializedMonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            BindInputs();
             CurrentState = GameState.Game;
         }
         else
@@ -69,9 +70,16 @@ public class GameManager : SerializedMonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        BindInputs();
+        BindEvents();        
+    }
+
     private void OnDestroy()
     {
         UnBindInputs();
+        UnBindEvents();
     }
 
     void BindInputs()
@@ -90,10 +98,29 @@ public class GameManager : SerializedMonoBehaviour
         pauseAction.performed -= OnPauseButtonPushed;
     }
 
+    void BindEvents()
+    {
+        SceneSwitcher.Instance.OnSceneLoaded += OnSceneLoaded;
+    }
+
+    void UnBindEvents()
+    {
+        SceneSwitcher.Instance.OnSceneLoaded -= OnSceneLoaded;
+    }
+
     void OnPauseButtonPushed(InputAction.CallbackContext ctx)
     {
         if(CurrentState == GameState.Game)
             TogglePause();
+    }
+
+    void OnSceneLoaded(SceneType type)
+    {
+        if(_shouldLoadGameSave)
+        {
+            _shouldLoadGameSave = false;
+            SaveManager.Instance.LoadGame();
+        }
     }
 
     public void SetPause(bool pause)
@@ -104,5 +131,20 @@ public class GameManager : SerializedMonoBehaviour
     public void TogglePause()
     {
         IsInPause = !IsInPause;
+    }
+
+    public void LaunchGame(GameInfo info)
+    {
+        gameInfo = info;
+        CurrentState = GameState.Game;
+        _shouldLoadGameSave = true;
+        SceneSwitcher.Instance.GoToScene(SceneType.House, forceLoadingScreen:true);
+    }
+
+    public void GoToMainMenu()
+    {
+        IsInPause = false;
+        CurrentState = GameState.MainMenu;
+        SceneSwitcher.Instance.GoToScene(SceneType.MainMenu);
     }
 }

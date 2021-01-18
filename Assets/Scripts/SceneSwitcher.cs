@@ -20,6 +20,9 @@ public class SceneSwitcher : SerializedMonoBehaviour
 {
     public static SceneSwitcher Instance { get; private set; }
 
+    public delegate void SceneEvent(SceneType sceneType);
+    public SceneEvent OnSceneLoaded;
+
     [SerializeField]
     private List<SceneBinding> _bindings;
 
@@ -66,21 +69,21 @@ public class SceneSwitcher : SerializedMonoBehaviour
         }
     }
 
-    public void GoToScene(SceneType scene)
+    public void GoToScene(SceneType scene, bool forceLoadingScreen = false)
     {
         int sceneId = GetSceneId(scene);
         if (sceneId != -1)
         {
-            StartCoroutine(LoadSceneAsync(sceneId));
+            StartCoroutine(LoadSceneAsync(sceneId, forceLoadingScreen));
             PreviousSceneId = CurrentSceneId;
             CurrentSceneId = sceneId;
         }
     }
 
-    private IEnumerator LoadSceneAsync(int sceneId)
+    private IEnumerator LoadSceneAsync(int sceneId, bool forceLoadingScreen = false)
     {
         IsSceneLoading = true;
-        bool displayLoadingScreen = ShouldDisplayLoadingScreen(sceneId);
+        bool displayLoadingScreen = forceLoadingScreen || ShouldDisplayLoadingScreen(sceneId);
         DisplayLoadingScreen(displayLoadingScreen);
 
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneId);
@@ -89,8 +92,9 @@ public class SceneSwitcher : SerializedMonoBehaviour
             yield return null;
         }
         IsSceneLoading = false;
-
+        
         DisplayLoadingScreen(false);
+        OnSceneLoaded?.Invoke(GetSceneWithId(sceneId));
     }
 
     public int GetSceneId(SceneType scene)
