@@ -85,6 +85,7 @@ public class PauseMenu : BasePopup
 
     void GoToMainMenu()
     {
+        SaveManager.Instance.SaveGame();
         GameManager.Instance.GoToMainMenu();
     }
 

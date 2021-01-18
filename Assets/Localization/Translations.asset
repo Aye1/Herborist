@@ -90,5 +90,5 @@ MonoBehaviour:
     parent: {fileID: 11400000}
   - key: button_mainmenu
     language: 10
-    value: Exit To Main Menu
+    value: Save & Quit
     parent: {fileID: 11400000}
