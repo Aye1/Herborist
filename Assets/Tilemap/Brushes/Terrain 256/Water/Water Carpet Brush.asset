@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84c1de61e39cb5d488fe0684e723aceb, type: 3}
+  m_Name: Water Carpet Brush
+  m_EditorClassIdentifier: 
+  Tileset: {fileID: 11400000, guid: 9dd7e3e3aa5c44dcdb68a7c9471357f9, type: 2}
+  Params:
+    m_paramList: []
+  m_group: 1
+  m_autotilingMode: 29
+  m_showInPalette: 1
+  TileIds: 2100ff0f2100ff0f2100ff0f2800ff0f2100ff0f2100ff0f1800ff0f2000ff0f2100ff0f2a00ff0f2100ff0f2900ff0f1a00ff0f2200ff0f1900ff0f2100ff0f
+  InteriorCornerTileIds: 23000000240000001b0000001c000000

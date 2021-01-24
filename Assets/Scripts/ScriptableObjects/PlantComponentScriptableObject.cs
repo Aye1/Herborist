@@ -13,7 +13,7 @@ public enum PlantComponentType
 }
 
 [CreateAssetMenu(fileName = "Plant Component", menuName = "ScriptableObjects/Plant Component")]
-public class PlantComponentScriptableObject : ScriptableObject
+public class PlantComponentScriptableObject : SerializedScriptableObject
 {
     public PlantComponentType componentType;
     public Sprite icon;

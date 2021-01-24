@@ -789,9 +789,77 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4366783721424473476, guid: 228f737c804294a8b9a6e65617c5824b, type: 3}
+      propertyPath: existingSaves.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4366783721424473476, guid: 228f737c804294a8b9a6e65617c5824b, type: 3}
       propertyPath: serializationData.Prefab
       value: 
       objectReference: {fileID: 4366783721424473476, guid: 228f737c804294a8b9a6e65617c5824b, type: 3}
+    - target: {fileID: 4366783721424473476, guid: 228f737c804294a8b9a6e65617c5824b, type: 3}
+      propertyPath: existingSaves.Array.data[0]
+      value: game1.PlantIdentificationInfos.identificationData.save
+      objectReference: {fileID: 0}
+    - target: {fileID: 4366783721424473476, guid: 228f737c804294a8b9a6e65617c5824b, type: 3}
+      propertyPath: existingSaves.Array.data[1]
+      value: game1.Player.inventory.save
+      objectReference: {fileID: 0}
+    - target: {fileID: 4366783721424473476, guid: 228f737c804294a8b9a6e65617c5824b, type: 3}
+      propertyPath: existingSaves.Array.data[2]
+      value: game1.Storage.inventory.save
+      objectReference: {fileID: 0}
+    - target: {fileID: 4366783721424473476, guid: 228f737c804294a8b9a6e65617c5824b, type: 3}
+      propertyPath: existingSaves.Array.data[3]
+      value: game2.Player.inventory.save
+      objectReference: {fileID: 0}
+    - target: {fileID: 4366783721424473476, guid: 228f737c804294a8b9a6e65617c5824b, type: 3}
+      propertyPath: existingSaves.Array.data[4]
+      value: game2.Storage.inventory.save
+      objectReference: {fileID: 0}
+    - target: {fileID: 4366783721424473476, guid: 228f737c804294a8b9a6e65617c5824b, type: 3}
+      propertyPath: existingSaves.Array.data[5]
+      value: game3.PlantIdentificationInfos.identificationData.save
+      objectReference: {fileID: 0}
+    - target: {fileID: 4366783721424473476, guid: 228f737c804294a8b9a6e65617c5824b, type: 3}
+      propertyPath: existingSaves.Array.data[6]
+      value: game3.Player.inventory.save
+      objectReference: {fileID: 0}
+    - target: {fileID: 4366783721424473476, guid: 228f737c804294a8b9a6e65617c5824b, type: 3}
+      propertyPath: existingSaves.Array.data[7]
+      value: game3.Storage.inventory.save
+      objectReference: {fileID: 0}
+    - target: {fileID: 4366783721424473476, guid: 228f737c804294a8b9a6e65617c5824b, type: 3}
+      propertyPath: existingSaves.Array.data[8]
+      value: game1.PlantIdentificationInfos.identificationData.save
+      objectReference: {fileID: 0}
+    - target: {fileID: 4366783721424473476, guid: 228f737c804294a8b9a6e65617c5824b, type: 3}
+      propertyPath: existingSaves.Array.data[9]
+      value: game1.Player.inventory.save
+      objectReference: {fileID: 0}
+    - target: {fileID: 4366783721424473476, guid: 228f737c804294a8b9a6e65617c5824b, type: 3}
+      propertyPath: existingSaves.Array.data[10]
+      value: game1.Storage.inventory.save
+      objectReference: {fileID: 0}
+    - target: {fileID: 4366783721424473476, guid: 228f737c804294a8b9a6e65617c5824b, type: 3}
+      propertyPath: existingSaves.Array.data[11]
+      value: game2.Player.inventory.save
+      objectReference: {fileID: 0}
+    - target: {fileID: 4366783721424473476, guid: 228f737c804294a8b9a6e65617c5824b, type: 3}
+      propertyPath: existingSaves.Array.data[12]
+      value: game2.Storage.inventory.save
+      objectReference: {fileID: 0}
+    - target: {fileID: 4366783721424473476, guid: 228f737c804294a8b9a6e65617c5824b, type: 3}
+      propertyPath: existingSaves.Array.data[13]
+      value: game3.PlantIdentificationInfos.identificationData.save
+      objectReference: {fileID: 0}
+    - target: {fileID: 4366783721424473476, guid: 228f737c804294a8b9a6e65617c5824b, type: 3}
+      propertyPath: existingSaves.Array.data[14]
+      value: game3.Player.inventory.save
+      objectReference: {fileID: 0}
+    - target: {fileID: 4366783721424473476, guid: 228f737c804294a8b9a6e65617c5824b, type: 3}
+      propertyPath: existingSaves.Array.data[15]
+      value: game3.Storage.inventory.save
+      objectReference: {fileID: 0}
     - target: {fileID: 4366783721424473477, guid: 228f737c804294a8b9a6e65617c5824b, type: 3}
       propertyPath: m_RootOrder
       value: 5

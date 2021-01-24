@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acf9f5ed5804c41f3a8be4d7f9de86a6, type: 3}
+  m_Name: Bramble
+  m_EditorClassIdentifier: 
+  unidentifiedNameLocKey: 
+  commonNameLocKey: Bramble
+  speciesName: Rubus Fructicosus
+  familyName: Rosaceae
+  loreLocKey: []
+  fullPicture: {fileID: 0}
+  components:
+  - {fileID: 11400000, guid: d8e8d7b1a1f314aa89ea47dfef2dcc03, type: 2}
+  - {fileID: 11400000, guid: 6b0904c2506194997b4b51cb55003be9, type: 2}
+  - {fileID: 11400000, guid: b032ff8a78185494685073e285b35cbe, type: 2}
