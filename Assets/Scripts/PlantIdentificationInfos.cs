@@ -56,6 +56,21 @@ public class PlantIdentificationInfos : SerializedMonoBehaviour, ISavable
         }
     }
 
+    public bool IsIdentified(PlantScriptableObject plant)
+    {
+        return plant.components.All(c => IsIdentified(c));
+    }
+
+    public bool IsIdentified(PlantComponentScriptableObject component)
+    {
+        if(identificationData.ContainsKey(component))
+        {
+            return identificationData[component];
+        }
+        Debug.LogError("Trying to get identification information for not existing component");
+        return false;
+    }
+
     #region ISavable implementation
     public SaveState GetObjectToSave()
     {
