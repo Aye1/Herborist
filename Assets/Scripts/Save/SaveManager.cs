@@ -10,6 +10,10 @@ public class SaveManager : SerializedMonoBehaviour
 
     public List<ISavable> objectsToSave;
 
+    [ListDrawerSettings(HideAddButton = true, CustomRemoveElementFunction = "DeleteSave", DraggableItems = false)]
+    [ShowInInspector]
+    private List<string> _existingSaves;
+
     public static SaveManager Instance { get; private set; }
     public bool IsSaving { get; private set; }
     public bool IsLoading { get; private set; }
@@ -23,7 +27,6 @@ public class SaveManager : SerializedMonoBehaviour
         }
         else
         {
-            //Instance.MergeSaveLists(objectsToSave);
             Destroy(gameObject);
         }
     }
@@ -77,6 +80,12 @@ public class SaveManager : SerializedMonoBehaviour
         IsLoading = false;
     }
 
+    [Button("Search Saves")]
+    public void SearchSaves()
+    {
+        UpdateSaveList();
+    }
+
     [Button("Clean Saves")]
     public void CleanAllSaves()
     {
@@ -88,6 +97,7 @@ public class SaveManager : SerializedMonoBehaviour
                 File.Delete(path);
             }
         }
+        UpdateSaveList();
     }
 
     private string GetSavePath(string fileName)
@@ -104,6 +114,35 @@ public class SaveManager : SerializedMonoBehaviour
             if(!objectsToSave.Contains(sav))
             {
                 objectsToSave.Add(sav);
+            }
+        }
+    }
+
+    private void DeleteSave(string path)
+    {
+        foreach (string fullPath in Directory.GetFiles(Application.persistentDataPath))
+        {
+            if (fullPath.EndsWith(path))
+            {
+                File.Delete(fullPath);
+            }
+        }
+        UpdateSaveList();
+    }
+
+    private void UpdateSaveList()
+    {
+        if (_existingSaves == null)
+        {
+            _existingSaves = new List<string>();
+        }
+        _existingSaves.Clear();
+        foreach (string path in Directory.GetFiles(Application.persistentDataPath))
+        {
+            if (path.EndsWith(SAVE_EXTENSION))
+            {
+                string[] split = path.Split('/');
+                _existingSaves.Add(split[split.Length - 1]);
             }
         }
     }
