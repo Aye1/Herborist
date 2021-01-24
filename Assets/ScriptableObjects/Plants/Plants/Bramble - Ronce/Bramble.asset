@@ -18,4 +18,7 @@ MonoBehaviour:
   familyName: Rosaceae
   loreLocKey: []
   fullPicture: {fileID: 0}
-  components: []
+  components:
+  - {fileID: 11400000, guid: d8e8d7b1a1f314aa89ea47dfef2dcc03, type: 2}
+  - {fileID: 11400000, guid: 6b0904c2506194997b4b51cb55003be9, type: 2}
+  - {fileID: 11400000, guid: b032ff8a78185494685073e285b35cbe, type: 2}

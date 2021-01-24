@@ -18,4 +18,6 @@ MonoBehaviour:
   familyName: Fagaceae
   loreLocKey: []
   fullPicture: {fileID: 0}
-  components: []
+  components:
+  - {fileID: 11400000, guid: 4c41b2014fbac45c59fa3a4a684e35ca, type: 2}
+  - {fileID: 11400000, guid: 5d35871427e50492e882a569a5dd80ff, type: 2}

@@ -18,4 +18,5 @@ MonoBehaviour:
   familyName: Violaceae
   loreLocKey: []
   fullPicture: {fileID: 0}
-  components: []
+  components:
+  - {fileID: 11400000, guid: dc2aa7f044d2e4e969dc9f6ff66a2bb6, type: 2}

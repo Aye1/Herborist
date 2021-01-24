@@ -18,4 +18,7 @@ MonoBehaviour:
   familyName: Juglandaceae
   loreLocKey: []
   fullPicture: {fileID: 0}
-  components: []
+  components:
+  - {fileID: 11400000, guid: 0ca0eee128a9544ce8e6e57101d2884b, type: 2}
+  - {fileID: 11400000, guid: 7ca4c6e1338c34257a3ab48f94732ee4, type: 2}
+  - {fileID: 11400000, guid: 1a94a0c9c1f524434a010e4d9002827c, type: 2}
