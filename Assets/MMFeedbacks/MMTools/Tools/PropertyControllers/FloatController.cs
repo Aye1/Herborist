@@ -562,6 +562,11 @@ namespace MoreMountains.Tools
             // we fill our dropdown list of names :
             AttributeNames = _attributesNamesTempList.ToArray();
         }
+
+        public void ForceStop()
+        {
+            this.enabled = false;
+        }
     }
 }
 

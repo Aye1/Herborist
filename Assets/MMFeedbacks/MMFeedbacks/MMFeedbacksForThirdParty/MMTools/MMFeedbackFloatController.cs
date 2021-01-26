@@ -114,6 +114,12 @@ namespace MoreMountains.Feedbacks
             }
         }
 
+        protected override void CustomStopFeedback(Vector3 position, float attenuation = 1.0f)
+        {
+            TargetFloatController.ForceStop();
+            CustomReset();
+        }
+
         /// <summary>
         /// On reset we make our renderer stop flickering
         /// </summary>
