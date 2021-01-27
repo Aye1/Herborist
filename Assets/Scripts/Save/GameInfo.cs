@@ -1,21 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class GameInfoState : SaveState
+/*public class GameInfoState : SaveState
 {
     public int saveNumber;
-    public int timePlayedSeconds;
-}
+    public float timePlayedSeconds;
+}*/
 
 [CreateAssetMenu(fileName = "Game Info", menuName = "ScriptableObjects/Game Info")]
-public class GameInfo : ScriptableObject, ISavable
+public class GameInfo : ScriptableObject
 {
     public int saveNumber;
 
-    public int TimePlayedSeconds { get; private set; }
+    public float TimePlayedSeconds { get; private set; }
 
-    public SaveState GetObjectToSave()
+    public bool isGameStarted;
+
+    /*public SaveState GetObjectToSave()
     {
         return new GameInfoState()
         {
@@ -34,5 +34,10 @@ public class GameInfo : ScriptableObject, ISavable
         GameInfoState state = saveState as GameInfoState;
         saveNumber = state.saveNumber;
         TimePlayedSeconds = state.timePlayedSeconds;
+    }*/
+
+    public void AddGameTime(float timeSec)
+    {
+        TimePlayedSeconds += timeSec;
     }
 }

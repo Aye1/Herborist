@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Game Info 1
   m_EditorClassIdentifier: 
   saveNumber: 1
+  isGameStarted: 1

@@ -12,7 +12,7 @@ public class SaveSelectorUI : MonoBehaviour
     private void OnEnable()
     {
         SetKeyboardFocus();
-        LoadGameInfos();
+        //LoadGameInfos();
     }
 
     private void SetKeyboardFocus()
@@ -24,11 +24,11 @@ public class SaveSelectorUI : MonoBehaviour
         }
     }
 
-    private void LoadGameInfos()
+    /*private void LoadGameInfos()
     {
         foreach(SaveSelectorItemUI item in saveButtons)
         {
             SaveManager.Instance.Load(item.associatedInfo);
         }
-    }
+    }*/
 }

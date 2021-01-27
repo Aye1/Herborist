@@ -12,6 +12,8 @@ public class GameManager : SerializedMonoBehaviour
     [SerializeField, ReadOnly]
     private bool _isInPause;
     private bool _shouldLoadGameSave;
+    private bool _isCountingTime;
+    private float _gameTimer; // Time played, in seconds
 
     private readonly string PAUSE_ACTION = "Custom UI/Pause Menu";
 
@@ -82,6 +84,15 @@ public class GameManager : SerializedMonoBehaviour
         UnBindEvents();
     }
 
+    private void Update()
+    {
+        if(_isCountingTime)
+        {
+            _gameTimer += Time.deltaTime;
+            gameInfo.AddGameTime(Time.deltaTime); // Time spent is always updated, so that we are sur to save it properly
+        }
+    }
+
     void BindInputs()
     {
         InputAction pauseAction = _actions.FindAction(PAUSE_ACTION);
@@ -136,9 +147,11 @@ public class GameManager : SerializedMonoBehaviour
     public void LaunchGame(GameInfo info)
     {
         gameInfo = info;
+        gameInfo.isGameStarted = true;
         CurrentState = GameState.Game;
         _shouldLoadGameSave = true;
         SceneSwitcher.Instance.GoToScene(SceneType.House, forceLoadingScreen:true);
+        LaunchGameTimer();
     }
 
     public void GoToMainMenu()
@@ -146,5 +159,16 @@ public class GameManager : SerializedMonoBehaviour
         IsInPause = false;
         CurrentState = GameState.MainMenu;
         SceneSwitcher.Instance.GoToScene(SceneType.MainMenu);
+        StopGameTimer();
+    }
+
+    private void LaunchGameTimer()
+    {
+        _isCountingTime = true;
+    }
+
+    private void StopGameTimer()
+    {
+        _isCountingTime = false;
     }
 }

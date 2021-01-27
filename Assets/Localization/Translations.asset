@@ -30,6 +30,8 @@ MonoBehaviour:
   - interact_inventory
   - save_name
   - button_mainmenu
+  - new_save
+  - time_played
   _availableLanguages: 0a000000
   _translations:
   - key: default
@@ -91,4 +93,12 @@ MonoBehaviour:
   - key: button_mainmenu
     language: 10
     value: Save & Quit
+    parent: {fileID: 11400000}
+  - key: new_save
+    language: 10
+    value: New Game
+    parent: {fileID: 11400000}
+  - key: time_played
+    language: 10
+    value: 'Time played:'
     parent: {fileID: 11400000}
