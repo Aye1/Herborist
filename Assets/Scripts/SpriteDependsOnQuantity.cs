@@ -60,11 +60,24 @@ public class SpriteDependsOnQuantity : MonoBehaviour
         }
     }
 
+    public List<Vector2Int> MissingRanges
+    {
+        get
+        {
+            if(_missingRanges == null)
+            {
+                _missingRanges = new List<Vector2Int>();
+            }
+            return _missingRanges;
+        }
+    }
+
     void Awake()
     {
         _conflictingQuantities = new List<SpriteQuantityBinder>();
         _missingRanges = new List<Vector2Int>();
         _renderer = GetComponent<SpriteRenderer>();
+        UpdateSprite();
     }
 
     // Update is called once per frame
@@ -94,7 +107,7 @@ public class SpriteDependsOnQuantity : MonoBehaviour
     private void CheckConsistency()
     {
         _conflictingQuantities.Clear();
-        _missingRanges.Clear();
+        MissingRanges.Clear();
         if(_quantities.Count == 0)
         {
             return;
@@ -103,7 +116,7 @@ public class SpriteDependsOnQuantity : MonoBehaviour
         SpriteQuantityBinder[] ordered = _quantities.OrderBy(q => q.minMaxPercentage.x).ToArray();
         if(ordered[0].minMaxPercentage.x > 0)
         {
-            _missingRanges.Add(new Vector2Int(0, ordered[0].minMaxPercentage.x - 1));
+            MissingRanges.Add(new Vector2Int(0, ordered[0].minMaxPercentage.x - 1));
         }
         for(int i=0; i < ordered.Length - 1; i++)
         {
@@ -119,18 +132,18 @@ public class SpriteDependsOnQuantity : MonoBehaviour
 
             if(nextMin > currentMax + 1)
             {
-                _missingRanges.Add(new Vector2Int(currentMax+1, nextMin-1));
+                MissingRanges.Add(new Vector2Int(currentMax+1, nextMin-1));
             }
         }
         if(ordered[ordered.Length-1].minMaxPercentage.y < 100)
         {
-            _missingRanges.Add(new Vector2Int(ordered[ordered.Length - 1].minMaxPercentage.y + 1, 100));
+            MissingRanges.Add(new Vector2Int(ordered[ordered.Length - 1].minMaxPercentage.y + 1, 100));
         }
     }
 
     public bool IsConsistent()
     {
-        return _missingRanges.Count == 0 && _conflictingQuantities.Count == 0;
+        return MissingRanges.Count == 0 && _conflictingQuantities.Count == 0;
     }
 
     public Color GetValidationColor(SpriteQuantityBinder binder)
@@ -151,10 +164,10 @@ public class SpriteDependsOnQuantity : MonoBehaviour
                 res += "    Object at position " + _quantities.IndexOf(b) + " " + b.ToString() + "\n";
             }
         }
-        if(_missingRanges.Count > 0)
+        if(MissingRanges.Count > 0)
         {
             res += "* Missing ranges: \n";
-            foreach(Vector2Int range in _missingRanges)
+            foreach(Vector2Int range in MissingRanges)
             {
                 res += "    [" + range.x + " - " + range.y + "] \n";
             }

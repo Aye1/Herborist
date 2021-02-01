@@ -6,7 +6,7 @@ using System;
 using Sirenix.OdinInspector;
 using CreativeSpore.SuperTilemapEditor;
 
-public enum TileType { Grass, Water, Dirt, Bridge, MapBorder, Tree, Grass256, Dirt256 };
+public enum TileType { Grass, Water, Dirt, Bridge, MapBorder, Tree };
 
 [Serializable]
 public struct TerrainTileMapping
@@ -143,7 +143,7 @@ public class MapGenerator : MonoBehaviour
         GenerateMapBorders(_borderWidth);
 
         tileMappings.Select(m => m.tilemap).Distinct().ToList().ForEach(t => t?.UpdateMeshImmediate()); // Force updating tilemaps before ending the loading + only way to disable colliders
-        DisableColliders(_terrainTilemap, _bridgePositions);
+        //DisableColliders(_terrainTilemap, _bridgePositions);
 
     }
 

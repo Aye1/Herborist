@@ -13,11 +13,5 @@ MonoBehaviour:
   m_Name: TreeProbabilityMap
   m_EditorClassIdentifier: 
   probabilities:
-  - obj: {fileID: 6785125857616866965, guid: f9567025303f8487699517973e7545cf, type: 3}
-    probabilityRange: {x: 0, y: 0.2}
-  - obj: {fileID: 1346373806988974331, guid: 6e38b7acef08242cdb0986c470ed5826, type: 3}
-    probabilityRange: {x: 0.2, y: 0.4}
-  - obj: {fileID: 9121713431005995009, guid: 22a6d943af613498f8dbb0b87c6e105f, type: 3}
-    probabilityRange: {x: 0.4, y: 0.6}
-  - obj: {fileID: 6892268722201663165, guid: 0f8c2274931f4480e87c7c6ef480f675, type: 3}
-    probabilityRange: {x: 0.6, y: 1}
+  - obj: {fileID: 2268684733498601354, guid: 291a23283e45a4f74abc28a8a23bcbf8, type: 3}
+    probabilityRange: {x: 0, y: 1}

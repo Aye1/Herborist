@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84c1de61e39cb5d488fe0684e723aceb, type: 3}
+  m_Name: Path CarpetBrush
+  m_EditorClassIdentifier: 
+  Tileset: {fileID: 11400000, guid: bc8d8897576f4429aa6098401e5c669b, type: 2}
+  Params:
+    m_paramList: []
+  m_group: 3
+  m_autotilingMode: 21
+  m_showInPalette: 1
+  TileIds: c3040000c3040000c3040000f3040000c3040000c304000089040000c2040000c3040000f5040000c3040000f40400008b040000c40400008a040000c3040000
+  InteriorCornerTileIds: c0040000c10400008704000088040000
