@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5446311394173830166}
   - component: {fileID: 5446311394173830167}
   - component: {fileID: 5446311394173830165}
+  - component: {fileID: 246492152}
   m_Layer: 0
   m_Name: MapGenerator
   m_TagString: Untagged
@@ -48,23 +49,23 @@ MonoBehaviour:
   DontGenerateMap: 0
   tileMappings:
   - type: 0
-    tileId: 5
-    brushId: 0
+    tileId: 0
+    brushId: 31
     tilemap: {fileID: 0}
     minimapColor: {r: 0.34531865, g: 0.754717, b: 0.38894305, a: 1}
   - type: 1
     tileId: 0
-    brushId: 2
+    brushId: 11
     tilemap: {fileID: 0}
     minimapColor: {r: 0.063412234, g: 0.54822266, b: 0.8962264, a: 1}
   - type: 2
     tileId: 0
-    brushId: 4
+    brushId: 1
     tilemap: {fileID: 0}
     minimapColor: {r: 0.9150943, g: 0.89875716, b: 0.58272517, a: 1}
   - type: 3
     tileId: 0
-    brushId: 3
+    brushId: 28
     tilemap: {fileID: 0}
     minimapColor: {r: 0.4811321, g: 0.26685256, b: 0.15659487, a: 1}
   - type: 4
@@ -92,9 +93,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: 100
-  density: 0.4
-  noise: 0.5
-  stepSize: 1
-  numberBalances: 3
+  density: 0.3
+  noise: 0.7
+  stepSize: 3
+  numberBalances: 2
   posToAvoid: []
   treesTemplates: {fileID: 11400000, guid: 5cf2916918010403da439b37d40cc00a, type: 2}
+--- !u!114 &246492152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5446311394173830160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 212558523e5164cd0aa40ce59628ccdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: 100
+  density: 0.628
+  noise: 0.5
+  stepSize: 1
+  numberBalances: 2
+  posToAvoid: []
+  treesTemplates: {fileID: 11400000, guid: be42b3ba87b154c689458f9bdfed09b0, type: 2}

@@ -24,6 +24,7 @@ public class MapGenerator : MonoBehaviour
 
     public Vector2Int mapSize;
     public bool DontGenerateMap;
+    public int pathWidth = 5;
 
 
     [Required]
@@ -40,10 +41,11 @@ public class MapGenerator : MonoBehaviour
     private List<CurvedLinePath> _pathes;
     private List<Vector2Int> _bridgePositions;
     private Polygon _borderPolygon;
-    private ForestGenerator _forestGenerator;
+    //private ForestGenerator _forestGenerator;
+    private ForestGenerator[] _forestGenerators;
+    private List<Vector2Int> _usedPositions;
     private List<PointOfInterest> _spawnedPOIs;
 
-    private int _firstPathWidth = 5;
     private int _borderWidth = 2;
     private Vector3 _playerStartPosition;
     private PlayerMovement _player;
@@ -54,7 +56,9 @@ public class MapGenerator : MonoBehaviour
         {
             Instance = this;
             _playerStartPosition = new Vector3(mapSize.x * 0.5f, 5, 0.0f);
-            _forestGenerator = GetComponent<ForestGenerator>();
+            _forestGenerators = GetComponents<ForestGenerator>();
+            //_forestGenerator = GetComponent<ForestGenerator>();
+            _usedPositions = new List<Vector2Int>();
         }
         else
         {
@@ -70,8 +74,15 @@ public class MapGenerator : MonoBehaviour
         {
             GenerateMap();
             SetPositionsToAvoid();
-            _forestGenerator.size = mapSize.x;
-            _forestGenerator.LaunchTreesGeneration();
+            foreach(ForestGenerator generator in _forestGenerators)
+            {
+                generator.posToAvoid.AddRange(_usedPositions);
+                generator.size = mapSize.x;
+                generator.LaunchTreesGeneration();
+                _usedPositions.AddRange(generator.TreePositions);
+            }
+            //_forestGenerator.size = mapSize.x;
+            //_forestGenerator.LaunchTreesGeneration();
             //TestFillPolygon();
         }
     }
@@ -89,13 +100,13 @@ public class MapGenerator : MonoBehaviour
 
     private void SetPositionsToAvoid()
     {
-        _spawnedPOIs?.ForEach(poi => _forestGenerator?.posToAvoid.AddRange(poi.TilesPositions));
-        _rivers?.ForEach(r => _forestGenerator?.posToAvoid.AddRange(r.AllPoints));
-        _pathes?.ForEach(p => _forestGenerator?.posToAvoid.AddRange(p.AllPoints));
+        _spawnedPOIs?.ForEach(poi => _usedPositions.AddRange(poi.TilesPositions));
+        _rivers?.ForEach(r => _usedPositions.AddRange(r.AllPoints));
+        _pathes?.ForEach(p => _usedPositions.AddRange(p.AllPoints));
         if(_bridgePositions != null)
-            _forestGenerator?.posToAvoid.AddRange(_bridgePositions);
+            _usedPositions.AddRange(_bridgePositions);
         if(_borderPolygon != null)
-            _forestGenerator?.posToAvoid.AddRange(_borderPolygon.Points);
+            _usedPositions.AddRange(_borderPolygon.Points);
     }
 
     public void GenerateMap()
@@ -169,7 +180,7 @@ public class MapGenerator : MonoBehaviour
         {
             _bridgePositions = new List<Vector2Int>();
         }
-        CurvedLinePath path = new CurvedLinePath(pathControlPoints, _firstPathWidth);
+        CurvedLinePath path = new CurvedLinePath(pathControlPoints, pathWidth);
         path.GeneratePoints(0, 4);
         List<Vector2Int> riverPathCrossingPositions = path.AllPoints.Where(p => _rivers.Any(r => r.AllPoints.Contains(p))).ToList();
         List<Vector2Int> pathPositions = path.AllPoints.Where(p => !riverPathCrossingPositions.Contains(p)).ToList();
@@ -204,19 +215,19 @@ public class MapGenerator : MonoBehaviour
         int halfSizeX = mapSize.x / 2 - 3; // TODO: change this arbitrary constant value (if needed)
         List< Vector2Int> polygonBoundaries = new List<Vector2Int>()
         {
-            new Vector2Int(halfSizeX-_firstPathWidth / 2, -2),
+            new Vector2Int(halfSizeX-pathWidth / 2, -2),
             new Vector2Int(-1, -2),
             new Vector2Int(-1, mapSize.y),
             new Vector2Int(mapSize.x, mapSize.y),
             new Vector2Int(mapSize.x, -2),
-            new Vector2Int(halfSizeX + _firstPathWidth, -2),
-            new Vector2Int(halfSizeX + _firstPathWidth + width, width),
+            new Vector2Int(halfSizeX + pathWidth, -2),
+            new Vector2Int(halfSizeX + pathWidth + width, width),
             new Vector2Int(mapSize.x - width, width),
             new Vector2Int(mapSize.x - width, mapSize.y - width),
             new Vector2Int(width, mapSize.y - width),
             new Vector2Int(width, width),
-            new Vector2Int(halfSizeX - _firstPathWidth/2 - width, width),
-            new Vector2Int(halfSizeX - _firstPathWidth/2, -2)
+            new Vector2Int(halfSizeX - pathWidth/2 - width, width),
+            new Vector2Int(halfSizeX - pathWidth/2, -2)
         };
         _borderPolygon = new Polygon(polygonBoundaries);
         _borderPolygon.GenerateFillingPoints();
@@ -288,7 +299,7 @@ public class MapGenerator : MonoBehaviour
             return TileType.Bridge;
         }
 
-        if(_forestGenerator != null && _forestGenerator.HasTreeAtPos(position))
+        if(_forestGenerators != null && _forestGenerators.Any(f => f.HasTreeAtPos(position)))
         {
             return TileType.Tree;
         }

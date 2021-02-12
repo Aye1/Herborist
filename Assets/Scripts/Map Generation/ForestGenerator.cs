@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
+using System.Linq;
 
 public class ForestGenerator : MonoBehaviour
 {
@@ -21,21 +22,18 @@ public class ForestGenerator : MonoBehaviour
     //private Vector3 _offset;
     private bool[,] _treePositions;
 
-    public static ForestGenerator Instance { get; private set; }
+    public IEnumerable<Vector2Int> TreePositions
+    {
+        get
+        {
+            return _createdTrees.Keys.Select(v => InternalToTilemapPosition(v));
+        }
+    }
 
     void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            //_offset = new Vector3(-size * 0.5f, 0.0f, 0.0f);
-            _numberSteps = (int)(size / stepSize);
-            posToAvoid = new List<Vector2Int>();
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        _numberSteps = (int)(size / stepSize);
+        posToAvoid = new List<Vector2Int>();
     }
 
     public void LaunchTreesGeneration()
