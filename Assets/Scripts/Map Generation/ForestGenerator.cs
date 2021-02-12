@@ -172,8 +172,9 @@ public class ForestGenerator : MonoBehaviour
 
     private void CreateTree(Vector2Int position)
     {
-        float noiseX = Alea.GetFloat(0.0f, noise) * stepSize;
-        float noiseY = Alea.GetFloat(0.0f, noise) * stepSize;
+        float halfNoise = noise * 0.5f;
+        float noiseX = (Alea.GetFloat(0.0f, noise) - halfNoise) * stepSize + 0.5f; // 0.5f is an offset, to move from bottom left corner to center
+        float noiseY = (Alea.GetFloat(0.0f, noise) - halfNoise) * stepSize + 0.5f;
         Vector2 realPos = InternalToRealContinuousPosition(position);
         Vector3 pos = new Vector3(realPos.x + noiseX, realPos.y + noiseY, 0.0f);
         GameObject tree = GenerateTreeObject(pos);

@@ -26,7 +26,6 @@ public class MapGenerator : MonoBehaviour
     public bool DontGenerateMap;
     public int pathWidth = 5;
 
-
     [Required]
     public List<TerrainTileMapping> tileMappings;
 
@@ -41,7 +40,6 @@ public class MapGenerator : MonoBehaviour
     private List<CurvedLinePath> _pathes;
     private List<Vector2Int> _bridgePositions;
     private Polygon _borderPolygon;
-    //private ForestGenerator _forestGenerator;
     private ForestGenerator[] _forestGenerators;
     private List<Vector2Int> _usedPositions;
     private List<PointOfInterest> _spawnedPOIs;
@@ -57,7 +55,6 @@ public class MapGenerator : MonoBehaviour
             Instance = this;
             _playerStartPosition = new Vector3(mapSize.x * 0.5f, 5, 0.0f);
             _forestGenerators = GetComponents<ForestGenerator>();
-            //_forestGenerator = GetComponent<ForestGenerator>();
             _usedPositions = new List<Vector2Int>();
         }
         else
@@ -81,8 +78,6 @@ public class MapGenerator : MonoBehaviour
                 generator.LaunchTreesGeneration();
                 _usedPositions.AddRange(generator.TreePositions);
             }
-            //_forestGenerator.size = mapSize.x;
-            //_forestGenerator.LaunchTreesGeneration();
             //TestFillPolygon();
         }
     }
@@ -139,7 +134,7 @@ public class MapGenerator : MonoBehaviour
 
         List<Vector2Int> pathControlPoints = new List<Vector2Int>()
         {
-            new Vector2Int(49, 6),
+            new Vector2Int(47, 2),
             new Vector2Int(49, 29),
             MapGeneratorHelper.GenerateRandomPointOnLimit(MapLimit.Up, 0.10f, 0.50f)
         };
@@ -184,7 +179,6 @@ public class MapGenerator : MonoBehaviour
         path.GeneratePoints(0, 4);
         List<Vector2Int> riverPathCrossingPositions = path.AllPoints.Where(p => _rivers.Any(r => r.AllPoints.Contains(p))).ToList();
         List<Vector2Int> pathPositions = path.AllPoints.Where(p => !riverPathCrossingPositions.Contains(p)).ToList();
-        //List<Vector2Int> pathPositions = path.AllPoints;
         PutTiles(pathPositions, TileType.Dirt);
         PutTiles(riverPathCrossingPositions, TileType.Bridge);
         _pathes.Add(path);
@@ -236,9 +230,10 @@ public class MapGenerator : MonoBehaviour
 
     private void GenerateEntrancePOI()
     {
-        PointOfInterest entrancePOI = Instantiate(_entrancePOI, transform);
-        entrancePOI.SetPositionOnTilemap(new Vector2(mapSize.x * 0.5f - entrancePOI.Size.x / 2, -0.5f));
-        _spawnedPOIs.Add(entrancePOI);
+        PointOfInterest newPOI = Instantiate(_entrancePOI, transform);
+        newPOI.SetPositionOnTilemap(new Vector2(mapSize.x * 0.5f - newPOI.Size.x * 0.5f - 0.5F, -1.0f)); // TODO: remove arbitrary 0.5F
+        _spawnedPOIs.Add(newPOI);
+        newPOI.MergeTilemaps(_terrainTilemap);
     }
 
     private void PutTiles(List<Vector2Int> positions, TileType type)
@@ -247,19 +242,6 @@ public class MapGenerator : MonoBehaviour
         {
             PutTile(pos, type);
         } 
-    }
-
-    private IEnumerator PutTilesAsync(List<Vector2Int> positions, TileType type)
-    {
-        int i = 0;
-        Debug.Log(positions.Count);
-        while (i < positions.Count)
-        {
-            PutTile(positions[i], type);
-            Debug.Log(i);
-            yield return null;
-            i++;
-        }
     }
 
     private void PutTile(Vector2Int position, TileType type)
@@ -333,6 +315,7 @@ public class MapGenerator : MonoBehaviour
     {
         DebugDrawRiver();
         DebugDrawPath();
+        DebugDrawUsedPositions();
     }
 
     private void TestFillPolygon()
@@ -379,6 +362,15 @@ public class MapGenerator : MonoBehaviour
         }
     }
 
+    private void DebugDrawUsedPositions()
+    {
+        if(_usedPositions != null)
+        {
+            //_usedPositions.ForEach(p => DebugDrawPoint(p, Color.red));
+            _usedPositions.ForEach(p => DebugDrawTile(p, Color.green));
+        }
+    }
+
     private void DebugDraw(List<Vector2Int> points, Color color)
     {
         for (int i = 0; i < points.Count - 1; i++)
@@ -388,6 +380,28 @@ public class MapGenerator : MonoBehaviour
             Vector3 end = new Vector3(points[i + 1].x + 1, points[i + 1].y + 1, 0);
             Debug.DrawLine(begin, end, color);
         }
+    }
+
+    private void DebugDrawPoint(Vector2Int position, Color color)
+    {
+        Vector3 upLeft = new Vector3(position.x - 0.4f, position.y + 0.4f, 0.0f);
+        Vector3 upRight = new Vector3(position.x + 0.4f, position.y + 0.4f, 0.0f);
+        Vector3 downLeft = new Vector3(position.x - 0.4f, position.y - 0.4f, 0.0f);
+        Vector3 downRight = new Vector3(position.x + 0.4f, position.y - 0.4f, 0.0f);
+        Debug.DrawLine(upLeft, downRight, color);
+        Debug.DrawLine(upRight, downLeft, color);
+    }
+
+    private void DebugDrawTile(Vector2Int position, Color color)
+    {
+        Vector3 upLeft = new Vector3(position.x + 0.05f, position.y + 0.95f, 0.0f);
+        Vector3 upRight = new Vector3(position.x + 0.95f, position.y + 0.95f, 0.0f);
+        Vector3 downLeft = new Vector3(position.x + 0.05f, position.y + 0.05f, 0.0f);
+        Vector3 downRight = new Vector3(position.x + 0.95f, position.y + 0.05f, 0.0f);
+        Debug.DrawLine(upLeft, upRight, color);
+        Debug.DrawLine(upRight, downRight, color);
+        Debug.DrawLine(downRight, downLeft, color);
+        Debug.DrawLine(downLeft, upLeft, color);
     }
     #endregion
 }

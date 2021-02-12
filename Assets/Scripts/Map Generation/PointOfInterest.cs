@@ -52,4 +52,25 @@ public class PointOfInterest : MonoBehaviour
             }
         }
     }
+
+    public void MergeTilemaps(STETilemap destTilemap)
+    {
+         _tilemaps.ForEach(t => MergeTilemap(t, destTilemap));
+    }
+
+    private void MergeTilemap(STETilemap srcTilemap, STETilemap destTilemap)
+    {
+        // Warning: there is a -1 here, check with other POIs if it's ok
+        for(int i=0; i < srcTilemap.GridWidth-1; i++)
+        {
+            for(int j=0; j<srcTilemap.GridHeight; j++)
+            {
+                Vector2Int realPosition = new Vector2Int(_bottomLeftTilePosition.x + i + 1, _bottomLeftTilePosition.y + j);
+                uint tileDataId = srcTilemap.GetTileData(i, j);
+                TileData tileData = new TileData(tileDataId);
+                destTilemap.SetTileData(realPosition, tileData.BuildData());
+            }
+        }
+        srcTilemap.gameObject.SetActive(false);
+    }
 }
