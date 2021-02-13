@@ -26,4 +26,6 @@ public class CollectibleScriptableObject : ScriptableObject
     [PropertySpace(SpaceBefore = 20)]
     public Vector2Int handGatherQuantity = Vector2Int.one;
 
+    public PlantComponentScriptableObject parentPlantComponent;
+
 }

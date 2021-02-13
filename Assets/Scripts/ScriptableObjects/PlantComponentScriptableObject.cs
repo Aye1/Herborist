@@ -21,4 +21,5 @@ public class PlantComponentScriptableObject : SerializedScriptableObject
     public CollectiblePackage collectibleInfo;
     [DictionaryDrawerSettings(KeyLabel = "Parameter", ValueLabel = "Value")]
     public Dictionary<PlantIdentificationParameterScriptableObject, PlantIdentificationValueScriptableObject> parameters;
+    public PlantScriptableObject plantParent;
 }

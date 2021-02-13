@@ -12,6 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3f06b4333e7a4b77a48817e91295caa, type: 3}
   m_Name: Tilleul Leaf
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: collectibleInfo
+      Entry: 6
+      Data: 
+    - Name: parameters
+      Entry: 6
+      Data: 
   componentType: 0
   icon: {fileID: 0}
   componentPicture: {fileID: 0}
+  plantParent: {fileID: 11400000, guid: 9a178f1e7021f4c80b83a5b74e167f0e, type: 2}
