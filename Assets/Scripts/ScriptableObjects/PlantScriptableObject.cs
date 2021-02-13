@@ -12,17 +12,19 @@ public class PlantScriptableObject : ScriptableObject
     public string familyName;
     public List<string> loreLocKey;
     public Sprite fullPicture;
+    public Sprite blackAndWhitePicture;
+
     public List<PlantComponentScriptableObject> components;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
