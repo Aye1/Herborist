@@ -15,7 +15,17 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects: []
+    ReferencedUnityObjects:
+    - {fileID: 11400000, guid: cb2a7d858d5de4ecbbefb8925ab6869b, type: 2}
+    - {fileID: 11400000, guid: 4717fb144d79c4494897018f596cab14, type: 2}
+    - {fileID: 11400000, guid: 92c1933d2e6ad4c9a9eac84a009184de, type: 2}
+    - {fileID: 11400000, guid: 8f89293cac8674beba884f13c4866c35, type: 2}
+    - {fileID: 11400000, guid: 7340aa09dd8fe4f9a9796833b2d1a20e, type: 2}
+    - {fileID: 11400000, guid: d2618de9250c9464ba8cda419ce21d7a, type: 2}
+    - {fileID: 11400000, guid: cdf2eb515ce734945917a93e1c4d4235, type: 2}
+    - {fileID: 11400000, guid: 0e3326409e929442aab94c394b94c390, type: 2}
+    - {fileID: 11400000, guid: b868ca750e7a44bdbb6dbcec019c5b6c, type: 2}
+    - {fileID: 11400000, guid: 67187d60cd86040c89cf0efa3d41a7d5, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -25,7 +35,85 @@ MonoBehaviour:
       Entry: 6
       Data: 
     - Name: parameters
-      Entry: 6
+      Entry: 7
+      Data: 0|UnityEngine.Rendering.SerializedDictionary`2[[PlantIdentificationParameterScriptableObject,
+        Assembly-CSharp],[PlantIdentificationValueScriptableObject, Assembly-CSharp]],
+        Unity.RenderPipelines.Core.Runtime
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.ObjectEqualityComparer`1[[PlantIdentificationParameterScriptableObject,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 5
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 0
+    - Name: $v
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 2
+    - Name: $v
+      Entry: 10
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 4
+    - Name: $v
+      Entry: 10
+      Data: 5
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 6
+    - Name: $v
+      Entry: 10
+      Data: 7
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 8
+    - Name: $v
+      Entry: 10
+      Data: 9
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
       Data: 
   componentType: 3
   icon: {fileID: 0}
