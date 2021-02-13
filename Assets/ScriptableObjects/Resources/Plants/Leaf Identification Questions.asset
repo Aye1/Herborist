@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dae38d7f07b844d908eb1e0b8b8fa68c, type: 3}
+  m_Name: Leaf Identification Questions
+  m_EditorClassIdentifier: 
+  questions:
+  - {fileID: 11400000, guid: cb2a7d858d5de4ecbbefb8925ab6869b, type: 2}
+  - {fileID: 11400000, guid: 92c1933d2e6ad4c9a9eac84a009184de, type: 2}
+  - {fileID: 11400000, guid: 7340aa09dd8fe4f9a9796833b2d1a20e, type: 2}
+  - {fileID: 11400000, guid: cdf2eb515ce734945917a93e1c4d4235, type: 2}
+  - {fileID: 11400000, guid: b868ca750e7a44bdbb6dbcec019c5b6c, type: 2}
