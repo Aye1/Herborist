@@ -30,3 +30,4 @@ MonoBehaviour:
   componentType: 1
   icon: {fileID: 0}
   componentPicture: {fileID: 0}
+  plantParent: {fileID: 11400000, guid: 5b4d48f623f504cbda1acfba11cd280e, type: 2}
