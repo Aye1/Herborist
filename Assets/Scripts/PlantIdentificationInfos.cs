@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using Sirenix.OdinInspector;
+using Unisloth.Localization;
 
 public class PlantIdentificationState : SaveState
 {
@@ -16,6 +17,9 @@ public class PlantIdentificationInfos : SerializedMonoBehaviour, ISavable
     public Dictionary<PlantComponentScriptableObject, bool> identificationData;
 
     public static PlantIdentificationInfos Instance { get; private set; }
+
+    [TranslationKey]
+    public string unidentifiedPlantLocKey;
 
     void Awake()
     {
@@ -69,6 +73,35 @@ public class PlantIdentificationInfos : SerializedMonoBehaviour, ISavable
         }
         Debug.LogError("Trying to get identification information for not existing component");
         return false;
+    }
+
+    public string GetPlantCurrentName(PlantScriptableObject plant)
+    {
+        if (IsIdentified(plant))
+        {
+            return LocalizationManager.Instance.GetTranslation(plant.commonNameLocKey);
+        }
+        return string.Format(LocalizationManager.Instance.GetTranslation(unidentifiedPlantLocKey), plant.unidentifiedPlantLetter);
+    }
+
+    public string GetPlantCurrentName(PlantComponentScriptableObject component)
+    {
+        if(component.plantParent != null)
+        {
+            return GetPlantCurrentName(component.plantParent);
+        }
+        Debug.LogErrorFormat("Plant not found for component {0}", component.name);
+        return "";
+    }
+
+    public string GetPlantCurrentName(CollectibleScriptableObject collectible)
+    {
+        if(collectible.parentPlantComponent != null)
+        {
+            return GetPlantCurrentName(collectible.parentPlantComponent);
+        }
+        Debug.LogErrorFormat("Plant component not found for collectible {0}", collectible.name);
+        return "";
     }
 
     #region ISavable implementation
