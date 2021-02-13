@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Plantain
   m_EditorClassIdentifier: 
   unidentifiedPlantLetter: A
-  commonNameLocKey: Plantain
+  commonNameLocKey: plant_plantain
   speciesName: Plantago Lanceolata
   familyName: Plantaginaceae
   loreLocKey: []

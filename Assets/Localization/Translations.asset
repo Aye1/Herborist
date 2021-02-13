@@ -32,6 +32,8 @@ MonoBehaviour:
   - button_mainmenu
   - new_save
   - time_played
+  - plant_plantain
+  - plant_unidentified
   _availableLanguages: 0a000000
   _translations:
   - key: default
@@ -101,4 +103,12 @@ MonoBehaviour:
   - key: time_played
     language: 10
     value: 'Time played:'
+    parent: {fileID: 11400000}
+  - key: plant_plantain
+    language: 10
+    value: Plantain
+    parent: {fileID: 11400000}
+  - key: plant_unidentified
+    language: 10
+    value: Unidentified plant {0}
     parent: {fileID: 11400000}
