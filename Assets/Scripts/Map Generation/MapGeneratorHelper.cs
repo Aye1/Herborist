@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Linq;
 
 public enum MapLimit { Left, Up, Right, Down };
 public enum Direction { DownUp, LeftRight };
@@ -139,6 +140,27 @@ public static class MapGeneratorHelper
             generatedValue = Alea.GetInt(Mathf.RoundToInt(minPercent * mapSize.x), Mathf.RoundToInt(maxPercent * mapSize.x));
         }
         return GeneratePointOnLimit(limit, generatedValue);
+    }
+
+    public static Vector2Int GenerateRandomPointOnRandomLimit(float minPercent, float maxPercent)
+    {
+        int limit = Alea.GetIntInc(0, 3);
+        MapLimit mapLimit = (MapLimit)limit;
+        return GenerateRandomPointOnLimit(mapLimit, minPercent, maxPercent);
+    }
+
+    public static Vector2Int GenerateRandomPointOnRandomLimitExcluded(MapLimit excludedLimit, float minPercent, float maxPercent)
+    {
+        int index = Alea.GetIntInc(0, 2);
+        List<MapLimit> allowedLimits = new List<MapLimit>();
+        foreach(MapLimit limit in Enum.GetValues(typeof(MapLimit)))
+        {
+            if(limit != excludedLimit)
+            {
+                allowedLimits.Add(limit);
+            }
+        }
+        return GenerateRandomPointOnLimit(allowedLimits[index], minPercent, maxPercent);
     }
 
     public static Vector2Int GeneratePointOnLimit(MapLimit limit, int position)

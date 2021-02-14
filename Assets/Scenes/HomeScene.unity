@@ -5721,17 +5721,6 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
---- !u!114 &1618532034 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 650929235, guid: bfc2f7d91792d4f838ee80e8f7cf7b4f, type: 3}
-  m_PrefabInstance: {fileID: 1904686202}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b74abfd1602434546aeea8e390ca0202, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1623297765
 GameObject:
   m_ObjectHideFlags: 0
@@ -6027,6 +6016,9 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 8ff43c861cc714f2597d91dcda7179ad, type: 2}
     - {fileID: 11400000, guid: a505dbc0406cd4b5a950bef0313efd4e, type: 2}
     - {fileID: 11400000, guid: c4a8452eb23f04732aa40af8f4798672, type: 2}
+    - {fileID: 11400000, guid: bf56dfe8e251a403d996312a4a7515bc, type: 2}
+    - {fileID: 11400000, guid: 4f73a3d43e3504f01858a74b786e2229, type: 2}
+    - {fileID: 11400000, guid: cd3c09377c73440b3841a21b68a6b524, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -6045,7 +6037,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 6
+      Data: 9
     - Name: 
       Entry: 7
       Data: 
@@ -6119,11 +6111,48 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 6
+    - Name: $v
+      Entry: 5
+      Data: false
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 7
+    - Name: $v
+      Entry: 5
+      Data: false
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 8
+    - Name: $v
+      Entry: 5
+      Data: false
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
       Entry: 13
       Data: 
     - Name: 
       Entry: 8
       Data: 
+  unidentifiedPlantLocKey: plant_unidentified
 --- !u!4 &1679911652
 Transform:
   m_ObjectHideFlags: 0
@@ -7549,10 +7578,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 75466776}
     m_Modifications:
-    - target: {fileID: 951712197806270395, guid: fb3991d652e324c3183a47e5c0a51801, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 1618532034}
     - target: {fileID: 951712197806270396, guid: fb3991d652e324c3183a47e5c0a51801, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

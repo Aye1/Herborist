@@ -22,10 +22,25 @@ public class MapGenerator : MonoBehaviour
 {
     public static MapGenerator Instance { get; private set; }
 
-    public Vector2Int mapSize;
     public bool DontGenerateMap;
+    [Title("Map Generation Parameters")]
+    public Vector2Int mapSize;
     public int pathWidth = 5;
+    public int riverWidth = 4;
+    [Range(1,10)]
+    public int numberPathes = 2;
+    [Range(1,10)]
+    public int numberRivers = 2;
+    [Range(0,20)]
+    public int pathSubdivisions = 5;
+    [Range(0,20)]
+    public int riverSubdivisions = 5;
+    [MinMaxSlider(0,10, ShowFields = true)]
+    public Vector2Int pathAlea;
+    [MinMaxSlider(0,10, ShowFields = true)]
+    public Vector2Int riverAlea;
 
+    [Title("Tiles")]
     [Required]
     public List<TerrainTileMapping> tileMappings;
 
@@ -106,9 +121,9 @@ public class MapGenerator : MonoBehaviour
 
     public void GenerateMap()
     {
-        for(int i=0; i<mapSize.x; i++)
+        for (int i = 0; i < mapSize.x; i++)
         {
-            for(int j=0; j<mapSize.y; j++)
+            for (int j = 0; j < mapSize.y; j++)
             {
                 PutTile(new Vector2Int(i, j), TileType.Grass);
             }
@@ -116,36 +131,35 @@ public class MapGenerator : MonoBehaviour
         _spawnedPOIs = new List<PointOfInterest>();
         GenerateEntrancePOI();
 
-
-        List<Vector2Int> riverControlPoints = new List<Vector2Int>()
+        // Generate rivers
+        for (int i = 0; i < numberRivers; i++)
         {
-            MapGeneratorHelper.GenerateRandomPointOnLimit(MapLimit.Left, 0.20f, 0.60f),
-            new Vector2Int(69, 49),
-            MapGeneratorHelper.GenerateRandomPointOnLimit(MapLimit.Right, 0.50f, 0.80f)
-        };
-        GenerateRiver(riverControlPoints);
+            MapLimit originLimit = (MapLimit)Alea.GetIntInc(0, 3);
+            List<Vector2Int> controlPoints = new List<Vector2Int>();
+            controlPoints.Add(MapGeneratorHelper.GenerateRandomPointOnLimit(originLimit, 0.2f, 0.8f));
+            controlPoints.Add(MapGeneratorHelper.GenerateRandomPointOnRandomLimitExcluded(originLimit, 0.2f, 0.8f));
+            GenerateRiver(controlPoints);
+        }
 
-        List<Vector2Int> riverControlPoints2 = new List<Vector2Int>()
+        // Generate first path
+        List<Vector2Int> firstPathControlPoints = new List<Vector2Int>()
         {
-            MapGeneratorHelper.GenerateRandomPointOnLimit(MapLimit.Left, 0.65f, 0.90f),
-            new Vector2Int(69, 49)
+            new Vector2Int(47,2),
+            new Vector2Int(49,29),
+            MapGeneratorHelper.GenerateRandomPointOnRandomLimitExcluded(MapLimit.Down, 0.3f, 0.7f)
         };
-        GenerateRiver(riverControlPoints2);
+        GeneratePath(firstPathControlPoints);
 
-        List<Vector2Int> pathControlPoints = new List<Vector2Int>()
+        // Generate pathes
+        for(int i=1; i<numberPathes; i++)
         {
-            new Vector2Int(47, 2),
-            new Vector2Int(49, 29),
-            MapGeneratorHelper.GenerateRandomPointOnLimit(MapLimit.Up, 0.10f, 0.50f)
-        };
-        GeneratePath(pathControlPoints);
+            MapLimit originLimit = (MapLimit)Alea.GetIntInc(0, 3);
+            List<Vector2Int> controlPoints = new List<Vector2Int>();
+            controlPoints.Add(MapGeneratorHelper.GenerateRandomPointOnLimit(originLimit, 0.2f, 0.8f));
+            controlPoints.Add(MapGeneratorHelper.GenerateRandomPointOnRandomLimitExcluded(originLimit, 0.2f, 0.8f));
+            GeneratePath(controlPoints);
+        }
 
-        List<Vector2Int> pathControlPoints2 = new List<Vector2Int>()
-        {
-            new Vector2Int(49, 29),
-            MapGeneratorHelper.GenerateRandomPointOnLimit(MapLimit.Up, 0.60f, 0.90f)
-        };
-        GeneratePath(pathControlPoints2);
         GenerateMapBorders(_borderWidth);
 
         tileMappings.Select(m => m.tilemap).Distinct().ToList().ForEach(t => t?.UpdateMeshImmediate()); // Force updating tilemaps before ending the loading + only way to disable colliders
@@ -159,8 +173,9 @@ public class MapGenerator : MonoBehaviour
         {
             _rivers = new List<CurvedLinePath>();
         }
-        CurvedLinePath river = new CurvedLinePath(riverControlPoints, 4);
-        river.GeneratePoints(0, 5);
+        CurvedLinePath river = new CurvedLinePath(riverControlPoints, riverWidth);
+        river.subdivisionCount = riverSubdivisions;
+        river.GeneratePoints(riverAlea.x, riverAlea.y);
         PutTiles(river.AllPoints, TileType.Water);
         _rivers.Add(river);
     }
@@ -176,7 +191,8 @@ public class MapGenerator : MonoBehaviour
             _bridgePositions = new List<Vector2Int>();
         }
         CurvedLinePath path = new CurvedLinePath(pathControlPoints, pathWidth);
-        path.GeneratePoints(0, 4);
+        path.subdivisionCount = pathSubdivisions;
+        path.GeneratePoints(pathAlea.x, pathAlea.y);
         List<Vector2Int> riverPathCrossingPositions = path.AllPoints.Where(p => _rivers.Any(r => r.AllPoints.Contains(p))).ToList();
         List<Vector2Int> pathPositions = path.AllPoints.Where(p => !riverPathCrossingPositions.Contains(p)).ToList();
         PutTiles(pathPositions, TileType.Dirt);
