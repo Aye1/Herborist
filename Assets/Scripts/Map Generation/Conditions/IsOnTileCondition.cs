@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class IsOnTileCondition : MapCondition
 {
@@ -8,6 +9,7 @@ public class IsOnTileCondition : MapCondition
     protected override void ComputeConditionList()
     {
         _conditionPositionsList = new List<Vector2Int>();
-        _conditionPositionsList.AddRange(_referenceList);
+        IEnumerable<Vector2Int> positions = _conditionPositionsList.Where(p => IsValid(p));
+        _conditionPositionsList.AddRange(positions);
     }
 }

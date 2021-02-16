@@ -166,9 +166,11 @@ public class MapGenerator : MonoBehaviour
 
     private void GenerateRivers()
     {
+        var watch = new System.Diagnostics.Stopwatch();
+        watch.Start();
         List<MapCondition> riverSpawnConditions = new List<MapCondition>()
         {
-            new IsFarFromTileCondition(_poiPositions, _minPosition, _maxPosition, 5),
+            new IsFarFromTileCondition(_poiPositions, _minPosition + new Vector2Int(0,10), _maxPosition, 5),
             new IsCloseToTileCondition(_borderPolygon.Points, _minPosition, _maxPosition, 1)
         };
         // Generate rivers
@@ -177,8 +179,8 @@ public class MapGenerator : MonoBehaviour
             //MapLimit originLimit = (MapLimit)Alea.GetIntInc(0, 3);
             List<Vector2Int> controlPoints = new List<Vector2Int>();
             Vector2Int origin = MapCondition.GetRandomPointSatisfyingAll(riverSpawnConditions);
-            //TODO: this is way too slow, how can we make it quicker?
-            IsFarFromTileCondition riverLengthCondition = new IsFarFromTileCondition(origin, _minPosition, _maxPosition, 50);
+            IsFarFromSpecificTileCondition riverLengthCondition = new IsFarFromSpecificTileCondition(origin, _minPosition, _maxPosition, 50);
+
             riverSpawnConditions.Add(riverLengthCondition);
             controlPoints.Add(origin);
             controlPoints.Add(MapCondition.GetRandomPointSatisfyingAll(riverSpawnConditions));
@@ -187,6 +189,8 @@ public class MapGenerator : MonoBehaviour
             GenerateRiver(controlPoints);
             riverSpawnConditions.Remove(riverLengthCondition);
         }
+        watch.Stop();
+        Debug.LogFormat("River generation time: {0}ms", watch.ElapsedMilliseconds);
     }
 
     private void GenerateRiver(List<Vector2Int> riverControlPoints)
@@ -375,7 +379,7 @@ public class MapGenerator : MonoBehaviour
         /*DebugDrawRiver();
         DebugDrawPath();
         DebugDrawUsedPositions();*/
-        DebugDrawConditionPositions();
+        //DebugDrawConditionPositions();
     }
 
     private void TestFillPolygon()

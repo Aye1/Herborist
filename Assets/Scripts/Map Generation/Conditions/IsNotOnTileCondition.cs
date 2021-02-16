@@ -13,7 +13,7 @@ public class IsNotOnTileCondition : MapCondition
             for(int j=_minPosition.y; j<=_maxPosition.y; j++)
             {
                 Vector2Int pos = new Vector2Int(i, j);
-                if(!_referenceList.Contains(pos))
+                if(!_referenceList.Contains(pos) && IsValid(pos))
                 {
                     _conditionPositionsList.Add(pos);
                 }

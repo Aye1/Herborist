@@ -53,7 +53,7 @@ public class IsCloseToTileCondition : MapCondition
         {
             if (!_tilesAlgoInfo[pos].isFlagged || distance < _tilesAlgoInfo[pos].distance)
             {
-                if (!_conditionPositionsList.Contains(pos))
+                if (!_conditionPositionsList.Contains(pos) && IsValid(pos))
                 {
                      _conditionPositionsList.Add(pos);
                 }

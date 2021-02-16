@@ -7,8 +7,11 @@ public abstract class MapCondition
 {
     protected List<Vector2Int> _referenceList;
     protected List<Vector2Int> _conditionPositionsList;
+    protected List<Vector2Int> _authorizedPositions;
+    protected List<Vector2Int> _excludedPositions;
     protected Vector2Int _minPosition;
     protected Vector2Int _maxPosition;
+
 
     public MapCondition(IEnumerable<Vector2Int> tilesList, Vector2Int minPosition, Vector2Int maxPosition)
     {
@@ -38,12 +41,56 @@ public abstract class MapCondition
         return _conditionPositionsList;
     }
 
+    public void AddAuthorizedPositions(IEnumerable<Vector2Int> positions)
+    {
+        if(_authorizedPositions == null)
+        {
+            _authorizedPositions = new List<Vector2Int>();
+        }
+        foreach(Vector2Int pos in positions)
+        {
+            if(!_authorizedPositions.Contains(pos))
+            {
+                _authorizedPositions.Add(pos);
+            }
+        }
+    }
+
+    public void AddExcludedPositions(IEnumerable<Vector2Int> positions)
+    {
+        if(_excludedPositions == null)
+        {
+            _excludedPositions = new List<Vector2Int>();
+        }
+        foreach (Vector2Int pos in positions)
+        {
+            if (!_excludedPositions.Contains(pos))
+            {
+                _excludedPositions.Add(pos);
+            }
+        }
+    }
+
     protected bool IsInLimits(Vector2Int position)
     {
         return position.x >= _minPosition.x
             && position.x <= _maxPosition.x
             && position.y >= _minPosition.y
             && position.y <= _maxPosition.y;
+    }
+
+    protected bool IsValid(Vector2Int position)
+    {
+        bool res = IsInLimits(position);
+        if(_excludedPositions != null && _excludedPositions.Count > 0)
+        {
+            res = res && !_excludedPositions.Contains(position);
+        }
+        if(_authorizedPositions != null && _authorizedPositions.Count > 0)
+        {
+            res = res && _authorizedPositions.Contains(position);
+        }
+        return res;
     }
 
     public static List<Vector2Int> GetPositionsSatisfyingAll(IEnumerable<MapCondition> conditions)
@@ -73,5 +120,10 @@ public abstract class MapCondition
         }
         int index = Alea.GetInt(0, possiblePoints.Count);
         return possiblePoints[index];
+    }
+
+    public static int ManhattanDistance(Vector2Int v1, Vector2Int v2)
+    {
+        return Mathf.Abs(v1.x - v2.x) + Mathf.Abs(v1.y - v2.y);
     }
 }
