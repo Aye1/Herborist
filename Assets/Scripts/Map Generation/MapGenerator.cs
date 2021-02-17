@@ -166,8 +166,6 @@ public class MapGenerator : MonoBehaviour
 
     private void GenerateRivers()
     {
-        var watch = new System.Diagnostics.Stopwatch();
-        watch.Start();
         List<MapCondition> riverSpawnConditions = new List<MapCondition>()
         {
             new IsFarFromTileCondition(_poiPositions, _minPosition + new Vector2Int(0,10), _maxPosition, 5),
@@ -189,8 +187,6 @@ public class MapGenerator : MonoBehaviour
             GenerateRiver(controlPoints);
             riverSpawnConditions.Remove(riverLengthCondition);
         }
-        watch.Stop();
-        Debug.LogFormat("River generation time: {0}ms", watch.ElapsedMilliseconds);
     }
 
     private void GenerateRiver(List<Vector2Int> riverControlPoints)

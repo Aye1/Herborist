@@ -40,12 +40,18 @@ public class PlayerInteractionManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SceneSwitcher.Instance.OnSceneWillLoad += OnSceneChange;
         myInteractables = new List<IInteractable>();
     }
 
     private void Update()
     {
         RefreshCurrentInteractable();
+    }
+
+    private void OnDestroy()
+    {
+        SceneSwitcher.Instance.OnSceneWillLoad -= OnSceneChange;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -95,5 +101,16 @@ public class PlayerInteractionManager : MonoBehaviour
     public IInteractable GetCurrentInteractable()
     { 
         return CurrentInteractable == null ? null : CurrentInteractable.GetComponent<IInteractable>();
+    }
+
+    private void OnSceneChange(SceneType newScene)
+    {
+        Clean();
+    }
+
+    private void Clean()
+    {
+        CurrentInteractable = null;
+        myInteractables.Clear();
     }
 }

@@ -13,7 +13,6 @@ public class CatAppearance : MonoBehaviour
         {
             myCat.SetActive(true);
             int randomPosition = Random.Range(0, myAvailablePosition.Count - 1);
-            Debug.Log(randomPosition);
             myCat.transform.position = myAvailablePosition[randomPosition].transform.position;
         }
         else

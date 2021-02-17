@@ -20,8 +20,6 @@ public class IsCloseToTileCondition : MapCondition
 
     protected override void ComputeConditionList()
     {
-        var watch = new System.Diagnostics.Stopwatch();
-        watch.Start();
         _conditionPositionsList = new List<Vector2Int>();
 
         _tilesAlgoInfo = new Dictionary<Vector2Int, AlgorithmPositionInformation>();
@@ -30,8 +28,6 @@ public class IsCloseToTileCondition : MapCondition
         {
             TestPosition(pos, 0);
         }
-        watch.Stop();
-        Debug.LogFormat("Time for algo: {0}ms", watch.ElapsedMilliseconds);
     }
 
     private void TestPosition(Vector2Int pos, int distance)

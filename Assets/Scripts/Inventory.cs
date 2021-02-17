@@ -93,6 +93,11 @@ public class Inventory : SerializedMonoBehaviour, ISavable
         return inventoryList.Where(p => p.type == itemType).FirstOrDefault().count;
     }
 
+    public List<CollectibleScriptableObject> GetUnidentifiedComponents()
+    {
+        return inventoryList.Where(p => !PlantIdentificationInfos.Instance.IsIdentified(p.type)).Select(p => p.type).ToList();
+    }
+
     #region ISavable implementation
     public SaveState GetObjectToSave()
     {

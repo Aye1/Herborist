@@ -75,6 +75,16 @@ public class PlantIdentificationInfos : SerializedMonoBehaviour, ISavable
         return false;
     }
 
+    public bool IsIdentified(CollectibleScriptableObject collectible)
+    {
+        if(collectible.parentPlantComponent != null)
+        {
+            return IsIdentified(collectible.parentPlantComponent);
+        }
+        Debug.LogError("Trying to get identification information for not existing collectible");
+        return false;
+    }
+
     public string GetPlantCurrentName(PlantScriptableObject plant)
     {
         if (IsIdentified(plant))
