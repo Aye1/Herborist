@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acf9f5ed5804c41f3a8be4d7f9de86a6, type: 3}
   m_Name: Chestnut
   m_EditorClassIdentifier: 
-  unidentifiedNameLocKey: 
-  commonNameLocKey: Chestnut
+  unidentifiedPlantLetter: 
+  commonNameLocKey: plant_chestnut
   speciesName: Castanea sativa
   familyName: Fagaceae
   loreLocKey: []
   fullPicture: {fileID: 0}
+  blackAndWhitePicture: {fileID: 0}
   components:
   - {fileID: 11400000, guid: 2084cf43cb6614ad8bf2f8006a4ba1a1, type: 2}
   - {fileID: 11400000, guid: c732ceb7d54b44250b4fd41b7abd8c09, type: 2}

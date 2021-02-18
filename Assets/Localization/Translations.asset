@@ -32,8 +32,50 @@ MonoBehaviour:
   - button_mainmenu
   - new_save
   - time_played
-  - plant_plantain
   - plant_unidentified
+  - idenQuest_edgeShape
+  - idenQuest_leafComp
+  - idenQuest_leafShape
+  - idenQuest_plantSize
+  - idenQuest_veinShape
+  - identAns_Tree
+  - identAns_Bush
+  - identAns_Dentate
+  - identAns_Entire
+  - identAns_HearthShaped
+  - identAns_Herbaceous
+  - identAns_Lanceolate
+  - identAns_Lobate
+  - identAns_OvalShape
+  - identAns_PalmateVein
+  - identAns_ParallelVein
+  - identAns_PinnateVein
+  - identAns_PinnateLeaf
+  - identAns_ReticulateVein
+  - identAns_Sected
+  - identAns_SimpleLeaf
+  - identAns_TernaryLeaf
+  - identAns_WebbedLeaf
+  - ident_foundPlants
+  - plant_ash
+  - plant_beech
+  - plant_birch
+  - plant_bramble
+  - plant_chestnut
+  - plant_clover
+  - plant_hazel
+  - plant_limetree
+  - plant_nettle
+  - plant_oak
+  - plant_plantain
+  - plant_poppy
+  - plant_strawberry
+  - plant_violet
+  - plant_walnut
+  - plant_whitenettle
+  - plant_wildgarlic
+  - plant_wildrose
+  - plant_yarrow
   _availableLanguages: 0a000000
   _translations:
   - key: default
@@ -104,11 +146,179 @@ MonoBehaviour:
     language: 10
     value: 'Time played:'
     parent: {fileID: 11400000}
-  - key: plant_plantain
-    language: 10
-    value: Plantain
-    parent: {fileID: 11400000}
   - key: plant_unidentified
     language: 10
     value: Unidentified plant {0}
+    parent: {fileID: 11400000}
+  - key: idenQuest_edgeShape
+    language: 10
+    value: What is the shape of the edge?
+    parent: {fileID: 11400000}
+  - key: idenQuest_leafComp
+    language: 10
+    value: What is the composition of the leaf?
+    parent: {fileID: 11400000}
+  - key: idenQuest_leafShape
+    language: 10
+    value: What is the shape of the leaf?
+    parent: {fileID: 11400000}
+  - key: idenQuest_plantSize
+    language: 10
+    value: What is the size of the plant?
+    parent: {fileID: 11400000}
+  - key: idenQuest_veinShape
+    language: 10
+    value: What is the shape of the veins?
+    parent: {fileID: 11400000}
+  - key: identAns_Tree
+    language: 10
+    value: Tree
+    parent: {fileID: 11400000}
+  - key: identAns_Bush
+    language: 10
+    value: Bush
+    parent: {fileID: 11400000}
+  - key: identAns_Dentate
+    language: 10
+    value: Dentate
+    parent: {fileID: 11400000}
+  - key: identAns_Entire
+    language: 10
+    value: Entire
+    parent: {fileID: 11400000}
+  - key: identAns_HearthShaped
+    language: 10
+    value: Hearth Shaped
+    parent: {fileID: 11400000}
+  - key: identAns_Herbaceous
+    language: 10
+    value: Herbaceous
+    parent: {fileID: 11400000}
+  - key: identAns_Lanceolate
+    language: 10
+    value: Lanceolate
+    parent: {fileID: 11400000}
+  - key: identAns_Lobate
+    language: 10
+    value: Lobate
+    parent: {fileID: 11400000}
+  - key: identAns_OvalShape
+    language: 10
+    value: Oval Shaped
+    parent: {fileID: 11400000}
+  - key: identAns_PalmateVein
+    language: 10
+    value: Palmate Veins
+    parent: {fileID: 11400000}
+  - key: identAns_ParallelVein
+    language: 10
+    value: Parallel Veins
+    parent: {fileID: 11400000}
+  - key: identAns_PinnateVein
+    language: 10
+    value: Pinnate Veins
+    parent: {fileID: 11400000}
+  - key: identAns_PinnateLeaf
+    language: 10
+    value: Pinnate
+    parent: {fileID: 11400000}
+  - key: identAns_ReticulateVein
+    language: 10
+    value: Reticulate Veins
+    parent: {fileID: 11400000}
+  - key: identAns_Sected
+    language: 10
+    value: Sected
+    parent: {fileID: 11400000}
+  - key: identAns_SimpleLeaf
+    language: 10
+    value: Simple
+    parent: {fileID: 11400000}
+  - key: identAns_TernaryLeaf
+    language: 10
+    value: Ternary
+    parent: {fileID: 11400000}
+  - key: identAns_WebbedLeaf
+    language: 10
+    value: Webbed
+    parent: {fileID: 11400000}
+  - key: ident_foundPlants
+    language: 10
+    value: Found plants
+    parent: {fileID: 11400000}
+  - key: plant_ash
+    language: 10
+    value: Ash
+    parent: {fileID: 11400000}
+  - key: plant_beech
+    language: 10
+    value: Beech
+    parent: {fileID: 11400000}
+  - key: plant_birch
+    language: 10
+    value: Birch
+    parent: {fileID: 11400000}
+  - key: plant_bramble
+    language: 10
+    value: Bramble
+    parent: {fileID: 11400000}
+  - key: plant_chestnut
+    language: 10
+    value: Chestnut
+    parent: {fileID: 11400000}
+  - key: plant_clover
+    language: 10
+    value: Clover
+    parent: {fileID: 11400000}
+  - key: plant_hazel
+    language: 10
+    value: Hazel
+    parent: {fileID: 11400000}
+  - key: plant_limetree
+    language: 10
+    value: Lime Tree
+    parent: {fileID: 11400000}
+  - key: plant_nettle
+    language: 10
+    value: Nettle
+    parent: {fileID: 11400000}
+  - key: plant_oak
+    language: 10
+    value: Oak
+    parent: {fileID: 11400000}
+  - key: plant_poppy
+    language: 10
+    value: Poppy
+    parent: {fileID: 11400000}
+  - key: plant_strawberry
+    language: 10
+    value: Strawberry Plant
+    parent: {fileID: 11400000}
+  - key: plant_violet
+    language: 10
+    value: Violet
+    parent: {fileID: 11400000}
+  - key: plant_walnut
+    language: 10
+    value: Walnut
+    parent: {fileID: 11400000}
+  - key: plant_whitenettle
+    language: 10
+    value: White Nettle
+    parent: {fileID: 11400000}
+  - key: plant_wildgarlic
+    language: 10
+    value: Wild Garlic
+    parent: {fileID: 11400000}
+  - key: plant_wildrose
+    language: 10
+    value: Wild Rose
+    parent: {fileID: 11400000}
+  - key: plant_yarrow
+    language: 10
+    value: Yarrow
+    parent: {fileID: 11400000}
+  - key: plant_plantain
+    language: 10
+    value: Plantain
     parent: {fileID: 11400000}

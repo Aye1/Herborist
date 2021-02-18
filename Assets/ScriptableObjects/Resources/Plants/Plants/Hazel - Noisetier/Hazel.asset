@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acf9f5ed5804c41f3a8be4d7f9de86a6, type: 3}
   m_Name: Hazel
   m_EditorClassIdentifier: 
-  unidentifiedNameLocKey: 
-  commonNameLocKey: Hazel
+  unidentifiedPlantLetter: 
+  commonNameLocKey: plant_hazel
   speciesName: Corylus avellana
   familyName: Betulaceae
   loreLocKey: []
   fullPicture: {fileID: 0}
+  blackAndWhitePicture: {fileID: 0}
   components:
   - {fileID: 11400000, guid: 742661c7484db41b09c1ef5a6dd46ff1, type: 2}
   - {fileID: 11400000, guid: 03a472083dfb04fd8b7b6897bc843e13, type: 2}

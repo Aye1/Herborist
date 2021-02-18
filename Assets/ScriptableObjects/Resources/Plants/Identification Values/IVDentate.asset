@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b943af5e18114cec91df843d9dd3804, type: 3}
   m_Name: IVDentate
   m_EditorClassIdentifier: 
-  valueNameLocKey: Dantate Edge
   icon: {fileID: 0}
-  descriptionLocKey: Edge with small teeths
+  valueNameLocKey: identAns_Dentate
+  descriptionLocKey: identAns_Dentate

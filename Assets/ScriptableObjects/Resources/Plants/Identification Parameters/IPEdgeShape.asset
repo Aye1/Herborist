@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 266e5e829318e42e1901568ebb057c8e, type: 3}
   m_Name: IPEdgeShape
   m_EditorClassIdentifier: 
-  questionLocKey: How is the limit of the leaf ?
-  parameterNameLocKey: edgeShape
+  questionLocKey: idenQuest_edgeShape
+  parameterNameLocKey: idenQuest_edgeShape
   possibleValues:
   - {fileID: 11400000, guid: b8d77512b14c74241a577b9ce53c5150, type: 2}
   - {fileID: 11400000, guid: 0e3326409e929442aab94c394b94c390, type: 2}

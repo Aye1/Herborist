@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b943af5e18114cec91df843d9dd3804, type: 3}
   m_Name: IVBush
   m_EditorClassIdentifier: 
-  valueNameLocKey: Bush
   icon: {fileID: 0}
-  descriptionLocKey: 
+  valueNameLocKey: identAns_Bush
+  descriptionLocKey: identAns_Bush

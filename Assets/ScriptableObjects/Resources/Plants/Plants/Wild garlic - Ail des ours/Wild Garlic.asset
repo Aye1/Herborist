@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acf9f5ed5804c41f3a8be4d7f9de86a6, type: 3}
   m_Name: Wild Garlic
   m_EditorClassIdentifier: 
-  unidentifiedNameLocKey: 
-  commonNameLocKey: Wild Garlic
+  unidentifiedPlantLetter: 
+  commonNameLocKey: plant_wildgarlic
   speciesName: Allium ursium
   familyName: Amaryllidaceae
   loreLocKey: []
   fullPicture: {fileID: 0}
+  blackAndWhitePicture: {fileID: 0}
   components:
   - {fileID: 11400000, guid: 2557e5da2b8604193bc059b4a5b31714, type: 2}
   - {fileID: 11400000, guid: a3c539313e9554f82b70a127d8f5bfb4, type: 2}

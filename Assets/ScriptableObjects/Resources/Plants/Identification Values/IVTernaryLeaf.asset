@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b943af5e18114cec91df843d9dd3804, type: 3}
   m_Name: IVTernaryLeaf
   m_EditorClassIdentifier: 
-  valueNameLocKey: Ternary Leaf
   icon: {fileID: 0}
-  descriptionLocKey: The leaf is composed of 3 pieces
+  valueNameLocKey: identAns_TernaryLeaf
+  descriptionLocKey: identAns_TernaryLeaf

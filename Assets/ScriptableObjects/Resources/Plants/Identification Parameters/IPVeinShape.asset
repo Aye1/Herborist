@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 266e5e829318e42e1901568ebb057c8e, type: 3}
   m_Name: IPVeinShape
   m_EditorClassIdentifier: 
-  questionLocKey: How are the Veins shaped ?
-  parameterNameLocKey: veinShape
+  questionLocKey: idenQuest_veinShape
+  parameterNameLocKey: idenQuest_veinShape
   possibleValues:
   - {fileID: 11400000, guid: d94d3d7f7487e4099b85feddcc0f8be6, type: 2}
   - {fileID: 11400000, guid: dba36636c23d3480d9ea88f39605b0fe, type: 2}

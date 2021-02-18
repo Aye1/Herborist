@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acf9f5ed5804c41f3a8be4d7f9de86a6, type: 3}
   m_Name: Birch
   m_EditorClassIdentifier: 
-  unidentifiedNameLocKey: 
-  commonNameLocKey: Birch
+  unidentifiedPlantLetter: 
+  commonNameLocKey: plant_birch
   speciesName: Betula pendula
   familyName: Betulaceae
   loreLocKey: []
   fullPicture: {fileID: 0}
+  blackAndWhitePicture: {fileID: 0}
   components:
   - {fileID: 11400000, guid: e7ac0390355f24952b3e9a3cc3e0d171, type: 2}
   - {fileID: 11400000, guid: 4f2b75c0e2dd44593b53aea0418116e5, type: 2}

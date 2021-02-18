@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 266e5e829318e42e1901568ebb057c8e, type: 3}
   m_Name: IPPlantSize
   m_EditorClassIdentifier: 
-  questionLocKey: What is the size of your plant?
-  parameterNameLocKey: plantSize
+  questionLocKey: idenQuest_plantSize
+  parameterNameLocKey: idenQuest_plantSize
   possibleValues:
   - {fileID: 11400000, guid: c8d18b897f94a473ea7ecb6a95be0b87, type: 2}

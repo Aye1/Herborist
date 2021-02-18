@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 266e5e829318e42e1901568ebb057c8e, type: 3}
   m_Name: IPLeafComposition
   m_EditorClassIdentifier: 
-  questionLocKey: How is the leaf arranged ?
-  parameterNameLocKey: leafcomposition
+  questionLocKey: idenQuest_leafComp
+  parameterNameLocKey: idenQuest_leafComp
   possibleValues:
   - {fileID: 11400000, guid: 8f89293cac8674beba884f13c4866c35, type: 2}
   - {fileID: 11400000, guid: 73f190c7b74ca4f3bb38d01a55135f1d, type: 2}

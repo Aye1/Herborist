@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acf9f5ed5804c41f3a8be4d7f9de86a6, type: 3}
   m_Name: Poppy
   m_EditorClassIdentifier: 
-  unidentifiedNameLocKey: 
-  commonNameLocKey: Poppy
+  unidentifiedPlantLetter: 
+  commonNameLocKey: plant_poppy
   speciesName: Papaver rhoeas
   familyName: Papaveraceae
   loreLocKey: []
   fullPicture: {fileID: 0}
+  blackAndWhitePicture: {fileID: 0}
   components:
   - {fileID: 11400000, guid: 363c9d3f6b0c447f18173cb0f6ec6c5b, type: 2}
   - {fileID: 11400000, guid: f39b2f508fd0b417da8b6ad9a3e8d07a, type: 2}

@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acf9f5ed5804c41f3a8be4d7f9de86a6, type: 3}
   m_Name: White Nettle
   m_EditorClassIdentifier: 
-  unidentifiedNameLocKey: 
-  commonNameLocKey: White Nettle
+  unidentifiedPlantLetter: 
+  commonNameLocKey: plant_whitenettle
   speciesName: Lamium album
   familyName: Lamiaceae
   loreLocKey: []
   fullPicture: {fileID: 0}
+  blackAndWhitePicture: {fileID: 0}
   components:
   - {fileID: 11400000, guid: 64020faa0f46e47cea062532972ef70e, type: 2}
   - {fileID: 11400000, guid: 9eb9225a4f5254ef499310a30afca2bf, type: 2}

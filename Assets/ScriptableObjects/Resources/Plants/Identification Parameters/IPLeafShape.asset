@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 266e5e829318e42e1901568ebb057c8e, type: 3}
   m_Name: IPLeafShape
   m_EditorClassIdentifier: 
-  questionLocKey: How is the leaf Shaped ?
-  parameterNameLocKey: shapeLeaf
+  questionLocKey: idenQuest_leafShape
+  parameterNameLocKey: idenQuest_leafShape
   possibleValues:
   - {fileID: 11400000, guid: 97af161306cba4e09aa39e82fd9c6e62, type: 2}
   - {fileID: 11400000, guid: d2618de9250c9464ba8cda419ce21d7a, type: 2}

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b943af5e18114cec91df843d9dd3804, type: 3}
   m_Name: IVEntire
   m_EditorClassIdentifier: 
-  valueNameLocKey: Entire Edge
   icon: {fileID: 0}
-  descriptionLocKey: the Edge is Smooth
+  valueNameLocKey: identAns_Entire
+  descriptionLocKey: identAns_Entire

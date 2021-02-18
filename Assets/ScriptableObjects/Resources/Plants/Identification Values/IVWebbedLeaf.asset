@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b943af5e18114cec91df843d9dd3804, type: 3}
   m_Name: IVWebbedLeaf
   m_EditorClassIdentifier: 
-  valueNameLocKey: Webbed Leaf
   icon: {fileID: 0}
-  descriptionLocKey: The leaf is composed of multiples pieces, in hand shape
+  valueNameLocKey: identAns_WebbedLeaf
+  descriptionLocKey: identAns_WebbedLeaf
