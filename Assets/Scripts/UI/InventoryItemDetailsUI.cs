@@ -32,7 +32,7 @@ public class InventoryItemDetailsUI : MonoBehaviour
     private void UpdateUI()
     {
         _itemImage.sprite = Collectible.type.sprite;
-        _itemNameText.text = Collectible.type.developmentName;
+        _itemNameText.text = PlantIdentificationInfos.Instance.GetPlantCurrentName(Collectible.type);
         _itemCountText.text = Collectible.count.ToString();
     }
 

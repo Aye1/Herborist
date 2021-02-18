@@ -31,6 +31,7 @@ public class HouseStorage : MonoBehaviour
     private void OnDestroy()
     {
         UnBindEvents();
+        SaveManager.Instance.objectsToSave.Remove(StorageInventory);
     }
 
     void BindEvents()
@@ -50,5 +51,10 @@ public class HouseStorage : MonoBehaviour
             SaveManager.Instance.objectsToSave.Remove(StorageInventory);
             Destroy(gameObject);
         }
+    }
+
+    public List<CollectibleScriptableObject> GetUnidentifiedComponents()
+    {
+        return StorageInventory.GetUnidentifiedComponents();
     }
 }

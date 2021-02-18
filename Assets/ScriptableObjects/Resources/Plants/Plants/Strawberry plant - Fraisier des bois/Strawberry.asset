@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: Strawberry
   m_EditorClassIdentifier: 
   unidentifiedPlantLetter: 
-  commonNameLocKey: Strawberry plant
+  commonNameLocKey: plant_strawberry
   speciesName: Fragaria vesca
   familyName: Rosaceae
   loreLocKey: []
   fullPicture: {fileID: 0}
+  blackAndWhitePicture: {fileID: 0}
   components:
   - {fileID: 11400000, guid: 6a6233edbb6e64a9aa3f77f069be1b80, type: 2}
   - {fileID: 11400000, guid: d246d888718ed4ae7bf067985d8345c1, type: 2}

@@ -26,6 +26,7 @@ public class StorageBoxElementUI : MonoBehaviour
     private void UpdateCollectibleUI()
     {
         _collectibleImage.sprite = Collectible.type.sprite;
-        _collectibleText.text = Collectible.type.developmentName + " x" + Collectible.count;
+        string name = PlantIdentificationInfos.Instance.GetPlantCurrentName(Collectible.type);
+        _collectibleText.text = name + " x" + Collectible.count;
     }
 }

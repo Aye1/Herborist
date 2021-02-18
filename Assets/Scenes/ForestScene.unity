@@ -1074,107 +1074,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb3991d652e324c3183a47e5c0a51801, type: 3}
---- !u!1 &1483801890
-GameObject:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1483801893}
-  - component: {fileID: 1483801892}
-  - component: {fileID: 1483801891}
-  m_Layer: 0
-  m_Name: Brush
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1483801891
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1483801890}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 860611cc84144924c8a95e2a1670d236, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Offset: {x: 0, y: 0}
-  IsUndoEnabled: 1
-  m_brushTilemap: {fileID: 0}
---- !u!114 &1483801892
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1483801890}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4dec3ca0fe88506448df84e8bf55b2dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShowGrid: 1
-  InnerPadding: 0
-  ColliderDepth: 0.1
-  ColliderType: 0
-  Collider2DType: 0
-  Collider2DOptimizationDisabled: 0
-  ShowColliderNormals: 1
-  ColliderDisplayMode: 0
-  IsUndoEnabled: 0
-  SortOrder: 0
-  ColliderGenerationMethod: 0
-  m_sortingLayer: 0
-  m_sortingLayerName: Default
-  m_orderInLayer: 0
-  m_material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_tintColor: {r: 1, g: 1, b: 1, a: 1}
-  m_pixelSnap: 0
-  m_maskInteraction: 0
-  m_isVisible: 1
-  m_allowPaintingOutOfBounds: 1
-  m_autoShrink: 0
-  m_enableUndoWhilePainting: 1
-  m_isTrigger: 0
-  m_physicMaterial: {fileID: 0}
-  m_physicMaterial2D: {fileID: 0}
-  m_cellSize: {x: 0, y: 0}
-  m_mapBounds:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0, y: 0, z: 0}
-  m_tileset: {fileID: 0}
-  m_minGridX: 0
-  m_minGridY: 0
-  m_maxGridX: 0
-  m_maxGridY: 0
-  m_parentTilemapGroup: {fileID: 0}
-  m_parallaxFactor: {x: 1, y: 1}
-  m_chunkRendererProperties:
-    castShadows: 0
-    receiveShadows: 0
-    useLightProbes: 0
-    reflectionProbeUsage: 0
-    anchorOverride: {fileID: 0}
---- !u!4 &1483801893
-Transform:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1483801890}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 17
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &1606239720 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7675213671709762801, guid: b524aa868429d4210bdd5fc15a3a9a57, type: 3}
@@ -2050,7 +1949,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5446311394173830167, guid: 99afad06b08b549bd892d6cb1f0e80d9, type: 3}
       propertyPath: pathWidth
-      value: 2
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5446311394173830167, guid: 99afad06b08b549bd892d6cb1f0e80d9, type: 3}
+      propertyPath: pathAlea.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5446311394173830167, guid: 99afad06b08b549bd892d6cb1f0e80d9, type: 3}
+      propertyPath: riverAlea.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5446311394173830167, guid: 99afad06b08b549bd892d6cb1f0e80d9, type: 3}
+      propertyPath: riverAlea.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5446311394173830167, guid: 99afad06b08b549bd892d6cb1f0e80d9, type: 3}
+      propertyPath: numberRivers
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5446311394173830167, guid: 99afad06b08b549bd892d6cb1f0e80d9, type: 3}
       propertyPath: terrainTilemap
@@ -2060,6 +1975,14 @@ PrefabInstance:
       propertyPath: _terrainTilemap
       value: 
       objectReference: {fileID: 490331381}
+    - target: {fileID: 5446311394173830167, guid: 99afad06b08b549bd892d6cb1f0e80d9, type: 3}
+      propertyPath: pathSubdivisions
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5446311394173830167, guid: 99afad06b08b549bd892d6cb1f0e80d9, type: 3}
+      propertyPath: riverSubdivisions
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5446311394173830167, guid: 99afad06b08b549bd892d6cb1f0e80d9, type: 3}
       propertyPath: tileMappings.Array.data[0].tilemap
       value: 

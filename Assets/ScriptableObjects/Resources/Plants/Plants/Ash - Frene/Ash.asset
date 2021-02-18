@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acf9f5ed5804c41f3a8be4d7f9de86a6, type: 3}
   m_Name: Ash
   m_EditorClassIdentifier: 
-  unidentifiedNameLocKey: 
-  commonNameLocKey: Ash
+  unidentifiedPlantLetter: 
+  commonNameLocKey: plant_ash
   speciesName: Fraxinus excelsior
   familyName: Oleaceae
   loreLocKey: []
   fullPicture: {fileID: 0}
+  blackAndWhitePicture: {fileID: 0}
   components:
   - {fileID: 11400000, guid: a505dbc0406cd4b5a950bef0313efd4e, type: 2}
   - {fileID: 11400000, guid: c4a8452eb23f04732aa40af8f4798672, type: 2}

@@ -22,10 +22,27 @@ public class MapGenerator : MonoBehaviour
 {
     public static MapGenerator Instance { get; private set; }
 
-    public Vector2Int mapSize;
-    public bool DontGenerateMap;
-    public int pathWidth = 5;
+    private List<Vector2Int> _testSatisfiesConditionList;
 
+    public bool DontGenerateMap;
+    [Title("Map Generation Parameters")]
+    public Vector2Int mapSize;
+    public int pathWidth = 5;
+    public int riverWidth = 4;
+    [Range(1,10)]
+    public int numberPathes = 2;
+    [Range(1,10)]
+    public int numberRivers = 2;
+    [Range(0,20)]
+    public int pathSubdivisions = 5;
+    [Range(0,20)]
+    public int riverSubdivisions = 5;
+    [MinMaxSlider(0,10, ShowFields = true)]
+    public Vector2Int pathAlea;
+    [MinMaxSlider(0,10, ShowFields = true)]
+    public Vector2Int riverAlea;
+
+    [Title("Tiles")]
     [Required]
     public List<TerrainTileMapping> tileMappings;
 
@@ -38,11 +55,17 @@ public class MapGenerator : MonoBehaviour
 
     private List<CurvedLinePath> _rivers;
     private List<CurvedLinePath> _pathes;
-    private List<Vector2Int> _bridgePositions;
+    private List<PointOfInterest> _spawnedPOIs;
     private Polygon _borderPolygon;
     private ForestGenerator[] _forestGenerators;
+
+    private Vector2Int _minPosition;
+    private Vector2Int _maxPosition;
+    private List<Vector2Int> _poiPositions;
+    private List<Vector2Int> _riverPositions;
+    private List<Vector2Int> _pathPositions;
+    private List<Vector2Int> _bridgePositions;
     private List<Vector2Int> _usedPositions;
-    private List<PointOfInterest> _spawnedPOIs;
 
     private int _borderWidth = 2;
     private Vector3 _playerStartPosition;
@@ -56,6 +79,13 @@ public class MapGenerator : MonoBehaviour
             _playerStartPosition = new Vector3(mapSize.x * 0.5f, 5, 0.0f);
             _forestGenerators = GetComponents<ForestGenerator>();
             _usedPositions = new List<Vector2Int>();
+            _testSatisfiesConditionList = new List<Vector2Int>();
+            _minPosition = Vector2Int.zero;
+            _maxPosition = new Vector2Int(mapSize.x - 1, mapSize.y - 1);
+            _riverPositions = new List<Vector2Int>();
+            _pathPositions = new List<Vector2Int>();
+            _bridgePositions = new List<Vector2Int>();
+            _poiPositions = new List<Vector2Int>();
         }
         else
         {
@@ -106,51 +136,57 @@ public class MapGenerator : MonoBehaviour
 
     public void GenerateMap()
     {
-        for(int i=0; i<mapSize.x; i++)
-        {
-            for(int j=0; j<mapSize.y; j++)
-            {
-                PutTile(new Vector2Int(i, j), TileType.Grass);
-            }
-        }
+        GenerateBasicGrass();
+        GenerateMapBorders(_borderWidth);
+
         _spawnedPOIs = new List<PointOfInterest>();
         GenerateEntrancePOI();
 
+        GenerateRivers();
 
-        List<Vector2Int> riverControlPoints = new List<Vector2Int>()
-        {
-            MapGeneratorHelper.GenerateRandomPointOnLimit(MapLimit.Left, 0.20f, 0.60f),
-            new Vector2Int(69, 49),
-            MapGeneratorHelper.GenerateRandomPointOnLimit(MapLimit.Right, 0.50f, 0.80f)
-        };
-        GenerateRiver(riverControlPoints);
+        GeneratePathes();
 
-        List<Vector2Int> riverControlPoints2 = new List<Vector2Int>()
-        {
-            MapGeneratorHelper.GenerateRandomPointOnLimit(MapLimit.Left, 0.65f, 0.90f),
-            new Vector2Int(69, 49)
-        };
-        GenerateRiver(riverControlPoints2);
-
-        List<Vector2Int> pathControlPoints = new List<Vector2Int>()
-        {
-            new Vector2Int(47, 2),
-            new Vector2Int(49, 29),
-            MapGeneratorHelper.GenerateRandomPointOnLimit(MapLimit.Up, 0.10f, 0.50f)
-        };
-        GeneratePath(pathControlPoints);
-
-        List<Vector2Int> pathControlPoints2 = new List<Vector2Int>()
-        {
-            new Vector2Int(49, 29),
-            MapGeneratorHelper.GenerateRandomPointOnLimit(MapLimit.Up, 0.60f, 0.90f)
-        };
-        GeneratePath(pathControlPoints2);
-        GenerateMapBorders(_borderWidth);
+        TestCondition();
 
         tileMappings.Select(m => m.tilemap).Distinct().ToList().ForEach(t => t?.UpdateMeshImmediate()); // Force updating tilemaps before ending the loading + only way to disable colliders
         //DisableColliders(_terrainTilemap, _bridgePositions);
 
+    }
+
+    private void GenerateBasicGrass()
+    {
+        for (int i = 0; i < mapSize.x; i++)
+        {
+            for (int j = 0; j < mapSize.y; j++)
+            {
+                PutTile(new Vector2Int(i, j), TileType.Grass);
+            }
+        }
+    }
+
+    private void GenerateRivers()
+    {
+        List<MapCondition> riverSpawnConditions = new List<MapCondition>()
+        {
+            new IsFarFromTileCondition(_poiPositions, _minPosition + new Vector2Int(0,10), _maxPosition, 5),
+            new IsCloseToTileCondition(_borderPolygon.Points, _minPosition, _maxPosition, 1)
+        };
+        // Generate rivers
+        for (int i = 0; i < numberRivers; i++)
+        {
+            //MapLimit originLimit = (MapLimit)Alea.GetIntInc(0, 3);
+            List<Vector2Int> controlPoints = new List<Vector2Int>();
+            Vector2Int origin = MapCondition.GetRandomPointSatisfyingAll(riverSpawnConditions);
+            IsFarFromSpecificTileCondition riverLengthCondition = new IsFarFromSpecificTileCondition(origin, _minPosition, _maxPosition, 50);
+
+            riverSpawnConditions.Add(riverLengthCondition);
+            controlPoints.Add(origin);
+            controlPoints.Add(MapCondition.GetRandomPointSatisfyingAll(riverSpawnConditions));
+            //controlPoints.Add(MapGeneratorHelper.GenerateRandomPointOnLimit(originLimit, 0.2f, 0.8f));
+            //controlPoints.Add(MapGeneratorHelper.GenerateRandomPointOnRandomLimitExcluded(originLimit, 0.2f, 0.8f));
+            GenerateRiver(controlPoints);
+            riverSpawnConditions.Remove(riverLengthCondition);
+        }
     }
 
     private void GenerateRiver(List<Vector2Int> riverControlPoints)
@@ -159,10 +195,34 @@ public class MapGenerator : MonoBehaviour
         {
             _rivers = new List<CurvedLinePath>();
         }
-        CurvedLinePath river = new CurvedLinePath(riverControlPoints, 4);
-        river.GeneratePoints(0, 5);
+        CurvedLinePath river = new CurvedLinePath(riverControlPoints, riverWidth);
+        river.subdivisionCount = riverSubdivisions;
+        river.GeneratePoints(riverAlea.x, riverAlea.y);
         PutTiles(river.AllPoints, TileType.Water);
         _rivers.Add(river);
+        _riverPositions.AddRange(river.AllPoints);
+    }
+
+    private void GeneratePathes()
+    {
+        // Generate first path
+        List<Vector2Int> firstPathControlPoints = new List<Vector2Int>()
+        {
+            new Vector2Int(47,2),
+            new Vector2Int(49,29),
+            MapGeneratorHelper.GenerateRandomPointOnRandomLimitExcluded(MapLimit.Down, 0.3f, 0.7f)
+        };
+        GeneratePath(firstPathControlPoints);
+
+        // Generate pathes
+        for (int i = 1; i < numberPathes; i++)
+        {
+            MapLimit originLimit = (MapLimit)Alea.GetIntInc(0, 3);
+            List<Vector2Int> controlPoints = new List<Vector2Int>();
+            controlPoints.Add(MapGeneratorHelper.GenerateRandomPointOnLimit(originLimit, 0.2f, 0.8f));
+            controlPoints.Add(MapGeneratorHelper.GenerateRandomPointOnRandomLimitExcluded(originLimit, 0.2f, 0.8f));
+            GeneratePath(controlPoints);
+        }
     }
 
     private void GeneratePath(List<Vector2Int> pathControlPoints)
@@ -171,18 +231,16 @@ public class MapGenerator : MonoBehaviour
         {
             _pathes = new List<CurvedLinePath>();
         }
-        if(_bridgePositions == null)
-        {
-            _bridgePositions = new List<Vector2Int>();
-        }
         CurvedLinePath path = new CurvedLinePath(pathControlPoints, pathWidth);
-        path.GeneratePoints(0, 4);
+        path.subdivisionCount = pathSubdivisions;
+        path.GeneratePoints(pathAlea.x, pathAlea.y);
         List<Vector2Int> riverPathCrossingPositions = path.AllPoints.Where(p => _rivers.Any(r => r.AllPoints.Contains(p))).ToList();
         List<Vector2Int> pathPositions = path.AllPoints.Where(p => !riverPathCrossingPositions.Contains(p)).ToList();
         PutTiles(pathPositions, TileType.Dirt);
         PutTiles(riverPathCrossingPositions, TileType.Bridge);
         _pathes.Add(path);
         _bridgePositions.AddRange(riverPathCrossingPositions);
+        _pathPositions.AddRange(pathPositions);
     }
 
     private void GenerateMapBorders(int width)
@@ -234,6 +292,7 @@ public class MapGenerator : MonoBehaviour
         newPOI.SetPositionOnTilemap(new Vector2(mapSize.x * 0.5f - newPOI.Size.x * 0.5f - 0.5F, -1.0f)); // TODO: remove arbitrary 0.5F
         _spawnedPOIs.Add(newPOI);
         newPOI.MergeTilemaps(_terrainTilemap);
+        _poiPositions.AddRange(newPOI.TilesPositions);
     }
 
     private void PutTiles(List<Vector2Int> positions, TileType type)
@@ -313,9 +372,10 @@ public class MapGenerator : MonoBehaviour
     #region Debug & Test
     private void DebugDrawElements()
     {
-        DebugDrawRiver();
+        /*DebugDrawRiver();
         DebugDrawPath();
-        DebugDrawUsedPositions();
+        DebugDrawUsedPositions();*/
+        //DebugDrawConditionPositions();
     }
 
     private void TestFillPolygon()
@@ -402,6 +462,34 @@ public class MapGenerator : MonoBehaviour
         Debug.DrawLine(upRight, downRight, color);
         Debug.DrawLine(downRight, downLeft, color);
         Debug.DrawLine(downLeft, upLeft, color);
+    }
+
+    private void TestCondition()
+    {
+
+        List<Vector2Int> riverPositions = new List<Vector2Int>();
+        List<Vector2Int> pathPositions = new List<Vector2Int>();
+        _rivers?.ForEach(r => riverPositions.AddRange(r.AllPoints));
+        _pathes.ForEach(p => pathPositions.AddRange(p.AllPoints));
+        List<MapCondition> conditions = new List<MapCondition>()
+        {
+            /*new IsCloseToTileCondition(riverPositions, _minPosition, _maxPosition, 5),
+            new IsCloseToTileCondition(pathPositions, _minPosition, _maxPosition, 5),
+            new IsNotOnTileCondition(riverPositions, _minPosition, _maxPosition),
+            new IsNotOnTileCondition(pathPositions, _minPosition, _maxPosition),
+            new IsNotOnTileCondition(_borderPolygon.Points, _minPosition, _maxPosition)*/
+            new IsFarFromTileCondition(_poiPositions, _minPosition, _maxPosition, 5),
+            new IsCloseToTileCondition(_borderPolygon.Points, _minPosition, _maxPosition, 0)
+        };
+        _testSatisfiesConditionList.AddRange(MapCondition.GetPositionsSatisfyingAll(conditions));
+    }
+
+    private void DebugDrawConditionPositions()
+    {
+        foreach(Vector2Int pos in _testSatisfiesConditionList)
+        {
+            DebugDrawTile(pos, Color.blue);
+        }
     }
     #endregion
 }

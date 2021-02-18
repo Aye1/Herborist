@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acf9f5ed5804c41f3a8be4d7f9de86a6, type: 3}
   m_Name: Wild Rose
   m_EditorClassIdentifier: 
-  unidentifiedNameLocKey: 
-  commonNameLocKey: Wild Rose
+  unidentifiedPlantLetter: 
+  commonNameLocKey: plant_wildrose
   speciesName: Rosa canina
   familyName: Rosaceae
   loreLocKey: []
   fullPicture: {fileID: 0}
+  blackAndWhitePicture: {fileID: 0}
   components:
   - {fileID: 11400000, guid: ba32fc405097748c19d4a5e672ce9023, type: 2}
   - {fileID: 11400000, guid: 2faeac556f806420ba3085d2d865dff0, type: 2}

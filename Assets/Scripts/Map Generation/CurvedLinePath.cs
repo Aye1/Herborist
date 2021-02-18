@@ -6,6 +6,7 @@ public class CurvedLinePath
 {
     public int width = 3;
     public bool polygonPointsGenerated = false;
+    public int subdivisionCount = 2;
 
     private List<Vector2Int> _polygonPoints;
     private List<Vector2Int> _allPoints;
@@ -43,7 +44,7 @@ public class CurvedLinePath
     {
         _fullFirstLine = new List<Vector2Int>();
         _fullFirstLine.AddRange(_controlPoints);
-        MapGeneratorHelper.SubdivideLine(_fullFirstLine, 2);
+        MapGeneratorHelper.SubdivideLine(_fullFirstLine, subdivisionCount);
         GenerateFirstLineNormals();
     }
 

@@ -24,7 +24,7 @@ public class PlantInformationUI : MonoBehaviour
 
     private void UpdateUI()
     {
-        if(_currentCollectible != null)
+        if(_currentCollectible != null && _currentCollectible.collectible != null && PlantIdentificationInfos.Instance != null)
         {
             _plantName.text = PlantIdentificationInfos.Instance.GetPlantCurrentName(_currentCollectible.collectible);
         }

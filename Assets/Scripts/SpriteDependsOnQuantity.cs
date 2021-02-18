@@ -143,7 +143,9 @@ public class SpriteDependsOnQuantity : MonoBehaviour
 
     public bool IsConsistent()
     {
-        return MissingRanges.Count == 0 && _conflictingQuantities.Count == 0;
+        if(MissingRanges != null && _conflictingQuantities != null)
+            return MissingRanges.Count == 0 && _conflictingQuantities.Count == 0;
+        return true;
     }
 
     public Color GetValidationColor(SpriteQuantityBinder binder)

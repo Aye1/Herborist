@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b943af5e18114cec91df843d9dd3804, type: 3}
   m_Name: IVParallelVein
   m_EditorClassIdentifier: 
-  valueNameLocKey: Parralel Vein
   icon: {fileID: 0}
-  descriptionLocKey: Veins are parallel
+  valueNameLocKey: identAns_ParallelVein
+  descriptionLocKey: identAns_ParallelVein

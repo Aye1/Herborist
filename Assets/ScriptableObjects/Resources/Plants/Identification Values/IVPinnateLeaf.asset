@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b943af5e18114cec91df843d9dd3804, type: 3}
   m_Name: IVPinnateLeaf
   m_EditorClassIdentifier: 
-  valueNameLocKey: Pinnate Leaf
   icon: {fileID: 0}
-  descriptionLocKey: leaf is composed of multiple elements, like a feather
+  valueNameLocKey: identAns_PinnateLeaf
+  descriptionLocKey: identAns_PinnateLeaf

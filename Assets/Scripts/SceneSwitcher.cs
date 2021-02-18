@@ -22,6 +22,7 @@ public class SceneSwitcher : SerializedMonoBehaviour
 
     public delegate void SceneEvent(SceneType sceneType);
     public SceneEvent OnSceneLoaded;
+    public SceneEvent OnSceneWillLoad;
 
     [SerializeField]
     private List<SceneBinding> _bindings;
@@ -83,6 +84,8 @@ public class SceneSwitcher : SerializedMonoBehaviour
     private IEnumerator LoadSceneAsync(int sceneId, bool forceLoadingScreen = false)
     {
         IsSceneLoading = true;
+        SceneType newScene = GetSceneWithId(sceneId);
+        OnSceneWillLoad?.Invoke(newScene);
         bool displayLoadingScreen = forceLoadingScreen || ShouldDisplayLoadingScreen(sceneId);
         DisplayLoadingScreen(displayLoadingScreen);
 
@@ -94,7 +97,7 @@ public class SceneSwitcher : SerializedMonoBehaviour
         IsSceneLoading = false;
         
         DisplayLoadingScreen(false);
-        OnSceneLoaded?.Invoke(GetSceneWithId(sceneId));
+        OnSceneLoaded?.Invoke(newScene);
     }
 
     public int GetSceneId(SceneType scene)

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b943af5e18114cec91df843d9dd3804, type: 3}
   m_Name: IVPalmateVein
   m_EditorClassIdentifier: 
-  valueNameLocKey: Palmate Veins
   icon: {fileID: 0}
-  descriptionLocKey: Veins diverges form a central point
+  valueNameLocKey: identAns_PalmateVein
+  descriptionLocKey: identAns_PalmateVein

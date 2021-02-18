@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acf9f5ed5804c41f3a8be4d7f9de86a6, type: 3}
   m_Name: Clover
   m_EditorClassIdentifier: 
-  unidentifiedNameLocKey: 
-  commonNameLocKey: Clover
+  unidentifiedPlantLetter: 
+  commonNameLocKey: plant_clover
   speciesName: Trifolium pratense
   familyName: Fabaceae
   loreLocKey: []
   fullPicture: {fileID: 0}
+  blackAndWhitePicture: {fileID: 0}
   components:
   - {fileID: 11400000, guid: 7965fc3406beb45ea8ec6cfee10f7a7b, type: 2}
   - {fileID: 11400000, guid: 61d0d5e7909ea474897f4b0d240ccada, type: 2}

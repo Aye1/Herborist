@@ -12,14 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acf9f5ed5804c41f3a8be4d7f9de86a6, type: 3}
   m_Name: Tilleul
   m_EditorClassIdentifier: 
-  unidentifiedNameLocKey: _Unknown Plant A
-  commonNameLocKey: Lime Tree
+  unidentifiedPlantLetter: 
+  commonNameLocKey: plant_limetree
   speciesName: Tilia Cordata
   familyName: Malvaceae
   loreLocKey:
   - Some lore bla bla bla
   - Lore Part 2 bla bla
   fullPicture: {fileID: 21300000, guid: 45e13c21c9fdb498ca0adf3d797a5289, type: 3}
+  blackAndWhitePicture: {fileID: 0}
   components:
   - {fileID: 11400000, guid: ab729fd05f79e4369b649f5f28b97fa0, type: 2}
   - {fileID: 11400000, guid: 8144a7a7609ea482eaa45fc64c0c4434, type: 2}

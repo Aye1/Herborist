@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acf9f5ed5804c41f3a8be4d7f9de86a6, type: 3}
   m_Name: Nettle
   m_EditorClassIdentifier: 
-  unidentifiedNameLocKey: 
-  commonNameLocKey: Nettle
+  unidentifiedPlantLetter: 
+  commonNameLocKey: plant_oak
   speciesName: Urtica dioica
   familyName: Urticaceae
   loreLocKey: []
   fullPicture: {fileID: 0}
+  blackAndWhitePicture: {fileID: 0}
   components:
   - {fileID: 11400000, guid: 10ec47dae835b4dd8ae320914846ac8b, type: 2}
   - {fileID: 11400000, guid: 1891df5162574480c95b032dc05175d8, type: 2}

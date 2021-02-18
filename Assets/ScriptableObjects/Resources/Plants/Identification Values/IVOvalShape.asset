@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b943af5e18114cec91df843d9dd3804, type: 3}
   m_Name: IVOvalShape
   m_EditorClassIdentifier: 
-  valueNameLocKey: Oval Shape
   icon: {fileID: 0}
-  descriptionLocKey: in an Oval shape
+  valueNameLocKey: identAns_OvalShape
+  descriptionLocKey: identAns_OvalShape
