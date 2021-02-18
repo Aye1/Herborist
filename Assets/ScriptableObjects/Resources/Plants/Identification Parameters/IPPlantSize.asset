@@ -15,4 +15,6 @@ MonoBehaviour:
   questionLocKey: idenQuest_plantSize
   parameterNameLocKey: idenQuest_plantSize
   possibleValues:
+  - {fileID: 11400000, guid: 4717fb144d79c4494897018f596cab14, type: 2}
+  - {fileID: 11400000, guid: 417b18d2109f14d208fa334ab160d17f, type: 2}
   - {fileID: 11400000, guid: c8d18b897f94a473ea7ecb6a95be0b87, type: 2}
