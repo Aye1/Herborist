@@ -32,26 +32,6 @@ public class IdentificationTableV2CollectibleButton : MonoBehaviour
         get { return _selfButton; }
     }
 
-    private void Awake()
-    {
-        BindEvents();
-    }
-
-    private void OnDestroy()
-    {
-        UnBindEvents();
-    }
-
-    private void BindEvents()
-    {
-
-    }
-
-    private void UnBindEvents()
-    {
-
-    }
-
     private void UpdateUI()
     {
         if(Collectible != null)
@@ -59,10 +39,5 @@ public class IdentificationTableV2CollectibleButton : MonoBehaviour
             _componentNameText.text = PlantIdentificationInfos.Instance.GetPlantCurrentName(Collectible);
             _componentImage.sprite = Collectible.sprite;
         }
-    }
-
-    private void OnButtonClicked()
-    {
-
     }
 }

@@ -114,6 +114,12 @@ public class PlantIdentificationInfos : SerializedMonoBehaviour, ISavable
         return "";
     }
 
+    public void SetComponentIdentification(PlantComponentScriptableObject component, bool isIdentified)
+    {
+        identificationData.Remove(component);
+        identificationData.Add(component, isIdentified);
+    }
+
     #region ISavable implementation
     public SaveState GetObjectToSave()
     {

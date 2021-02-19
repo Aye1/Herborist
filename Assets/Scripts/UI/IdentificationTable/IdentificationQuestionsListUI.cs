@@ -5,6 +5,7 @@ using Sirenix.OdinInspector;
 using TMPro;
 using Unisloth.Localization;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class IdentificationQuestionsListUI : MonoBehaviour
 {
@@ -12,18 +13,43 @@ public class IdentificationQuestionsListUI : MonoBehaviour
     [SerializeField, Required, AssetsOnly] private IdentificationQuestionsScriptableObject _questions;
     [SerializeField, Required, AssetsOnly] private IdentificationAnswerUI _answerTemplate;
 
-    [Title("Editor bindings - Child objects")]
+    [Title("Editor bindings - Children objects")]
     [SerializeField, Required, ChildGameObjectsOnly] private TextMeshProUGUI _questionText;
-    [SerializeField, Required] private Transform _answersHolder;
+    [SerializeField, Required, ChildGameObjectsOnly] private Transform _answersHolder;
     [SerializeField, Required, ChildGameObjectsOnly] private IdentificationTableFoundPlantsUI _foundPlantsUI;
+    [SerializeField, Required, ChildGameObjectsOnly] private PlantSearcher _plantSearcher;
+    [SerializeField, Required, ChildGameObjectsOnly] private GameObject _resultsUI;
+    [SerializeField, Required, ChildGameObjectsOnly] private TextMeshProUGUI _resultsText;
+    [SerializeField, Required, ChildGameObjectsOnly] private Image _componentToIdentifyImage;
+    [SerializeField, Required, ChildGameObjectsOnly] private Button _componentIdentifiedButton;
 
     [Title("Localization")]
     [SerializeField, TranslationKey]
     private string _foundPlantsLocKey;
+    [SerializeField, TranslationKey]
+    private string _resultsTitleLocKey;
 
+    private PlantComponentScriptableObject _currentComponent;
     private PlantIdentificationParameterScriptableObject _currentQuestion;
     private Dictionary<PlantIdentificationParameterScriptableObject, PlantIdentificationValueScriptableObject> _givenAnswers;
     private int _currentQuestionIndex;
+
+    public delegate void ComponentIdentified(PlantComponentScriptableObject component);
+    public ComponentIdentified OnComponentIdentified;
+
+    public PlantComponentScriptableObject CurrentComponent
+    {
+        get { return _currentComponent; }
+        set
+        {
+            if(_currentComponent != value)
+            {
+                _currentComponent = value;
+                _componentToIdentifyImage.sprite = _currentComponent.componentPicture;
+                Reset();
+            }
+        }
+    }
 
     public PlantIdentificationParameterScriptableObject CurrentQuestion
     {
@@ -38,14 +64,10 @@ public class IdentificationQuestionsListUI : MonoBehaviour
         }
     }
 
-    private void OnEnable()
-    {
-        Reset();
-    }
-
     public void Reset()
     {
         TogglePossiblePlantsVisibility(false);
+        ToggleResultsVisibility(false);
         if(_givenAnswers == null)
         {
             _givenAnswers = new Dictionary<PlantIdentificationParameterScriptableObject, PlantIdentificationValueScriptableObject>();
@@ -90,6 +112,17 @@ public class IdentificationQuestionsListUI : MonoBehaviour
         return _currentQuestionIndex == _questions.questions.Count-1;
     }
 
+    void ToggleResultsVisibility(bool active)
+    {
+        _resultsUI.gameObject.SetActive(active);
+        _answersHolder.gameObject.SetActive(!active);
+        _foundPlantsUI.gameObject.SetActive(false);
+        if(active)
+        {
+            SetResultsUI();
+        }
+    }
+
     void TogglePossiblePlantsVisibility(bool active)
     {
         _foundPlantsUI.gameObject.SetActive(active);
@@ -114,7 +147,8 @@ public class IdentificationQuestionsListUI : MonoBehaviour
             GoToNextQuestion();
         } else
         {
-            TogglePossiblePlantsVisibility(true);
+            //TogglePossiblePlantsVisibility(true);
+            ToggleResultsVisibility(true);
         }
     }
 
@@ -148,6 +182,16 @@ public class IdentificationQuestionsListUI : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
+    }
+
+    void SetResultsUI()
+    {
+        List<PlantComponentScriptableObject> results = _plantSearcher.FindComponents(_givenAnswers);
+        bool isValid = results.Contains(CurrentComponent);
+        _questionText.text = LocalizationManager.Instance.GetTranslation(_resultsTitleLocKey);
+        _resultsText.text = isValid ? "Component correctly identified" : "Error in component identification, try again";
+        _componentIdentifiedButton.gameObject.SetActive(isValid);
+        _componentIdentifiedButton.onClick.AddListener(() => OnComponentIdentified?.Invoke(CurrentComponent));
     }
 
     void SetFocus(GameObject obj)

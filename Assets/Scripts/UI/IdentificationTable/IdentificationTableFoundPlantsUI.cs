@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
 
@@ -26,7 +25,6 @@ public class IdentificationTableFoundPlantsUI : MonoBehaviour
     private void UpdateUI()
     {
         ClearResults();
-        _plantSearcher.plants = _database.plants;
         List<PlantComponentScriptableObject> foundComponents = _plantSearcher.FindComponents(Filters);
         foreach(PlantComponentScriptableObject component in foundComponents)
         {
@@ -41,17 +39,5 @@ public class IdentificationTableFoundPlantsUI : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
