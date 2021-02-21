@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 266e5e829318e42e1901568ebb057c8e, type: 3}
+  m_Name: IPFlowerColor
+  m_EditorClassIdentifier: 
+  questionLocKey: identQuest_FlowerColor
+  parameterNameLocKey: interact_teleport
+  possibleValues:
+  - {fileID: 11400000, guid: 7787663047a2b48738677e21ebffea38, type: 2}
+  - {fileID: 11400000, guid: 231ec81c7522b4703956ea7ee7d3174d, type: 2}
+  - {fileID: 11400000, guid: 11db793a6c74d4b3abe2107079ebceae, type: 2}
+  - {fileID: 11400000, guid: 4395ae767379040948db1b78ab930e9b, type: 2}
+  - {fileID: 11400000, guid: 06c25c41423b642b99d06ce2555bb9a0, type: 2}
+  - {fileID: 11400000, guid: 5b69f235d70884108bed96dba634b263, type: 2}
