@@ -77,6 +77,29 @@ MonoBehaviour:
   - plant_wildrose
   - plant_yarrow
   - ident_resultsTitle
+  - idenQuest_flowerRepartition
+  - identQuest_FlowerSymmetry
+  - identQuest_FlowerColor
+  - identQuest_FlowerPetalNumber
+  - identAns_FlowerRadial
+  - identAns_FlowerVertical
+  - identAns_SpikeFlower
+  - identAns_CapitulumFlower
+  - identAns_CymeFlower
+  - identAns_PanicleFlower
+  - identAns_UmbelFlower
+  - identAns_CatkinFlower
+  - identAns_SimpleFLower
+  - identAns_UnknownPetal
+  - identAns_4Petals
+  - identAns_5Petals
+  - identAns_6Petals
+  - identAns_UnknownColor
+  - identAns_White
+  - identAns_Yellow
+  - identAns_Pink
+  - identAns_Red
+  - identAns_Purple
   _availableLanguages: 0a000000
   _translations:
   - key: default
@@ -326,4 +349,96 @@ MonoBehaviour:
   - key: ident_resultsTitle
     language: 10
     value: Identification Results
+    parent: {fileID: 11400000}
+  - key: idenQuest_flowerRepartition
+    language: 10
+    value: How is the flower organized ?
+    parent: {fileID: 11400000}
+  - key: identQuest_FlowerSymmetry
+    language: 10
+    value: Does the flower have a symmetry axis ?
+    parent: {fileID: 11400000}
+  - key: identQuest_FlowerColor
+    language: 10
+    value: What dominant color have the flower ?
+    parent: {fileID: 11400000}
+  - key: identQuest_FlowerPetalNumber
+    language: 10
+    value: How many petals does the flower have ?
+    parent: {fileID: 11400000}
+  - key: identAns_FlowerRadial
+    language: 10
+    value: Radial Symmetry
+    parent: {fileID: 11400000}
+  - key: identAns_FlowerVertical
+    language: 10
+    value: Vertical Symmetry
+    parent: {fileID: 11400000}
+  - key: identAns_SpikeFlower
+    language: 10
+    value: Spike
+    parent: {fileID: 11400000}
+  - key: identAns_CapitulumFlower
+    language: 10
+    value: Capitulum
+    parent: {fileID: 11400000}
+  - key: identAns_CymeFlower
+    language: 10
+    value: Cyme
+    parent: {fileID: 11400000}
+  - key: identAns_PanicleFlower
+    language: 10
+    value: Panicle
+    parent: {fileID: 11400000}
+  - key: identAns_UmbelFlower
+    language: 10
+    value: Umbel
+    parent: {fileID: 11400000}
+  - key: identAns_CatkinFlower
+    language: 10
+    value: Catkin
+    parent: {fileID: 11400000}
+  - key: identAns_SimpleFLower
+    language: 10
+    value: Solitary Flower
+    parent: {fileID: 11400000}
+  - key: identAns_UnknownPetal
+    language: 10
+    value: Can't determine the number of petals
+    parent: {fileID: 11400000}
+  - key: identAns_4Petals
+    language: 10
+    value: 4 Petals
+    parent: {fileID: 11400000}
+  - key: identAns_5Petals
+    language: 10
+    value: 5 Petals
+    parent: {fileID: 11400000}
+  - key: identAns_6Petals
+    language: 10
+    value: 6 Petals
+    parent: {fileID: 11400000}
+  - key: identAns_UnknownColor
+    language: 10
+    value: Color cannot be determined
+    parent: {fileID: 11400000}
+  - key: identAns_White
+    language: 10
+    value: White
+    parent: {fileID: 11400000}
+  - key: identAns_Yellow
+    language: 10
+    value: Yellow
+    parent: {fileID: 11400000}
+  - key: identAns_Pink
+    language: 10
+    value: Pink
+    parent: {fileID: 11400000}
+  - key: identAns_Red
+    language: 10
+    value: Red
+    parent: {fileID: 11400000}
+  - key: identAns_Purple
+    language: 10
+    value: Purple
     parent: {fileID: 11400000}
