@@ -100,6 +100,9 @@ MonoBehaviour:
   - identAns_Pink
   - identAns_Red
   - identAns_Purple
+  - identAns_NoSymmetry
+  - identAns_VerticillasterFlower
+  - identAns_Corymb
   _availableLanguages: 0a000000
   _translations:
   - key: default
@@ -441,4 +444,16 @@ MonoBehaviour:
   - key: identAns_Purple
     language: 10
     value: Purple
+    parent: {fileID: 11400000}
+  - key: identAns_NoSymmetry
+    language: 10
+    value: No Symmetry
+    parent: {fileID: 11400000}
+  - key: identAns_VerticillasterFlower
+    language: 10
+    value: Verticillaster
+    parent: {fileID: 11400000}
+  - key: identAns_Corymb
+    language: 10
+    value: Corymb
     parent: {fileID: 11400000}

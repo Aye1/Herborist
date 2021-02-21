@@ -12,12 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acf9f5ed5804c41f3a8be4d7f9de86a6, type: 3}
   m_Name: Oak
   m_EditorClassIdentifier: 
-  unidentifiedNameLocKey: 
-  commonNameLocKey: Common Oak
+  unidentifiedPlantLetter: 
+  commonNameLocKey: interact_teleport
   speciesName: Quercus pedunculata
   familyName: Fagaceae
   loreLocKey: []
   fullPicture: {fileID: 0}
+  blackAndWhitePicture: {fileID: 0}
   components:
   - {fileID: 11400000, guid: 4c41b2014fbac45c59fa3a4a684e35ca, type: 2}
   - {fileID: 11400000, guid: 5d35871427e50492e882a569a5dd80ff, type: 2}
+  - {fileID: 11400000, guid: 063a86b9fe18942ae9e0daaf554ed722, type: 2}
+  - {fileID: 11400000, guid: 34fd2cb30fac94db8a29dd5687ef9d83, type: 2}
