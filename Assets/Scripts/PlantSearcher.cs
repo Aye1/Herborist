@@ -1,15 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using Sirenix.OdinInspector;
 
 public class PlantSearcher : MonoBehaviour
 {
-    public List<PlantScriptableObject> plants;
+    [SerializeField, Required, AssetsOnly] private PlantDatabaseScriptableObject _database;
 
+#if UNITY_EDITOR
     public PlantIdentificationParameterScriptableObject paramTest;
     public PlantIdentificationValueScriptableObject valueTest;
+#endif
 
     public List<PlantScriptableObject> foundPlants;
 
@@ -27,6 +28,7 @@ public class PlantSearcher : MonoBehaviour
         }
     }
 
+#if UNITY_EDITOR
     [Button("Search plants")]
     private void TestSearch()
     {
@@ -34,10 +36,11 @@ public class PlantSearcher : MonoBehaviour
         testParams.Add(paramTest, valueTest);
         foundPlants = FindPlants(testParams);
     }
+#endif
 
     public List<PlantComponentScriptableObject> FindComponents(Dictionary<PlantIdentificationParameterScriptableObject, PlantIdentificationValueScriptableObject> parameters)
     {
-        List<PlantComponentScriptableObject> components = plants.SelectMany(p => p.components).ToList();
+        List<PlantComponentScriptableObject> components = _database.plants.SelectMany(p => p.components).ToList();
         foreach(KeyValuePair<PlantIdentificationParameterScriptableObject, PlantIdentificationValueScriptableObject> param in parameters)
         {
             components = components.Where(c => IsValid(c, param.Key, param.Value)).ToList();
@@ -49,7 +52,7 @@ public class PlantSearcher : MonoBehaviour
     public List<PlantScriptableObject> FindPlants(Dictionary<PlantIdentificationParameterScriptableObject, PlantIdentificationValueScriptableObject> parameters)
     {
         List<PlantComponentScriptableObject> filteredComponents = FindComponents(parameters);
-        return plants.Where(p => p.components.Any(c => filteredComponents.Contains(c))).ToList();
+        return _database.plants.Where(p => p.components.Any(c => filteredComponents.Contains(c))).ToList();
     }
 
     private bool IsValid(PlantComponentScriptableObject component, PlantIdentificationParameterScriptableObject param, PlantIdentificationValueScriptableObject value)

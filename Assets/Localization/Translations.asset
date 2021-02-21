@@ -76,6 +76,7 @@ MonoBehaviour:
   - plant_wildgarlic
   - plant_wildrose
   - plant_yarrow
+  - ident_resultsTitle
   _availableLanguages: 0a000000
   _translations:
   - key: default
@@ -321,4 +322,8 @@ MonoBehaviour:
   - key: plant_plantain
     language: 10
     value: Plantain
+    parent: {fileID: 11400000}
+  - key: ident_resultsTitle
+    language: 10
+    value: Identification Results
     parent: {fileID: 11400000}
