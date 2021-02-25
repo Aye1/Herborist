@@ -2521,6 +2521,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3458001376763732166, guid: 5e865b4b534974ba3af7bdfc4d691883, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 3494358616480641218, guid: 5e865b4b534974ba3af7bdfc4d691883, type: 3}
       propertyPath: m_RootOrder
       value: 15
@@ -6849,6 +6853,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd7c8992078514febabfb78cd32b31a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _currentFocus: {fileID: 0}
 --- !u!1 &1623297765
 GameObject:
   m_ObjectHideFlags: 0
