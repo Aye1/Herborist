@@ -33,7 +33,6 @@ public class HighlightButton : BaseButton
     {
         if (Application.isPlaying)
         {
-            Debug.Log("onselect " + gameObject.name);
             base.OnSelect(eventData);
             _deselectFeedbacks.StopFeedbacks();
             _selectFeedbacks.PlayFeedbacks();
@@ -44,7 +43,6 @@ public class HighlightButton : BaseButton
     {
         if (Application.isPlaying)
         {
-            Debug.Log("ondeselect " + gameObject.name);
             base.OnDeselect(eventData);
 
             _selectFeedbacks.StopFeedbacks();

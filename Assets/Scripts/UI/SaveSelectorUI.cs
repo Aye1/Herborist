@@ -1,34 +1,34 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using Sirenix.OdinInspector;
 
-public class SaveSelectorUI : MonoBehaviour
+public class SaveSelectorUI : BasePopup
 {
     [SerializeField, Required, ChildGameObjectsOnly]
     public List<SaveSelectorItemUI> saveButtons;
-
-    private void OnEnable()
-    {
-        SetKeyboardFocus();
-        //LoadGameInfos();
-    }
 
     private void SetKeyboardFocus()
     {
         if (saveButtons != null && saveButtons.Count > 0)
         {
-            EventSystem.current.SetSelectedGameObject(null);
-            EventSystem.current.SetSelectedGameObject(saveButtons[0].gameObject);
+            NavigationManager.Instance.SetFocus(saveButtons[0].gameObject);
         }
     }
 
-    /*private void LoadGameInfos()
+    #region BasePopup implementation
+    protected override void CustomOnDisable()
     {
-        foreach(SaveSelectorItemUI item in saveButtons)
-        {
-            SaveManager.Instance.Load(item.associatedInfo);
-        }
-    }*/
+        return;
+    }
+
+    protected override void CustomOnEnable()
+    {
+        SetKeyboardFocus();
+    }
+
+    protected override void OnPopupClosing()
+    {
+        return;
+    }
+    #endregion
 }

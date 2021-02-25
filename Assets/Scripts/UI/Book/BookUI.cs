@@ -293,11 +293,6 @@ public class BookUI : BasePopup
         UpdateControlsSprite();
     }
 
-    protected override GameObject GetObjectToDeactivate()
-    {
-        return gameObject;
-    }
-
     protected override void OnPopupClosing()
     {
     }

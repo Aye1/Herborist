@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using Sirenix.OdinInspector;
-using UnityEngine.EventSystems;
 
 public class SetEventSelectedObject : MonoBehaviour
 {
@@ -9,13 +8,11 @@ public class SetEventSelectedObject : MonoBehaviour
 
     private void OnBecameVisible()
     {
-        EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(objectToFocus);
+        NavigationManager.Instance.SetFocus(objectToFocus);
     }
 
     void OnEnable()
     {
-        EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(objectToFocus);
+        NavigationManager.Instance.SetFocus(objectToFocus);
     }
 }

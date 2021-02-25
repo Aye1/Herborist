@@ -52,10 +52,6 @@ public class StorageBoxUI : BasePopup
     }
 
     #region BasePopup implementation
-    protected override GameObject GetObjectToDeactivate()
-    {
-        return gameObject;
-    }
 
     protected override void OnPopupClosing()
     {

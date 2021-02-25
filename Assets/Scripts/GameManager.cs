@@ -6,7 +6,9 @@ public enum GameState { Unknown, MainMenu, Game };
 
 public class GameManager : SerializedMonoBehaviour
 {
+    [Title("Editor bindings - Assets")]
     [SerializeField, Required, AssetsOnly] private InputActionAsset _actions;
+    [SerializeField, Required, AssetsOnly] private PauseMenu _pauseMenuTemplate;
 
     private GameState _currentState;
     [SerializeField, ReadOnly]
@@ -14,9 +16,11 @@ public class GameManager : SerializedMonoBehaviour
     private bool _shouldLoadGameSave;
     private bool _isCountingTime;
     private float _gameTimer; // Time played, in seconds
+    private PauseMenu _pauseMenu;
 
     private readonly string PAUSE_ACTION = "Custom UI/Pause Menu";
 
+    [Title("Public variables")]
     public GameInfo gameInfo;
 
     public delegate void GameStateChange(GameState gameState);
@@ -49,7 +53,25 @@ public class GameManager : SerializedMonoBehaviour
             {
                 _isInPause = value;
                 OnPauseStateChanged?.Invoke(_isInPause);
+                PauseMenuWindow.gameObject.SetActive(_isInPause);
+                if(!_isInPause)
+                {
+                    NavigationManager.Instance.PopNavigation();
+                }
             }
+        }
+    }
+
+    private PauseMenu PauseMenuWindow
+    {
+        get
+        {
+            if(_pauseMenu == null)
+            {
+                _pauseMenu = Instantiate(_pauseMenuTemplate);
+                _pauseMenu.transform.localPosition = Vector3.zero;
+            }
+            return _pauseMenu;
         }
     }
 
@@ -64,7 +86,7 @@ public class GameManager : SerializedMonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            CurrentState = GameState.Game;
+            CurrentState = GameState.MainMenu;
         }
         else
         {
@@ -137,11 +159,13 @@ public class GameManager : SerializedMonoBehaviour
     public void SetPause(bool pause)
     {
         IsInPause = pause;
+        //PauseMenuWindow.gameObject.SetActive(pause);
     }
 
     public void TogglePause()
     {
         IsInPause = !IsInPause;
+        //PauseMenuWindow.gameObject.SetActive(IsInPause);
     }
 
     public void LaunchGame(GameInfo info)

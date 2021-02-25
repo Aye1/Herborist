@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
-using UnityEngine.EventSystems;
 
 public class IdentificationTableV2UI : BasePopup
 {
@@ -43,8 +42,7 @@ public class IdentificationTableV2UI : BasePopup
     {
         if (_buttonsHolder.childCount > 0)
         {
-            EventSystem.current.SetSelectedGameObject(null);
-            EventSystem.current.SetSelectedGameObject(_buttonsHolder.GetChild(0).gameObject);
+            NavigationManager.Instance.SetFocus(_buttonsHolder.GetChild(0).gameObject);
         }
     }
 
@@ -95,11 +93,6 @@ public class IdentificationTableV2UI : BasePopup
     protected override void CustomOnEnable()
     {
         UpdateUnidentifiedComponentsList();
-    }
-
-    protected override GameObject GetObjectToDeactivate()
-    {
-        return gameObject;
     }
 
     protected override void OnPopupClosing()

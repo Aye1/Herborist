@@ -4,7 +4,6 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 using TMPro;
 using Unisloth.Localization;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class IdentificationQuestionsListUI : MonoBehaviour
@@ -171,7 +170,7 @@ public class IdentificationQuestionsListUI : MonoBehaviour
             newAnswer.Answer = answer;
             newAnswer.SelfButton.onClick.AddListener(() => OnAnswerSelected(answer));
         }
-        SetFocus(_answersHolder.GetChild(0).gameObject);
+        NavigationManager.Instance.SetFocus(_answersHolder.GetChild(0).gameObject);
     }
 
     void CleanAnswers()
@@ -192,11 +191,5 @@ public class IdentificationQuestionsListUI : MonoBehaviour
         _resultsText.text = isValid ? "Component correctly identified" : "Error in component identification, try again";
         _componentIdentifiedButton.gameObject.SetActive(isValid);
         _componentIdentifiedButton.onClick.AddListener(() => OnComponentIdentified?.Invoke(CurrentComponent));
-    }
-
-    void SetFocus(GameObject obj)
-    {
-        EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(obj);
     }
 }

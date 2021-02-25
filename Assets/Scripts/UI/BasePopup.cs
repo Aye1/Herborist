@@ -1,70 +1,48 @@
 ﻿using UnityEngine;
-using UnityEngine.InputSystem;
-using System.Collections.Generic;
 
-public abstract class BasePopup : MonoBehaviour
+public abstract class BasePopup : MonoBehaviour, INavigable
 {
-    public static bool ArePopupOpen
-    {
-        // Pause menu is always enabled, so that it can handle itself
-        get { return OpenPopups.Count > 1; }
-    }
-
-    private static List<BasePopup> _openPopups;
-
-    private static List<BasePopup> OpenPopups
-    {
-        get
-        {
-            if(_openPopups == null)
-            {
-                _openPopups = new List<BasePopup>();
-            }
-            return _openPopups;
-        }
-    }
-
-    private readonly string CANCEL_ACTION = "Custom UI/Cancel";
-
     // Start is called before the first frame update
     protected void OnEnable()
     {
-        BindControls();
+        NavigationManager.Instance.PushNavigation(this);
         CustomOnEnable();
-        OpenPopups.Add(this);
     }
 
     protected void OnDisable()
     {
         CustomOnDisable();
-        UnBindControls();
-        OpenPopups.Remove(this);
+    }
+
+    protected void ClosePopup()
+    {
+        gameObject.SetActive(false);
+        OnPopupClosing();
     }
 
     protected abstract void CustomOnEnable();
     protected abstract void CustomOnDisable();
-    protected abstract GameObject GetObjectToDeactivate();
     protected abstract void OnPopupClosing();
 
-    void BindControls()
+    #region INavigable implementation
+    public void OnNavigate()
     {
-        InputAction cancelAction = GameManager.Instance.Actions.FindAction(CANCEL_ACTION);
-
-        cancelAction.performed += OnCancel;
-
-        cancelAction.Enable();
+        return;
     }
 
-    void UnBindControls()
+    public void OnComingBack()
     {
-        InputAction cancelAction = GameManager.Instance.Actions.FindAction(CANCEL_ACTION);
-
-        cancelAction.performed -= OnCancel;
+        return;
     }
 
-    void OnCancel(InputAction.CallbackContext ctx)
+    public void OnCancel()
     {
-        OnPopupClosing();
-        GetObjectToDeactivate().SetActive(false);
+        ClosePopup();
     }
+
+    public bool IsRemovable()
+    {
+        return true;
+    }
+    #endregion
 }

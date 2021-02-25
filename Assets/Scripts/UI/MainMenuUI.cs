@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 
 public enum MenuState { Main, SaveSelection, Parameters }
 
-public class MainMenuUI : MonoBehaviour
+public class MainMenuUI : MonoBehaviour, INavigable
 {
     [SerializeField, Required, ChildGameObjectsOnly] private GameObject _buttonsContainer;
     [SerializeField, Required, ChildGameObjectsOnly] private Button _playButton;
@@ -18,36 +18,14 @@ public class MainMenuUI : MonoBehaviour
 
     void Awake()
     {
+        NavigationManager.Instance.PushNavigation(this);
         BindButtons();
-        BindInputs();
-    }
-
-    private void OnDestroy()
-    {
-        UnBindInputs();
     }
 
     void BindButtons()
     {
         _playButton.onClick.AddListener(DisplaySaveSelectionPopup);
         _quitButton.onClick.AddListener(Quit);
-    }
-
-    void BindInputs()
-    {
-        //TODO: refacto
-        InputAction cancelAction = GameManager.Instance.Actions.FindAction("Custom UI/Cancel");
-
-        cancelAction.performed += OnCancelInput;
-
-        cancelAction.Enable();
-    }
-
-    void UnBindInputs()
-    {
-        InputAction cancelAction = GameManager.Instance.Actions.FindAction("Custom UI/Cancel");
-
-        cancelAction.performed -= OnCancelInput;
     }
 
     private void DisplaySaveSelectionPopup()
@@ -64,16 +42,38 @@ public class MainMenuUI : MonoBehaviour
         _currentMenuState = MenuState.Main;
     }
 
-    private void OnCancelInput(InputAction.CallbackContext ctx)
+    /*private void OnCancelInput(InputAction.CallbackContext ctx)
     {
         if(_currentMenuState == MenuState.SaveSelection)
         {
             HideSaveSelectionPopup();
         }
-    }
+    }*/
 
     private void Quit()
     {
         Application.Quit();
     }
+
+    #region INavigable implementation
+    public void OnCancel()
+    {
+        return;
+    }
+
+    public void OnComingBack()
+    {
+        HideSaveSelectionPopup();
+    }
+
+    public void OnNavigate()
+    {
+        HideSaveSelectionPopup();
+    }
+
+    public bool IsRemovable()
+    {
+        return false;
+    }
+    #endregion
 }

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
-using UnityEngine.EventSystems;
 
 public class InventoryUI : BasePopup
 {
@@ -44,8 +43,7 @@ public class InventoryUI : BasePopup
 
     void SetEventSystemFocus()
     {
-        EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(_itemContainer.GetChild(0).gameObject);
+        NavigationManager.Instance.SetFocus(_itemContainer.GetChild(0).gameObject);
     }
 
     void OnCollectibleSelected(CollectiblePackage collectible)
@@ -54,11 +52,6 @@ public class InventoryUI : BasePopup
     }
 
     #region BasePopup implementation
-    protected override GameObject GetObjectToDeactivate()
-    {
-        return gameObject;
-    }
-
     protected override void OnPopupClosing()
     {
         return;

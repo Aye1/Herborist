@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine.UI;
@@ -34,6 +32,7 @@ public class IdentificationAnswerUI : MonoBehaviour
         get { return GetComponent<Button>(); }
     }
 
+
     private void UpdateUI()
     {
         if(Answer != null)
@@ -42,4 +41,16 @@ public class IdentificationAnswerUI : MonoBehaviour
             _answerIcon.sprite = Answer.icon;
         }
     }
+
+    /*#region INavigable implementation
+    public void OnCancel()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void OnNavigate()
+    {
+        throw new System.NotImplementedException();
+    }
+    #endregion*/
 }

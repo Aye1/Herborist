@@ -33,7 +33,7 @@ public class PlayerInteractionManager : MonoBehaviour
     public bool CanInteract
     {
         get { return CurrentInteractable != null
-                && !BasePopup.ArePopupOpen
+                && !NavigationManager.Instance.IsPopupOpen
                 && !GameManager.Instance.IsInPause; }
     }
 

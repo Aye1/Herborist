@@ -43,4 +43,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc9ae33cc5ef54aa3912593d26d76ca4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: OnGameStateChanged
+      Entry: 6
+      Data: 
+    - Name: OnPauseStateChanged
+      Entry: 6
+      Data: 
   _actions: {fileID: -944628639613478452, guid: 687c4491827374f26a9c6c4c5461f6ee, type: 3}
+  _pauseMenuTemplate: {fileID: 1545730046, guid: b524aa868429d4210bdd5fc15a3a9a57, type: 3}
+  _isInPause: 0
+  gameInfo: {fileID: 0}
