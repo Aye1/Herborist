@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dae38d7f07b844d908eb1e0b8b8fa68c, type: 3}
+  m_Name: Flower Identification Question
+  m_EditorClassIdentifier: 
+  questions:
+  - {fileID: 11400000, guid: 939e3e6ca2e464e198f19c490573bb9f, type: 2}
+  - {fileID: 11400000, guid: 63e642ee5058b4b87b83635398b10d7c, type: 2}
+  - {fileID: 11400000, guid: 4d2cb0f15629b43d8b0ed6a7d2e4c801, type: 2}
+  - {fileID: 11400000, guid: eff9167bb35db49a59ebb7f505256458, type: 2}

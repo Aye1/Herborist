@@ -1,0 +1,107 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3f06b4333e7a4b77a48817e91295caa, type: 3}
+  m_Name: Oak Flower
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 11400000, guid: 939e3e6ca2e464e198f19c490573bb9f, type: 2}
+    - {fileID: 11400000, guid: b4f9335fc58db4f6e9b4b0f241e9dd1e, type: 2}
+    - {fileID: 11400000, guid: 63e642ee5058b4b87b83635398b10d7c, type: 2}
+    - {fileID: 11400000, guid: 7787663047a2b48738677e21ebffea38, type: 2}
+    - {fileID: 11400000, guid: 4d2cb0f15629b43d8b0ed6a7d2e4c801, type: 2}
+    - {fileID: 11400000, guid: d8f98e6f2432b4092a63eb8df7aad36a, type: 2}
+    - {fileID: 11400000, guid: eff9167bb35db49a59ebb7f505256458, type: 2}
+    - {fileID: 11400000, guid: d69431bc519614f41be3b2e46a911c9a, type: 2}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: collectibleInfo
+      Entry: 6
+      Data: 
+    - Name: parameters
+      Entry: 7
+      Data: 0|UnityEngine.Rendering.SerializedDictionary`2[[PlantIdentificationParameterScriptableObject,
+        Assembly-CSharp],[PlantIdentificationValueScriptableObject, Assembly-CSharp]],
+        Unity.RenderPipelines.Core.Runtime
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.ObjectEqualityComparer`1[[PlantIdentificationParameterScriptableObject,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 4
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 0
+    - Name: $v
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 2
+    - Name: $v
+      Entry: 10
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 4
+    - Name: $v
+      Entry: 10
+      Data: 5
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 6
+    - Name: $v
+      Entry: 10
+      Data: 7
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  componentType: 1
+  icon: {fileID: 0}
+  componentPicture: {fileID: 0}
+  plantParent: {fileID: 11400000, guid: 7d29311b7390345ccab49746bf7fe15f, type: 2}
