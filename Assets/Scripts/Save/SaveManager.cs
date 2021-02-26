@@ -122,6 +122,7 @@ public class SaveManager : SerializedMonoBehaviour
     {
         foreach (string fullPath in Directory.GetFiles(Application.persistentDataPath))
         {
+            // TODO: bug when deleting "default" saves created when not going through the main menu
             if (fullPath.EndsWith(path))
             {
                 File.Delete(fullPath);
