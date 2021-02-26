@@ -36,7 +36,7 @@ public class NavigationManager : MonoBehaviour
 
     private void Update()
     {
-        _currentFocus = EventSystem.current.currentSelectedGameObject;
+        ManageFocus();
     }
 
     void BindControls()
@@ -55,7 +55,6 @@ public class NavigationManager : MonoBehaviour
 
     void OnCancelInput(InputAction.CallbackContext ctx)
     {
-        Debug.Log("OnCancel called");
         PopNavigation();
     }
 
@@ -76,7 +75,6 @@ public class NavigationManager : MonoBehaviour
 
     public void PushNavigation(INavigable navigable)
     {
-        Debug.Log("Pushing " + navigable.ToString());
         _navigationStack.Push(navigable);
         navigable.OnNavigate();
     }
@@ -88,7 +86,6 @@ public class NavigationManager : MonoBehaviour
             INavigable toPop = _navigationStack.Pop();
             toPop.OnCancel();
             UpdateCurrentNavigable();
-            Debug.Log("Popping " + toPop.ToString());
             return toPop;
         }
         return null;
@@ -106,5 +103,17 @@ public class NavigationManager : MonoBehaviour
     private void OnGameStateChanged(GameState newState)
     {
         _navigationStack.Clear();
+    }
+
+    private void ManageFocus()
+    {
+        GameObject currentSelected = EventSystem.current.currentSelectedGameObject;
+        if(currentSelected == null)
+        {
+            SetFocus(_currentFocus);
+        } else
+        {
+            _currentFocus = currentSelected;
+        }
     }
 }
