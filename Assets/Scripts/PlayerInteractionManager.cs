@@ -40,7 +40,9 @@ public class PlayerInteractionManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // OnSceneChange is called twice because some interactables where detected after the cleaning, leading to errors
         SceneSwitcher.Instance.OnSceneWillLoad += OnSceneChange;
+        SceneSwitcher.Instance.OnSceneLoaded += OnSceneChange;
         myInteractables = new List<IInteractable>();
     }
 
@@ -52,6 +54,7 @@ public class PlayerInteractionManager : MonoBehaviour
     private void OnDestroy()
     {
         SceneSwitcher.Instance.OnSceneWillLoad -= OnSceneChange;
+        SceneSwitcher.Instance.OnSceneLoaded -= OnSceneChange;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
