@@ -71,6 +71,15 @@ public class NavigationManager : MonoBehaviour
     public void SetFocus(GameObject focusObj)
     {
         EventSystem.current.SetSelectedGameObject(focusObj);
+
+        ISelectHandler[] selects = focusObj.GetComponents<ISelectHandler>();
+        if(selects != null)
+        {
+            foreach(ISelectHandler select in selects)
+            {
+                select.OnSelect(null);
+            }
+        }
     }
 
     public void PushNavigation(INavigable navigable)
@@ -108,7 +117,7 @@ public class NavigationManager : MonoBehaviour
     private void ManageFocus()
     {
         GameObject currentSelected = EventSystem.current.currentSelectedGameObject;
-        if(currentSelected == null)
+        if(currentSelected == null && _currentFocus != null)
         {
             SetFocus(_currentFocus);
         } else

@@ -19,7 +19,7 @@ public class CollectiblePackage : ISerializationCallbackReceiver
 
         if (typeDevelopmentName == UNKNOWN_TYPE)
         {
-            Debug.LogError("Unknown type has been serialized, skip deserialization");
+            Debug.LogWarning("Unknown type has been serialized, skip deserialization");
         }
         else if (ResourcesManager.Instance != null && typeDevelopmentName != UNKNOWN_TYPE)
         {

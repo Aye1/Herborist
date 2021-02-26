@@ -26,12 +26,7 @@ public class StorageBoxUI : BasePopup
 
     private void Awake()
     {
-        _closeButton.onClick.AddListener(CloseWindow);
-    }
-
-    private void CloseWindow()
-    {
-        gameObject.SetActive(false);
+        _closeButton.onClick.AddListener(ClosePopup);
     }
 
     private void CreateCollectiblesList()

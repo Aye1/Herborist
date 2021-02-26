@@ -16,8 +16,7 @@ public abstract class BasePopup : MonoBehaviour, INavigable
 
     protected void ClosePopup()
     {
-        gameObject.SetActive(false);
-        OnPopupClosing();
+        NavigationManager.Instance.PopNavigation();
     }
 
     protected abstract void CustomOnEnable();
@@ -37,7 +36,8 @@ public abstract class BasePopup : MonoBehaviour, INavigable
 
     public void OnCancel()
     {
-        ClosePopup();
+        OnPopupClosing();
+        gameObject.SetActive(false);
     }
 
     public bool IsRemovable()
