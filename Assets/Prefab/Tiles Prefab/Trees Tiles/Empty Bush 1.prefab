@@ -38,6 +38,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 112957853526231606}
     m_Modifications:
+    - target: {fileID: 1160987218657496692, guid: 291a23283e45a4f74abc28a8a23bcbf8, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1160987218657496692, guid: 291a23283e45a4f74abc28a8a23bcbf8, type: 3}
+      propertyPath: _quantities.Array.data[0].sprite
+      value: 
+      objectReference: {fileID: 332856404555969306, guid: 08dd27b67cc8e4a7589ed61d22c368c7, type: 3}
+    - target: {fileID: 1195252721566034969, guid: 291a23283e45a4f74abc28a8a23bcbf8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2268684733498601348, guid: 291a23283e45a4f74abc28a8a23bcbf8, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -114,12 +126,29 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6956891187986676258, guid: 291a23283e45a4f74abc28a8a23bcbf8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7664199934841804191, guid: 291a23283e45a4f74abc28a8a23bcbf8, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 332856404555969306, guid: 08dd27b67cc8e4a7589ed61d22c368c7, type: 3}
+    - target: {fileID: 7664199934841804191, guid: 291a23283e45a4f74abc28a8a23bcbf8, type: 3}
+      propertyPath: m_SortingLayer
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7664199934841804191, guid: 291a23283e45a4f74abc28a8a23bcbf8, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 729164399
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 996627468233588903, guid: 291a23283e45a4f74abc28a8a23bcbf8, type: 3}
     - {fileID: 2268684733498601347, guid: 291a23283e45a4f74abc28a8a23bcbf8, type: 3}
     - {fileID: 2268684733498601344, guid: 291a23283e45a4f74abc28a8a23bcbf8, type: 3}
     - {fileID: 2268684733498601345, guid: 291a23283e45a4f74abc28a8a23bcbf8, type: 3}
     - {fileID: 2268684733498601349, guid: 291a23283e45a4f74abc28a8a23bcbf8, type: 3}
+    - {fileID: 937965431634810016, guid: 291a23283e45a4f74abc28a8a23bcbf8, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 291a23283e45a4f74abc28a8a23bcbf8, type: 3}
 --- !u!4 &739538300971013701 stripped
 Transform:
