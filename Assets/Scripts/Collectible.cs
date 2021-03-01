@@ -47,14 +47,13 @@ public class Collectible : MonoBehaviour, IInteractable
     public MMFeedbacks feedback;
     [SerializeField, Required, TranslationKey]
     private string _translationKey;
-
-    private SpriteDependsOnQuantity _spriteChanger;
+    [SerializeField]
+    private List<SpriteDependsOnQuantity> _spriteChangers;
 
     private void Awake()
     {
         _maxCollectibleCount = Alea.GetIntInc(collectible.spawnQuantity.x, collectible.spawnQuantity.y);
         _collectibleCount = _maxCollectibleCount;
-        _spriteChanger = GetComponent<SpriteDependsOnQuantity>();
         UpdateSpriteIfNecessary();
     }
 
@@ -98,6 +97,10 @@ public class Collectible : MonoBehaviour, IInteractable
 
     private void UpdateSpriteIfNecessary()
     {
-        _spriteChanger.CurrentPercentage = Mathf.CeilToInt(_collectibleCount / (float)_maxCollectibleCount * 100.0f);
+        if (_spriteChangers != null)
+        {
+            int percent = Mathf.CeilToInt(_collectibleCount / (float)_maxCollectibleCount * 100.0f);
+            _spriteChangers.ForEach(s => s.CurrentPercentage = percent);
+        }
     }
 }

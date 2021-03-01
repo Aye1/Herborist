@@ -50,9 +50,9 @@ TagManager:
   - name: Wall
     uniqueID: 900703451
     locked: 0
-  - name: Characters
-    uniqueID: 1643183575
-    locked: 0
-  - name: Trees
+  - name: Characters + Tree Trunks
     uniqueID: 729164399
+    locked: 0
+  - name: Tree Leaves
+    uniqueID: 2643576347
     locked: 0
