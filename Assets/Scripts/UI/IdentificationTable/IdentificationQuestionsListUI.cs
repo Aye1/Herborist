@@ -164,13 +164,18 @@ public class IdentificationQuestionsListUI : MonoBehaviour
     {
         CleanAnswers();
         _questionText.text = LocalizationManager.Instance.GetTranslation(CurrentQuestion.questionLocKey);
+        bool isFirst = true;
         foreach(PlantIdentificationValueScriptableObject answer in CurrentQuestion.possibleValues)
         {
             IdentificationAnswerUI newAnswer = Instantiate(_answerTemplate, _answersHolder);
             newAnswer.Answer = answer;
             newAnswer.SelfButton.onClick.AddListener(() => OnAnswerSelected(answer));
+            if(isFirst)
+            {
+                NavigationManager.Instance.SetFocus(newAnswer.gameObject);
+                isFirst = false;
+            }
         }
-        NavigationManager.Instance.SetFocus(_answersHolder.GetChild(0).gameObject);
     }
 
     void CleanAnswers()
