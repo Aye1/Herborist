@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acf9f5ed5804c41f3a8be4d7f9de86a6, type: 3}
   m_Name: Violet
   m_EditorClassIdentifier: 
-  unidentifiedPlantLetter: 
+  unidentifiedPlantLetter: B
   commonNameLocKey: plant_violet
   speciesName: Viola odorata
   familyName: Violaceae

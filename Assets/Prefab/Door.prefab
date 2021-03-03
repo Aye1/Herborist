@@ -126,4 +126,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b99ef04d351334e37994525c9d666e5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myTeleportEnd: {fileID: 3797229252016093252}
+  locKey: interact_teleport
+  teleportPosition: {fileID: 0}
