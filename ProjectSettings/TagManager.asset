@@ -50,6 +50,9 @@ TagManager:
   - name: Wall
     uniqueID: 900703451
     locked: 0
+  - name: Interactables
+    uniqueID: 831180789
+    locked: 0
   - name: Characters + Tree Trunks
     uniqueID: 729164399
     locked: 0
