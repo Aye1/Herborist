@@ -29,7 +29,7 @@ public class IdentificationTableV2UI : BasePopup
 
     void UpdateUI()
     {
-        foreach(CollectibleScriptableObject collectible in _toIdentifyCollectibles)
+        foreach (CollectibleScriptableObject collectible in _toIdentifyCollectibles)
         {
             IdentificationTableV2CollectibleButton newButton = Instantiate(_collectibleButtonTemplate, _buttonsHolder);
             newButton.Collectible = collectible;
@@ -74,10 +74,10 @@ public class IdentificationTableV2UI : BasePopup
 
     private void ClearComponentsList()
     {
-        if(_buttonsHolder.childCount > 0)
+        if (_buttonsHolder.childCount > 0)
         {
             _toIdentifyCollectibles.Clear();
-            foreach(Transform child in _buttonsHolder)
+            foreach (Transform child in _buttonsHolder)
             {
                 Destroy(child.gameObject);
             }
