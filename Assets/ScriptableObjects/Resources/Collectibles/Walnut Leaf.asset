@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c57b32f021fd441cfa62fe6b1c6a5a70, type: 3}
-  m_Name: DemoCollectible
+  m_Name: Walnut Leaf
   m_EditorClassIdentifier: 
-  developmentName: Demoshroom
-  nameLocKey: collDemo
-  sprite: {fileID: -838134162997060221, guid: edbdeb45d995b4a6c9f160660cf4ac59, type: 3}
-  spawnQuantity: {x: 12, y: 39}
-  handGatherQuantity: {x: 4, y: 8}
+  developmentName: 
+  nameLocKey: 
+  sprite: {fileID: 0}
+  spawnQuantity: {x: 1, y: 1}
+  handGatherQuantity: {x: 1, y: 1}
+  parentPlantComponent: {fileID: 0}

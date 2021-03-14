@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c57b32f021fd441cfa62fe6b1c6a5a70, type: 3}
-  m_Name: DemoCollectible2
+  m_Name: Hazel Leaf
   m_EditorClassIdentifier: 
-  developmentName: demoWood
-  nameLocKey: collDemo2
-  sprite: {fileID: 9160647132686863015, guid: edbdeb45d995b4a6c9f160660cf4ac59, type: 3}
-  spawnQuantity: {x: 1, y: 2}
-  handGatherQuantity: {x: 1, y: 2}
+  developmentName: 
+  nameLocKey: 
+  sprite: {fileID: 0}
+  spawnQuantity: {x: 1, y: 1}
+  handGatherQuantity: {x: 1, y: 1}
+  parentPlantComponent: {fileID: 0}
