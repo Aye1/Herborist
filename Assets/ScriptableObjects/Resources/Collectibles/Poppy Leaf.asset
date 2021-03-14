@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c57b32f021fd441cfa62fe6b1c6a5a70, type: 3}
   m_Name: Poppy Leaf
   m_EditorClassIdentifier: 
-  developmentName: 
-  nameLocKey: 
+  developmentName: Poppy Leaf
+  nameLocKey: temp
   sprite: {fileID: 0}
   spawnQuantity: {x: 1, y: 1}
   handGatherQuantity: {x: 1, y: 1}
-  parentPlantComponent: {fileID: 0}
+  parentPlantComponent: {fileID: 11400000, guid: f39b2f508fd0b417da8b6ad9a3e8d07a, type: 2}

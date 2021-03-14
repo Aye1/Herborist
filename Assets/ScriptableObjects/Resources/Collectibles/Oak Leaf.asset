@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c57b32f021fd441cfa62fe6b1c6a5a70, type: 3}
   m_Name: Oak Leaf
   m_EditorClassIdentifier: 
-  developmentName: 
-  nameLocKey: 
+  developmentName: Oak Leaf
+  nameLocKey: temp
   sprite: {fileID: 0}
   spawnQuantity: {x: 1, y: 1}
   handGatherQuantity: {x: 1, y: 1}
-  parentPlantComponent: {fileID: 0}
+  parentPlantComponent: {fileID: 11400000, guid: 34fd2cb30fac94db8a29dd5687ef9d83, type: 2}

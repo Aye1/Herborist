@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c57b32f021fd441cfa62fe6b1c6a5a70, type: 3}
   m_Name: CHestnut Leaf
   m_EditorClassIdentifier: 
-  developmentName: 
-  nameLocKey: 
+  developmentName: Chestnut Leaf
+  nameLocKey: tmp
   sprite: {fileID: 0}
   spawnQuantity: {x: 1, y: 1}
   handGatherQuantity: {x: 1, y: 1}
-  parentPlantComponent: {fileID: 0}
+  parentPlantComponent: {fileID: 11400000, guid: c732ceb7d54b44250b4fd41b7abd8c09, type: 2}

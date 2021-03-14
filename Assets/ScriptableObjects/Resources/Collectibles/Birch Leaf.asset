@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c57b32f021fd441cfa62fe6b1c6a5a70, type: 3}
-  m_Name: Birch Collectible
+  m_Name: Birch Leaf
   m_EditorClassIdentifier: 
-  developmentName: 
-  nameLocKey: 
+  developmentName: Birch Leaf
+  nameLocKey: tmp
   sprite: {fileID: 0}
   spawnQuantity: {x: 1, y: 1}
   handGatherQuantity: {x: 1, y: 1}
-  parentPlantComponent: {fileID: 0}
+  parentPlantComponent: {fileID: 11400000, guid: 4f2b75c0e2dd44593b53aea0418116e5, type: 2}

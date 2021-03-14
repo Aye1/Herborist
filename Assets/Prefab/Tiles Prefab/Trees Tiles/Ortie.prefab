@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &659022319453694528
+--- !u!1001 &1316753135877893159
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 261440353780637426, guid: 5387ac405b71b41218ef0157c9152e8e, type: 3}
       propertyPath: collectible
       value: 
-      objectReference: {fileID: 11400000, guid: b29c5e71bff0c47d5b43cfdda982c2e6, type: 2}
+      objectReference: {fileID: 11400000, guid: bd5df8c64a3e94991b367f7d2f1e779c, type: 2}
     - target: {fileID: 1287885132240610776, guid: 5387ac405b71b41218ef0157c9152e8e, type: 3}
       propertyPath: m_Name
       value: Plant Object
@@ -18,15 +18,15 @@ PrefabInstance:
     - target: {fileID: 2213562869052933158, guid: 5387ac405b71b41218ef0157c9152e8e, type: 3}
       propertyPath: _quantities.Array.data[0].sprite
       value: 
-      objectReference: {fileID: -854724729293753505, guid: 08dd27b67cc8e4a7589ed61d22c368c7, type: 3}
+      objectReference: {fileID: 2469693042209497120, guid: 08dd27b67cc8e4a7589ed61d22c368c7, type: 3}
     - target: {fileID: 2213562869052933158, guid: 5387ac405b71b41218ef0157c9152e8e, type: 3}
       propertyPath: _quantities.Array.data[1].sprite
       value: 
-      objectReference: {fileID: 2250893151467517711, guid: 08dd27b67cc8e4a7589ed61d22c368c7, type: 3}
+      objectReference: {fileID: 3417127870617691774, guid: 08dd27b67cc8e4a7589ed61d22c368c7, type: 3}
     - target: {fileID: 2213562869052933158, guid: 5387ac405b71b41218ef0157c9152e8e, type: 3}
       propertyPath: _quantities.Array.data[2].sprite
       value: 
-      objectReference: {fileID: -6122111789870299419, guid: 08dd27b67cc8e4a7589ed61d22c368c7, type: 3}
+      objectReference: {fileID: -7155205528536916930, guid: 08dd27b67cc8e4a7589ed61d22c368c7, type: 3}
     - target: {fileID: 4512974848042528234, guid: 5387ac405b71b41218ef0157c9152e8e, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -74,10 +74,10 @@ PrefabInstance:
     - target: {fileID: 7275623683105562573, guid: 5387ac405b71b41218ef0157c9152e8e, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -6122111789870299419, guid: 08dd27b67cc8e4a7589ed61d22c368c7, type: 3}
+      objectReference: {fileID: -7155205528536916930, guid: 08dd27b67cc8e4a7589ed61d22c368c7, type: 3}
     - target: {fileID: 9119966896348670185, guid: 5387ac405b71b41218ef0157c9152e8e, type: 3}
       propertyPath: m_Name
-      value: Poppy
+      value: Ortie
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5387ac405b71b41218ef0157c9152e8e, type: 3}

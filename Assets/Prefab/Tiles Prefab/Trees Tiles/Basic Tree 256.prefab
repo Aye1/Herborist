@@ -618,7 +618,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 958e7f25ae11d476797b9c056a22a9a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collectible: {fileID: 11400000, guid: 8365eae38f203473da2d8d35da764fad, type: 2}
+  collectible: {fileID: 0}
   feedback: {fileID: 2268684733498601344}
   _translationKey: interact_pick
   _spriteChangers:
