@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   developmentName: Bramble Leaf
   nameLocKey: tmp
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 66428fbc8db1b44eb9a0ffd19d0f45f4, type: 3}
   spawnQuantity: {x: 1, y: 1}
   handGatherQuantity: {x: 1, y: 1}
   parentPlantComponent: {fileID: 11400000, guid: b032ff8a78185494685073e285b35cbe, type: 2}
