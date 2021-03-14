@@ -18,15 +18,15 @@ PrefabInstance:
     - target: {fileID: 2213562869052933158, guid: 5387ac405b71b41218ef0157c9152e8e, type: 3}
       propertyPath: _quantities.Array.data[0].sprite
       value: 
-      objectReference: {fileID: 5636719164026024420, guid: 08dd27b67cc8e4a7589ed61d22c368c7, type: 3}
+      objectReference: {fileID: -5981771769347585550, guid: 08dd27b67cc8e4a7589ed61d22c368c7, type: 3}
     - target: {fileID: 2213562869052933158, guid: 5387ac405b71b41218ef0157c9152e8e, type: 3}
       propertyPath: _quantities.Array.data[1].sprite
       value: 
-      objectReference: {fileID: 3158579791454096618, guid: 08dd27b67cc8e4a7589ed61d22c368c7, type: 3}
+      objectReference: {fileID: -4623013704069786145, guid: 08dd27b67cc8e4a7589ed61d22c368c7, type: 3}
     - target: {fileID: 2213562869052933158, guid: 5387ac405b71b41218ef0157c9152e8e, type: 3}
       propertyPath: _quantities.Array.data[2].sprite
       value: 
-      objectReference: {fileID: 557082372741856798, guid: 08dd27b67cc8e4a7589ed61d22c368c7, type: 3}
+      objectReference: {fileID: -3293256711928181663, guid: 08dd27b67cc8e4a7589ed61d22c368c7, type: 3}
     - target: {fileID: 3170925873369691321, guid: 5387ac405b71b41218ef0157c9152e8e, type: 3}
       propertyPath: collectible
       value: 
@@ -78,7 +78,7 @@ PrefabInstance:
     - target: {fileID: 7275623683105562573, guid: 5387ac405b71b41218ef0157c9152e8e, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 557082372741856798, guid: 08dd27b67cc8e4a7589ed61d22c368c7, type: 3}
+      objectReference: {fileID: -5981771769347585550, guid: 08dd27b67cc8e4a7589ed61d22c368c7, type: 3}
     - target: {fileID: 9119966896348670185, guid: 5387ac405b71b41218ef0157c9152e8e, type: 3}
       propertyPath: m_Name
       value: Violet Variant
