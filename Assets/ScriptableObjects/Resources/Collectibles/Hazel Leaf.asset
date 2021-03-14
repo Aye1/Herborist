@@ -15,6 +15,6 @@ MonoBehaviour:
   developmentName: Hazel leaf
   nameLocKey: temp
   sprite: {fileID: 21300000, guid: da16e9f1eac20447eb43fb1ea96ac3e3, type: 3}
-  spawnQuantity: {x: 1, y: 1}
-  handGatherQuantity: {x: 1, y: 1}
+  spawnQuantity: {x: 1, y: 30}
+  handGatherQuantity: {x: 1, y: 10}
   parentPlantComponent: {fileID: 11400000, guid: 820af20ad47af4297b2dab19d225f8fe, type: 2}

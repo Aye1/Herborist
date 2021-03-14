@@ -15,6 +15,6 @@ MonoBehaviour:
   developmentName: Poppy Leaf
   nameLocKey: temp
   sprite: {fileID: 21300000, guid: 1cf012887642d40bea414503167702e9, type: 3}
-  spawnQuantity: {x: 1, y: 1}
-  handGatherQuantity: {x: 1, y: 1}
+  spawnQuantity: {x: 1, y: 4}
+  handGatherQuantity: {x: 1, y: 2}
   parentPlantComponent: {fileID: 11400000, guid: f39b2f508fd0b417da8b6ad9a3e8d07a, type: 2}

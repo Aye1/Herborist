@@ -15,6 +15,6 @@ MonoBehaviour:
   developmentName: StrawberryLeaf
   nameLocKey: temp
   sprite: {fileID: 21300000, guid: c487d9c0c2d3147fa8a16563e9f80293, type: 3}
-  spawnQuantity: {x: 1, y: 1}
-  handGatherQuantity: {x: 1, y: 1}
+  spawnQuantity: {x: 1, y: 4}
+  handGatherQuantity: {x: 1, y: 2}
   parentPlantComponent: {fileID: 11400000, guid: 9a949edcc44294b929dc7de1bf764c82, type: 2}

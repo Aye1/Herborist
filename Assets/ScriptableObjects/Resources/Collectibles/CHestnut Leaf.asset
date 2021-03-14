@@ -15,6 +15,6 @@ MonoBehaviour:
   developmentName: Chestnut Leaf
   nameLocKey: tmp
   sprite: {fileID: 21300000, guid: 60c1664757f274ec88e70293416c8508, type: 3}
-  spawnQuantity: {x: 1, y: 1}
-  handGatherQuantity: {x: 1, y: 1}
+  spawnQuantity: {x: 1, y: 40}
+  handGatherQuantity: {x: 1, y: 10}
   parentPlantComponent: {fileID: 11400000, guid: c732ceb7d54b44250b4fd41b7abd8c09, type: 2}

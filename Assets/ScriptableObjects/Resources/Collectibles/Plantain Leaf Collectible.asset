@@ -15,6 +15,6 @@ MonoBehaviour:
   developmentName: plantainLeaf
   nameLocKey: temp
   sprite: {fileID: 21300000, guid: bf612479f1f0d4f1bb25c7a10f3951dd, type: 3}
-  spawnQuantity: {x: 1, y: 10}
-  handGatherQuantity: {x: 1, y: 5}
+  spawnQuantity: {x: 1, y: 4}
+  handGatherQuantity: {x: 1, y: 2}
   parentPlantComponent: {fileID: 11400000, guid: cd3c09377c73440b3841a21b68a6b524, type: 2}
