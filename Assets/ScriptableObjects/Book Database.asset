@@ -22,9 +22,22 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   plants:
+  - {fileID: 11400000, guid: 174b84e58bf38485abb2153ab62ee5f5, type: 2}
   - {fileID: 11400000, guid: e331d7fa6eca842609398d9d1c07cf9f, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 02d7e59e679294085bc326ac558cd929, type: 2}
+  - {fileID: 11400000, guid: 8e3d71756528f4930a45de1669c72917, type: 2}
+  - {fileID: 11400000, guid: d4dcad72b1eae4b58ad7875fa34df155, type: 2}
+  - {fileID: 11400000, guid: 8d8509bd29ed946b79e908ed8dfddba5, type: 2}
+  - {fileID: 11400000, guid: 5289970a5a0044ea3b25b25fb3108674, type: 2}
+  - {fileID: 11400000, guid: d409fa38937be4cee81724359115d591, type: 2}
+  - {fileID: 11400000, guid: 7d29311b7390345ccab49746bf7fe15f, type: 2}
+  - {fileID: 11400000, guid: dad0669ef27234d98a6c22d00521a6d1, type: 2}
+  - {fileID: 11400000, guid: a8432741ffe5e47ed87cad13db9c0ff1, type: 2}
+  - {fileID: 11400000, guid: 0abec44336fd0439b96cf2f80d829c11, type: 2}
+  - {fileID: 11400000, guid: 9a178f1e7021f4c80b83a5b74e167f0e, type: 2}
+  - {fileID: 11400000, guid: 46d928845b2074233a76097edc41bda0, type: 2}
+  - {fileID: 11400000, guid: 1eec667510da84c5da36f05abf9e41c6, type: 2}
+  - {fileID: 11400000, guid: 9259d5ebc595645a48c34819188dd7da, type: 2}
+  - {fileID: 11400000, guid: 88061f25ef9d3448b86a926666a20dd7, type: 2}
+  - {fileID: 11400000, guid: 5b4d48f623f504cbda1acfba11cd280e, type: 2}
+  - {fileID: 11400000, guid: 2288d62c1d8db408bbdd4e110a40b879, type: 2}
