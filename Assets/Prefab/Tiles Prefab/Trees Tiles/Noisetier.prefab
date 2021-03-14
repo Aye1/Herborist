@@ -10,18 +10,18 @@ PrefabInstance:
     - target: {fileID: 291117787922775421, guid: df47c6401ec1a481983aa8493d809ab1, type: 3}
       propertyPath: _quantities.Array.data[0].sprite
       value: 
-      objectReference: {fileID: 5891757792927052577, guid: 9fd467ea7a231470699529191a37dc80, type: 3}
+      objectReference: {fileID: 785381055666214426, guid: 9fd467ea7a231470699529191a37dc80, type: 3}
     - target: {fileID: 291117787922775421, guid: df47c6401ec1a481983aa8493d809ab1, type: 3}
       propertyPath: _quantities.Array.data[1].sprite
       value: 
-      objectReference: {fileID: -4324799369507234631, guid: 9fd467ea7a231470699529191a37dc80, type: 3}
+      objectReference: {fileID: 5056307353415951033, guid: 9fd467ea7a231470699529191a37dc80, type: 3}
     - target: {fileID: 291117787922775421, guid: df47c6401ec1a481983aa8493d809ab1, type: 3}
       propertyPath: _quantities.Array.data[2].sprite
       value: 
-      objectReference: {fileID: 759678483730449176, guid: 9fd467ea7a231470699529191a37dc80, type: 3}
+      objectReference: {fileID: -1962202154345704850, guid: 9fd467ea7a231470699529191a37dc80, type: 3}
     - target: {fileID: 324401735650336528, guid: df47c6401ec1a481983aa8493d809ab1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.02
+      value: 1.61
       objectReference: {fileID: 0}
     - target: {fileID: 1649897137792935987, guid: df47c6401ec1a481983aa8493d809ab1, type: 3}
       propertyPath: m_LocalPosition.y
@@ -82,7 +82,7 @@ PrefabInstance:
     - target: {fileID: 3475922120007868520, guid: df47c6401ec1a481983aa8493d809ab1, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 2656247834339299217, guid: 9fd467ea7a231470699529191a37dc80, type: 3}
+      objectReference: {fileID: 7748518322702929914, guid: 9fd467ea7a231470699529191a37dc80, type: 3}
     - target: {fileID: 4784506385945945300, guid: df47c6401ec1a481983aa8493d809ab1, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -90,7 +90,7 @@ PrefabInstance:
     - target: {fileID: 6841967726887796926, guid: df47c6401ec1a481983aa8493d809ab1, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -8876335399824902483, guid: 9fd467ea7a231470699529191a37dc80, type: 3}
+      objectReference: {fileID: 4367108985391724810, guid: 9fd467ea7a231470699529191a37dc80, type: 3}
     - target: {fileID: 7215545284731146674, guid: df47c6401ec1a481983aa8493d809ab1, type: 3}
       propertyPath: m_Name
       value: Noisetier
@@ -126,7 +126,7 @@ PrefabInstance:
     - target: {fileID: 9100174608671647382, guid: df47c6401ec1a481983aa8493d809ab1, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 759678483730449176, guid: 9fd467ea7a231470699529191a37dc80, type: 3}
+      objectReference: {fileID: -1962202154345704850, guid: 9fd467ea7a231470699529191a37dc80, type: 3}
     - target: {fileID: 9100174608671647382, guid: df47c6401ec1a481983aa8493d809ab1, type: 3}
       propertyPath: m_SortingLayer
       value: 6

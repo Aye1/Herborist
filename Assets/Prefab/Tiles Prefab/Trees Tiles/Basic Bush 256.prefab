@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1206324196413242095}
   - component: {fileID: 1206324196413242092}
-  - component: {fileID: 1206324196413242093}
   - component: {fileID: 1206324196413242094}
   - component: {fileID: 1206324196413242091}
   - component: {fileID: 1206324196413242088}
@@ -75,7 +74,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 729164399
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: -8131358092630669297, guid: 3b51d2a54b59a423b81ff28f4c9cc26d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -88,23 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1206324196413242093
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1206324196413242082}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 958e7f25ae11d476797b9c056a22a9a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  collectible: {fileID: 11400000, guid: e48a130938ce4478ba044e7c2c194d01, type: 2}
-  feedback: {fileID: 1206324196413242088}
-  _translationKey: interact_pick
-  _spriteChangers:
-  - {fileID: 149461766535353807}
 --- !u!61 &1206324196413242094
 BoxCollider2D:
   m_ObjectHideFlags: 0

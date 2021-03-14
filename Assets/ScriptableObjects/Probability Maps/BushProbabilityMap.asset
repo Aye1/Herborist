@@ -13,11 +13,9 @@ MonoBehaviour:
   m_Name: BushProbabilityMap
   m_EditorClassIdentifier: 
   probabilities:
-  - obj: {fileID: 9119966896348670185, guid: 5387ac405b71b41218ef0157c9152e8e, type: 3}
-    probabilityRange: {x: 0, y: 0.32258064}
-  - obj: {fileID: 5801515040561584298, guid: 217fb0cb9a07044b28f7ecbcb01ef5d4, type: 3}
-    probabilityRange: {x: 0.32258064, y: 0.6451613}
-  - obj: {fileID: 3634831903391313048, guid: 4a39574d120ca44829e69484f8a1ef5b, type: 3}
-    probabilityRange: {x: 0.6451613, y: 0.9677419}
-  - obj: {fileID: 8626065490159616681, guid: b0b395142a5644e359cae077ab3b7ef8, type: 3}
-    probabilityRange: {x: 0.9677419, y: 1}
+  - obj: {fileID: 7614664014815451680, guid: 8dba9be887af342479a50e2cd877623b, type: 3}
+    probabilityRange: {x: 0, y: 0.16666667}
+  - obj: {fileID: 6138075324186226286, guid: d13987c6ea9c8447a895059cee00b301, type: 3}
+    probabilityRange: {x: 0.16666667, y: 0.33333334}
+  - obj: {fileID: 1206324196413242082, guid: 4e98820407d3e4cbb96cd0f80892f8a1, type: 3}
+    probabilityRange: {x: 0.33333334, y: 1}

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1915b7c67bb374b2cba278995ccd6abe, type: 3}
+  m_Name: HerbaceousProbabilityMap
+  m_EditorClassIdentifier: 
+  probabilities:
+  - obj: {fileID: 8626065490159616681, guid: b0b395142a5644e359cae077ab3b7ef8, type: 3}
+    probabilityRange: {x: 0, y: 0.125}
+  - obj: {fileID: 7842646646856680654, guid: 21cf41b45864d4aaea673638e072068e, type: 3}
+    probabilityRange: {x: 0.125, y: 0.25}
+  - obj: {fileID: 9119966896348670185, guid: 5387ac405b71b41218ef0157c9152e8e, type: 3}
+    probabilityRange: {x: 0.25, y: 0.375}
+  - obj: {fileID: 5801515040561584298, guid: 217fb0cb9a07044b28f7ecbcb01ef5d4, type: 3}
+    probabilityRange: {x: 0.375, y: 0.5}
+  - obj: {fileID: 3634831903391313048, guid: 4a39574d120ca44829e69484f8a1ef5b, type: 3}
+    probabilityRange: {x: 0.5, y: 1}
