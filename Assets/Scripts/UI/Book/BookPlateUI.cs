@@ -18,8 +18,8 @@ public class BookPlateUI : BookPageUI
         }
         else
         {
-            _plantNameText.text = Plant.identificationTitle;
-            _plantFullImage.sprite = Plant.plate;
+            _plantNameText.text = Plant.name;
+            _plantFullImage.sprite = Plant.fullPicture;
         }
     }
 

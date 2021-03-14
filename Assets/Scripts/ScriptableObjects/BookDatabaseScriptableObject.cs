@@ -6,5 +6,5 @@ using Sirenix.OdinInspector;
 [CreateAssetMenu(fileName = "Book Database", menuName = "ScriptableObjects/Book Database")]
 public class BookDatabaseScriptableObject : SerializedScriptableObject
 {
-    public List<IdentificationKeyNode> plants;
+    public List<PlantScriptableObject> plants;
 }

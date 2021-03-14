@@ -31,7 +31,7 @@ public class BookUI : BasePopup
         get { return _currentPageNumber; }
         set
         {
-            if(_currentPageNumber != value && IsPageNumberCorrect(value))
+            if (_currentPageNumber != value && IsPageNumberCorrect(value))
             {
                 _currentPageNumber = value;
                 GoToPage(_currentPageNumber, true);
@@ -114,7 +114,7 @@ public class BookUI : BasePopup
 
     private void GoToPage(int pageNumber, bool alternatePages = false)
     {
-        IdentificationKeyData data = GetDataAtPage(pageNumber);
+        PlantScriptableObject data = GetDataAtPage(pageNumber);
         if (alternatePages)
         {
             int currentPage = _currentLeftPage.PageNumber / 2;
@@ -125,7 +125,8 @@ public class BookUI : BasePopup
             _hiddenRightPage.PageNumber = pageNumber * 2 + 1;
 
             StartCoroutine(AnimatePageChange(currentPage < pageNumber));
-        } else
+        }
+        else
         {
             _currentLeftPage.Plant = data;
             _currentRightPage.Plant = data;
@@ -150,7 +151,8 @@ public class BookUI : BasePopup
             GoToFront(_hiddenRightPage);
             yield return StartCoroutine(OpenPage(_hiddenLeftPage, true));
             yield return StartCoroutine(OpenPage(_currentRightPage));
-        } else
+        }
+        else
         {
             yield return StartCoroutine(ClosePage(_hiddenRightPage));
             yield return StartCoroutine(ClosePage(_currentLeftPage, true));
@@ -220,12 +222,12 @@ public class BookUI : BasePopup
         return pageNumber >= 0 && pageNumber < _maxPageNumber;
     }
 
-    private IdentificationKeyData GetDataAtPage(int page)
+    private PlantScriptableObject GetDataAtPage(int page)
     {
-        if(IsPageNumberCorrect(page))
+        if (IsPageNumberCorrect(page))
         {
-            IdentificationKeyNode node = _database.plants[page];
-            return node == null ? null : node.identificationData;
+            PlantScriptableObject node = _database.plants[page];
+            return node == null ? null : node;
         }
 
         return null;
@@ -266,7 +268,7 @@ public class BookUI : BasePopup
 
     private void OnSwitchLeftButtonPressed(InputAction.CallbackContext ctx)
     {
-        if(CurrentPageNumber > 0 && !IsAnimating)
+        if (CurrentPageNumber > 0 && !IsAnimating)
         {
             CurrentPageNumber--;
         }
@@ -274,7 +276,7 @@ public class BookUI : BasePopup
 
     private void OnSwitchRightButtonPressed(InputAction.CallbackContext ctx)
     {
-        if(CurrentPageNumber < _maxPageNumber - 1 && !IsAnimating)
+        if (CurrentPageNumber < _maxPageNumber - 1 && !IsAnimating)
         {
             CurrentPageNumber++;
         }

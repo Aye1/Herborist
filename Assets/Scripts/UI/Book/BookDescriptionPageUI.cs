@@ -18,7 +18,7 @@ public class BookDescriptionPageUI : BookPageUI
         }
         else
         {
-            _plantNameText.text = Plant.identificationTitle;
+            _plantNameText.text = Plant.commonNameLocKey;
         }
     }
 
