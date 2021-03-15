@@ -35,7 +35,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4512974848042528234}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Plantain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -264,6 +264,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plantain Object
       objectReference: {fileID: 0}
+    - target: {fileID: 2268684733498601354, guid: 291a23283e45a4f74abc28a8a23bcbf8, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3232660386693137150, guid: 291a23283e45a4f74abc28a8a23bcbf8, type: 3}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3232660386693137150, guid: 291a23283e45a4f74abc28a8a23bcbf8, type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3232660386693137150, guid: 291a23283e45a4f74abc28a8a23bcbf8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3232660386693137150, guid: 291a23283e45a4f74abc28a8a23bcbf8, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.19
+      objectReference: {fileID: 0}
     - target: {fileID: 5396834941539709879, guid: 291a23283e45a4f74abc28a8a23bcbf8, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -273,8 +293,16 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6229356356153055197, guid: 291a23283e45a4f74abc28a8a23bcbf8, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6229356356153055197, guid: 291a23283e45a4f74abc28a8a23bcbf8, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6956891187986676258, guid: 291a23283e45a4f74abc28a8a23bcbf8, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6956891187986676258, guid: 291a23283e45a4f74abc28a8a23bcbf8, type: 3}
       propertyPath: m_IsActive
@@ -291,7 +319,7 @@ PrefabInstance:
     - target: {fileID: 7664199934841804191, guid: 291a23283e45a4f74abc28a8a23bcbf8, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 3442116038242085032, guid: 08dd27b67cc8e4a7589ed61d22c368c7, type: 3}
+      objectReference: {fileID: 2818887975088091370, guid: 08dd27b67cc8e4a7589ed61d22c368c7, type: 3}
     - target: {fileID: 7664199934841804191, guid: 291a23283e45a4f74abc28a8a23bcbf8, type: 3}
       propertyPath: m_SortingLayer
       value: 5
@@ -303,6 +331,10 @@ PrefabInstance:
     - target: {fileID: 7664199934841804191, guid: 291a23283e45a4f74abc28a8a23bcbf8, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8537767733021151502, guid: 291a23283e45a4f74abc28a8a23bcbf8, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
