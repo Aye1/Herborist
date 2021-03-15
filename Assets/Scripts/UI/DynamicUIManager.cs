@@ -25,7 +25,7 @@ public class DynamicUIManager : MonoBehaviour
     {
         CollectiblePicked newPickedUI = Instantiate(_collectiblePickedUI, transform);
         newPickedUI.transform.position = Camera.main.WorldToScreenPoint(PlayerMovement.Instance.transform.position);
-        _collectiblePickedUI.Package = package;
+        newPickedUI.Package = package;
         UIFollowPlayer following = newPickedUI.GetComponent<UIFollowPlayer>();
         if (following != null)
         {
