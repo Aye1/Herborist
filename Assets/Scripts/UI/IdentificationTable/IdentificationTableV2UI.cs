@@ -42,6 +42,7 @@ public class IdentificationTableV2UI : BasePopup
     {
         if (_buttonsHolder.childCount > 0)
         {
+            Debug.Log("SetFocus called");
             NavigationManager.Instance.SetFocus(_buttonsHolder.GetChild(0).gameObject);
         }
     }
@@ -63,6 +64,11 @@ public class IdentificationTableV2UI : BasePopup
     {
         _selector.gameObject.SetActive(active);
         _questionsList.gameObject.SetActive(!active);
+        if(!active)
+        {
+            NavigationManager.Instance.PushNavigation(_questionsList);
+            _questionsList.tableParent = this;
+        }
     }
 
     private void UpdateUnidentifiedComponentsList()
@@ -82,6 +88,12 @@ public class IdentificationTableV2UI : BasePopup
                 Destroy(child.gameObject);
             }
         }
+    }
+
+    public void GoBackToSelector()
+    {
+        ToggleSelectorVisiblity(true);
+        UpdateUnidentifiedComponentsList();
     }
 
     #region BasePopup implementation

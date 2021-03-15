@@ -70,6 +70,7 @@ public class NavigationManager : MonoBehaviour
 
     public void SetFocus(GameObject focusObj)
     {
+        Debug.Log("Set focus on " + focusObj.ToString());
         EventSystem.current.SetSelectedGameObject(focusObj);
 
         ISelectHandler[] selects = focusObj.GetComponents<ISelectHandler>();
@@ -84,6 +85,7 @@ public class NavigationManager : MonoBehaviour
 
     public void PushNavigation(INavigable navigable)
     {
+        Debug.LogFormat("Pushing {0}", navigable.ToString());
         _navigationStack.Push(navigable);
         navigable.OnNavigate();
     }
@@ -93,6 +95,7 @@ public class NavigationManager : MonoBehaviour
         if (_navigationStack.Count > 0 && IsCurrentNavigableRemovable())
         {
             INavigable toPop = _navigationStack.Pop();
+            Debug.LogFormat("Popping {0}", toPop.ToString());
             toPop.OnCancel();
             UpdateCurrentNavigable();
             return toPop;
@@ -117,11 +120,14 @@ public class NavigationManager : MonoBehaviour
     private void ManageFocus()
     {
         GameObject currentSelected = EventSystem.current.currentSelectedGameObject;
+        Debug.Log("Current selected: " + currentSelected.ToString());
         if(currentSelected == null && _currentFocus != null)
         {
+            Debug.Log("Current selected null, resetting focus");
             SetFocus(_currentFocus);
         } else
         {
+            Debug.Log("Current focus = current selected");
             _currentFocus = currentSelected;
         }
     }
