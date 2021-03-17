@@ -27,6 +27,10 @@ PrefabInstance:
       propertyPath: _quantities.Array.data[2].sprite
       value: 
       objectReference: {fileID: -6122111789870299419, guid: 08dd27b67cc8e4a7589ed61d22c368c7, type: 3}
+    - target: {fileID: 2483796167887816876, guid: 5387ac405b71b41218ef0157c9152e8e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4512974848042528234, guid: 5387ac405b71b41218ef0157c9152e8e, type: 3}
       propertyPath: m_RootOrder
       value: 0

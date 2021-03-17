@@ -27,6 +27,30 @@ PrefabInstance:
       propertyPath: _quantities.Array.data[2].sprite
       value: 
       objectReference: {fileID: -3293256711928181663, guid: 08dd27b67cc8e4a7589ed61d22c368c7, type: 3}
+    - target: {fileID: 2483796167887816876, guid: 5387ac405b71b41218ef0157c9152e8e, type: 3}
+      propertyPath: m_Size.x
+      value: 1.0000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 2483796167887816876, guid: 5387ac405b71b41218ef0157c9152e8e, type: 3}
+      propertyPath: m_Size.y
+      value: 0.7617488
+      objectReference: {fileID: 0}
+    - target: {fileID: 2483796167887816876, guid: 5387ac405b71b41218ef0157c9152e8e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2483796167887816876, guid: 5387ac405b71b41218ef0157c9152e8e, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.000000008448765
+      objectReference: {fileID: 0}
+    - target: {fileID: 2483796167887816876, guid: 5387ac405b71b41218ef0157c9152e8e, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.07087339
+      objectReference: {fileID: 0}
+    - target: {fileID: 2483796167887816876, guid: 5387ac405b71b41218ef0157c9152e8e, type: 3}
+      propertyPath: m_Direction
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3170925873369691321, guid: 5387ac405b71b41218ef0157c9152e8e, type: 3}
       propertyPath: collectible
       value: 
@@ -78,7 +102,7 @@ PrefabInstance:
     - target: {fileID: 7275623683105562573, guid: 5387ac405b71b41218ef0157c9152e8e, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -5981771769347585550, guid: 08dd27b67cc8e4a7589ed61d22c368c7, type: 3}
+      objectReference: {fileID: -3293256711928181663, guid: 08dd27b67cc8e4a7589ed61d22c368c7, type: 3}
     - target: {fileID: 9119966896348670185, guid: 5387ac405b71b41218ef0157c9152e8e, type: 3}
       propertyPath: m_Name
       value: Violet Variant
