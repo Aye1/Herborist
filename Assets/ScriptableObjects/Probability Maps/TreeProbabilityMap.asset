@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TreeProbabilityMap
   m_EditorClassIdentifier: 
   probabilities:
-  - obj: {fileID: 1260965260116332832, guid: b447513d2dd4c4c2785f2731c4ef2cc4, type: 3}
-    probabilityRange: {x: 0, y: 0.6666667}
-  - obj: {fileID: 671476263429625086, guid: 61362ec7bc7d445b1ae26cc648f11a85, type: 3}
-    probabilityRange: {x: 0.6666667, y: 1}
+  - obj: {fileID: 8751200936571683678, guid: 5a8cc6690dd6b4fbcad47d92efe958d6, type: 3}
+    probabilityRange: {x: 0, y: 0.5}
+  - obj: {fileID: 245104866987308640, guid: 3d407985c18cc4fd988987ea6ee6dbb2, type: 3}
+    probabilityRange: {x: 0.5, y: 1}
