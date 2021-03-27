@@ -2161,7 +2161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: 100
-  density: 1
+  density: 0.3
   noise: 0.51
   stepSize: 1
   numberBalances: 2

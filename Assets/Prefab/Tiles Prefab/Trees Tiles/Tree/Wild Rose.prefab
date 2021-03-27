@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &9024390440006310476
+--- !u!1001 &1602236837557855112
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 245104866987308640, guid: 3d407985c18cc4fd988987ea6ee6dbb2, type: 3}
       propertyPath: m_Name
-      value: Wild Rose Tree
+      value: Wild Rose
       objectReference: {fileID: 0}
     - target: {fileID: 316706682698173566, guid: 3d407985c18cc4fd988987ea6ee6dbb2, type: 3}
       propertyPath: m_Sprite

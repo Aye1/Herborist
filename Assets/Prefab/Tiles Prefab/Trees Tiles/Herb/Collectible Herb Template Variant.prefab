@@ -14,7 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _quantities:
   - sprite: {fileID: -1268064389544249124, guid: 08dd27b67cc8e4a7589ed61d22c368c7, type: 3}
-    minMaxPercentage: {x: 0, y: 100}
+    minMaxPercentage: {x: 76, y: 100}
+    parent: {fileID: 443765354274740532}
+  - sprite: {fileID: -1268064389544249124, guid: 08dd27b67cc8e4a7589ed61d22c368c7, type: 3}
+    minMaxPercentage: {x: 2, y: 75}
+    parent: {fileID: 443765354274740532}
+  - sprite: {fileID: -1268064389544249124, guid: 08dd27b67cc8e4a7589ed61d22c368c7, type: 3}
+    minMaxPercentage: {x: 0, y: 1}
     parent: {fileID: 443765354274740532}
 --- !u!114 &1437782315459524063
 MonoBehaviour:
