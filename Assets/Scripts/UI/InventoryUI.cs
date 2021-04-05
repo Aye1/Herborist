@@ -8,10 +8,10 @@ public class InventoryUI : BasePopup
     [SerializeField, Required, AssetsOnly] private InventoryItemUI _itemTemplate;
     [SerializeField, Required, ChildGameObjectsOnly] private Transform _itemContainer;
     [SerializeField, Required, ChildGameObjectsOnly] private InventoryItemDetailsUI _detailView;
-    public bool _isPlayerInventory = false;
+    public bool isPlayerInventory = false;
     void PopulateGrid()
     {
-        Inventory inventory = _isPlayerInventory ? Player.Instance.GetComponent<Inventory>() : HouseStorage.Instance.StorageInventory;
+        Inventory inventory = isPlayerInventory ? Player.Instance.GetComponent<Inventory>() : HouseStorage.Instance.StorageInventory;
         foreach (CollectiblePackage package in inventory.inventoryList)
         {
             InventoryItemUI newItem = Instantiate(_itemTemplate, _itemContainer);

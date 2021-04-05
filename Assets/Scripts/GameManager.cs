@@ -86,6 +86,7 @@ public class GameManager : SerializedMonoBehaviour
             {
                 _openInventory = Instantiate(_openInventoryUITemplate);
                 _openInventory.transform.localPosition = Vector3.zero;
+                _openInventory.isPlayerInventory = true;
             }
             return _openInventory;
         }
@@ -171,7 +172,6 @@ public class GameManager : SerializedMonoBehaviour
     {
         if (CurrentState == GameState.Game)
         {
-            OpenInventoryWindow._isPlayerInventory = true;
             OpenInventoryWindow.gameObject.SetActive(true);
         }
 
