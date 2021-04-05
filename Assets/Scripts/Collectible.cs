@@ -57,13 +57,20 @@ public class Collectible : MonoBehaviour, IInteractable
         UpdateSpriteIfNecessary();
     }
 
-    public void Interact(GameObject aPLayer)
+    public void Interact(GameObject aPlayer)
     {
-        feedback.PlayFeedbacks();
+        Inventory inventory = aPlayer.GetComponent<Inventory>();
         List<CollectiblePackage> packages = GetCollectibles();
-        aPLayer.GetComponent<Inventory>().Add(packages);
-        UpdateSpriteIfNecessary();
-        DynamicUIManager.Instance.SpawnCollectiblePicked(packages);
+        foreach (CollectiblePackage package in packages)
+        {
+            if (inventory.CanAddCollectible(package))
+            {
+                feedback.PlayFeedbacks();
+                inventory.Add(package);
+                UpdateSpriteIfNecessary();
+                DynamicUIManager.Instance.SpawnCollectiblePicked(package);
+            }
+        }
     }
 
     public bool CanInteract()

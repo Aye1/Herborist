@@ -2,7 +2,7 @@
 using Sirenix.OdinInspector;
 using System.Linq;
 
-public class InventoryState: SaveState
+public class InventoryState : SaveState
 {
     public List<CollectiblePackage> collectibles;
 }
@@ -11,7 +11,8 @@ public class Inventory : SerializedMonoBehaviour, ISavable
 {
     [ReadOnly]
     public List<CollectiblePackage> inventoryList;
-
+    public uint maxPlantCount = 10;
+    public uint inventorySize = 10;
     private void Awake()
     {
         inventoryList = new List<CollectiblePackage>();
@@ -20,7 +21,7 @@ public class Inventory : SerializedMonoBehaviour, ISavable
     public void Add(CollectibleScriptableObject itemType)
     {
         CollectiblePackage pck = inventoryList.Where(p => p.type == itemType).FirstOrDefault();
-        if(pck != default(CollectiblePackage))
+        if (pck != default(CollectiblePackage))
         {
             pck.count++;
         }
@@ -36,16 +37,31 @@ public class Inventory : SerializedMonoBehaviour, ISavable
 
     public void Add(IEnumerable<CollectibleScriptableObject> itemsTypes)
     {
-        foreach(CollectibleScriptableObject item in itemsTypes)
+        foreach (CollectibleScriptableObject item in itemsTypes)
         {
             Add(item);
         }
     }
 
+    public bool CanAddCollectible(CollectiblePackage collectible)
+    {
+        bool returnValue = false;
+        CollectiblePackage pck = inventoryList.Where(p => p.type == collectible.type).FirstOrDefault();
+        if (pck != default(CollectiblePackage))
+        {
+            returnValue = (pck.count + collectible.count <= maxPlantCount);
+        }
+        else
+        {
+            returnValue = inventoryList.Count < inventorySize;
+        }
+        return returnValue;
+    }
+
     public void Add(CollectiblePackage collectible)
     {
         CollectiblePackage pck = inventoryList.Where(p => p.type == collectible.type).FirstOrDefault();
-        if(pck != default(CollectiblePackage))
+        if (pck != default(CollectiblePackage))
         {
             pck.count += collectible.count;
         }
@@ -57,7 +73,7 @@ public class Inventory : SerializedMonoBehaviour, ISavable
 
     public void Add(IEnumerable<CollectiblePackage> collectibles)
     {
-        foreach(CollectiblePackage p in collectibles)
+        foreach (CollectiblePackage p in collectibles)
         {
             Add(p);
         }
@@ -66,10 +82,10 @@ public class Inventory : SerializedMonoBehaviour, ISavable
     public void Remove(CollectibleScriptableObject itemType, int number)
     {
         CollectiblePackage pck = inventoryList.Where(p => p.type == itemType).FirstOrDefault();
-        if(pck != default(CollectiblePackage))
+        if (pck != default(CollectiblePackage))
         {
             pck.count -= number;
-            if(pck.count <= 0)
+            if (pck.count <= 0)
             {
                 inventoryList.Remove(pck);
             }
