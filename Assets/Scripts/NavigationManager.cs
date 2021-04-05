@@ -60,7 +60,7 @@ public class NavigationManager : MonoBehaviour
 
     bool IsCurrentNavigableRemovable()
     {
-        if(_navigationStack.Count == 0)
+        if (_navigationStack.Count == 0)
         {
             return false;
         }
@@ -74,9 +74,9 @@ public class NavigationManager : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(focusObj);
 
         ISelectHandler[] selects = focusObj.GetComponents<ISelectHandler>();
-        if(selects != null)
+        if (selects != null)
         {
-            foreach(ISelectHandler select in selects)
+            foreach (ISelectHandler select in selects)
             {
                 select.OnSelect(null);
             }
@@ -105,7 +105,7 @@ public class NavigationManager : MonoBehaviour
 
     private void UpdateCurrentNavigable()
     {
-        if(_navigationStack.Count > 0)
+        if (_navigationStack.Count > 0)
         {
             INavigable currentNavigable = _navigationStack.Peek();
             currentNavigable.OnComingBack();
@@ -120,13 +120,14 @@ public class NavigationManager : MonoBehaviour
     private void ManageFocus()
     {
         GameObject currentSelected = EventSystem.current.currentSelectedGameObject;
-        Debug.Log("Current selected: " + currentSelected.ToString());
-        if(currentSelected == null && _currentFocus != null)
+        if (currentSelected == null && _currentFocus != null)
         {
             Debug.Log("Current selected null, resetting focus");
             SetFocus(_currentFocus);
-        } else
+        }
+        else
         {
+            Debug.Log("Current selected: " + currentSelected.ToString());
             Debug.Log("Current focus = current selected");
             _currentFocus = currentSelected;
         }

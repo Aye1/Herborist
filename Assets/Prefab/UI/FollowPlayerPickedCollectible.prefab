@@ -52,7 +52,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useOffset: 1
-  player: {fileID: 0}
 --- !u!114 &553892796884292809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,7 +190,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5056522084766657603, guid: aa136f1a369924992ab282ddeb049fa4, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 19.999998
       objectReference: {fileID: 0}
     - target: {fileID: 5056522084766657603, guid: aa136f1a369924992ab282ddeb049fa4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -230,6 +229,10 @@ PrefabInstance:
       value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 6626541911072217759, guid: aa136f1a369924992ab282ddeb049fa4, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+    - target: {fileID: 6626541911072217759, guid: aa136f1a369924992ab282ddeb049fa4, type: 3}
       propertyPath: m_fontStyle
       value: 1
       objectReference: {fileID: 0}
@@ -237,6 +240,10 @@ PrefabInstance:
       propertyPath: m_fontSizeMin
       value: 18
       objectReference: {fileID: 0}
+    - target: {fileID: 6626541911072217759, guid: aa136f1a369924992ab282ddeb049fa4, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
     - target: {fileID: 6626541911072217759, guid: aa136f1a369924992ab282ddeb049fa4, type: 3}
       propertyPath: m_overrideHtmlColors
       value: 0
