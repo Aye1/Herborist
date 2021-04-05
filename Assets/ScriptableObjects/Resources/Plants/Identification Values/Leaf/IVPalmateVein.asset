@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b943af5e18114cec91df843d9dd3804, type: 3}
   m_Name: IVPalmateVein
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
+  icon: {fileID: -3206275021764053486, guid: a3cd69877bf2d4487ac16835bd1b9d16, type: 3}
   valueNameLocKey: identAns_PalmateVein
   descriptionLocKey: identAns_PalmateVein

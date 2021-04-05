@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b943af5e18114cec91df843d9dd3804, type: 3}
   m_Name: IVSected
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
+  icon: {fileID: 6514335857063276654, guid: af91f8a04b02d430cb6df767f64addda, type: 3}
   valueNameLocKey: identAns_Sected
   descriptionLocKey: identAns_Sected

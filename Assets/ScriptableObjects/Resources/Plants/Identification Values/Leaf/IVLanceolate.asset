@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b943af5e18114cec91df843d9dd3804, type: 3}
   m_Name: IVLanceolate
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
+  icon: {fileID: 2222896094826061351, guid: afff62193e17145c88ceeedc8c57decd, type: 3}
   valueNameLocKey: identAns_Lanceolate
   descriptionLocKey: identAns_Lanceolate
