@@ -924,6 +924,10 @@ PrefabInstance:
       propertyPath: serializationData.Prefab
       value: 
       objectReference: {fileID: 3494358616480641229, guid: 5e865b4b534974ba3af7bdfc4d691883, type: 3}
+    - target: {fileID: 4301894020814649777, guid: 5e865b4b534974ba3af7bdfc4d691883, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e865b4b534974ba3af7bdfc4d691883, type: 3}
 --- !u!1 &992318668
@@ -1440,7 +1444,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1687258581}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 50.000004, y: 6, z: -21}
+  m_LocalPosition: {x: 50, y: 6, z: -21}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
