@@ -14,7 +14,6 @@ public class Inventory : SerializedMonoBehaviour, ISavable
     public List<CollectiblePackage> inventoryList;
     public uint maxPlantCount = 10;
     public uint inventorySize = 10;
-    [Required]
     public MMFeedbacks feedback;
     private void Awake()
     {
