@@ -9,6 +9,7 @@ public class GameManager : SerializedMonoBehaviour
     [Title("Editor bindings - Assets")]
     [SerializeField, Required, AssetsOnly] private InputActionAsset _actions;
     [SerializeField, Required, AssetsOnly] private PauseMenu _pauseMenuTemplate;
+    [SerializeField, Required, AssetsOnly] private InventoryUI _openInventoryUITemplate;
 
     private GameState _currentState;
     [SerializeField, ReadOnly]
@@ -17,8 +18,10 @@ public class GameManager : SerializedMonoBehaviour
     private bool _isCountingTime;
     private float _gameTimer; // Time played, in seconds
     private PauseMenu _pauseMenu;
+    private InventoryUI _openInventory;
 
     private readonly string PAUSE_ACTION = "Custom UI/Pause Menu";
+    private readonly string OPEN_INVENTORY_ACTION = "Player/OpenInventory";
 
     [Title("Public variables")]
     public GameInfo gameInfo;
@@ -36,7 +39,7 @@ public class GameManager : SerializedMonoBehaviour
         get { return _currentState; }
         set
         {
-            if(_currentState != value)
+            if (_currentState != value)
             {
                 _currentState = value;
                 OnGameStateChanged?.Invoke(_currentState);
@@ -49,12 +52,12 @@ public class GameManager : SerializedMonoBehaviour
         get { return _isInPause; }
         private set
         {
-            if(value != _isInPause)
+            if (value != _isInPause)
             {
                 _isInPause = value;
                 OnPauseStateChanged?.Invoke(_isInPause);
                 PauseMenuWindow.gameObject.SetActive(_isInPause);
-                if(!_isInPause)
+                if (!_isInPause)
                 {
                     NavigationManager.Instance.PopNavigation();
                 }
@@ -66,12 +69,25 @@ public class GameManager : SerializedMonoBehaviour
     {
         get
         {
-            if(_pauseMenu == null)
+            if (_pauseMenu == null)
             {
                 _pauseMenu = Instantiate(_pauseMenuTemplate);
                 _pauseMenu.transform.localPosition = Vector3.zero;
             }
             return _pauseMenu;
+        }
+    }
+
+    private InventoryUI OpenInventoryWindow
+    {
+        get
+        {
+            if (_openInventory == null)
+            {
+                _openInventory = Instantiate(_openInventoryUITemplate);
+                _openInventory.transform.localPosition = Vector3.zero;
+            }
+            return _openInventory;
         }
     }
 
@@ -97,7 +113,7 @@ public class GameManager : SerializedMonoBehaviour
     private void Start()
     {
         BindInputs();
-        BindEvents();        
+        BindEvents();
     }
 
     private void OnDestroy()
@@ -108,7 +124,7 @@ public class GameManager : SerializedMonoBehaviour
 
     private void Update()
     {
-        if(_isCountingTime)
+        if (_isCountingTime)
         {
             _gameTimer += Time.deltaTime;
             gameInfo.AddGameTime(Time.deltaTime); // Time spent is always updated, so that we are sur to save it properly
@@ -118,17 +134,21 @@ public class GameManager : SerializedMonoBehaviour
     void BindInputs()
     {
         InputAction pauseAction = _actions.FindAction(PAUSE_ACTION);
-
         pauseAction.performed += OnPauseButtonPushed;
-
         pauseAction.Enable();
+
+        InputAction openInventoryAction = _actions.FindAction(OPEN_INVENTORY_ACTION);
+        openInventoryAction.performed += OnOpenInventoryButtonPushed;
+        openInventoryAction.Enable();
     }
 
     void UnBindInputs()
     {
         InputAction pauseAction = _actions.FindAction(PAUSE_ACTION);
-
         pauseAction.performed -= OnPauseButtonPushed;
+
+        InputAction openInventoryAction = _actions.FindAction(OPEN_INVENTORY_ACTION);
+        openInventoryAction.performed -= OnOpenInventoryButtonPushed;
     }
 
     void BindEvents()
@@ -143,13 +163,23 @@ public class GameManager : SerializedMonoBehaviour
 
     void OnPauseButtonPushed(InputAction.CallbackContext ctx)
     {
-        if(CurrentState == GameState.Game)
+        if (CurrentState == GameState.Game)
             TogglePause();
+    }
+
+    void OnOpenInventoryButtonPushed(InputAction.CallbackContext ctx)
+    {
+        if (CurrentState == GameState.Game)
+        {
+            OpenInventoryWindow._isPlayerInventory = true;
+            OpenInventoryWindow.gameObject.SetActive(true);
+        }
+
     }
 
     void OnSceneLoaded(SceneType type)
     {
-        if(_shouldLoadGameSave)
+        if (_shouldLoadGameSave)
         {
             _shouldLoadGameSave = false;
             SaveManager.Instance.LoadGame();
@@ -174,7 +204,7 @@ public class GameManager : SerializedMonoBehaviour
         gameInfo.isGameStarted = true;
         CurrentState = GameState.Game;
         _shouldLoadGameSave = true;
-        SceneSwitcher.Instance.GoToScene(SceneType.House, forceLoadingScreen:true);
+        SceneSwitcher.Instance.GoToScene(SceneType.House, forceLoadingScreen: true);
         LaunchGameTimer();
     }
 

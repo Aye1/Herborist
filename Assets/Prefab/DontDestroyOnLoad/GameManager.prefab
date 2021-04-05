@@ -60,5 +60,6 @@ MonoBehaviour:
       Data: 
   _actions: {fileID: -944628639613478452, guid: 687c4491827374f26a9c6c4c5461f6ee, type: 3}
   _pauseMenuTemplate: {fileID: 1545730046, guid: b524aa868429d4210bdd5fc15a3a9a57, type: 3}
+  _openInventoryUITemplate: {fileID: 7233744125808125964, guid: fb5b35e311b8b4eacb28dea5d9958b60, type: 3}
   _isInPause: 0
   gameInfo: {fileID: 0}

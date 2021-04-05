@@ -56,6 +56,9 @@ MonoBehaviour:
     - Name: inventoryList
       Entry: 6
       Data: 
+  maxPlantCount: 100
+  inventorySize: 50
+  feedback: {fileID: 0}
 --- !u!114 &6022318456563062823
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -8,16 +8,16 @@ public class InventoryUI : BasePopup
     [SerializeField, Required, AssetsOnly] private InventoryItemUI _itemTemplate;
     [SerializeField, Required, ChildGameObjectsOnly] private Transform _itemContainer;
     [SerializeField, Required, ChildGameObjectsOnly] private InventoryItemDetailsUI _detailView;
-
+    public bool _isPlayerInventory = false;
     void PopulateGrid()
     {
-        Inventory inventory = HouseStorage.Instance.StorageInventory;
-        foreach(CollectiblePackage package in inventory.inventoryList)
+        Inventory inventory = _isPlayerInventory ? Player.Instance.GetComponent<Inventory>() : HouseStorage.Instance.StorageInventory;
+        foreach (CollectiblePackage package in inventory.inventoryList)
         {
             InventoryItemUI newItem = Instantiate(_itemTemplate, _itemContainer);
             newItem.Collectible = package;
         }
-        if(inventory.inventoryList.Count > 0)
+        if (inventory.inventoryList.Count > 0)
         {
             SetEventSystemFocus();
         }
@@ -25,7 +25,7 @@ public class InventoryUI : BasePopup
 
     void CleanGrid()
     {
-        foreach(Transform child in _itemContainer.transform)
+        foreach (Transform child in _itemContainer.transform)
         {
             Destroy(child.gameObject);
         }

@@ -297,8 +297,8 @@ MonoBehaviour:
     - Name: inventoryList
       Entry: 6
       Data: 
-  maxPlantCount: 10
-  inventorySize: 10
+  maxPlantCount: 25
+  inventorySize: 9
   feedback: {fileID: 687550776}
 --- !u!114 &650929235
 MonoBehaviour:

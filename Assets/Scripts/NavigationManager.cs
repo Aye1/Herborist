@@ -120,6 +120,11 @@ public class NavigationManager : MonoBehaviour
     private void ManageFocus()
     {
         GameObject currentSelected = EventSystem.current.currentSelectedGameObject;
+        if (currentSelected != null)
+        {
+            Debug.Log("Current selected: " + currentSelected.ToString());
+        }
+
         if (currentSelected == null && _currentFocus != null)
         {
             Debug.Log("Current selected null, resetting focus");
@@ -127,7 +132,6 @@ public class NavigationManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("Current selected: " + currentSelected.ToString());
             Debug.Log("Current focus = current selected");
             _currentFocus = currentSelected;
         }
