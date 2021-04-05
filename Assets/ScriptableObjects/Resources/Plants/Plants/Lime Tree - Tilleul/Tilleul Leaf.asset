@@ -32,16 +32,25 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes:
     - Name: collectibleInfo
-      Entry: 6
+      Entry: 7
+      Data: 0|CollectiblePackage, Assembly-CSharp
+    - Name: count
+      Entry: 3
+      Data: 0
+    - Name: typeDevelopmentName
+      Entry: 1
+      Data: Lime tree leaf
+    - Name: 
+      Entry: 8
       Data: 
     - Name: parameters
       Entry: 7
-      Data: 0|UnityEngine.Rendering.SerializedDictionary`2[[PlantIdentificationParameterScriptableObject,
+      Data: 1|UnityEngine.Rendering.SerializedDictionary`2[[PlantIdentificationParameterScriptableObject,
         Assembly-CSharp],[PlantIdentificationValueScriptableObject, Assembly-CSharp]],
         Unity.RenderPipelines.Core.Runtime
     - Name: comparer
       Entry: 7
-      Data: 1|System.Collections.Generic.ObjectEqualityComparer`1[[PlantIdentificationParameterScriptableObject,
+      Data: 2|System.Collections.Generic.ObjectEqualityComparer`1[[PlantIdentificationParameterScriptableObject,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 8
