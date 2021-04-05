@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using System.Linq;
+using MoreMountains.Feedbacks;
 
 public class InventoryState : SaveState
 {
@@ -13,6 +14,8 @@ public class Inventory : SerializedMonoBehaviour, ISavable
     public List<CollectiblePackage> inventoryList;
     public uint maxPlantCount = 10;
     public uint inventorySize = 10;
+    [Required]
+    public MMFeedbacks feedback;
     private void Awake()
     {
         inventoryList = new List<CollectiblePackage>();
@@ -147,4 +150,9 @@ public class Inventory : SerializedMonoBehaviour, ISavable
         return gameObject.name + ".inventory";
     }
     #endregion
+
+    public void PlayInventoryFull()
+    {
+        feedback.PlayFeedbacks();
+    }
 }

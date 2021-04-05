@@ -61,15 +61,27 @@ public class Collectible : MonoBehaviour, IInteractable
     {
         Inventory inventory = aPlayer.GetComponent<Inventory>();
         List<CollectiblePackage> packages = GetCollectibles();
+        bool isPreventingToAdd = false;
         foreach (CollectiblePackage package in packages)
         {
             if (inventory.CanAddCollectible(package))
             {
+                _collectibleCount -= package.count;
+
                 feedback.PlayFeedbacks();
                 inventory.Add(package);
                 UpdateSpriteIfNecessary();
                 DynamicUIManager.Instance.SpawnCollectiblePicked(package);
             }
+            else
+            {
+                isPreventingToAdd = true;
+            }
+        }
+
+        if (isPreventingToAdd)
+        {
+            inventory.PlayInventoryFull();
         }
     }
 
@@ -89,7 +101,6 @@ public class Collectible : MonoBehaviour, IInteractable
         pck.type = collectible;
         int randomPickQuantity = Alea.GetIntInc(collectible.handGatherQuantity.x, collectible.handGatherQuantity.y);
         pck.count = Mathf.Min(randomPickQuantity, _collectibleCount);
-        _collectibleCount -= pck.count;
 
         List<CollectiblePackage> res = new List<CollectiblePackage>() {
                 pck
