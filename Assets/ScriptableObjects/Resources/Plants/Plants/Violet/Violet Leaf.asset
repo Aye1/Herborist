@@ -31,26 +31,14 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
-    - Name: collectibleInfo
-      Entry: 7
-      Data: 0|CollectiblePackage, Assembly-CSharp
-    - Name: count
-      Entry: 3
-      Data: 0
-    - Name: typeDevelopmentName
-      Entry: 1
-      Data: StrawberryLeaf
-    - Name: 
-      Entry: 8
-      Data: 
     - Name: parameters
       Entry: 7
-      Data: 1|UnityEngine.Rendering.SerializedDictionary`2[[PlantIdentificationParameterScriptableObject,
+      Data: 0|UnityEngine.Rendering.SerializedDictionary`2[[PlantIdentificationParameterScriptableObject,
         Assembly-CSharp],[PlantIdentificationValueScriptableObject, Assembly-CSharp]],
         Unity.RenderPipelines.Core.Runtime
     - Name: comparer
       Entry: 7
-      Data: 2|System.Collections.Generic.ObjectEqualityComparer`1[[PlantIdentificationParameterScriptableObject,
+      Data: 1|System.Collections.Generic.ObjectEqualityComparer`1[[PlantIdentificationParameterScriptableObject,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 8
@@ -127,4 +115,5 @@ MonoBehaviour:
   componentType: 0
   icon: {fileID: 0}
   componentPicture: {fileID: 21300000, guid: 81f465990cb324c989b6d07a3a184501, type: 3}
+  collectibleInfo: {fileID: 11400000, guid: 2d29d33be52a943868b5aff2d7b714cf, type: 2}
   plantParent: {fileID: 11400000, guid: 46d928845b2074233a76097edc41bda0, type: 2}

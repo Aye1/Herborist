@@ -37,9 +37,9 @@ public class IdentificationTableV2CollectibleButton : MonoBehaviour
         if (PlantComponent != null)
         {
             _componentNameText.text = PlantIdentificationInfos.Instance.GetPlantCurrentName(PlantComponent);
-            if (PlantComponent.collectibleInfo != null && PlantComponent.collectibleInfo.type != null)
+            if (PlantComponent.collectibleInfo != null)
             {
-                _componentImage.sprite = PlantComponent.collectibleInfo.type.sprite;
+                _componentImage.sprite = PlantComponent.collectibleInfo.sprite;
             }
         }
     }

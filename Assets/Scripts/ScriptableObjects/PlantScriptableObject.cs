@@ -15,6 +15,7 @@ public class PlantScriptableObject : ScriptableObject
     public List<string> loreLocKey;
     public Sprite fullPicture;
     public Sprite blackAndWhitePicture;
+    public Sprite inGameSprite; //  TODO add sprite for each seasons
 
     public List<PlantComponentScriptableObject> components;
 }

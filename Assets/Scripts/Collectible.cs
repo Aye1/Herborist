@@ -23,6 +23,7 @@ public class CollectiblePackage : ISerializationCallbackReceiver
         }
         else if (ResourcesManager.Instance != null && typeDevelopmentName != UNKNOWN_TYPE)
         {
+            Debug.LogFormat("deserializing {0}", typeDevelopmentName);
             // Fetch CollectibleScriptableObject from Resources
             type = ResourcesManager.Instance.GetCollectibleScriptableObjectWithName(typeDevelopmentName);
         }
@@ -31,6 +32,7 @@ public class CollectiblePackage : ISerializationCallbackReceiver
     public void OnBeforeSerialize()
     {
         // Serialize the development name as a key to find the object after deserialization
+        Debug.Log("serializing " + type);
         typeDevelopmentName = type == null ? UNKNOWN_TYPE : type.developmentName;
     }
 }

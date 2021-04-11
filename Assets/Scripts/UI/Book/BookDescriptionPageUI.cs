@@ -19,11 +19,13 @@ public class BookDescriptionPageUI : BookPageUI
         else
         {
             _plantNameText.text = Plant.commonNameLocKey;
+            _plantSpriteImage.sprite = Plant.inGameSprite;
         }
     }
 
     void UpdateEmptyUI()
     {
         _plantNameText.text = "Unknown";
+        _plantSpriteImage.sprite = null;
     }
 }

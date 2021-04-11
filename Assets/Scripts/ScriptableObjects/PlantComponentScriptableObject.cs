@@ -18,7 +18,8 @@ public class PlantComponentScriptableObject : SerializedScriptableObject
     public PlantComponentType componentType;
     public Sprite icon;
     public Sprite componentPicture;
-    public CollectiblePackage collectibleInfo;
+    //public CollectiblePackage collectibleInfo;
+    public CollectibleScriptableObject collectibleInfo;
     [DictionaryDrawerSettings(KeyLabel = "Parameter", ValueLabel = "Value")]
     public Dictionary<PlantIdentificationParameterScriptableObject, PlantIdentificationValueScriptableObject> parameters;
     public PlantScriptableObject plantParent;
