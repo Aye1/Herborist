@@ -21,6 +21,6 @@ MonoBehaviour:
   blackAndWhitePicture: {fileID: 0}
   inGameSprite: {fileID: -854724729293753505, guid: 08dd27b67cc8e4a7589ed61d22c368c7, type: 3}
   components:
-  - {fileID: 11400000, guid: 363c9d3f6b0c447f18173cb0f6ec6c5b, type: 2}
   - {fileID: 11400000, guid: f39b2f508fd0b417da8b6ad9a3e8d07a, type: 2}
   - {fileID: 11400000, guid: d756b7ea8e60849babf7829ccafb8fb0, type: 2}
+  - {fileID: 11400000, guid: 363c9d3f6b0c447f18173cb0f6ec6c5b, type: 2}

@@ -19,7 +19,8 @@ MonoBehaviour:
   loreLocKey: []
   fullPicture: {fileID: 0}
   blackAndWhitePicture: {fileID: 0}
+  inGameSprite: {fileID: 0}
   components:
-  - {fileID: 11400000, guid: e7ac0390355f24952b3e9a3cc3e0d171, type: 2}
   - {fileID: 11400000, guid: 4f2b75c0e2dd44593b53aea0418116e5, type: 2}
   - {fileID: 11400000, guid: 0204b4ac1698b4725a0967354d43b5a3, type: 2}
+  - {fileID: 11400000, guid: e7ac0390355f24952b3e9a3cc3e0d171, type: 2}
