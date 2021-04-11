@@ -9,6 +9,10 @@ public class BookPlateUI : BookPageUI
 {
     [SerializeField, Required, ChildGameObjectsOnly] private TextMeshProUGUI _plantNameText;
     [SerializeField, Required, ChildGameObjectsOnly] private Image _plantFullImage;
+    [SerializeField, Required, ChildGameObjectsOnly] private Transform _componentHolder;
+    [SerializeField, Required, AssetsOnly] private IdentificationTableV2CollectibleButton _componentButtonTemplate;
+
+    public BookUI bookParent;
 
     protected override void UpdateUI()
     {
@@ -20,6 +24,7 @@ public class BookPlateUI : BookPageUI
         {
             _plantNameText.text = Plant.name;
             _plantFullImage.sprite = Plant.fullPicture;
+            PopulateComponents();
         }
     }
 
@@ -27,5 +32,54 @@ public class BookPlateUI : BookPageUI
     {
         _plantNameText.text = "Unknown";
         _plantFullImage.sprite = null;
+        ClearComponents();
+    }
+
+    void ClearComponents()
+    {
+        foreach (Transform child in _componentHolder)
+        {
+            Destroy(child.gameObject);
+        }
+    }
+
+    void PopulateComponents()
+    {
+        ClearComponents();
+        bool isFirst = true;
+        foreach (PlantComponentScriptableObject component in Plant.components)
+        {
+            IdentificationTableV2CollectibleButton newComponent = Instantiate(_componentButtonTemplate, _componentHolder);
+            newComponent.PlantComponent = component;
+            newComponent.SelfButton.onClick.AddListener(() => OnComponentSelected(newComponent.PlantComponent));
+            if (isFirst)
+            {
+                NavigationManager.Instance.SetFocus(newComponent.gameObject);
+                isFirst = false;
+            }
+
+        }
+    }
+
+    private void OnComponentSelected(PlantComponentScriptableObject component)
+    {
+        bookParent.OpenIdentificationTable(component);
+    }
+
+    override public void ActivateFocusableElements(bool isActivate)
+    {
+        base.ActivateFocusableElements(isActivate);
+        bool isFirst = isActivate;
+
+        foreach (Transform child in _componentHolder)
+        {
+            Button button = child.GetComponent<Button>();
+            button.interactable = isActivate;
+            if (isFirst)
+            {
+                NavigationManager.Instance.SetFocus(child.gameObject);
+                isFirst = false;
+            }
+        }
     }
 }

@@ -249,7 +249,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pageNumberText: {fileID: 7630013136788196649}
   _plantNameText: {fileID: 6451089423481939468}
-  _plantSpriteImage: {fileID: 0}
+  _plantSpriteImage: {fileID: 5393901070521848280}
 --- !u!1 &7669126021483030513
 GameObject:
   m_ObjectHideFlags: 0

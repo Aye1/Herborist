@@ -49,4 +49,8 @@ public class BookPageUI : MonoBehaviour
     {
         GetComponent<Canvas>().sortingOrder = order;
     }
+
+    virtual public void ActivateFocusableElements(bool isActivate)
+    {
+    }
 }

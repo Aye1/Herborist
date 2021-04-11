@@ -9,16 +9,21 @@ using UnityEngine.UI;
 
 public class BookUI : BasePopup
 {
-    [Title("Assets binding")]
+    [Title("Assets bindings")]
     [SerializeField, Required, AssetsOnly] private BookDatabaseScriptableObject _database;
     [SerializeField, Required, AssetsOnly] private BookPlateUI _plateTemplate;
     [SerializeField, Required, AssetsOnly] private BookPageUI _rightPageTemplate;
+    [SerializeField, Required, AssetsOnly] private IdentificationTableV2UI _identificationTableUITemplate;
 
-    [Title("Child objects binding")]
+
+    [Title("Child objects bindings")]
     [SerializeField, Required, ChildGameObjectsOnly] private Transform _leftPageHolder;
     [SerializeField, Required, ChildGameObjectsOnly] private Transform _rightPageHolder;
     [SerializeField, Required, ChildGameObjectsOnly] private Image _leftControlImage;
     [SerializeField, Required, ChildGameObjectsOnly] private Image _rightControlImage;
+
+    [Title("Scene bindings")]
+    [SerializeField, Required] private Transform _canvas;
 
     [Title("Parameters")]
     [SerializeField] private float _pageTurnTime = 0.5f;
@@ -36,6 +41,19 @@ public class BookUI : BasePopup
                 _currentPageNumber = value;
                 GoToPage(_currentPageNumber, true);
             }
+        }
+    }
+
+    private IdentificationTableV2UI _identificationTable;
+    public IdentificationTableV2UI IdentificationTable
+    {
+        get
+        {
+            if (_identificationTable == null)
+            {
+                _identificationTable = Instantiate(_identificationTableUITemplate, _canvas);
+            }
+            return _identificationTable;
         }
     }
 
@@ -73,6 +91,8 @@ public class BookUI : BasePopup
     {
         _leftPageA = Instantiate(_plateTemplate, _leftPageHolder);
         _leftPageB = Instantiate(_plateTemplate, _leftPageHolder);
+        _leftPageA.bookParent = this;
+        _leftPageB.bookParent = this;
         _rightPageA = Instantiate(_rightPageTemplate, _rightPageHolder);
         _rightPageB = Instantiate(_rightPageTemplate, _rightPageHolder);
         _currentLeftPage = _leftPageA;
@@ -236,11 +256,19 @@ public class BookUI : BasePopup
     private void GoToFront(BookPageUI page)
     {
         page.SetSortingOrder(2);
+        page.ActivateFocusableElements(true);
     }
 
     private void GoToBack(BookPageUI page)
     {
         page.SetSortingOrder(1);
+        page.ActivateFocusableElements(false);
+    }
+
+    public void OpenIdentificationTable(PlantComponentScriptableObject component)
+    {
+        IdentificationTable.gameObject.SetActive(true);
+        IdentificationTable.OnComponentSelected(component);
     }
 
     #region Input management

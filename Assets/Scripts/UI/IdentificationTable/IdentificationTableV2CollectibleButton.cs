@@ -12,17 +12,17 @@ public class IdentificationTableV2CollectibleButton : MonoBehaviour
     [SerializeField, Required, ChildGameObjectsOnly] private Image _componentImage;
     [SerializeField, Required, ChildGameObjectsOnly] private Button _selfButton;
 
-    private CollectibleScriptableObject _collectible;
+    private PlantComponentScriptableObject _plantComponent;
 
-    public CollectibleScriptableObject Collectible
+    public PlantComponentScriptableObject PlantComponent
     {
         get
         {
-            return _collectible;
+            return _plantComponent;
         }
         set
         {
-            _collectible = value;
+            _plantComponent = value;
             UpdateUI();
         }
     }
@@ -34,10 +34,13 @@ public class IdentificationTableV2CollectibleButton : MonoBehaviour
 
     private void UpdateUI()
     {
-        if(Collectible != null)
+        if (PlantComponent != null)
         {
-            _componentNameText.text = PlantIdentificationInfos.Instance.GetPlantCurrentName(Collectible);
-            _componentImage.sprite = Collectible.sprite;
+            _componentNameText.text = PlantIdentificationInfos.Instance.GetPlantCurrentName(PlantComponent);
+            if (PlantComponent.collectibleInfo != null && PlantComponent.collectibleInfo.type != null)
+            {
+                _componentImage.sprite = PlantComponent.collectibleInfo.type.sprite;
+            }
         }
     }
 }

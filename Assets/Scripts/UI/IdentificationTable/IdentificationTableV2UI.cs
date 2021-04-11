@@ -32,7 +32,7 @@ public class IdentificationTableV2UI : BasePopup
         foreach (CollectibleScriptableObject collectible in _toIdentifyCollectibles)
         {
             IdentificationTableV2CollectibleButton newButton = Instantiate(_collectibleButtonTemplate, _buttonsHolder);
-            newButton.Collectible = collectible;
+            newButton.PlantComponent = collectible.parentPlantComponent;
             newButton.SelfButton.onClick.AddListener(() => OnComponentSelected(collectible.parentPlantComponent));
         }
         SetFocus();
@@ -47,7 +47,7 @@ public class IdentificationTableV2UI : BasePopup
         }
     }
 
-    private void OnComponentSelected(PlantComponentScriptableObject component)
+    public void OnComponentSelected(PlantComponentScriptableObject component)
     {
         ToggleSelectorVisiblity(false);
         _questionsList.CurrentComponent = component;
