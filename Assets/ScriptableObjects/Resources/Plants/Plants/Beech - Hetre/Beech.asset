@@ -17,7 +17,7 @@ MonoBehaviour:
   speciesName: Fagus sylvatica
   familyName: Fagaceae
   loreLocKey: []
-  fullPicture: {fileID: 0}
+  fullPicture: {fileID: 21300000, guid: eec276b16ce5b443c8e963dc2f16bc0e, type: 3}
   blackAndWhitePicture: {fileID: 0}
   inGameSprite: {fileID: 0}
   components:

@@ -17,7 +17,7 @@ MonoBehaviour:
   speciesName: Lamium album
   familyName: Lamiaceae
   loreLocKey: []
-  fullPicture: {fileID: 0}
+  fullPicture: {fileID: 21300000, guid: 77a76ede72ea84f65ad79245e4155d83, type: 3}
   blackAndWhitePicture: {fileID: 0}
   inGameSprite: {fileID: 0}
   components:

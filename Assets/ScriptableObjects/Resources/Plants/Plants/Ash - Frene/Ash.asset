@@ -17,7 +17,7 @@ MonoBehaviour:
   speciesName: Fraxinus excelsior
   familyName: Oleaceae
   loreLocKey: []
-  fullPicture: {fileID: 0}
+  fullPicture: {fileID: 21300000, guid: ddc4aef50737247579db07e0ca890028, type: 3}
   blackAndWhitePicture: {fileID: 0}
   inGameSprite: {fileID: -1296716310123591986, guid: ab90bd344ee7d4c0985dc37fe16b24f9, type: 3}
   components:

@@ -17,7 +17,7 @@ MonoBehaviour:
   speciesName: Allium ursium
   familyName: Amaryllidaceae
   loreLocKey: []
-  fullPicture: {fileID: 0}
+  fullPicture: {fileID: 21300000, guid: 1c3c094895a9743c3b5cccb5fa8f853a, type: 3}
   blackAndWhitePicture: {fileID: 0}
   inGameSprite: {fileID: 0}
   components:

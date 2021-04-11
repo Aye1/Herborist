@@ -17,7 +17,7 @@ MonoBehaviour:
   speciesName: Castanea sativa
   familyName: Fagaceae
   loreLocKey: []
-  fullPicture: {fileID: 0}
+  fullPicture: {fileID: 21300000, guid: c57f0938c7e3b41a09a4e586994def52, type: 3}
   blackAndWhitePicture: {fileID: 0}
   inGameSprite: {fileID: 0}
   components:
