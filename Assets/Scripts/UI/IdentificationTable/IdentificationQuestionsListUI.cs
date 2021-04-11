@@ -43,7 +43,7 @@ public class IdentificationQuestionsListUI : MonoBehaviour, INavigable
         get { return _currentComponent; }
         set
         {
-            if(_currentComponent != value)
+            if (_currentComponent != value)
             {
                 _currentComponent = value;
                 _componentToIdentifyImage.sprite = _currentComponent.componentPicture;
@@ -56,14 +56,15 @@ public class IdentificationQuestionsListUI : MonoBehaviour, INavigable
     {
         TogglePossiblePlantsVisibility(false);
         ToggleResultsVisibility(false);
-        if(_givenAnswers == null)
+        if (_givenAnswers == null)
         {
             _givenAnswers = new Dictionary<PlantIdentificationParameterScriptableObject, PlantIdentificationValueScriptableObject>();
-        } else
+        }
+        else
         {
             _givenAnswers.Clear();
         }
-        if(_questionUIs == null)
+        if (_questionUIs == null)
         {
             _questionUIs = new Dictionary<PlantIdentificationParameterScriptableObject, IdentificationQuestionUI>();
         }
@@ -102,7 +103,7 @@ public class IdentificationQuestionsListUI : MonoBehaviour, INavigable
 
     public bool IsLastQuestion()
     {
-        return _currentQuestionIndex == _questions.questions.Count-1;
+        return _currentQuestionIndex == _questions.questions.Count - 1;
     }
 
     public void SetAnswer(PlantIdentificationParameterScriptableObject question, PlantIdentificationValueScriptableObject answer)
@@ -125,13 +126,13 @@ public class IdentificationQuestionsListUI : MonoBehaviour, INavigable
 
     private void CreateQuestionsUI()
     {
-        if(_questionUIs != null)
+        if (_questionUIs != null)
         {
-            if(_questionUIs.Count == _questions.questions.Count)
+            if (_questionUIs.Count == _questions.questions.Count)
             {
                 return;
             }
-            foreach(PlantIdentificationParameterScriptableObject question in _questions.questions)
+            foreach (PlantIdentificationParameterScriptableObject question in _questions.questions)
             {
                 CreateQuestionUI(question);
             }
@@ -148,7 +149,7 @@ public class IdentificationQuestionsListUI : MonoBehaviour, INavigable
 
     private void OpenQuestionUI(PlantIdentificationParameterScriptableObject question, bool pushToNavigation)
     {
-        foreach(IdentificationQuestionUI q in _questionUIs.Values)
+        foreach (IdentificationQuestionUI q in _questionUIs.Values)
         {
             q.Display(q.Question == question);
         }
@@ -175,7 +176,7 @@ public class IdentificationQuestionsListUI : MonoBehaviour, INavigable
         _resultsUI.gameObject.SetActive(active);
         _questionHolder.gameObject.SetActive(!active);
         _foundPlantsUI.gameObject.SetActive(false);
-        if(active)
+        if (active)
         {
             SetResultsUI();
         }
@@ -204,6 +205,7 @@ public class IdentificationQuestionsListUI : MonoBehaviour, INavigable
         //_questionText.text = LocalizationManager.Instance.GetTranslation(_resultsTitleLocKey);
         _resultsText.text = isValid ? "Component correctly identified" : "Error in component identification, try again";
         _componentIdentifiedButton.gameObject.SetActive(isValid);
+        NavigationManager.Instance.SetFocus(_componentIdentifiedButton.gameObject);
         _componentIdentifiedButton.onClick.AddListener(() => OnComponentIdentified?.Invoke(CurrentComponent));
     }
 

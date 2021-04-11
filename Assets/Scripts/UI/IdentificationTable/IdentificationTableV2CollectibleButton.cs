@@ -8,12 +8,13 @@ using UnityEngine.UI;
 public class IdentificationTableV2CollectibleButton : MonoBehaviour
 {
     [Title("Editor bindings")]
-    [SerializeField, Required, ChildGameObjectsOnly] private TextMeshProUGUI _componentNameText;
     [SerializeField, Required, ChildGameObjectsOnly] private Image _componentImage;
     [SerializeField, Required, ChildGameObjectsOnly] private Button _selfButton;
+    [SerializeField, Required, AssetsOnly] private Sprite _unknownComponent;
 
     private PlantComponentScriptableObject _plantComponent;
-
+    enum ComponentState { UNKNOWN, UNIDENTIFIED, IDENTIFIED };
+    private ComponentState _currentState;
     public PlantComponentScriptableObject PlantComponent
     {
         get
@@ -36,11 +37,38 @@ public class IdentificationTableV2CollectibleButton : MonoBehaviour
     {
         if (PlantComponent != null)
         {
-            _componentNameText.text = PlantIdentificationInfos.Instance.GetPlantCurrentName(PlantComponent);
-            if (PlantComponent.collectibleInfo != null)
+            UpdateCurrentState();
+            if (_currentState != ComponentState.UNKNOWN)
             {
-                _componentImage.sprite = PlantComponent.collectibleInfo.sprite;
+                if (PlantComponent.collectibleInfo != null)
+                {
+                    _componentImage.sprite = PlantComponent.collectibleInfo.sprite;
+                }
+                if (_currentState == ComponentState.IDENTIFIED)
+                {
+                    SelfButton.interactable = false;
+                }
             }
+            else
+            {
+                _componentImage.sprite = _unknownComponent;
+                SelfButton.interactable = false;
+            }
+        }
+    }
+    private void UpdateCurrentState()
+    {
+        if (PlantIdentificationInfos.Instance.IsIdentified(PlantComponent))
+        {
+            _currentState = ComponentState.IDENTIFIED;
+        }
+        else if (HouseStorage.Instance.IsInInventory(PlantComponent))
+        {
+            _currentState = ComponentState.UNIDENTIFIED;
+        }
+        else
+        {
+            _currentState = ComponentState.UNKNOWN;
         }
     }
 }

@@ -46,7 +46,7 @@ public class HouseStorage : MonoBehaviour
 
     void OnGameStateChanged(GameState newState)
     {
-        if(newState == GameState.MainMenu)
+        if (newState == GameState.MainMenu)
         {
             SaveManager.Instance.objectsToSave.Remove(StorageInventory);
             Destroy(gameObject);
@@ -56,5 +56,9 @@ public class HouseStorage : MonoBehaviour
     public List<CollectibleScriptableObject> GetUnidentifiedComponents()
     {
         return StorageInventory.GetUnidentifiedComponents();
+    }
+    public bool IsInInventory(PlantComponentScriptableObject component)
+    {
+        return StorageInventory.IsInInventory(component);
     }
 }

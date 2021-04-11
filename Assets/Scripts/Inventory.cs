@@ -115,6 +115,10 @@ public class Inventory : SerializedMonoBehaviour, ISavable
     {
         return inventoryList.Where(p => !PlantIdentificationInfos.Instance.IsIdentified(p.type)).Select(p => p.type).ToList();
     }
+    public bool IsInInventory(PlantComponentScriptableObject component)
+    {
+        return inventoryList.Exists(p => p.type == component.collectibleInfo);
+    }
 
     #region ISavable implementation
     public SaveState GetObjectToSave()
