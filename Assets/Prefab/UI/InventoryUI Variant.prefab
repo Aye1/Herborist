@@ -202,12 +202,28 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6474958466460848998, guid: 80f2ac5dea5514a788c61020702a6724, type: 3}
+      propertyPath: m_Padding.m_Top
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 6474958466460848998, guid: 80f2ac5dea5514a788c61020702a6724, type: 3}
       propertyPath: m_ChildAlignment
-      value: 4
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6474958466460848998, guid: 80f2ac5dea5514a788c61020702a6724, type: 3}
+      propertyPath: m_Padding.m_Left
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 6474958466460848998, guid: 80f2ac5dea5514a788c61020702a6724, type: 3}
       propertyPath: m_ConstraintCount
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6474958466460848998, guid: 80f2ac5dea5514a788c61020702a6724, type: 3}
+      propertyPath: m_Padding.m_Right
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 6474958466460848998, guid: 80f2ac5dea5514a788c61020702a6724, type: 3}
+      propertyPath: m_Padding.m_Bottom
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 6474958466943520272, guid: 80f2ac5dea5514a788c61020702a6724, type: 3}
       propertyPath: m_Name

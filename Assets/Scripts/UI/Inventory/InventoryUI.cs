@@ -17,6 +17,14 @@ public class InventoryUI : BasePopup
             InventoryItemUI newItem = Instantiate(_itemTemplate, _itemContainer);
             newItem.Collectible = package;
         }
+
+        for (int i = inventory.inventoryList.Count; i < inventory.inventorySize; i++)
+        {
+            InventoryItemUI newItem = Instantiate(_itemTemplate, _itemContainer);
+            newItem.Collectible = null;
+            newItem.enabled = false;
+        }
+
         if (inventory.inventoryList.Count > 0)
         {
             SetEventSystemFocus();

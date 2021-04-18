@@ -18,18 +18,24 @@ public class InventoryItemUI : Selectable
         get { return _collectible; }
         set
         {
-            if(_collectible != value)
-            {
-                _collectible = value;
-                UpdateUI();
-            }
+            _collectible = value;
+
+            UpdateUI();
         }
     }
 
     void UpdateUI()
     {
-        _itemImage.sprite = Collectible.type.sprite;
-        _countText.text = Collectible.count.ToString();
+        if (_collectible != null)
+        {
+            _itemImage.sprite = Collectible.type.sprite;
+            _countText.text = Collectible.count.ToString();
+        }
+        else
+        {
+            _itemImage.enabled = false;
+            _countText.text = "";
+        }
     }
 
     public override void OnSelect(BaseEventData eventData)

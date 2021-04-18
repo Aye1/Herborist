@@ -31,6 +31,7 @@ public class InventoryItemDetailsUI : MonoBehaviour
 
     private void UpdateUI()
     {
+        _itemImage.enabled = true;
         _itemImage.sprite = Collectible.type.sprite;
         _itemNameText.text = PlantIdentificationInfos.Instance.GetPlantCurrentName(Collectible.type);
         _itemCountText.text = Collectible.count.ToString();
@@ -38,8 +39,7 @@ public class InventoryItemDetailsUI : MonoBehaviour
 
     private void UpdateEmptyUI()
     {
-        // TODO: put a default sprite
-        _itemImage.sprite = null;
+        _itemImage.enabled = false;
         _itemNameText.text = "";
         _itemCountText.text = "";
     }
