@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   developmentName: Wild Rose Leaf
   nameLocKey: temp
-  sprite: {fileID: 21300000, guid: 841de23a914c64204bea6edb8d66f3dc, type: 3}
+  sprite: {fileID: -3641271606093017471, guid: a262bb768f7cc40bfae489b53d0d6084, type: 3}
   spawnQuantity: {x: 1, y: 20}
   handGatherQuantity: {x: 1, y: 5}
   parentPlantComponent: {fileID: 11400000, guid: 634bf3cc11f0b4ac7937aba002c3182f, type: 2}

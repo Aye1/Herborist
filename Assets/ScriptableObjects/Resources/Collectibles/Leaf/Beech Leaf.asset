@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   developmentName: Beech Leaf
   nameLocKey: tmp
-  sprite: {fileID: 21300000, guid: a89bc2fb1cae6417e9ef5a39b4153892, type: 3}
+  sprite: {fileID: 1932718172790216727, guid: a262bb768f7cc40bfae489b53d0d6084, type: 3}
   spawnQuantity: {x: 1, y: 30}
   handGatherQuantity: {x: 1, y: 8}
   parentPlantComponent: {fileID: 11400000, guid: 68e904630702b4c3dab947926928e42b, type: 2}
