@@ -29,9 +29,6 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
-    - Name: collectibleInfo
-      Entry: 6
-      Data: 
     - Name: parameters
       Entry: 7
       Data: 0|UnityEngine.Rendering.SerializedDictionary`2[[PlantIdentificationParameterScriptableObject,
@@ -104,4 +101,5 @@ MonoBehaviour:
   componentType: 1
   icon: {fileID: 0}
   componentPicture: {fileID: 21300000, guid: 74062939e4e124875b8021fd8b86a337, type: 3}
+  collectibleInfo: {fileID: 11400000, guid: 6d2b6041b085b48bb9c38de058ed78af, type: 2}
   plantParent: {fileID: 11400000, guid: dad0669ef27234d98a6c22d00521a6d1, type: 2}

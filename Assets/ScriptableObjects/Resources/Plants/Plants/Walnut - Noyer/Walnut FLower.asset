@@ -29,26 +29,14 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
-    - Name: collectibleInfo
-      Entry: 7
-      Data: 0|CollectiblePackage, Assembly-CSharp
-    - Name: count
-      Entry: 3
-      Data: 0
-    - Name: typeDevelopmentName
-      Entry: 1
-      Data: unknown
-    - Name: 
-      Entry: 8
-      Data: 
     - Name: parameters
       Entry: 7
-      Data: 1|System.Collections.Generic.Dictionary`2[[PlantIdentificationParameterScriptableObject,
+      Data: 0|System.Collections.Generic.Dictionary`2[[PlantIdentificationParameterScriptableObject,
         Assembly-CSharp],[PlantIdentificationValueScriptableObject, Assembly-CSharp]],
         mscorlib
     - Name: comparer
       Entry: 7
-      Data: 2|System.Collections.Generic.ObjectEqualityComparer`1[[PlantIdentificationParameterScriptableObject,
+      Data: 1|System.Collections.Generic.ObjectEqualityComparer`1[[PlantIdentificationParameterScriptableObject,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 8
@@ -113,5 +101,5 @@ MonoBehaviour:
   componentType: 1
   icon: {fileID: 0}
   componentPicture: {fileID: 0}
-  anotherCollectible: {fileID: 0}
+  collectibleInfo: {fileID: 11400000, guid: 8a5f4a72feb564aa9b75c27c207b1331, type: 2}
   plantParent: {fileID: 11400000, guid: 1eec667510da84c5da36f05abf9e41c6, type: 2}
