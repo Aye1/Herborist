@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c57b32f021fd441cfa62fe6b1c6a5a70, type: 3}
+  m_Name: Violet FLower
+  m_EditorClassIdentifier: 
+  developmentName: Violet Flower
+  nameLocKey: tmp
+  sprite: {fileID: 4217510450917102243, guid: 52036093aca5f48aaa274f6b6157eefb, type: 3}
+  spawnQuantity: {x: 1, y: 1}
+  handGatherQuantity: {x: 1, y: 1}
+  parentPlantComponent: {fileID: 11400000, guid: dc2aa7f044d2e4e969dc9f6ff66a2bb6, type: 2}
