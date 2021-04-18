@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c57b32f021fd441cfa62fe6b1c6a5a70, type: 3}
-  m_Name: Chestnut Flower
+  m_Name: Walnut Fruit
   m_EditorClassIdentifier: 
-  developmentName: Chestnut Flower
+  developmentName: Walnut Fruit
   nameLocKey: tmp
-  sprite: {fileID: 0}
+  sprite: {fileID: 5595766916572902124, guid: a262bb768f7cc40bfae489b53d0d6084, type: 3}
   spawnQuantity: {x: 1, y: 1}
   handGatherQuantity: {x: 1, y: 1}
-  parentPlantComponent: {fileID: 11400000, guid: 4bef1f1eeb0f34752a3968e2f0dcd523, type: 2}
+  parentPlantComponent: {fileID: 11400000, guid: 7ca4c6e1338c34257a3ab48f94732ee4, type: 2}
