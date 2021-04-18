@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -120,19 +121,16 @@ public class NavigationManager : MonoBehaviour
     private void ManageFocus()
     {
         GameObject currentSelected = EventSystem.current.currentSelectedGameObject;
-        if (currentSelected != null)
+        /*if(currentSelected != null)
+            Debug.Log("Current selected: " + currentSelected.ToString());*/
+        if(currentSelected == null && _currentFocus != null)
         {
-            Debug.Log("Current selected: " + currentSelected.ToString());
-        }
-
-        if (currentSelected == null && _currentFocus != null)
-        {
-            Debug.Log("Current selected null, resetting focus");
+            //Debug.Log("Current selected null, resetting focus");
             SetFocus(_currentFocus);
         }
         else
         {
-            Debug.Log("Current focus = current selected");
+            //Debug.Log("Current focus = current selected");
             _currentFocus = currentSelected;
         }
     }

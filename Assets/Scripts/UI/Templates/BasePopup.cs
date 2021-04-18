@@ -31,7 +31,7 @@ public abstract class BasePopup : MonoBehaviour, INavigable
 
     public void OnComingBack()
     {
-        return;
+        CustomOnEnable();
     }
 
     public void OnCancel()

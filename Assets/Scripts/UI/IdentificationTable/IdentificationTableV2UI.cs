@@ -73,6 +73,7 @@ public class IdentificationTableV2UI : BasePopup
 
     private void UpdateUnidentifiedComponentsList()
     {
+        Debug.Log("update components");
         ClearComponentsList();
         _toIdentifyCollectibles.AddRange(HouseStorage.Instance.GetUnidentifiedComponents());
         UpdateUI();

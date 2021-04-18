@@ -12,7 +12,7 @@ public class InventoryUI : BasePopup
     void PopulateGrid()
     {
         Inventory inventory = isPlayerInventory ? Player.Instance.GetComponent<Inventory>() : HouseStorage.Instance.StorageInventory;
-        foreach (CollectiblePackage package in inventory.inventoryList)
+        foreach (CollectiblePackage package in inventory.GetCollectiblePackages())
         {
             InventoryItemUI newItem = Instantiate(_itemTemplate, _itemContainer);
             newItem.Collectible = package;

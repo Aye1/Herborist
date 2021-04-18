@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unisloth.Localization;
 using Sirenix.OdinInspector;
+using System.Linq;
 
 public class StorageBox : MonoBehaviour, IInteractable
 {
@@ -31,8 +32,10 @@ public class StorageBox : MonoBehaviour, IInteractable
     public void Interact(GameObject aPLayer)
     {
         _storageBoxUI.gameObject.SetActive(true);
-        List<CollectiblePackage> newCollectibles = PlayerMovement.Instance.GetComponent<Inventory>().EmptyInventory();
-        _storageBoxUI.Collectibles = newCollectibles;
+        IEnumerable<CollectiblePackage> newCollectibles = PlayerMovement.Instance.GetComponent<Inventory>().EmptyAsPackages();
+
+        _storageBoxUI.Collectibles = newCollectibles.ToList();
+
         HouseStorage.Instance.StorageInventory.Add(newCollectibles);
     }
     #endregion

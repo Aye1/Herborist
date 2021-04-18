@@ -15,6 +15,7 @@ public class BaseButton : MonoBehaviour, ISelectHandler, IDeselectHandler
 
     private void OnDisable()
     {
+        Debug.Log("OnDeselect ?");
         OnDeselect(null);
     }
 }

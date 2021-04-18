@@ -66,12 +66,12 @@ public class Collectible : MonoBehaviour, IInteractable
         bool isPreventingToAdd = false;
         foreach (CollectiblePackage package in packages)
         {
-            if (inventory.CanAddCollectible(package))
+            if (inventory.CanAddCollectible(package.type))
             {
                 _collectibleCount -= package.count;
 
                 feedback.PlayFeedbacks();
-                inventory.Add(package);
+                inventory.Add(package.type, (uint) package.count);
                 UpdateSpriteIfNecessary();
                 DynamicUIManager.Instance.SpawnCollectiblePicked(package);
             }

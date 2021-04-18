@@ -53,12 +53,13 @@ public class HouseStorage : MonoBehaviour
         }
     }
 
-    public List<CollectibleScriptableObject> GetUnidentifiedComponents()
+    public IEnumerable<CollectibleScriptableObject> GetUnidentifiedComponents()
     {
-        return StorageInventory.GetUnidentifiedComponents();
+        return StorageInventory.GetUnidentifiedCollectibles();
     }
+
     public bool IsInInventory(PlantComponentScriptableObject component)
     {
-        return StorageInventory.IsInInventory(component);
+        return StorageInventory.Contains(component);
     }
 }
