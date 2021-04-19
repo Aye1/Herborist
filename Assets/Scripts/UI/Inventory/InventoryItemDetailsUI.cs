@@ -31,15 +31,24 @@ public class InventoryItemDetailsUI : MonoBehaviour
 
     private void UpdateUI()
     {
-        _itemImage.enabled = true;
-        _itemImage.sprite = Collectible.type.sprite;
-        _itemNameText.text = PlantIdentificationInfos.Instance.GetPlantCurrentName(Collectible.type);
-        _itemCountText.text = Collectible.count.ToString();
+        if (Collectible == null)
+        {
+            UpdateEmptyUI();
+        }
+        else
+        {
+            _itemImage.enabled = true;
+            _itemImage.sprite = Collectible.type.sprite;
+            _itemNameText.text = PlantIdentificationInfos.Instance.GetPlantCurrentName(Collectible.type);
+            _itemCountText.text = Collectible.count.ToString();
+        }
+
     }
 
     private void UpdateEmptyUI()
     {
         _itemImage.enabled = false;
+        _itemImage.sprite = null; // TODO: put a default sprite
         _itemNameText.text = "";
         _itemCountText.text = "";
     }

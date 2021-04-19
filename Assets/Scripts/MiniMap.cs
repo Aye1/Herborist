@@ -37,7 +37,10 @@ public class MiniMap : MonoBehaviour
 
     private void Update()
     {
-        UpdateMap();
+        if (_player != null)
+        {
+            UpdateMap();
+        }
     }
 
     private void TestSetPixel()

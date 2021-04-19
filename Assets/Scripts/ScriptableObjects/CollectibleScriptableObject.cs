@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using Sirenix.OdinInspector;
+using System;
 
 [CreateAssetMenu(fileName = "New Collectible", menuName = "ScriptableObjects/Collectible")]
 public class CollectibleScriptableObject : ScriptableObject

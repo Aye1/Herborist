@@ -12,8 +12,8 @@ public class InventoryState : SaveState
 
 public class Inventory : SerializedMonoBehaviour, ISavable
 {
-    [ReadOnly]
-    public List<CollectiblePackage> inventoryList; // OLD - TBR
+    //[ReadOnly]
+    //public List<CollectiblePackage> inventoryList; // OLD - TBR
     [ReadOnly]
     public Dictionary<CollectibleScriptableObject, uint> collectibleDic; // NEW
 
@@ -23,27 +23,9 @@ public class Inventory : SerializedMonoBehaviour, ISavable
 
     private void Awake()
     {
-        inventoryList = new List<CollectiblePackage>();
+        //inventoryList = new List<CollectiblePackage>();
         collectibleDic = new Dictionary<CollectibleScriptableObject, uint>();
     }
-
-    // OLD - TBR
-    /*public void Add(CollectibleScriptableObject itemType)
-    {
-        CollectiblePackage pck = inventoryList.Where(p => p.type == itemType).FirstOrDefault();
-        if (pck != default(CollectiblePackage))
-        {
-            pck.count++;
-        }
-        else
-        {
-            inventoryList.Add(new CollectiblePackage()
-            {
-                type = itemType,
-                count = 1
-            });
-        }
-    }*/
 
     // NEW
     public uint Add(CollectibleScriptableObject collectible, uint count)
@@ -89,15 +71,6 @@ public class Inventory : SerializedMonoBehaviour, ISavable
         }
     }
 
-    // OLD - TBR
-    /*public void Add(IEnumerable<CollectibleScriptableObject> itemsTypes)
-    {
-        foreach (CollectibleScriptableObject item in itemsTypes)
-        {
-            Add(item);
-        }
-    }*/
-
     // NEW
     public bool CanAddCollectible(CollectibleScriptableObject collectible)
     {
@@ -114,45 +87,6 @@ public class Inventory : SerializedMonoBehaviour, ISavable
 
         return canAdd;
     }
-
-    // OLD - TBR
-    /*public bool CanAddCollectible(CollectiblePackage collectible)
-    {
-        bool returnValue = false;
-        CollectiblePackage pck = inventoryList.Where(p => p.type == collectible.type).FirstOrDefault();
-        if (pck != default(CollectiblePackage))
-        {
-            returnValue = (pck.count + collectible.count <= maxPlantCount);
-        }
-        else
-        {
-            returnValue = inventoryList.Count < inventorySize;
-        }
-        return returnValue;
-    }*/
-
-    // OLD - TBR
-    /*public void Add(CollectiblePackage collectible)
-    {
-        CollectiblePackage pck = inventoryList.Where(p => p.type == collectible.type).FirstOrDefault();
-        if (pck != default(CollectiblePackage))
-        {
-            pck.count += collectible.count;
-        }
-        else
-        {
-            inventoryList.Add(collectible);
-        }
-    }*/
-
-    // OLD - TBR
-    /*public void Add(IEnumerable<CollectiblePackage> collectibles)
-    {
-        foreach (CollectiblePackage p in collectibles)
-        {
-            Add(p);
-        }
-    }*/
 
     // NEW
     public void Remove(CollectibleScriptableObject collectible, uint count)
@@ -188,48 +122,15 @@ public class Inventory : SerializedMonoBehaviour, ISavable
             };
             packages.Add(pck);
         }
+        collectibleDic.Clear();
         return packages;
     }
-
-    // OLD - TBR
-    /*public void Remove(CollectibleScriptableObject itemType, int number)
-    {
-        CollectiblePackage pck = inventoryList.Where(p => p.type == itemType).FirstOrDefault();
-        if (pck != default(CollectiblePackage))
-        {
-            pck.count -= number;
-            if (pck.count <= 0)
-            {
-                inventoryList.Remove(pck);
-            }
-        }
-    }*/
-
-    // OLD - TBR
-    /*public void RemoveAll(CollectibleScriptableObject itemType)
-    {
-        inventoryList.RemoveAll(p => p.type == itemType);
-    }*/
-
-    // OLD - TBR
-    /*public List<CollectiblePackage> EmptyInventory()
-    {
-        List<CollectiblePackage> res = new List<CollectiblePackage>(inventoryList);
-        inventoryList.Clear();
-        return res;
-    }*/
 
     // NEW
     public uint GetCollectibleCount(CollectibleScriptableObject collectible)
     {
         return collectibleDic.ContainsKey(collectible) ? collectibleDic[collectible] : 0;
     }
-
-    // OLD - TBR
-    /*public int GetItemCount(CollectibleScriptableObject itemType)
-    {
-        return inventoryList.Where(p => p.type == itemType).FirstOrDefault().count;
-    }*/
 
     // NEW
     public IEnumerable<CollectibleScriptableObject> GetCollectiblesWhere(Func<CollectibleScriptableObject, bool> predicate)
@@ -253,11 +154,19 @@ public class Inventory : SerializedMonoBehaviour, ISavable
         });
     }
 
-    // OLD - TBR
-    /*public List<CollectibleScriptableObject> GetUnidentifiedComponents()
+    // OLD + NEW
+    private void LoadFromCollectiblePackages(IEnumerable<CollectiblePackage> packages)
     {
-        return inventoryList.Where(p => !PlantIdentificationInfos.Instance.IsIdentified(p.type)).Select(p => p.type).ToList();
-    }*/
+        if (collectibleDic == null)
+        {
+            collectibleDic = new Dictionary<CollectibleScriptableObject, uint>();
+        }
+        else
+        {
+            collectibleDic.Clear();
+        }
+        Add(packages);
+    }
 
     // NEW
     public bool Contains(PlantComponentScriptableObject component)
@@ -265,38 +174,22 @@ public class Inventory : SerializedMonoBehaviour, ISavable
         return collectibleDic.ContainsKey(component.collectibleInfo);
     }
 
-    // OLD - TBR
-    /*public bool IsInInventory(PlantComponentScriptableObject component)
-    {
-        return inventoryList.Exists(p => p.type == component.collectibleInfo);
-    }*/
-
     #region ISavable implementation
     public SaveState GetObjectToSave()
     {
         InventoryState state = new InventoryState()
         {
-            collectibles = new List<CollectiblePackage>()
+            collectibles = GetCollectiblePackages().ToList()
         };
-        if (inventoryList != null && inventoryList.Count > 0)
-        {
-            state.collectibles.AddRange(inventoryList);
-        }
+        Debug.Log("Saving " + state.collectibles.Count);
         return state;
     }
 
     public void LoadObject(SaveState saveState)
     {
         InventoryState state = saveState as InventoryState;
-        if (inventoryList == null)
-        {
-            inventoryList = new List<CollectiblePackage>();
-        }
-        else
-        {
-            inventoryList.Clear();
-        }
-        inventoryList.AddRange(state.collectibles);
+        LoadFromCollectiblePackages(state.collectibles);
+        Debug.Log("Loading " + state.collectibles.Count);
     }
 
     public string GetSaveName()

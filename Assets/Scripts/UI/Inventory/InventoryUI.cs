@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
+using System.Linq;
 
 public class InventoryUI : BasePopup
 {
@@ -9,26 +10,20 @@ public class InventoryUI : BasePopup
     [SerializeField, Required, ChildGameObjectsOnly] private Transform _itemContainer;
     [SerializeField, Required, ChildGameObjectsOnly] private InventoryItemDetailsUI _detailView;
     public bool isPlayerInventory = false;
+
     void PopulateGrid()
     {
         Inventory inventory = isPlayerInventory ? Player.Instance.GetComponent<Inventory>() : HouseStorage.Instance.StorageInventory;
-        foreach (CollectiblePackage package in inventory.GetCollectiblePackages())
+        IEnumerable<CollectiblePackage> collectibles = inventory.GetCollectiblePackages();
+
+        for(int i = 0; i < inventory.inventorySize; i++)
         {
             InventoryItemUI newItem = Instantiate(_itemTemplate, _itemContainer);
-            newItem.Collectible = package;
+            newItem.Collectible = i < collectibles.Count() ? collectibles.ElementAt(i) : null;
+            newItem.enabled = i < collectibles.Count();
         }
 
-        for (int i = inventory.inventoryList.Count; i < inventory.inventorySize; i++)
-        {
-            InventoryItemUI newItem = Instantiate(_itemTemplate, _itemContainer);
-            newItem.Collectible = null;
-            newItem.enabled = false;
-        }
-
-        if (inventory.inventoryList.Count > 0)
-        {
-            SetEventSystemFocus();
-        }
+        SetFocus();
     }
 
     void CleanGrid()
@@ -49,7 +44,7 @@ public class InventoryUI : BasePopup
         InventoryItemUI.OnCollectibleSelected -= OnCollectibleSelected;
     }
 
-    void SetEventSystemFocus()
+    void SetFocus()
     {
         NavigationManager.Instance.SetFocus(_itemContainer.GetChild(0).gameObject);
     }
