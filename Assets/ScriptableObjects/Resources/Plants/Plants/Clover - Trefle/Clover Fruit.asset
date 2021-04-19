@@ -21,13 +21,11 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
-    - Name: collectibleInfo
-      Entry: 6
-      Data: 
     - Name: parameters
       Entry: 6
       Data: 
   componentType: 2
   icon: {fileID: 0}
   componentPicture: {fileID: 0}
+  collectibleInfo: {fileID: 11400000, guid: 7302ec6c21c324169be9e9ef008fa88c, type: 2}
   plantParent: {fileID: 11400000, guid: 8d8509bd29ed946b79e908ed8dfddba5, type: 2}

@@ -170,7 +170,8 @@ public class GameManager : SerializedMonoBehaviour
 
     void OnOpenInventoryButtonPushed(InputAction.CallbackContext ctx)
     {
-        if (CurrentState == GameState.Game)
+        //TODO update game state if not coming from main menu
+        //if (CurrentState == GameState.Game)
         {
             OpenInventoryWindow.gameObject.SetActive(true);
         }
