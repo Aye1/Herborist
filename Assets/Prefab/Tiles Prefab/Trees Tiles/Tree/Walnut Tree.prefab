@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &1809943602120617911
+--- !u!1001 &6365885213129977563
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -9,36 +9,28 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 245104866987308640, guid: 3d407985c18cc4fd988987ea6ee6dbb2, type: 3}
       propertyPath: m_Name
-      value: Chestnut Tree
+      value: Walnut Tree
       objectReference: {fileID: 0}
     - target: {fileID: 316706682698173566, guid: 3d407985c18cc4fd988987ea6ee6dbb2, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 8224860321957825145, guid: a262bb768f7cc40bfae489b53d0d6084, type: 3}
-    - target: {fileID: 2314379691014094569, guid: 3d407985c18cc4fd988987ea6ee6dbb2, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 3.69
-      objectReference: {fileID: 0}
-    - target: {fileID: 2314379691014094569, guid: 3d407985c18cc4fd988987ea6ee6dbb2, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 3.5
-      objectReference: {fileID: 0}
+      objectReference: {fileID: -3194691082469799694, guid: 9fd467ea7a231470699529191a37dc80, type: 3}
     - target: {fileID: 3621107301420746708, guid: 3d407985c18cc4fd988987ea6ee6dbb2, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -8504461751632389459, guid: a262bb768f7cc40bfae489b53d0d6084, type: 3}
+      objectReference: {fileID: 6875032075022375199, guid: 9fd467ea7a231470699529191a37dc80, type: 3}
     - target: {fileID: 4267585364223549090, guid: 3d407985c18cc4fd988987ea6ee6dbb2, type: 3}
       propertyPath: _quantities.Array.data[0].sprite
       value: 
-      objectReference: {fileID: -4398387920372176922, guid: a262bb768f7cc40bfae489b53d0d6084, type: 3}
+      objectReference: {fileID: 3006031363956488798, guid: 9fd467ea7a231470699529191a37dc80, type: 3}
     - target: {fileID: 4267585364223549090, guid: 3d407985c18cc4fd988987ea6ee6dbb2, type: 3}
       propertyPath: _quantities.Array.data[1].sprite
       value: 
-      objectReference: {fileID: -4398387920372176922, guid: a262bb768f7cc40bfae489b53d0d6084, type: 3}
+      objectReference: {fileID: 4244579630657827205, guid: 9fd467ea7a231470699529191a37dc80, type: 3}
     - target: {fileID: 4267585364223549090, guid: 3d407985c18cc4fd988987ea6ee6dbb2, type: 3}
       propertyPath: _quantities.Array.data[2].sprite
       value: 
-      objectReference: {fileID: -4398387920372176922, guid: a262bb768f7cc40bfae489b53d0d6084, type: 3}
+      objectReference: {fileID: 267706734715281785, guid: 9fd467ea7a231470699529191a37dc80, type: 3}
     - target: {fileID: 5805027218746718460, guid: 3d407985c18cc4fd988987ea6ee6dbb2, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -86,26 +78,10 @@ PrefabInstance:
     - target: {fileID: 6590513324955059675, guid: 3d407985c18cc4fd988987ea6ee6dbb2, type: 3}
       propertyPath: collectible
       value: 
-      objectReference: {fileID: 11400000, guid: 2abc149f1153b497f954686a0eca6448, type: 2}
+      objectReference: {fileID: 11400000, guid: be0de6f14c1184d60afd66ff2ebbf1c1, type: 2}
     - target: {fileID: 7847099055549808956, guid: 3d407985c18cc4fd988987ea6ee6dbb2, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -4398387920372176922, guid: a262bb768f7cc40bfae489b53d0d6084, type: 3}
-    - target: {fileID: 8178095311634536047, guid: 3d407985c18cc4fd988987ea6ee6dbb2, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8869152998857271568, guid: 3d407985c18cc4fd988987ea6ee6dbb2, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1.22
-      objectReference: {fileID: 0}
-    - target: {fileID: 9004868600834863039, guid: 3d407985c18cc4fd988987ea6ee6dbb2, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.07
-      objectReference: {fileID: 0}
-    - target: {fileID: 9004868600834863039, guid: 3d407985c18cc4fd988987ea6ee6dbb2, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.92
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 267706734715281785, guid: 9fd467ea7a231470699529191a37dc80, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d407985c18cc4fd988987ea6ee6dbb2, type: 3}

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   developmentName: Birch Flower
   nameLocKey: tmp
-  sprite: {fileID: 0}
+  sprite: {fileID: 4343528047841220886, guid: a262bb768f7cc40bfae489b53d0d6084, type: 3}
   spawnQuantity: {x: 1, y: 1}
   handGatherQuantity: {x: 1, y: 1}
   parentPlantComponent: {fileID: 11400000, guid: 0204b4ac1698b4725a0967354d43b5a3, type: 2}

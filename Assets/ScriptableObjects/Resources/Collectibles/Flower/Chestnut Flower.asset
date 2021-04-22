@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   developmentName: Chestnut Flower
   nameLocKey: tmp
-  sprite: {fileID: 0}
+  sprite: {fileID: -6729366390715605258, guid: a262bb768f7cc40bfae489b53d0d6084, type: 3}
   spawnQuantity: {x: 1, y: 1}
   handGatherQuantity: {x: 1, y: 1}
   parentPlantComponent: {fileID: 11400000, guid: 4bef1f1eeb0f34752a3968e2f0dcd523, type: 2}

@@ -114,6 +114,6 @@ MonoBehaviour:
       Data: 
   componentType: 0
   icon: {fileID: 0}
-  componentPicture: {fileID: 0}
+  componentPicture: {fileID: -6776722044461690, guid: a262bb768f7cc40bfae489b53d0d6084, type: 3}
   collectibleInfo: {fileID: 11400000, guid: 21a9e73a911aa47efa098064e33ef55d, type: 2}
   plantParent: {fileID: 11400000, guid: 9a178f1e7021f4c80b83a5b74e167f0e, type: 2}

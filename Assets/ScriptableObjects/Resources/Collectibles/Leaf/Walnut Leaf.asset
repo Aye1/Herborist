@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   developmentName: Walnut Leaf
   nameLocKey: temp
-  sprite: {fileID: -1406877758659622957, guid: a262bb768f7cc40bfae489b53d0d6084, type: 3}
+  sprite: {fileID: -1813629172083849819, guid: a262bb768f7cc40bfae489b53d0d6084, type: 3}
   spawnQuantity: {x: 1, y: 40}
   handGatherQuantity: {x: 1, y: 10}
   parentPlantComponent: {fileID: 11400000, guid: 1a94a0c9c1f524434a010e4d9002827c, type: 2}

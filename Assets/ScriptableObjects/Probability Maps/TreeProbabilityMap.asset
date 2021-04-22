@@ -14,12 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   probabilities:
   - obj: {fileID: 8751200936571683678, guid: 5a8cc6690dd6b4fbcad47d92efe958d6, type: 3}
-    probabilityRange: {x: 0, y: 0.42857143}
+    probabilityRange: {x: 0, y: 0.3960396}
   - obj: {fileID: 3275910854534038064, guid: 0f454b28e4cec4656a58082d2fc0c80d, type: 3}
-    probabilityRange: {x: 0.42857143, y: 0.5714286}
+    probabilityRange: {x: 0.3960396, y: 0.4950495}
   - obj: {fileID: 6574942423325694139, guid: a467c42874b014c89a5c92473282a2ac, type: 3}
-    probabilityRange: {x: 0.5714286, y: 0.71428573}
+    probabilityRange: {x: 0.4950495, y: 0.5940594}
   - obj: {fileID: 2625728826382594805, guid: d0de7720f6eb548aeb4787dd491f320f, type: 3}
-    probabilityRange: {x: 0.71428573, y: 0.85714287}
+    probabilityRange: {x: 0.5940594, y: 0.69306934}
   - obj: {fileID: 88968831304494600, guid: 856a33806b42e45de970503e88772f87, type: 3}
-    probabilityRange: {x: 0.85714287, y: 1}
+    probabilityRange: {x: 0.69306934, y: 0.7920792}
+  - obj: {fileID: 2146811276009648964, guid: 32ae15fc5070c489184b7b8bd0aa66f8, type: 3}
+    probabilityRange: {x: 0.7920792, y: 0.8910891}
+  - obj: {fileID: 1907555428256750039, guid: 2c80cd2b9ccb34695bc8fcb20fd88cba, type: 3}
+    probabilityRange: {x: 0.8910891, y: 0.99009895}
+  - obj: {fileID: 5569646433137184271, guid: f5c92a0ed476241d680d692d62040ec7, type: 3}
+    probabilityRange: {x: 0.99009895, y: 0.99999994}

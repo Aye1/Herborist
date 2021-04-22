@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   developmentName: Oak Fruit
   nameLocKey: tmp
-  sprite: {fileID: 0}
+  sprite: {fileID: 1624672338301748238, guid: a262bb768f7cc40bfae489b53d0d6084, type: 3}
   spawnQuantity: {x: 1, y: 1}
   handGatherQuantity: {x: 1, y: 1}
   parentPlantComponent: {fileID: 11400000, guid: 4c41b2014fbac45c59fa3a4a684e35ca, type: 2}

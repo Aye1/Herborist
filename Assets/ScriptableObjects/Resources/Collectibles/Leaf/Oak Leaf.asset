@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   developmentName: Oak Leaf
   nameLocKey: temp
-  sprite: {fileID: 21300000, guid: 70ef3a0b57ca04e989aa9bb1e6ba05a2, type: 3}
+  sprite: {fileID: 256147957474129465, guid: a262bb768f7cc40bfae489b53d0d6084, type: 3}
   spawnQuantity: {x: 1, y: 50}
   handGatherQuantity: {x: 1, y: 15}
   parentPlantComponent: {fileID: 11400000, guid: 34fd2cb30fac94db8a29dd5687ef9d83, type: 2}

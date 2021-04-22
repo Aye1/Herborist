@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   developmentName: Oak FLower
   nameLocKey: tmp
-  sprite: {fileID: 0}
+  sprite: {fileID: 2021757211624324370, guid: a262bb768f7cc40bfae489b53d0d6084, type: 3}
   spawnQuantity: {x: 1, y: 1}
   handGatherQuantity: {x: 1, y: 1}
   parentPlantComponent: {fileID: 11400000, guid: 063a86b9fe18942ae9e0daaf554ed722, type: 2}

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   developmentName: Hazel Flower
   nameLocKey: tmp
-  sprite: {fileID: -6729366390715605258, guid: a262bb768f7cc40bfae489b53d0d6084, type: 3}
+  sprite: {fileID: 4052902461367354334, guid: a262bb768f7cc40bfae489b53d0d6084, type: 3}
   spawnQuantity: {x: 1, y: 1}
   handGatherQuantity: {x: 1, y: 1}
   parentPlantComponent: {fileID: 11400000, guid: 742661c7484db41b09c1ef5a6dd46ff1, type: 2}
