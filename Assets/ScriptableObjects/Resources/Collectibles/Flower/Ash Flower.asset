@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   developmentName: Ash Flower
   nameLocKey: tmp
-  sprite: {fileID: 0}
+  sprite: {fileID: -132237085484095160, guid: a262bb768f7cc40bfae489b53d0d6084, type: 3}
   spawnQuantity: {x: 1, y: 1}
   handGatherQuantity: {x: 1, y: 1}
   parentPlantComponent: {fileID: 11400000, guid: 226efd1fafe2a49949ec0dd688d3b001, type: 2}

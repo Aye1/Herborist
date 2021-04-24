@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   developmentName: Nettle FLower
   nameLocKey: tmp
-  sprite: {fileID: -8020346365382492504, guid: 52036093aca5f48aaa274f6b6157eefb, type: 3}
+  sprite: {fileID: -3668432188160340409, guid: 52036093aca5f48aaa274f6b6157eefb, type: 3}
   spawnQuantity: {x: 1, y: 1}
   handGatherQuantity: {x: 1, y: 1}
   parentPlantComponent: {fileID: 11400000, guid: 10ec47dae835b4dd8ae320914846ac8b, type: 2}

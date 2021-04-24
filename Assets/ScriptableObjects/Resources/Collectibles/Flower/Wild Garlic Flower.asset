@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   developmentName: Wild Garlic FLower
   nameLocKey: tmp
-  sprite: {fileID: 0}
+  sprite: {fileID: 4821411189836941387, guid: 52036093aca5f48aaa274f6b6157eefb, type: 3}
   spawnQuantity: {x: 1, y: 1}
   handGatherQuantity: {x: 1, y: 1}
   parentPlantComponent: {fileID: 11400000, guid: 2557e5da2b8604193bc059b4a5b31714, type: 2}

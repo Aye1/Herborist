@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Wild Rose Flower
   m_EditorClassIdentifier: 
   developmentName: Wild Rose Flower
-  nameLocKey: 
+  nameLocKey: tmp
   sprite: {fileID: -2966741180809082152, guid: a262bb768f7cc40bfae489b53d0d6084, type: 3}
   spawnQuantity: {x: 1, y: 1}
   handGatherQuantity: {x: 1, y: 1}

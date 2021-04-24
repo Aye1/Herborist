@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   developmentName: Nettle Leaf
   nameLocKey: temp
-  sprite: {fileID: 21300000, guid: f9dfe1be6be204f45a3a58522ae12436, type: 3}
+  sprite: {fileID: -4945894375152413404, guid: 52036093aca5f48aaa274f6b6157eefb, type: 3}
   spawnQuantity: {x: 1, y: 4}
   handGatherQuantity: {x: 1, y: 2}
   parentPlantComponent: {fileID: 11400000, guid: b80f48f09066342fe9591bc3e552a88c, type: 2}

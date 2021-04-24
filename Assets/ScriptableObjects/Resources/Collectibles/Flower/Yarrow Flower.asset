@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   developmentName: Yarrow Flower
   nameLocKey: tmp
-  sprite: {fileID: 0}
+  sprite: {fileID: 8830768415581795985, guid: 52036093aca5f48aaa274f6b6157eefb, type: 3}
   spawnQuantity: {x: 1, y: 1}
   handGatherQuantity: {x: 1, y: 1}
   parentPlantComponent: {fileID: 11400000, guid: b119c8daa469f4dfca90f9a2ce858fda, type: 2}

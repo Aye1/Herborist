@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   developmentName: Plantain Flower
   nameLocKey: tmp
-  sprite: {fileID: -4272566726499553104, guid: 52036093aca5f48aaa274f6b6157eefb, type: 3}
+  sprite: {fileID: 2400204568218444865, guid: 52036093aca5f48aaa274f6b6157eefb, type: 3}
   spawnQuantity: {x: 1, y: 1}
   handGatherQuantity: {x: 1, y: 1}
   parentPlantComponent: {fileID: 11400000, guid: bf56dfe8e251a403d996312a4a7515bc, type: 2}

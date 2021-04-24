@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   developmentName: Plantain Fruit
   nameLocKey: tmp
-  sprite: {fileID: 4958148360912546503, guid: 52036093aca5f48aaa274f6b6157eefb, type: 3}
+  sprite: {fileID: 3684887122085408699, guid: 52036093aca5f48aaa274f6b6157eefb, type: 3}
   spawnQuantity: {x: 1, y: 1}
   handGatherQuantity: {x: 1, y: 1}
   parentPlantComponent: {fileID: 11400000, guid: 4f73a3d43e3504f01858a74b786e2229, type: 2}

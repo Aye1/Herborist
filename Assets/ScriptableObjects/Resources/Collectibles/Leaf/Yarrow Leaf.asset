@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   developmentName: Yarrow Leaf
   nameLocKey: temp
-  sprite: {fileID: 21300000, guid: 385a33cc5db074488bffaed50c41123c, type: 3}
+  sprite: {fileID: 6703462501678428260, guid: 52036093aca5f48aaa274f6b6157eefb, type: 3}
   spawnQuantity: {x: 1, y: 3}
   handGatherQuantity: {x: 1, y: 1}
   parentPlantComponent: {fileID: 11400000, guid: 410c76412fc0943c38dbafefeac07e7f, type: 2}
