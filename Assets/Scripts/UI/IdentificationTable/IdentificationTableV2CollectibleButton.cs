@@ -71,4 +71,9 @@ public class IdentificationTableV2CollectibleButton : MonoBehaviour
             _currentState = ComponentState.UNKNOWN;
         }
     }
+
+    public bool IsFocusable()
+    {
+        return _currentState == ComponentState.UNIDENTIFIED;
+    }
 }

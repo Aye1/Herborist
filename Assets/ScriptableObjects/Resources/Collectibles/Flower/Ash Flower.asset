@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c57b32f021fd441cfa62fe6b1c6a5a70, type: 3}
   m_Name: Ash Flower
   m_EditorClassIdentifier: 
-  developmentName: Ash Foower
+  developmentName: Ash Flower
   nameLocKey: tmp
   sprite: {fileID: 0}
   spawnQuantity: {x: 1, y: 1}

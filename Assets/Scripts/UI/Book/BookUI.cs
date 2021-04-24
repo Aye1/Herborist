@@ -268,6 +268,7 @@ public class BookUI : BasePopup
     public void OpenIdentificationTable(PlantComponentScriptableObject component)
     {
         IdentificationTable.gameObject.SetActive(true);
+        IdentificationTable.bypassSelector = true;
         IdentificationTable.OnComponentSelected(component);
     }
 
@@ -319,8 +320,12 @@ public class BookUI : BasePopup
 
     protected override void CustomOnEnable()
     {
+        Debug.Log("custom onenable");
         BindInputs();
         UpdateControlsSprite();
+        _currentLeftPage.ActivateFocusableElements(true);
+        _currentLeftPage.UpdateUI();
+        _currentRightPage.UpdateUI();
     }
 
     protected override void OnPopupClosing()

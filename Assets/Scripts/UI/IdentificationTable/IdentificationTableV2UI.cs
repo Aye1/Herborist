@@ -15,6 +15,8 @@ public class IdentificationTableV2UI : BasePopup
 
     private List<CollectibleScriptableObject> _toIdentifyCollectibles;
 
+    public bool bypassSelector = false;
+
     void Awake()
     {
         _toIdentifyCollectibles = new List<CollectibleScriptableObject>();
@@ -56,15 +58,23 @@ public class IdentificationTableV2UI : BasePopup
     private void OnComponentIdentified(PlantComponentScriptableObject component)
     {
         PlantIdentificationInfos.Instance.SetComponentIdentification(component, true);
-        ToggleSelectorVisiblity(true);
-        UpdateUnidentifiedComponentsList();
+        NavigationManager.Instance.PopNavigation();
+        if (bypassSelector)
+        {
+            ClosePopup();
+        }
+        else
+        {
+            ToggleSelectorVisiblity(true);
+            UpdateUnidentifiedComponentsList();
+        }
     }
 
     private void ToggleSelectorVisiblity(bool active)
     {
         _selector.gameObject.SetActive(active);
         _questionsList.gameObject.SetActive(!active);
-        if(!active)
+        if (!active)
         {
             NavigationManager.Instance.PushNavigation(_questionsList);
             _questionsList.tableParent = this;
@@ -95,6 +105,7 @@ public class IdentificationTableV2UI : BasePopup
     {
         ToggleSelectorVisiblity(true);
         UpdateUnidentifiedComponentsList();
+        OnCancel();
     }
 
     #region BasePopup implementation

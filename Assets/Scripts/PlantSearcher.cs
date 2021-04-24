@@ -2,6 +2,7 @@
 using UnityEngine;
 using System.Linq;
 using Sirenix.OdinInspector;
+using System;
 
 public class PlantSearcher : MonoBehaviour
 {
@@ -41,12 +42,33 @@ public class PlantSearcher : MonoBehaviour
     public List<PlantComponentScriptableObject> FindComponents(Dictionary<PlantIdentificationParameterScriptableObject, PlantIdentificationValueScriptableObject> parameters)
     {
         List<PlantComponentScriptableObject> components = _database.plants.SelectMany(p => p.components).ToList();
-        foreach(KeyValuePair<PlantIdentificationParameterScriptableObject, PlantIdentificationValueScriptableObject> param in parameters)
+        foreach (KeyValuePair<PlantIdentificationParameterScriptableObject, PlantIdentificationValueScriptableObject> param in parameters)
         {
             components = components.Where(c => IsValid(c, param.Key, param.Value)).ToList();
             Debug.LogFormat("Results found after param {1}: {0}", components.Count, param.Key.name);
         }
         return components;
+    }
+
+    public List<PlantScriptableObject> GetPlantPossibilitiesFromDiscoveredComponents(PlantScriptableObject plantObject)
+    {
+        List<PlantScriptableObject> plantList = new List<PlantScriptableObject>();
+        foreach (PlantComponentScriptableObject component in plantObject.components)
+        {
+            if (PlantIdentificationInfos.Instance.IsIdentified(component))
+            {
+                List<PlantScriptableObject> componentPlantList = FindPlants(component.parameters);
+                if (plantList.Count == 0)
+                {
+                    plantList = componentPlantList;
+                }
+                else
+                {
+                    plantList = plantList.Intersect(componentPlantList).ToList();
+                }
+            }
+        }
+        return plantList;
     }
 
     public List<PlantScriptableObject> FindPlants(Dictionary<PlantIdentificationParameterScriptableObject, PlantIdentificationValueScriptableObject> parameters)

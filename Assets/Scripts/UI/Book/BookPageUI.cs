@@ -15,11 +15,8 @@ public class BookPageUI : MonoBehaviour
         get { return _plant; }
         set
         {
-            if (_plant != value)
-            {
-                _plant = value;
-                UpdateUI();
-            }
+            _plant = value;
+            UpdateUI();
         }
     }
 
@@ -37,7 +34,7 @@ public class BookPageUI : MonoBehaviour
         }
     }
 
-    protected virtual void UpdateUI() { }
+    public virtual void UpdateUI() { }
 
     private void UpdatePageNumber()
     {

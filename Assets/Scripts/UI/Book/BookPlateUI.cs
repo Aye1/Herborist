@@ -14,7 +14,7 @@ public class BookPlateUI : BookPageUI
 
     public BookUI bookParent;
 
-    protected override void UpdateUI()
+    public override void UpdateUI()
     {
         if (Plant == null)
         {
@@ -52,7 +52,8 @@ public class BookPlateUI : BookPageUI
             IdentificationTableV2CollectibleButton newComponent = Instantiate(_componentButtonTemplate, _componentHolder);
             newComponent.PlantComponent = component;
             newComponent.SelfButton.onClick.AddListener(() => OnComponentSelected(newComponent.PlantComponent));
-            if (isFirst)
+
+            if (isFirst && newComponent.SelfButton.interactable)
             {
                 NavigationManager.Instance.SetFocus(newComponent.gameObject);
                 isFirst = false;
@@ -73,9 +74,9 @@ public class BookPlateUI : BookPageUI
 
         foreach (Transform child in _componentHolder)
         {
-            Button button = child.GetComponent<Button>();
-            button.interactable = isActivate;
-            if (isFirst)
+            IdentificationTableV2CollectibleButton collectibleButton = child.GetComponent<IdentificationTableV2CollectibleButton>();
+            collectibleButton.SelfButton.interactable = isActivate && collectibleButton.IsFocusable();
+            if (isFirst && collectibleButton.SelfButton.interactable)
             {
                 NavigationManager.Instance.SetFocus(child.gameObject);
                 isFirst = false;
